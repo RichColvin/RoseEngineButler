@@ -1,0 +1,190 @@
+Error report created by /usr/lib/tcltk/linuxcnc/show_errors.tcl:
+
+Print file information:
+RUN_IN_PLACE=no
+LINUXCNC_DIR=
+LINUXCNC_BIN_DIR=/usr/bin
+LINUXCNC_TCL_DIR=/usr/lib/tcltk/linuxcnc
+LINUXCNC_SCRIPT_DIR=
+LINUXCNC_RTLIB_DIR=/usr/lib/linuxcnc/modules
+LINUXCNC_CONFIG_DIR=
+LINUXCNC_LANG_DIR=/usr/lib/tcltk/linuxcnc/msgs
+INIVAR=inivar
+HALCMD=halcmd
+LINUXCNC_EMCSH=/usr/bin/wish8.6
+LINUXCNC - 2.9.4
+Machine configuration directory is '/home/cnc/linuxcnc/configs/Rosetta'
+Machine configuration file is 'Rosetta.ini.expanded'
+INIFILE=/home/cnc/linuxcnc/configs/Rosetta/Rosetta.ini.expanded
+VERSION=1.1
+
+check_config:
+  INCONSISTENT coordinates specifications:
+               trivkins coordinates=XYZBUV
+               [TRAJ]COORDINATES=XYZBCUV
+
+PARAMETER_FILE=sim.var
+TPMOD=
+HOMEMOD=
+TASK=milltask
+HALUI=halui
+DISPLAY=axis
+COORDINATES=XYZBCUV
+KINEMATICS=trivkins coordinates=XYZBUV
+Starting LinuxCNC...
+Starting LinuxCNC server program: linuxcncsvr
+Loading Real Time OS, RTAPI, and HAL_LIB modules
+Starting LinuxCNC IO program: io
+Starting HAL User Interface program: halui
+linuxcnc TPMOD=tpmod HOMEMOD=homemod EMCMOT=motmod
+Found file(REL): ./Rosetta.hal
+Shutting down and cleaning up LinuxCNC...
+Running HAL shutdown script
+
+identityKinematicsSetup: coordinates:XYZBUV
+   Joint 0 ==> Axis X
+   Joint 1 ==> Axis Y
+   Joint 2 ==> Axis Z
+   Joint 3 ==> Axis B
+   Joint 4 ==> Axis U
+   Joint 5 ==> Axis V
+identityKinematicsSetup: Recommend: kinstype=both
+
+hm2: loading Mesa HostMot2 driver version 0.15
+hm2_eth: loading Mesa AnyIO HostMot2 ethernet driver version 0.2
+hm2_eth: 192.168.1.121: INFO: Hardware address (MAC): 00:60:1b:12:80:d8
+hm2_eth: discovered 7I92T
+hm2/hm2_7i92.0: Low Level init 0.15
+hm2/hm2_7i92.0: 34 I/O Pins used:
+hm2/hm2_7i92.0:     IO Pin 000 (P2-01): StepGen #0, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 001 (P2-14): StepGen #0, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 002 (P2-02): InM Input Module #0, pin in0 (Input)
+hm2/hm2_7i92.0:     IO Pin 003 (P2-15): OutM Output Module #0, pin Out-00 (Output)
+hm2/hm2_7i92.0:     IO Pin 004 (P2-03): StepGen #1, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 005 (P2-16): StepGen #1, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 006 (P2-04): InM Input Module #0, pin in1 (Input)
+hm2/hm2_7i92.0:     IO Pin 007 (P2-17): OutM Output Module #0, pin Out-01 (Output)
+hm2/hm2_7i92.0:     IO Pin 008 (P2-05): StepGen #2, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 009 (P2-06): StepGen #2, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 010 (P2-07): InM Input Module #0, pin in2 (Input)
+hm2/hm2_7i92.0:     IO Pin 011 (P2-08): OutM Output Module #0, pin Out-02 (Output)
+hm2/hm2_7i92.0:     IO Pin 012 (P2-09): StepGen #3, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 013 (P2-10): StepGen #3, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 014 (P2-11): InM Input Module #0, pin in3 (Input)
+hm2/hm2_7i92.0:     IO Pin 015 (P2-12): OutM Output Module #0, pin Out-03 (Output)
+hm2/hm2_7i92.0:     IO Pin 016 (P2-13): IOPort
+hm2/hm2_7i92.0:     IO Pin 017 (P1-01): StepGen #4, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 018 (P1-14): StepGen #4, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 019 (P1-02): InM Input Module #0, pin in4 (Input)
+hm2/hm2_7i92.0:     IO Pin 020 (P1-15): OutM Output Module #0, pin Out-04 (Output)
+hm2/hm2_7i92.0:     IO Pin 021 (P1-03): StepGen #5, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 022 (P1-16): StepGen #5, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 023 (P1-04): InM Input Module #0, pin in5 (Input)
+hm2/hm2_7i92.0:     IO Pin 024 (P1-17): OutM Output Module #0, pin Out-05 (Output)
+hm2/hm2_7i92.0:     IO Pin 025 (P1-05): StepGen #6, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 026 (P1-06): StepGen #6, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 027 (P1-07): InM Input Module #0, pin in6 (Input)
+hm2/hm2_7i92.0:     IO Pin 028 (P1-08): OutM Output Module #0, pin Out-06 (Output)
+hm2/hm2_7i92.0:     IO Pin 029 (P1-09): StepGen #7, pin Step (Output)
+hm2/hm2_7i92.0:     IO Pin 030 (P1-10): StepGen #7, pin Direction (Output)
+hm2/hm2_7i92.0:     IO Pin 031 (P1-11): InM Input Module #0, pin in7 (Input)
+hm2/hm2_7i92.0:     IO Pin 032 (P1-12): OutM Output Module #0, pin Out-07 (Output)
+hm2/hm2_7i92.0:     IO Pin 033 (P1-13): IOPort
+hm2/hm2_7i92.0: registered
+hm2_eth: in hm2_eth_reset
+hm2_eth: HostMot2 ethernet driver unloaded
+hm2: unloading
+Removing HAL_LIB, RTAPI, and Real Time OS modules
+Removing NML shared memory segments
+
+Debug file information:
+Note: Using POSIX realtime
+./Rosetta.hal:75: Pin 'hm2_7i92.1.outm.00.out-07' does not exist
+5765
+Stopping realtime threads
+Unloading hal components
+Note: Using POSIX realtime
+
+
+
+-----------------------------------------------------------------------
+Info report created by linuxcnc_info:
+The file:    /tmp/linuxcnc_info.txt
+can be posted to a forum or a web site like:
+     http://pastebin.com
+in order to provide information about the linuxcnc
+system and configuration.
+
+                Date: Thu Apr 10 06:06:49 PM EDT 2025
+            UTC Date: Thu Apr 10 10:06:49 PM UTC 2025
+        this program: /usr/bin/linuxcnc_info
+              uptime: 18:06:49 up 3:39, 1 user, load average: 0.20, 0.13, 0.09
+     lsb_release -sa: Debian Debian GNU/Linux 12 (bookworm) 12 bookworm
+            linuxcnc: /usr/bin/linuxcnc
+                 pwd: /home/cnc/linuxcnc/configs/Rosetta
+                USER: cnc
+             LOGNAME: cnc
+                HOME: /home/cnc
+              EDITOR: 
+              VISUAL: 
+            LANGUAGE: 
+                TERM: dumb
+           COLORTERM: 
+             DISPLAY: :0.0
+             DESKTOP: lightdm-xsession
+        display size: 1600x900 pixels (423x238 millimeters)
+                PATH: /usr/bin:/home/cnc/linuxcnc/configs/Rosetta/bin:/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+uname items:
+         nodename -n: linuxcnc
+      kernel-name -s: Linux
+      kernel-vers -v: #1 SMP PREEMPT_RT Mon Jan 27 00:10:15 AEDT 2025
+          machine -m: aarch64
+        processor -p: unknown
+         platform -i: unknown
+      oper system -o: GNU/Linux
+
+/proc items:
+             cmdline: reboot=w coherent_pool=1M 8250.nr_uarts=1 pci=pcie_bus_safe cgroup_disable=memory numa_policy=interleave numa=fake=8 system_heap.max_order=0 smsc95xx.macaddr=2C:CF:67:7C:67:73 vc_mem.mem_base=0x3fc00000 vc_mem.mem_size=0x40000000 console=ttyAMA10,115200 console=tty1 root=PARTUUID=a27d77aa-02 rootfstype=ext4 fsck.repair=yes loglevel=5 net.ifnames=0 processor.max_cstate=1 isolcpus=2,3 firmware_class.path=/lib/firmware/updates/brcm rootwait
+          model name: 
+               cores: 
+             cpu MHz: 
+             parport: 
+              serial: 
+
+Versions:
+                 gcc: gcc (Debian 12.2.0-14) 12.2.0
+              python: Python 3.11.2
+                 git: git version 2.39.5
+          git commit: NA
+                 tcl: 8.6
+                  tk: 8.6
+               glade: not_in_PATH
+
+linuxcnc_var all:
+
+     LINUXCNCVERSION: 2.9.4
+LINUXCNC_AUX_GLADEVCP: /usr/share/linuxcnc/aux_gladevcp
+LINUXCNC_AUX_EXAMPLES: /usr/share/linuxcnc/aux_examples
+            REALTIME: /usr/lib/linuxcnc/realtime
+                 RTS: uspace
+          HALLIB_DIR: /usr/share/linuxcnc/hallib
+              PYTHON: /usr/bin/python3
+
+dpkg -l '*linuxcnc*':
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                Version      Architecture Description
++++-===================-============-============-=====================================================================
+un  linuxcnc            <none>       <none>       (no description available)
+un  linuxcnc-dev        <none>       <none>       (no description available)
+un  linuxcnc-doc        <none>       <none>       (no description available)
+ii  linuxcnc-doc-en     1:2.9.4      all          motion controller for CNC machines and robots (English documentation)
+un  linuxcnc-doc-es     <none>       <none>       (no description available)
+un  linuxcnc-doc-fr     <none>       <none>       (no description available)
+un  linuxcnc-sim        <none>       <none>       (no description available)
+un  linuxcnc-sim-dev    <none>       <none>       (no description available)
+ii  linuxcnc-uspace     1:2.9.4      arm64        motion controller for CNC machines and robots
+ii  linuxcnc-uspace-dev 1:2.9.4      arm64        PC based motion controller for real-time Linux
+
