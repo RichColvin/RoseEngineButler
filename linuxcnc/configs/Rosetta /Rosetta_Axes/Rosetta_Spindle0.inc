@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 02 August 2025, R. Colvin                                   #
+#   1.0 - 05 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -92,19 +92,6 @@
 #   -------------  = 17.778 ----------
 #      1.8 deg                degree
 #
-# ***********************
-# 3. Spindle gear
-#
-#    For the MDF Rose Engine, the spindle motor gear ratio is 
-#    108:12 = 9
-#
-#    For the Lindow Rose Engine, the spindle motor gear ratio
-#    is
-#
-#    17.778 microsteps    9 motor rev        microsteps
-#    ----------------- x ------------- = 160 -----------
-#         1 degree        1 spindle rev      spindle deg
-#
 # ********************************************************************
 
 # ********************************************************************
@@ -138,76 +125,50 @@ TYPE                     = ANGULAR
 # STEP_SCALE = number of pulses that corresponds to a move of one 
 # machine unit as set in the [TRAJ] section. 
 #
-# See also, calculation #3, above.
-#
-# For a linear joint one machine unit will be equal to the setting 
-# of LINEAR_UNITS. 
-# 
-# For an angular joint one unit is equal to the setting in 
-# ANGULAR_UNITS. 
-#
-# For stepper systems, this is the number of step pulses issued per
-# machine unit. 
-#
-# For servo systems, this is the number of feedback pulses per machine
-# unit. A second number, if specified, is ignored.
-#
 # Using a Starrett dial speed indicator, this was determined to be:
 #
 #   For the MDF Rose Engine,
 #
 #                 9 motor rev
-#       5,600 x ------------- = 50,400
+#       6,000 x ------------- = 54,000
 #                1 spindle rev
 #
 
-SCALE				     = 50400
-STEP_SCALE               = 50400
+SCALE				     = 54000
+STEP_SCALE               = 54000
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
 # machine unit.
 #
-# See also, calculation #3, above.
 # Set to 6400 steps / rev
 ENCODER_SCALE            = 6400
 
 # ********************************************************************
 
 # The maximum spindle speed (in rpm) for the specified spindle.
-MAX_FORWARD_VELOCITY     = 10
-# MIN_FORWARD_VELOCITY     = 0.0
+# MAX_FORWARD_VELOCITY     = 10
 
-MAX_REVERSE_VELOCITY     = 10
-# MIN_REVERSE_VELOCITY     = 0.0
+# MAX_REVERSE_VELOCITY     = 10
 
 # Sets the step size for spindle speed increment / decrement commands.
-INCREMENT                = 0.1
+# INCREMENT                = 0.1
 
-# Spindle homing not yet working in ver 2.9.4.
-# HOME_SEARCH_VELOCITY     = 100
-
-# Spindle homing not yet working in ver 2.9.4.
-# HOME_SEQUENCE              = 0
-
-
-# ***********************
-#
-#   For the MDF Rose Engine,
-#
-#             9 motor rev
-#       10 x ------------- = 90 rpm
-#            1 spindle rev
-#
-#                          = 1.5 rps
-#
 #
 # Maximum velocity for this joint in machine units per minute.
-MAX_VELOCITY           	 = 90
+MAX_VELOCITY           	 = 10
 
-# Hardware StepGen requires values in RPS (revolution per second)
+# Hardware StepGen requires values in rps (revolution per second)
 # As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
 STEPGEN_MAXVEL           = 2
+
+# Maximum acceleration for this joint in machine units per second
+# squared.
+MAX_ACCELERATION         = 30
+
+# Hardware StepGen requires values in rps (revolution per second)
+# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
+STEPGEN_MAXACCEL         = 1
 
 # ********************************************************************
 # Backlash in machine units. Backlash compensation value can be used 
@@ -217,18 +178,6 @@ STEPGEN_MAXVEL           = 2
 # MAX_ACCELERATION for the joint. Excessive backlash compensation
 # can cause an joint to jerk as it changes direction.
 BACKLASH				 = 0.0000
-
-#  The minimum limit for joint motion, in machine units. When this
-# limit is reached, the controller aborts joint motion. For a
-# rotary joint with unlimited rotation having no MIN_LIMIT for
-# that joint in the [JOINT_N] section a the value -1e99 is used.
-# MIN_LIMIT              = -1e99
-
-# The maximum limit for joint motion, in machine units. When this
-# limit is reached, the controller aborts joint motion. For a
-# rotary joint with unlimited rotation having no MAX_LIMIT for
-# that joint in the [JOINT_N] section a the value 1e99 is used.
-# MAX_LIMIT              = 1e99
 
 # The value in machine units by which the joint is permitted to
 # deviate from commanded position at very low speeds.
@@ -254,16 +203,6 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
-
-# ***********************
-# Maximum acceleration for this joint in machine units per second
-# squared.
-MAX_ACCELERATION         = 30
-
-# Hardware StepGen requires values in RPS (revolution per second)
-# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
-STEPGEN_MAXACCEL         = 1
-
 # ********************************************************************
 
 # ********************************************************************
@@ -289,3 +228,4 @@ STEPGEN_MAXACCEL         = 1
 # FF0                      = 1.0
 # FF1                      = 0.0
 # FF2                      = 0.0
+# ********************************************************************
