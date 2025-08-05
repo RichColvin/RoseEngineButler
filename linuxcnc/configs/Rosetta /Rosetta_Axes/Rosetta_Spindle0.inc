@@ -161,8 +161,16 @@ TYPE                     = ANGULAR
 #                1 spindle rev
 #
 
-SCALE				  = 50400
-STEP_SCALE            = 50400
+SCALE				     = 50400
+STEP_SCALE               = 50400
+
+# ***********************
+# ENCODER_SCALE = number of pulses that corresponds to a move of one
+# machine unit.
+#
+# See also, calculation #3, above.
+# Set to 6400 steps / rev
+ENCODER_SCALE            = 6400
 
 # ********************************************************************
 
@@ -185,15 +193,21 @@ INCREMENT                = 0.1
 
 # ***********************
 #
-# 10 rev   360 deg   1 min
-# ------ x ------- x ------ = 60 deg/sec
-#  1 min    1 rev    60 sec
+#   For the MDF Rose Engine,
 #
-# Maximum velocity for this joint in machine units per second.
-MAX_VELOCITY           	 = 60
+#             9 motor rev
+#       10 x ------------- = 90 rpm
+#            1 spindle rev
+#
+#                          = 1.5 rps
+#
+#
+# Maximum velocity for this joint in machine units per minute.
+MAX_VELOCITY           	 = 90
 
-# 10%+ higher than MAX_VELOCITY (in the [SPINDLE_x] section, below)
-STEPGEN_MAXVEL           = 75
+# Hardware StepGen requires values in RPS (revolution per second)
+# As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
+STEPGEN_MAXVEL           = 2
 
 # ********************************************************************
 # Backlash in machine units. Backlash compensation value can be used 
@@ -242,19 +256,14 @@ STEPLEN                  = 2500
 STEPSPACE                = 2500
 
 # ***********************
-# ENCODER_SCALE = number of pulses that corresponds to a move of one
-# machine unit.
-#
-# See also, calculation #3, above.
-ENCODER_SCALE            = 160
-
-# ***********************
 # Maximum acceleration for this joint in machine units per second
 # squared.
 MAX_ACCELERATION         = 30
 
-# 10%+ higher than MAX_VELOCITY (in the [SPINDLE_x] section, below)
-STEPGEN_MAXACCEL         = 37.5
+# Hardware StepGen requires values in RPS (revolution per second)
+# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
+STEPGEN_MAXACCEL         = 1
+
 # ********************************************************************
 
 # ********************************************************************
