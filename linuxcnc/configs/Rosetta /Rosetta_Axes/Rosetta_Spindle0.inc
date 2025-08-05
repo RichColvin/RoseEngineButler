@@ -136,58 +136,20 @@ TYPE                     = ANGULAR
 
 # The maximum spindle speed (in rpm) for the specified spindle.
 MAX_FORWARD_VELOCITY     = 10
-MIN_FORWARD_VELOCITY     = 0.0
+# MIN_FORWARD_VELOCITY     = 0.0
 
 MAX_REVERSE_VELOCITY     = 10
-MIN_REVERSE_VELOCITY     = 0.0
+# MIN_REVERSE_VELOCITY     = 0.0
 
 # Sets the step size for spindle speed increment / decrement commands.
 INCREMENT                = 0.1
 
-# ********************************************************************
-# For the Stepper Online DM542T Drivers
-# These are 5 μs = 5,000 ns
-DIRHOLD                  = 5000
-DIRSETUP                 = 5000
-# These are 2.5 μs = 2,500 ns
-STEPLEN                  = 2500
-STEPSPACE                = 2500
+# Spindle homing not yet working in ver 2.9.4.
+# HOME_SEARCH_VELOCITY     = 100
 
-# ***********************
-# ENCODER_SCALE = number of pulses that corresponds to a move of one
-# machine unit.
-#
-# See also, calculation #3, above.
-ENCODER_SCALE            = 160
+# Spindle homing not yet working in ver 2.9.4.
+# HOME_SEQUENCE              = 0
 
-# ***********************
-# STEP_SCALE = number of pulses that corresponds to a move of one 
-# machine unit as set in the [TRAJ] section. 
-#
-# See also, calculation #3, above.
-#
-# For a linear joint one machine unit will be equal to the setting 
-# of LINEAR_UNITS. 
-# 
-# For an angular joint one unit is equal to the setting in 
-# ANGULAR_UNITS. 
-#
-# For stepper systems, this is the number of step pulses issued per
-# machine unit. 
-#
-# For servo systems, this is the number of feedback pulses per machine
-# unit. A second number, if specified, is ignored.
-#
-SCALE				  = 160
-STEP_SCALE            = 160
-
-# ***********************
-# Maximum acceleration for this joint in machine units per second
-# squared.
-MAX_ACCELERATION         = 30
-
-# 10%+ higher than MAX_VELOCITY (in the [SPINDLE_x] section, below)
-STEPGEN_MAXACCEL         = 37.5
 
 # ***********************
 #
@@ -233,25 +195,77 @@ FERROR                   = 5
 LOCKING_INDEXER          = 1
 
 # ********************************************************************
+# STEPPER MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by servo
+# motors; they are only needed when using stepper motors
+
+# ***********************
+# For the Stepper Online DM542T Drivers
+# These are 5 μs = 5,000 ns
+DIRHOLD                  = 5000
+DIRSETUP                 = 5000
+# These are 2.5 μs = 2,500 ns
+STEPLEN                  = 2500
+STEPSPACE                = 2500
+
+# ***********************
+# STEP_SCALE = number of pulses that corresponds to a move of one 
+# machine unit as set in the [TRAJ] section. 
+#
+# See also, calculation #3, above.
+#
+# For a linear joint one machine unit will be equal to the setting 
+# of LINEAR_UNITS. 
+# 
+# For an angular joint one unit is equal to the setting in 
+# ANGULAR_UNITS. 
+#
+# For stepper systems, this is the number of step pulses issued per
+# machine unit. 
+#
+# For servo systems, this is the number of feedback pulses per machine
+# unit. A second number, if specified, is ignored.
+#
+SCALE				  = 160
+STEP_SCALE            = 160
+
+# ***********************
+# ENCODER_SCALE = number of pulses that corresponds to a move of one
+# machine unit.
+#
+# See also, calculation #3, above.
+ENCODER_SCALE            = 160
+
+# ***********************
+# Maximum acceleration for this joint in machine units per second
+# squared.
+MAX_ACCELERATION         = 30
+
+# 10%+ higher than MAX_VELOCITY (in the [SPINDLE_x] section, below)
+STEPGEN_MAXACCEL         = 37.5
+# ********************************************************************
+
+# ********************************************************************
 # SERVO MOTOR SETTINGS
 #
 # These parameters are not relevant to joints controlled by stepper
 # motors; they are only needed when using servo motors
 
-BIAS                     = 0.0
+# BIAS                     = 0.0
 
-DEADBAND                 = 0.000015
+# DEADBAND                 = 0.000015
 
 # The maximum value for the output of the PID compensation that is 
 # written to the motor amplifier, in volts. The computed output value 
 # is clamped to this limit. The limit is applied before scaling to raw
 # output units. The value is applied symmetrically to both the plus
 # and the minus side.
-MAX_OUTPUT               = 10.0
+# MAX_OUTPUT               = 10.0
 
-P                        = 1000.0
-I                        = 0.0
-D                        = 0.0
-FF0                      = 1.0
-FF1                      = 0.0
-FF2                      = 0.0
+# P                        = 1000.0
+# I                        = 0.0
+# D                        = 0.0
+# FF0                      = 1.0
+# FF1                      = 0.0
+# FF2                      = 0.0

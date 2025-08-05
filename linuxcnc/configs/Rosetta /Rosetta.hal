@@ -399,15 +399,23 @@ net v-pos-limit                          => joint.5.pos-lim-sw-in
 #  SPINDLE 0 JOINT 7 CHANNEL 05
 #*******************************
 
-setp pid.s0.Pgain                           [SPINDLE_0]P
-setp pid.s0.Igain                           [SPINDLE_0]I
-setp pid.s0.Dgain                           [SPINDLE_0]D
-setp pid.s0.bias                            [SPINDLE_0]BIAS
-setp pid.s0.FF0                             [SPINDLE_0]FF0
-setp pid.s0.FF1                             [SPINDLE_0]FF1
-setp pid.s0.FF2                             [SPINDLE_0]FF2
-setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
-setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.s0.Pgain                           [SPINDLE_0]P
+# setp pid.s0.Igain                           [SPINDLE_0]I
+# setp pid.s0.Dgain                           [SPINDLE_0]D
+# setp pid.s0.bias                            [SPINDLE_0]BIAS
+# setp pid.s0.FF0                             [SPINDLE_0]FF0
+# setp pid.s0.FF1                             [SPINDLE_0]FF1
+# setp pid.s0.FF2                             [SPINDLE_0]FF2
+# setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
+# setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
+# ********************************************************************
+
 setp pid.s0.error-previous-target           true
 setp pid.s0.maxerror                        0.000500
 
