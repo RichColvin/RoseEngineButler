@@ -459,15 +459,23 @@ sets spindle.0-at-speed true
 #  SPINDLE 1 JOINT 6 CHANNEL 07
 #*******************************
 
-setp pid.s1.Pgain                           [SPINDLE_1]P
-setp pid.s1.Igain                           [SPINDLE_1]I
-setp pid.s1.Dgain                           [SPINDLE_1]D
-setp pid.s1.bias                            [SPINDLE_1]BIAS
-setp pid.s1.FF0                             [SPINDLE_1]FF0
-setp pid.s1.FF1                             [SPINDLE_1]FF1
-setp pid.s1.FF2                             [SPINDLE_1]FF2
-setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
-setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.s1.Pgain                           [SPINDLE_1]P
+# setp pid.s1.Igain                           [SPINDLE_1]I
+# setp pid.s1.Dgain                           [SPINDLE_1]D
+# setp pid.s1.bias                            [SPINDLE_1]BIAS
+# setp pid.s1.FF0                             [SPINDLE_1]FF0
+# setp pid.s1.FF1                             [SPINDLE_1]FF1
+# setp pid.s1.FF2                             [SPINDLE_1]FF2
+# setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
+# setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
+# ********************************************************************
+
 setp pid.s1.error-previous-target           true
 setp pid.s1.maxerror                        0.000500
 
