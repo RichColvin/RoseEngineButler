@@ -29,7 +29,7 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 03 August 2025, R. Colvin                                   #
+#   1.0 - 05 August 2025, R. Colvin                                   #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -136,15 +136,6 @@ net spindle.1-enable                     => hm2_7i92.0.outm.00.out-07
 #  AXIS X JOINT 0 CHANNEL 02
 #****************************
 
-setp pid.x.Pgain                            [JOINT_0]P
-setp pid.x.Igain                            [JOINT_0]I
-setp pid.x.Dgain                            [JOINT_0]D
-setp pid.x.bias                             [JOINT_0]BIAS
-setp pid.x.FF0                              [JOINT_0]FF0
-setp pid.x.FF1                              [JOINT_0]FF1
-setp pid.x.FF2                              [JOINT_0]FF2
-setp pid.x.deadband                         [JOINT_0]DEADBAND
-setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 setp pid.x.error-previous-target            true
 setp pid.x.maxerror                         0.000500
 net x-index-enable                       => pid.x.index-enable
@@ -175,19 +166,27 @@ net x-home-sw                            => joint.0.home-sw-in
 net x-neg-limit                          => joint.0.neg-lim-sw-in
 net x-pos-limit                          => joint.0.pos-lim-sw-in
 
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.x.Pgain                            [JOINT_0]P
+# setp pid.x.Igain                            [JOINT_0]I
+# setp pid.x.Dgain                            [JOINT_0]D
+# setp pid.x.bias                             [JOINT_0]BIAS
+# setp pid.x.FF0                              [JOINT_0]FF0
+# setp pid.x.FF1                              [JOINT_0]FF1
+# setp pid.x.FF2                              [JOINT_0]FF2
+# setp pid.x.deadband                         [JOINT_0]DEADBAND
+# setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
+# ********************************************************************
+
 #****************************
 #  AXIS Y JOINT 1 CHANNEL 03
 #****************************
 
-setp pid.y.Pgain                            [JOINT_1]P
-setp pid.y.Igain                            [JOINT_1]I
-setp pid.y.Dgain                            [JOINT_1]D
-setp pid.y.bias                             [JOINT_1]BIAS
-setp pid.y.FF0                              [JOINT_1]FF0
-setp pid.y.FF1                              [JOINT_1]FF1
-setp pid.y.FF2                              [JOINT_1]FF2
-setp pid.y.deadband                         [JOINT_1]DEADBAND
-setp pid.y.maxoutput                        [JOINT_1]MAX_OUTPUT
 setp pid.y.error-previous-target            true
 setp pid.y.maxerror                         0.000500
 
@@ -219,19 +218,27 @@ net y-home-sw                            => joint.1.home-sw-in
 net y-neg-limit                          => joint.1.neg-lim-sw-in
 net y-pos-limit                          => joint.1.pos-lim-sw-in
 
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.y.Pgain                            [JOINT_1]P
+# setp pid.y.Igain                            [JOINT_1]I
+# setp pid.y.Dgain                            [JOINT_1]D
+# setp pid.y.bias                             [JOINT_1]BIAS
+# setp pid.y.FF0                              [JOINT_1]FF0
+# setp pid.y.FF1                              [JOINT_1]FF1
+# setp pid.y.FF2                              [JOINT_1]FF2
+# setp pid.y.deadband                         [JOINT_1]DEADBAND
+# setp pid.y.maxoutput                        [JOINT_1]MAX_OUTPUT
+# ********************************************************************
+
 #****************************
 #  AXIS Z JOINT 2 CHANNEL 00
 #****************************
 
-setp pid.z.Pgain                            [JOINT_2]P
-setp pid.z.Igain                            [JOINT_2]I
-setp pid.z.Dgain                            [JOINT_2]D
-setp pid.z.bias                             [JOINT_2]BIAS
-setp pid.z.FF0                              [JOINT_2]FF0
-setp pid.z.FF1                              [JOINT_2]FF1
-setp pid.z.FF2                              [JOINT_2]FF2
-setp pid.z.deadband                         [JOINT_2]DEADBAND
-setp pid.z.maxoutput                        [JOINT_2]MAX_OUTPUT
 setp pid.z.error-previous-target            true
 setp pid.z.maxerror                         0.000500
 
@@ -263,19 +270,27 @@ net z-home-sw                            => joint.2.home-sw-in
 net z-neg-limit                          => joint.2.neg-lim-sw-in
 net z-pos-limit                          => joint.2.pos-lim-sw-in
 
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.z.Pgain                            [JOINT_2]P
+# setp pid.z.Igain                            [JOINT_2]I
+# setp pid.z.Dgain                            [JOINT_2]D
+# setp pid.z.bias                             [JOINT_2]BIAS
+# setp pid.z.FF0                              [JOINT_2]FF0
+# setp pid.z.FF1                              [JOINT_2]FF1
+# setp pid.z.FF2                              [JOINT_2]FF2
+# setp pid.z.deadband                         [JOINT_2]DEADBAND
+# setp pid.z.maxoutput                        [JOINT_2]MAX_OUTPUT
+# ********************************************************************
+
 #****************************
 #  AXIS B JOINT 3 CHANNEL 06
 #****************************
 
-setp pid.b.Pgain                            [JOINT_3]P
-setp pid.b.Igain                            [JOINT_3]I
-setp pid.b.Dgain                            [JOINT_3]D
-setp pid.b.bias                             [JOINT_3]BIAS
-setp pid.b.FF0                              [JOINT_3]FF0
-setp pid.b.FF1                              [JOINT_3]FF1
-setp pid.b.FF2                              [JOINT_3]FF2
-setp pid.b.deadband                         [JOINT_3]DEADBAND
-setp pid.b.maxoutput                        [JOINT_3]MAX_OUTPUT
 setp pid.b.error-previous-target            true
 setp pid.b.maxerror                         0.000500
 
@@ -307,19 +322,27 @@ net b-home-sw                            => joint.3.home-sw-in
 net b-neg-limit                          => joint.3.neg-lim-sw-in
 net b-pos-limit                          => joint.3.pos-lim-sw-in
 
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.b.Pgain                            [JOINT_3]P
+# setp pid.b.Igain                            [JOINT_3]I
+# setp pid.b.Dgain                            [JOINT_3]D
+# setp pid.b.bias                             [JOINT_3]BIAS
+# setp pid.b.FF0                              [JOINT_3]FF0
+# setp pid.b.FF1                              [JOINT_3]FF1
+# setp pid.b.FF2                              [JOINT_3]FF2
+# setp pid.b.deadband                         [JOINT_3]DEADBAND
+# setp pid.b.maxoutput                        [JOINT_3]MAX_OUTPUT
+# ********************************************************************
+
 #****************************
 #  AXIS U JOINT 4 CHANNEL 04
 #****************************
 
-setp pid.u.Pgain                            [JOINT_4]P
-setp pid.u.Igain                            [JOINT_4]I
-setp pid.u.Dgain                            [JOINT_4]D
-setp pid.u.bias                             [JOINT_4]BIAS
-setp pid.u.FF0                              [JOINT_4]FF0
-setp pid.u.FF1                              [JOINT_4]FF1
-setp pid.u.FF2                              [JOINT_4]FF2
-setp pid.u.deadband                         [JOINT_4]DEADBAND
-setp pid.u.maxoutput                        [JOINT_4]MAX_OUTPUT
 setp pid.u.error-previous-target            true
 setp pid.u.maxerror                         0.000500
 
@@ -351,19 +374,27 @@ net u-home-sw                            => joint.4.home-sw-in
 net u-neg-limit                          => joint.4.neg-lim-sw-in
 net u-pos-limit                          => joint.4.pos-lim-sw-in
 
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
+
+# setp pid.u.Pgain                            [JOINT_4]P
+# setp pid.u.Igain                            [JOINT_4]I
+# setp pid.u.Dgain                            [JOINT_4]D
+# setp pid.u.bias                             [JOINT_4]BIAS
+# setp pid.u.FF0                              [JOINT_4]FF0
+# setp pid.u.FF1                              [JOINT_4]FF1
+# setp pid.u.FF2                              [JOINT_4]FF2
+# setp pid.u.deadband                         [JOINT_4]DEADBAND
+# setp pid.u.maxoutput                        [JOINT_4]MAX_OUTPUT
+# ********************************************************************
+
 #****************************
 #  AXIS V JOINT 5 CHANNEL 01
 #****************************
 
-setp pid.v.Pgain                            [JOINT_5]P
-setp pid.v.Igain                            [JOINT_5]I
-setp pid.v.Dgain                            [JOINT_5]D
-setp pid.v.bias                             [JOINT_5]BIAS
-setp pid.v.FF0                              [JOINT_5]FF0
-setp pid.v.FF1                              [JOINT_5]FF1
-setp pid.v.FF2                              [JOINT_5]FF2
-setp pid.v.deadband                         [JOINT_5]DEADBAND
-setp pid.v.maxoutput                        [JOINT_5]MAX_OUTPUT
 setp pid.v.error-previous-target            true
 setp pid.v.maxerror                         0.000500
 
@@ -395,26 +426,26 @@ net v-home-sw                            => joint.5.home-sw-in
 net v-neg-limit                          => joint.5.neg-lim-sw-in
 net v-pos-limit                          => joint.5.pos-lim-sw-in
 
-#*******************************
-#  SPINDLE 0 JOINT 7 CHANNEL 05
-#*******************************
-
 # ********************************************************************
 # SERVO MOTOR SETTINGS
 #
 # These parameters are not relevant to joints controlled by stepper
 # motors; they are only needed when using servo motors
 
-# setp pid.s0.Pgain                           [SPINDLE_0]P
-# setp pid.s0.Igain                           [SPINDLE_0]I
-# setp pid.s0.Dgain                           [SPINDLE_0]D
-# setp pid.s0.bias                            [SPINDLE_0]BIAS
-# setp pid.s0.FF0                             [SPINDLE_0]FF0
-# setp pid.s0.FF1                             [SPINDLE_0]FF1
-# setp pid.s0.FF2                             [SPINDLE_0]FF2
-# setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
-# setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
+# setp pid.v.Pgain                            [JOINT_5]P
+# setp pid.v.Igain                            [JOINT_5]I
+# setp pid.v.Dgain                            [JOINT_5]D
+# setp pid.v.bias                             [JOINT_5]BIAS
+# setp pid.v.FF0                              [JOINT_5]FF0
+# setp pid.v.FF1                              [JOINT_5]FF1
+# setp pid.v.FF2                              [JOINT_5]FF2
+# setp pid.v.deadband                         [JOINT_5]DEADBAND
+# setp pid.v.maxoutput                        [JOINT_5]MAX_OUTPUT
 # ********************************************************************
+
+#*******************************
+#  SPINDLE 0 JOINT 7 CHANNEL 05
+#*******************************
 
 setp pid.s0.error-previous-target           true
 setp pid.s0.maxerror                        0.000500
@@ -455,26 +486,26 @@ net spindle.0-index-enable              <=> spindle.0.index-enable
 
 sets spindle.0-at-speed true
 
-#*******************************
-#  SPINDLE 1 JOINT 6 CHANNEL 07
-#*******************************
-
 # ********************************************************************
 # SERVO MOTOR SETTINGS
 #
 # These parameters are not relevant to joints controlled by stepper
 # motors; they are only needed when using servo motors
 
-# setp pid.s1.Pgain                           [SPINDLE_1]P
-# setp pid.s1.Igain                           [SPINDLE_1]I
-# setp pid.s1.Dgain                           [SPINDLE_1]D
-# setp pid.s1.bias                            [SPINDLE_1]BIAS
-# setp pid.s1.FF0                             [SPINDLE_1]FF0
-# setp pid.s1.FF1                             [SPINDLE_1]FF1
-# setp pid.s1.FF2                             [SPINDLE_1]FF2
-# setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
-# setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
+# setp pid.s0.Pgain                           [SPINDLE_0]P
+# setp pid.s0.Igain                           [SPINDLE_0]I
+# setp pid.s0.Dgain                           [SPINDLE_0]D
+# setp pid.s0.bias                            [SPINDLE_0]BIAS
+# setp pid.s0.FF0                             [SPINDLE_0]FF0
+# setp pid.s0.FF1                             [SPINDLE_0]FF1
+# setp pid.s0.FF2                             [SPINDLE_0]FF2
+# setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
+# setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
 # ********************************************************************
+
+#*******************************
+#  SPINDLE 1 JOINT 6 CHANNEL 07
+#*******************************
 
 setp pid.s1.error-previous-target           true
 setp pid.s1.maxerror                        0.000500
@@ -516,15 +547,22 @@ net spindle.1-index-enable              <=> spindle.1.index-enable
 
 sets spindle.1-at-speed                     true
 
-# These were recommended by Perplexity.ai, but do not seem to work.
-# Spindle control signals
-# net spindle.on                         => motion.spindle-on
-# net spindle.dir                        => motion.spindle-direction
-# net spindle.brake                      => motion.spindle-brake
+# ********************************************************************
+# SERVO MOTOR SETTINGS
+#
+# These parameters are not relevant to joints controlled by stepper
+# motors; they are only needed when using servo motors
 
-# Maintain existing stepgen scaling
-# setp hm2_7i92.0.stepgen.04.position-scale [JOINT_4]STEP_SCALE
-
+# setp pid.s1.Pgain                           [SPINDLE_1]P
+# setp pid.s1.Igain                           [SPINDLE_1]I
+# setp pid.s1.Dgain                           [SPINDLE_1]D
+# setp pid.s1.bias                            [SPINDLE_1]BIAS
+# setp pid.s1.FF0                             [SPINDLE_1]FF0
+# setp pid.s1.FF1                             [SPINDLE_1]FF1
+# setp pid.s1.FF2                             [SPINDLE_1]FF2
+# setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
+# setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
+# ********************************************************************
 
 #******************************
 # connect miscellaneous signals
@@ -583,10 +621,6 @@ net machine-is-on                           halui.machine.is-on
 net jog-speed                               halui.axis.jog-speed
 net MDI-mode                                halui.mode.is-mdi
 
-#  ---coolant signals---
-# net coolant-mist                       <= iocontrol.0.coolant-mist
-# net coolant-flood                      <= iocontrol.0.coolant-flood
-
 #  ---probe signal---
 net probe-in                             => motion.probe-input
 
@@ -599,13 +633,6 @@ net machine-is-enabled                  <=  motion.motion-enabled
 #  ---estop signals---
 net estop-out                           <=  iocontrol.0.user-enable-out
 net estop-out                            => iocontrol.0.emc-enable-in
-
-#  ---toolchange signals for custom tool changer---
-# net tool-number                       <=  iocontrol.0.tool-prep-number
-# net tool-change-request               <=  iocontrol.0.tool-change
-# net tool-change-confirmed              => iocontrol.0.tool-changed
-# net tool-prepare-request              <=  iocontrol.0.tool-prepare
-# net tool-prepare-confirmed             => iocontrol.0.tool-prepared
 
 # *********************** NOTHING FOLLOWS ****************************
 # ********************************************************************

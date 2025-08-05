@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 03 August 2025, R. Colvin                                   #
+#   1.0 - 05 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -106,6 +106,8 @@
 [AXIS_B]
 TYPE                     = ANGULAR
 
+# ********************************************************************
+
 # Maximum acceleration for this axis in machine units per second squared.
 MAX_ACCELERATION         = 30.0
 
@@ -134,7 +136,7 @@ WRAPPED_ROTARY           = 1
 
 # This value selects a joint to use for a locking indexer for the
 # specified axis.
-LOCKING_INDEXER_JOINT = 3
+LOCKING_INDEXER_JOINT    = 3
 
 # ********************************************************************
 #
@@ -148,21 +150,12 @@ LOCKING_INDEXER_JOINT = 3
 # ********************************************************************
 [JOINT_3]
 
-# ********************************************************************
-# For the Stepper Online DM542T Drivers
-# These are 5 μs = 5,000 ns
-DIRHOLD                  = 5000
-DIRSETUP                 = 5000
-# These are 2.5 μs = 2,500 ns
-STEPLEN                  = 2500
-STEPSPACE                = 2500
-
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
 # machine unit.
 #
-# See also, calculation #2, above.
-ENCODER_SCALE            = 17.778
+# Set to 6400 steps / rev
+ENCODER_SCALE            = 6400
 
 # ***********************
 # STEP_SCALE = number of pulses that corresponds to a move of one 
@@ -182,16 +175,17 @@ ENCODER_SCALE            = 17.778
 # For servo systems, this is the number of feedback pulses per machine
 # unit. A second number, if specified, is ignored.
 #
-SCALE				  = 17.778
-STEP_SCALE            = 17.778
+SCALE				     = 17.778
+STEP_SCALE               = 17.778
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
 # squared.
 MAX_ACCELERATION         = 30
 
-# 10%+ higher than MAX_VELOCITY (in the [SPINDLE_x] section, below)
-STEPGEN_MAXACCEL         = 37.5
+# Hardware StepGen requires values in rps (revolution per second)
+# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
+STEPGEN_MAXACCEL         = 31
 
 # ***********************
 #
@@ -202,8 +196,9 @@ STEPGEN_MAXACCEL         = 37.5
 # Maximum velocity for this joint in machine units per second.
 MAX_VELOCITY           	 = 60
 
-# 10%+ higher than MAX_VELOCITY (in the [SPINDLE_x] section, below)
-STEPGEN_MAXVEL           = 75
+# Hardware StepGen requires values in rps (revolution per second)
+# As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
+STEPGEN_MAXVEL           = 2
 
 # ********************************************************************
 # Backlash in machine units. Backlash compensation value can be used 
@@ -237,25 +232,42 @@ FERROR                   = 5
 LOCKING_INDEXER          = 1
 
 # ********************************************************************
+# STEPPER MOTOR SETTINGS
+#
+# These parameters are relevant to joints controlled by stepper
+# motors; they may not be needed when using servo motors
+
+# ***********************
+# For the Stepper Online DM542T Drivers
+# These are 5 μs = 5,000 ns
+DIRHOLD                  = 5000
+DIRSETUP                 = 5000
+# These are 2.5 μs = 2,500 ns
+STEPLEN                  = 2500
+STEPSPACE                = 2500
+# ********************************************************************
+
+# ********************************************************************
 # SERVO MOTOR SETTINGS
 #
 # These parameters are not relevant to joints controlled by stepper
 # motors; they are only needed when using servo motors
 
-BIAS                     = 0.0
+# BIAS                     = 0.0
 
-DEADBAND                 = 0.000015
+# DEADBAND                 = 0.000015
 
 # The maximum value for the output of the PID compensation that is 
 # written to the motor amplifier, in volts. The computed output value 
 # is clamped to this limit. The limit is applied before scaling to raw
 # output units. The value is applied symmetrically to both the plus
 # and the minus side.
-MAX_OUTPUT               = 10.0
+# MAX_OUTPUT               = 10.0
 
-P                        = 1000.0
-I                        = 0.0
-D                        = 0.0
-FF0                      = 1.0
-FF1                      = 0.0
-FF2                      = 0.0
+# P                        = 1000.0
+# I                        = 0.0
+# D                        = 0.0
+# FF0                      = 1.0
+# FF1                      = 0.0
+# FF2                      = 0.0
+# ********************************************************************

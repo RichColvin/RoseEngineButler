@@ -146,15 +146,6 @@ ENCODER_SCALE            = 6400
 
 # ********************************************************************
 
-# The maximum spindle speed (in rpm) for the specified spindle.
-# MAX_FORWARD_VELOCITY     = 10
-
-# MAX_REVERSE_VELOCITY     = 10
-
-# Sets the step size for spindle speed increment / decrement commands.
-# INCREMENT                = 0.1
-
-#
 # Maximum velocity for this joint in machine units per minute.
 MAX_VELOCITY           	 = 10
 
@@ -171,12 +162,7 @@ MAX_ACCELERATION         = 30
 STEPGEN_MAXACCEL         = 1
 
 # ********************************************************************
-# Backlash in machine units. Backlash compensation value can be used 
-# to make up for small deficiencies in the hardware used to drive an 
-# joint. If backlash is added to an joint and you are using steppers 
-# the STEPGEN_MAXACCEL must be increased to 1.5 to 2 times the 
-# MAX_ACCELERATION for the joint. Excessive backlash compensation
-# can cause an joint to jerk as it changes direction.
+# Backlash in machine units.
 BACKLASH				 = 0.0000
 
 # The value in machine units by which the joint is permitted to
@@ -192,8 +178,8 @@ LOCKING_INDEXER          = 1
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# These parameters are not relevant to joints controlled by servo
-# motors; they are only needed when using stepper motors
+# These parameters are relevant to joints controlled by stepper
+# motors; they may not be needed when using servo motors
 
 # ***********************
 # For the Stepper Online DM542T Drivers

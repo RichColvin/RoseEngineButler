@@ -161,7 +161,7 @@ ENCODER_SCALE            = 6400
 MAX_VELOCITY           	 = 100
 
 # Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
+# As it should be 10%+ higher than MAX_VELOCITY, it is set to 20
 STEPGEN_MAXVEL           = 20
 
 # Maximum acceleration for this joint in machine units per second
@@ -173,12 +173,7 @@ MAX_ACCELERATION         = 30
 STEPGEN_MAXACCEL         = 1
 
 # ********************************************************************
-# Backlash in machine units. Backlash compensation value can be used 
-# to make up for small deficiencies in the hardware used to drive an 
-# joint. If backlash is added to an joint and you are using steppers 
-# the STEPGEN_MAXACCEL must be increased to 1.5 to 2 times the 
-# MAX_ACCELERATION for the joint. Excessive backlash compensation
-# can cause an joint to jerk as it changes direction.
+# Backlash in machine units.
 BACKLASH				 = 0.0000
 
 # The value in machine units by which the joint is permitted to
@@ -194,8 +189,8 @@ LOCKING_INDEXER          = 1
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# These parameters are not relevant to joints controlled by servo
-# motors; they are only needed when using stepper motors
+# These parameters are relevant to joints controlled by stepper
+# motors; they may not be needed when using servo motors
 
 # ***********************
 # For the Stepper Online DM542T Drivers
