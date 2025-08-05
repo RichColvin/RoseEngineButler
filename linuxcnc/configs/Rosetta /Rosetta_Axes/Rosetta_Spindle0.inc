@@ -134,6 +134,38 @@ TYPE                     = ANGULAR
 [SPINDLE_0]
 TYPE                     = ANGULAR
 
+# ********************************************************************
+# STEP_SCALE = number of pulses that corresponds to a move of one 
+# machine unit as set in the [TRAJ] section. 
+#
+# See also, calculation #3, above.
+#
+# For a linear joint one machine unit will be equal to the setting 
+# of LINEAR_UNITS. 
+# 
+# For an angular joint one unit is equal to the setting in 
+# ANGULAR_UNITS. 
+#
+# For stepper systems, this is the number of step pulses issued per
+# machine unit. 
+#
+# For servo systems, this is the number of feedback pulses per machine
+# unit. A second number, if specified, is ignored.
+#
+# Using a Starrett dial speed indicator, this was determined to be:
+#
+#   For the MDF Rose Engine,
+#
+#                 9 motor rev
+#       5,600 x ------------- = 50,400
+#                1 spindle rev
+#
+
+SCALE				  = 50400
+STEP_SCALE            = 50400
+
+# ********************************************************************
+
 # The maximum spindle speed (in rpm) for the specified spindle.
 MAX_FORWARD_VELOCITY     = 10
 # MIN_FORWARD_VELOCITY     = 0.0
@@ -208,27 +240,6 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
-
-# ***********************
-# STEP_SCALE = number of pulses that corresponds to a move of one 
-# machine unit as set in the [TRAJ] section. 
-#
-# See also, calculation #3, above.
-#
-# For a linear joint one machine unit will be equal to the setting 
-# of LINEAR_UNITS. 
-# 
-# For an angular joint one unit is equal to the setting in 
-# ANGULAR_UNITS. 
-#
-# For stepper systems, this is the number of step pulses issued per
-# machine unit. 
-#
-# For servo systems, this is the number of feedback pulses per machine
-# unit. A second number, if specified, is ignored.
-#
-SCALE				  = 160
-STEP_SCALE            = 160
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
