@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 08 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -111,7 +111,6 @@
 # ********************************************************************
 
 # ********************************************************************
-# 
 #    AA    XX    XX IIIIIIII  SSSSSS
 #   AAAA    XX  XX    II     SS    SS
 #  AA  AA    XXXX     II      SSS
@@ -143,14 +142,12 @@ MAX_LIMIT                = 9999.9
 MIN_LIMIT                = -9999.9
 
 # ********************************************************************
-#
 #       JJ  OOOOOO  IIIIIIII N     NN TTTTTTTT
 #       JJ OO    OO    II    NN    NN    TT
 #       JJ OO    OO    II    NNN   NN    TT
 #       JJ OO    OO    II    NN NN NN    TT
 # JJ    JJ OO    OO    II    NN  NNNN    TT
 #  JJJJJJ   OOOOOO  IIIIIIII NN    NN    TT
-#
 # ********************************************************************
 [JOINT_5]
 
@@ -249,6 +246,15 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
+# ********************************************************************
+
+# ********************************************************************
+# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
+# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
+# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
+# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
+# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
+#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
 # ********************************************************************
 
 # ********************************************************************
