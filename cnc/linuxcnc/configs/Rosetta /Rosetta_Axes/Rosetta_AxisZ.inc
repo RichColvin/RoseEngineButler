@@ -15,10 +15,10 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   Rosetta_AxisY.inc                                                 #
+#   Rosetta_AxisZ.inc                                                 #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the Y axis for the configuration of         #
+#   This is used to setup the Z axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation:                                             #
@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 08 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -76,7 +76,7 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   Y      1       03    LINEAR     2    P14
+#   Z      2       00    LINEAR     3    P11
 
 # ********************************************************************
 # The values used below are based on these calculations.
@@ -111,7 +111,6 @@
 # ********************************************************************
 
 # ********************************************************************
-# 
 #    AA    XX    XX IIIIIIII  SSSSSS
 #   AAAA    XX  XX    II     SS    SS
 #  AA  AA    XXXX     II      SSS
@@ -119,7 +118,7 @@
 # AA    AA  XX  XX    II     SS    SS
 # AA    AA XX    XX IIIIIIII  SSSSSS
 # ********************************************************************
-[AXIS_Y]
+[AXIS_Z]
 TYPE                     = LINEAR
 
 # Maximum acceleration for this axis in machine units per second squared.
@@ -143,16 +142,14 @@ MAX_LIMIT                = 9999.9
 MIN_LIMIT                = -9999.9
 
 # ********************************************************************
-#
 #       JJ  OOOOOO  IIIIIIII N     NN TTTTTTTT
 #       JJ OO    OO    II    NN    NN    TT
 #       JJ OO    OO    II    NNN   NN    TT
 #       JJ OO    OO    II    NN NN NN    TT
 # JJ    JJ OO    OO    II    NN  NNNN    TT
 #  JJJJJJ   OOOOOO  IIIIIIII NN    NN    TT
-#
 # ********************************************************************
-[JOINT_1]
+[JOINT_2]
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
@@ -249,6 +246,15 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
+# ********************************************************************
+
+# ********************************************************************
+# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
+# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
+# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
+# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
+# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
+#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
 # ********************************************************************
 
 # ********************************************************************

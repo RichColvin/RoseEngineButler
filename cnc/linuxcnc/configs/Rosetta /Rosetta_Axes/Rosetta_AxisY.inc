@@ -15,10 +15,10 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   Rosetta_AxisB.inc                                                 #
+#   Rosetta_AxisY.inc                                                 #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the B axis for the configuration of         #
+#   This is used to setup the Y axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation:                                             #
@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 08 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -76,7 +76,7 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   B      3       06    ANGULAR    4    P17
+#   Y      1       03    LINEAR     2    P14
 
 # ********************************************************************
 # The values used below are based on these calculations.
@@ -92,6 +92,22 @@
 #   -------------  = 17.778 ----------
 #      1.8 deg                degree
 #
+# ***********************
+# 3. Leadscrew
+#
+#    For the this device, a leadscrew with a 4-start, 2mm pitch
+#    is being used.
+#
+#               1 rev   25.4 mm
+#   LEADSCREW = ----- * ------- = 3.175 rev/in
+#               8 mm     1 inch
+#
+#                6,400 step   3.175 rev
+#   STEP_SCALE = ---------- * ---------
+#                  1 rev        inch
+#
+#   STEP_SCALE = 20,320 steps/inch
+#
 # ********************************************************************
 
 # ********************************************************************
@@ -103,10 +119,8 @@
 # AA    AA  XX  XX    II     SS    SS
 # AA    AA XX    XX IIIIIIII  SSSSSS
 # ********************************************************************
-[AXIS_B]
-TYPE                     = ANGULAR
-
-# ********************************************************************
+[AXIS_Y]
+TYPE                     = LINEAR
 
 # Maximum acceleration for this axis in machine units per second squared.
 MAX_ACCELERATION         = 30.0
@@ -119,24 +133,14 @@ MAX_VELOCITY             = 1.0
 # axis must be homed before MAX_LIMIT is in force. For a rotary axis 
 # (A,B,C typ) with unlimited rotation having no MAX_LIMIT for that axis
 # in the [AXIS_<letter>] section a value of 1e99 is used.
-MAX_LIMIT                = 1e99
+MAX_LIMIT                = 9999.9
 
 # The minimum limit (soft limit) for axis motion, in machine units. 
 # When this limit is exceeded, the controller aborts axis motion. The 
 # axis must be homed before MIN_LIMIT is in force. For a rotary axis 
 # (A,B,C typ) with unlimited rotation having no MIN_LIMIT for that 
 # axis in the [AXIS_<letter>] section a value of -1e99 is used.
-MIN_LIMIT                = -1e99
-
-# When this is set to 1 for an ANGULAR axis the axis will move
-# 0-359.999 degrees. Positive Numbers will move the axis in a
-# positive direction and negative numbers will move the axis in
-# the negative direction.
-WRAPPED_ROTARY           = 1
-
-# This value selects a joint to use for a locking indexer for the
-# specified axis.
-LOCKING_INDEXER_JOINT    = 3
+MIN_LIMIT                = -9999.9
 
 # ********************************************************************
 #
@@ -148,7 +152,7 @@ LOCKING_INDEXER_JOINT    = 3
 #  JJJJJJ   OOOOOO  IIIIIIII NN    NN    TT
 #
 # ********************************************************************
-[JOINT_3]
+[JOINT_1]
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
@@ -161,7 +165,7 @@ ENCODER_SCALE            = 6400
 # STEP_SCALE = number of pulses that corresponds to a move of one 
 # machine unit as set in the [TRAJ] section. 
 #
-# See also, calculation #2, above.
+# See also, calculation #3, above.
 #
 # For a linear joint one machine unit will be equal to the setting 
 # of LINEAR_UNITS. 
@@ -175,17 +179,17 @@ ENCODER_SCALE            = 6400
 # For servo systems, this is the number of feedback pulses per machine
 # unit. A second number, if specified, is ignored.
 #
-SCALE				     = 17.778
-STEP_SCALE               = 17.778
+SCALE                      = 20320
+STEP_SCALE                 = 20320
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
 # squared.
-MAX_ACCELERATION         = 30
+MAX_ACCELERATION           = 30
 
 # Hardware StepGen requires values in rps (revolution per second)
 # As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
-STEPGEN_MAXACCEL         = 31
+STEPGEN_MAXACCEL           = 2
 
 # ***********************
 #
@@ -194,11 +198,11 @@ STEPGEN_MAXACCEL         = 31
 #  1 min    1 rev    60 sec
 #
 # Maximum velocity for this joint in machine units per second.
-MAX_VELOCITY           	 = 60
+MAX_VELOCITY           	   = 60
 
 # Hardware StepGen requires values in rps (revolution per second)
 # As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
-STEPGEN_MAXVEL           = 2
+STEPGEN_MAXVEL             = 1
 
 # ********************************************************************
 # Backlash in machine units. Backlash compensation value can be used 
@@ -245,6 +249,15 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
+# ********************************************************************
+
+# ********************************************************************
+# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
+# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
+# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
+# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
+# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
+#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
 # ********************************************************************
 
 # ********************************************************************

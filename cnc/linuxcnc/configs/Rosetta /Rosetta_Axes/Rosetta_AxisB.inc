@@ -15,11 +15,11 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   Rosetta_Spindle1.inc                                              #
+#   Rosetta_AxisB.inc                                                 #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the Spindle 1 axis (Rosette Phaser/         #
-#   Multiplier) for the configuration of LinuxCNC.                    #
+#   This is used to setup the B axis for the configuration of         #
+#   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation:                                             #
 #   The end user of the Rosetta system may modify this file to        #
@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 03 August 2025, R. Colvin                                   #
+#   1.0 - 08 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -72,11 +72,11 @@
 
 # ********************************************************************
 # Configuration values
-#                                 Home 
-#  Axis  Joint  Channel   Type     Seq   Comments
-#  ----  -----  -------  -------  ----   ------------------------
-#  Sp0     7       05      n/a     n/a 
-#  Sp1     6       07      n/a     n/a
+#
+#                                 Home   PCB
+#  Axis  Joint  Channel   Type     Seq  Plug  Comments
+#  ----  -----  -------  -------  ----  ----  ------------------------
+#   B      3       06    ANGULAR    4    P17
 
 # ********************************************************************
 # The values used below are based on these calculations.
@@ -95,47 +95,57 @@
 # ********************************************************************
 
 # ********************************************************************
-#
+#    AA    XX    XX IIIIIIII  SSSSSS
+#   AAAA    XX  XX    II     SS    SS
+#  AA  AA    XXXX     II      SSS
+# AAAAAAAA   XXXX     II         SSS
+# AA    AA  XX  XX    II     SS    SS
+# AA    AA XX    XX IIIIIIII  SSSSSS
+# ********************************************************************
+[AXIS_B]
+TYPE                     = ANGULAR
+
+# ********************************************************************
+
+# Maximum acceleration for this axis in machine units per second squared.
+MAX_ACCELERATION         = 30.0
+
+# Maximum velocity for this axis in machine units per second.
+MAX_VELOCITY             = 1.0
+
+# The maximum limit (soft limit) for axis motion, in machine units. 
+# When this limit is exceeded, the controller aborts axis motion. The
+# axis must be homed before MAX_LIMIT is in force. For a rotary axis 
+# (A,B,C typ) with unlimited rotation having no MAX_LIMIT for that axis
+# in the [AXIS_<letter>] section a value of 1e99 is used.
+MAX_LIMIT                = 1e99
+
+# The minimum limit (soft limit) for axis motion, in machine units. 
+# When this limit is exceeded, the controller aborts axis motion. The 
+# axis must be homed before MIN_LIMIT is in force. For a rotary axis 
+# (A,B,C typ) with unlimited rotation having no MIN_LIMIT for that 
+# axis in the [AXIS_<letter>] section a value of -1e99 is used.
+MIN_LIMIT                = -1e99
+
+# When this is set to 1 for an ANGULAR axis the axis will move
+# 0-359.999 degrees. Positive Numbers will move the axis in a
+# positive direction and negative numbers will move the axis in
+# the negative direction.
+WRAPPED_ROTARY           = 1
+
+# This value selects a joint to use for a locking indexer for the
+# specified axis.
+LOCKING_INDEXER_JOINT    = 3
+
+# ********************************************************************
 #       JJ  OOOOOO  IIIIIIII N     NN TTTTTTTT
 #       JJ OO    OO    II    NN    NN    TT
 #       JJ OO    OO    II    NNN   NN    TT
 #       JJ OO    OO    II    NN NN NN    TT
 # JJ    JJ OO    OO    II    NN  NNNN    TT
 #  JJJJJJ   OOOOOO  IIIIIIII NN    NN    TT
-#
 # ********************************************************************
-[JOINT_6]
-SPINDLE                  = 1
-TYPE                     = ANGULAR
-
-# ********************************************************************
-#
-#  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE
-# SS    SS PP    PP    II    NN    NN DD    DD LL       EE
-#  SSS     PP    PP    II    NNN   NN DD    DD LL       EEEEE
-#     SSS  PPPPPPP     II    NN NN NN DD    DD LL       EE
-# SS    SS PP          II    NN  NNNN DD    DD LL       EE
-#  SSSSSS  PP       IIIIIIII NN    NN DDDDDDD  LLLLLLLL EEEEEEEE 
-#
-# ********************************************************************
-[SPINDLE_1]
-TYPE                     = ANGULAR
-
-# ********************************************************************
-# STEP_SCALE = number of pulses that corresponds to a move of one 
-# machine unit as set in the [TRAJ] section. 
-#
-# Using a Starrett dial speed indicator, this was determined to be:
-#
-#   For the MDF Rose Engine,
-#
-#                 9 motor rev
-#       6,000 x ------------- = 54,000
-#                1 spindle rev
-#
-
-SCALE				     = 54000
-STEP_SCALE               = 54000
+[JOINT_3]
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
@@ -144,37 +154,69 @@ STEP_SCALE               = 54000
 # Set to 6400 steps / rev
 ENCODER_SCALE            = 6400
 
-# ********************************************************************
-
-# The maximum spindle speed (in rpm) for the specified spindle.
-# The rosette phaser / multiplier needs to be able to run up to 10x the
-# spindle speed.
-# MAX_FORWARD_VELOCITY     = 100
-
-# MAX_REVERSE_VELOCITY     = 100
-
-# Sets the step size for spindle speed increment / decrement commands.
-# INCREMENT                = 0.1
-
+# ***********************
+# STEP_SCALE = number of pulses that corresponds to a move of one 
+# machine unit as set in the [TRAJ] section. 
 #
-# Maximum velocity for this joint in machine units per minute.
-MAX_VELOCITY           	 = 100
+# See also, calculation #2, above.
+#
+# For a linear joint one machine unit will be equal to the setting 
+# of LINEAR_UNITS. 
+# 
+# For an angular joint one unit is equal to the setting in 
+# ANGULAR_UNITS. 
+#
+# For stepper systems, this is the number of step pulses issued per
+# machine unit. 
+#
+# For servo systems, this is the number of feedback pulses per machine
+# unit. A second number, if specified, is ignored.
+#
+SCALE				     = 17.778
+STEP_SCALE               = 17.778
 
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_VELOCITY, it is set to 20
-STEPGEN_MAXVEL           = 20
-
+# ***********************
 # Maximum acceleration for this joint in machine units per second
 # squared.
 MAX_ACCELERATION         = 30
 
 # Hardware StepGen requires values in rps (revolution per second)
 # As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
-STEPGEN_MAXACCEL         = 1
+STEPGEN_MAXACCEL         = 31
+
+# ***********************
+#
+# 10 rev   360 deg   1 min
+# ------ x ------- x ------ = 60 deg/sec
+#  1 min    1 rev    60 sec
+#
+# Maximum velocity for this joint in machine units per second.
+MAX_VELOCITY           	 = 60
+
+# Hardware StepGen requires values in rps (revolution per second)
+# As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
+STEPGEN_MAXVEL           = 2
 
 # ********************************************************************
-# Backlash in machine units.
+# Backlash in machine units. Backlash compensation value can be used 
+# to make up for small deficiencies in the hardware used to drive an 
+# joint. If backlash is added to an joint and you are using steppers 
+# the STEPGEN_MAXACCEL must be increased to 1.5 to 2 times the 
+# MAX_ACCELERATION for the joint. Excessive backlash compensation
+# can cause an joint to jerk as it changes direction.
 BACKLASH				 = 0.0000
+
+#  The minimum limit for joint motion, in machine units. When this
+# limit is reached, the controller aborts joint motion. For a
+# rotary joint with unlimited rotation having no MIN_LIMIT for
+# that joint in the [JOINT_N] section a the value -1e99 is used.
+MIN_LIMIT              = -1e99
+
+# The maximum limit for joint motion, in machine units. When this
+# limit is reached, the controller aborts joint motion. For a
+# rotary joint with unlimited rotation having no MAX_LIMIT for
+# that joint in the [JOINT_N] section a the value 1e99 is used.
+MAX_LIMIT              = 1e99
 
 # The value in machine units by which the joint is permitted to
 # deviate from commanded position at very low speeds.
@@ -200,6 +242,15 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
+# ********************************************************************
+
+# ********************************************************************
+# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
+# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
+# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
+# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
+# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
+#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
 # ********************************************************************
 
 # ********************************************************************

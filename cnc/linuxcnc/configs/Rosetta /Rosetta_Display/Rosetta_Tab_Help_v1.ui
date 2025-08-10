@@ -106,7 +106,7 @@
                 <property name="halign">start</property>
                 <property name="valign">start</property>
                 <property name="hexpand">False</property>
-                <property name="label" translatable="yes">You can access the Rosetta User Manual at the Rosetta Library.  This on-line guide can help you with all aspects of the Rosetta implementation of LinuxCNC.</property>
+                <property name="label" translatable="yes">You can access the Rosetta User Manual at the Rosetta Library.  This on-line guide can help you with the Rosetta implementation of LinuxCNC.</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
@@ -151,7 +151,7 @@
                 <property name="halign">start</property>
                 <property name="valign">start</property>
                 <property name="hexpand">False</property>
-                <property name="label" translatable="yes">You can access the Rosetta Gcode Library at the Rosetta Library.  Samples of key Gcode programs are provided here, and this will be expanded as users develop their own Gcode programs they wish to share.
+                <property name="label" translatable="yes">You can access the Rosetta Gcode Library at the Rosetta Library.  Samples of key Gcode programs are provided here, and this library will be expanded over time as users develop their own Gcode programs they wish to share.
 
 If you wish to share a program you have developed, ensure the code is documented with comments, especially for those variables the user will need to adjust when using it.</property>
                 <property name="wrap">True</property>
@@ -171,7 +171,7 @@ If you wish to share a program you have developed, ensure the code is documented
                 <property name="margin-top">5</property>
                 <property name="hexpand">False</property>
                 <property name="vexpand">True</property>
-                <property name="label" translatable="yes">The Rosetta Library is available at this web site:</property>
+                <property name="label" translatable="yes">The Rosetta Library is available at the web site:</property>
                 <property name="wrap">True</property>
               </object>
               <packing>

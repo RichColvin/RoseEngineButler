@@ -15,10 +15,10 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   Rosetta_AxisU.inc                                                 #
+#   Rosetta_AxisV.inc                                                 #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the U axis for the configuration of         #
+#   This is used to setup the V axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation:                                             #
@@ -30,7 +30,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 08 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -76,7 +76,7 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   U      4       04    LINEAR     5    P15
+#   V      5       01    LINEAR     6    P12
 
 # ********************************************************************
 # The values used below are based on these calculations.
@@ -95,23 +95,22 @@
 # ***********************
 # 3. Leadscrew
 #
-#    For the this device, a leadscrew with  a 2mm pitch is being 
-#    used.
+#    For the this device, a leadscrew with a 4-start, 2mm pitch
+#    is being used.
 #
 #               1 rev   25.4 mm
-#   LEADSCREW = ----- * ------- = 12.7 rev/in
-#               2 mm     1 inch
+#   LEADSCREW = ----- * ------- = 3.175 rev/in
+#               8 mm     1 inch
 #
-#                6,400 step   12.7 rev
-#   STEP_SCALE = ---------- * --------
-#                  1 rev       inch
+#                6,400 step   3.175 rev
+#   STEP_SCALE = ---------- * ---------
+#                  1 rev        inch
 #
-#   STEP_SCALE = 81,280 steps/inch
+#   STEP_SCALE = 20,320 steps/inch
 #
 # ********************************************************************
 
 # ********************************************************************
-# 
 #    AA    XX    XX IIIIIIII  SSSSSS
 #   AAAA    XX  XX    II     SS    SS
 #  AA  AA    XXXX     II      SSS
@@ -119,7 +118,7 @@
 # AA    AA  XX  XX    II     SS    SS
 # AA    AA XX    XX IIIIIIII  SSSSSS
 # ********************************************************************
-[AXIS_U]
+[AXIS_V]
 TYPE                     = LINEAR
 
 # Maximum acceleration for this axis in machine units per second squared.
@@ -143,16 +142,14 @@ MAX_LIMIT                = 9999.9
 MIN_LIMIT                = -9999.9
 
 # ********************************************************************
-#
 #       JJ  OOOOOO  IIIIIIII N     NN TTTTTTTT
 #       JJ OO    OO    II    NN    NN    TT
 #       JJ OO    OO    II    NNN   NN    TT
 #       JJ OO    OO    II    NN NN NN    TT
 # JJ    JJ OO    OO    II    NN  NNNN    TT
 #  JJJJJJ   OOOOOO  IIIIIIII NN    NN    TT
-#
 # ********************************************************************
-[JOINT_4]
+[JOINT_5]
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
@@ -179,8 +176,8 @@ ENCODER_SCALE            = 6400
 # For servo systems, this is the number of feedback pulses per machine
 # unit. A second number, if specified, is ignored.
 #
-SCALE                      = 81280
-STEP_SCALE                 = 81280
+SCALE                      = 20320
+STEP_SCALE                 = 20320
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
@@ -249,6 +246,15 @@ DIRSETUP                 = 5000
 # These are 2.5 μs = 2,500 ns
 STEPLEN                  = 2500
 STEPSPACE                = 2500
+# ********************************************************************
+
+# ********************************************************************
+# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
+# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
+# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
+# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
+# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
+#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
 # ********************************************************************
 
 # ********************************************************************
