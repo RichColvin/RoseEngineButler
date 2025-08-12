@@ -150,7 +150,7 @@ MAX_VELOCITY           	 = 100
 
 # Hardware StepGen requires values in rps (revolution per second)
 # As it should be 10%+ higher than MAX_VELOCITY, it is set to 20
-STEPGEN_MAXVEL           = 20
+STEPGEN_MAXVEL           = 3
 
 # Maximum acceleration for this joint in machine units per second
 # squared.

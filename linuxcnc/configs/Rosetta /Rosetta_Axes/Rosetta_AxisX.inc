@@ -125,7 +125,7 @@ TYPE                     = LINEAR
 MAX_ACCELERATION         = 30.0
 
 # Maximum velocity for this axis in machine units per second.
-MAX_VELOCITY             = 1.0
+MAX_VELOCITY             = 100.0
 
 # The maximum limit (soft limit) for axis motion, in machine units. 
 # When this limit is exceeded, the controller aborts axis motion. The
@@ -141,6 +141,8 @@ MAX_LIMIT                = 9999.9
 # axis in the [AXIS_<letter>] section a value of -1e99 is used.
 MIN_LIMIT                = -9999.9
 
+LOCKING_INDEXER_JOINT 	 = 0
+
 # ********************************************************************
 #       JJ  OOOOOO  IIIIIIII N     NN TTTTTTTT
 #       JJ OO    OO    II    NN    NN    TT
@@ -150,13 +152,15 @@ MIN_LIMIT                = -9999.9
 #  JJJJJJ   OOOOOO  IIIIIIII NN    NN    TT
 # ********************************************************************
 [JOINT_0]
+TYPE                     = LINEAR
+UNITS 					 = INCH
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
 # machine unit.
 #
-# Set to 6400 steps / rev
-ENCODER_SCALE            = 6400
+# Set to 20,320 steps / in
+ENCODER_SCALE            = 20320
 
 # ***********************
 # STEP_SCALE = number of pulses that corresponds to a move of one 
@@ -178,6 +182,9 @@ ENCODER_SCALE            = 6400
 #
 SCALE                      = 20320
 STEP_SCALE                 = 20320
+
+# SCALE                      = 200
+# STEP_SCALE                 = 200
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
@@ -224,10 +231,10 @@ MAX_LIMIT              = 1e99
 
 # The value in machine units by which the joint is permitted to
 # deviate from commanded position at very low speeds.
-MIN_FERROR               = 0.5
+MIN_FERROR               = 10
 
 # The maximum allowable following error, in machine units.
-FERROR                   = 5
+FERROR                   = 100
 
 # 1 Indicates the joint is used as a locking indexer.
 LOCKING_INDEXER          = 1
@@ -241,11 +248,11 @@ LOCKING_INDEXER          = 1
 # ***********************
 # For the Stepper Online DM542T Drivers
 # These are 5 μs = 5,000 ns
-DIRHOLD                  = 5000
-DIRSETUP                 = 5000
+DIRHOLD                  = 5100
+DIRSETUP                 = 5100
 # These are 2.5 μs = 2,500 ns
-STEPLEN                  = 2500
-STEPSPACE                = 2500
+STEPLEN                  = 2600
+STEPSPACE                = 2600
 # ********************************************************************
 
 # ********************************************************************

@@ -126,6 +126,7 @@ class HandlerClass:
     def Sp0_CCW_on_button_press(self,widget,data):
 
         # Ensure the system is in MDI mode
+        c.mode(linuxcnc.MODE_MDI)
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
                 c.mode(linuxcnc.MODE_MDI)
@@ -151,6 +152,7 @@ class HandlerClass:
     def Sp0_CW_on_button_press(self,widget,data):
 
         # Ensure the system is in MDI mode
+        c.mode(linuxcnc.MODE_MDI)
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
                 c.mode(linuxcnc.MODE_MDI)
@@ -342,6 +344,8 @@ class HandlerClass:
 #######################################################################
     def U_Minus_on_button_press(self,widget,data):
 
+        print ("U_Minus_on_button_press called")
+
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -349,7 +353,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 U-" + str(self.UIdx)
+        Gcode = "G1 U-" + str(self.UIdx) + " F1"
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -367,6 +371,8 @@ class HandlerClass:
 #######################################################################
     def U_Plus_on_button_press(self,widget,data):
 
+        print ("U_Plus_on_button_press called")
+
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -374,8 +380,10 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 U" + str(self.UIdx)
+        Gcode = "G1 U" + str(self.UIdx) + " F1"
         c.mdi(Gcode)
+
+        print (Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
@@ -419,7 +427,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 V-" + str(self.VIdx)
+        Gcode = "G1 V-" + str(self.VIdx) + " F1"
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -444,7 +452,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 V" + str(self.VIdx)
+        Gcode = "G1 V" + str(self.VIdx) + " F1"
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -482,6 +490,9 @@ class HandlerClass:
 #######################################################################
     def X_Minus_on_button_press(self,widget,data):
 
+        print("*********************************************")
+        print("Starting X_Minus_on_button_press")
+
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -489,8 +500,12 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 X-" + str(self.XIdx)
+        Gcode = "G1 X-" + str(self.XIdx) + " F1"
         c.mdi(Gcode)
+
+        print(Gcode)
+        print("Ending X_Minus_on_button_press")
+        print("*********************************************")
 
         # Wait for the command to complete
         c.wait_complete()
@@ -507,6 +522,9 @@ class HandlerClass:
 #######################################################################
     def X_Plus_on_button_press(self,widget,data):
 
+        print("*********************************************")
+        print("Starting X_Plus_on_button_press")
+
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -514,8 +532,12 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 X" + str(self.XIdx)
+        Gcode = "G1 X" + str(self.XIdx) + " F1"
         c.mdi(Gcode)
+
+        print(Gcode)
+        print("Ending X_Plus_on_button_press")
+        print("*********************************************")
 
         # Wait for the command to complete
         c.wait_complete()
@@ -559,7 +581,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 Y-" + str(self.YIdx)
+        Gcode = "G1 Y-" + str(self.YIdx) + " F1"
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -584,7 +606,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 Y" + str(self.YIdx)
+        Gcode = "G1 Y" + str(self.YIdx) + " F1"
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -622,7 +644,6 @@ class HandlerClass:
 #######################################################################
     def Z_Minus_on_button_press(self,widget,data):
 
-        print("Starting Z_Minus_on_button_press")
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -630,13 +651,11 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 Z-" + str(self.ZIdx)
+        Gcode = "G1 Z-" + str(self.ZIdx) + " F1"
         c.mdi(Gcode)
-        print(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
-        print("Ending Z_Minus_on_button_press")
 
 #######################################################################
 # Z_Plus_on_button_press                                              #
@@ -650,7 +669,6 @@ class HandlerClass:
 #######################################################################
     def Z_Plus_on_button_press(self,widget,data):
 
-        print("Starting Z_Plus_on_button_press")
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -658,13 +676,11 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G0 Z" + str(self.ZIdx)
+        Gcode = "G1 Z" + str(self.ZIdx) + " F1"
         c.mdi(Gcode)
-        print(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
-        print("Ending Z_Plus_on_button_press")
 
 #######################################################################
 # __init__                                                            #

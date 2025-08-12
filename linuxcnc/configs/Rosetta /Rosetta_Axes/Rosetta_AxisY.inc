@@ -227,10 +227,10 @@ MAX_LIMIT              = 1e99
 
 # The value in machine units by which the joint is permitted to
 # deviate from commanded position at very low speeds.
-MIN_FERROR               = 0.5
+MIN_FERROR               = 10
 
 # The maximum allowable following error, in machine units.
-FERROR                   = 5
+FERROR                   = 100
 
 # 1 Indicates the joint is used as a locking indexer.
 LOCKING_INDEXER          = 1
