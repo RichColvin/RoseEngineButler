@@ -27,11 +27,6 @@
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/Stop.png</property>
   </object>
-  <object class="GtkAdjustment" id="Sp0_Spd_adj">
-    <property name="upper">10</property>
-    <property name="step-increment">0.10</property>
-    <property name="page-increment">1</property>
-  </object>
   <object class="GtkAdjustment" id="Sp1_Idx_adj">
     <property name="upper">360</property>
     <property name="value">90</property>
@@ -65,7 +60,7 @@
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=10 n-rows=19 -->
+                  <!-- n-columns=10 n-rows=18 -->
                   <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -87,23 +82,6 @@ Movement</property>
                         <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
                         <property name="width">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="R01Menu01_Title_Sp0">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">Spindle (Sp0)</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">2</property>
-                        <property name="width">3</property>
                       </packing>
                     </child>
                     <child>
@@ -171,23 +149,6 @@ Movement</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="R01Menu01_Title_Sp1">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">Rosette Phaser/Multiplier (Sp1)</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">4</property>
-                        <property name="width">4</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkLabel" id="R01Menu01_Title_Sp0_2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -200,7 +161,7 @@ Movement</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                         <property name="width">4</property>
                       </packing>
                     </child>
@@ -221,12 +182,12 @@ Movement</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">5</property>
+                        <property name="top-attach">4</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Rosetta_Logo">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
@@ -240,40 +201,7 @@ Movement</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Sp0_Spd">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="halign">end</property>
-                        <property name="valign">center</property>
-                        <property name="text" translatable="yes">0.0</property>
-                        <property name="overwrite-mode">True</property>
-                        <property name="completion">Sp1_SpdPct</property>
-                        <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp0_Spd_adj</property>
-                        <property name="digits">1</property>
-                        <property name="numeric">True</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">3</property>
-                        <property name="width">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">rpm</property>
-                        <property name="width-chars">3</property>
-                        <property name="xalign">0.05000000074505806</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">2</property>
-                        <property name="top-attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_pct_spindle_speed">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -284,7 +212,7 @@ Movement</property>
                       </object>
                       <packing>
                         <property name="left-attach">2</property>
-                        <property name="top-attach">5</property>
+                        <property name="top-attach">4</property>
                         <property name="width">3</property>
                       </packing>
                     </child>
@@ -306,12 +234,12 @@ Movement</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">7</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title - Run Op">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -334,18 +262,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="width-chars">4</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_01">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -356,7 +273,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Sp0">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -373,7 +290,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Sp1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -386,11 +303,11 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">9</property>
-                        <property name="top-attach">5</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_X">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">in</property>
@@ -399,7 +316,7 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">3</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -420,7 +337,7 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">9</property>
+                        <property name="top-attach">8</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -442,7 +359,7 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">10</property>
+                        <property name="top-attach">9</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -464,7 +381,7 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">12</property>
+                        <property name="top-attach">11</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -486,12 +403,25 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">13</property>
+                        <property name="top-attach">12</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_Y">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">in</property>
+                        <property name="width-chars">6</property>
+                        <property name="xalign">0.05000000074505806</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="uom_Z">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">in</property>
@@ -504,7 +434,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_U">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">in</property>
@@ -513,11 +443,11 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">3</property>
-                        <property name="top-attach">10</property>
+                        <property name="top-attach">11</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_V">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">in</property>
@@ -530,20 +460,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">in</property>
-                        <property name="width-chars">6</property>
-                        <property name="xalign">0.05000000074505806</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">13</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Sync_Axes">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -558,12 +475,12 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">9</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">7</property>
                         <property name="height">8</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -577,11 +494,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Plus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -595,11 +512,24 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">7</property>
+                        <property name="top-attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="Axis_X_Minus">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="pixbuf">Images/RunLft.png</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">5</property>
                         <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_Z_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -608,11 +538,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_U_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -621,24 +551,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">10</property>
+                        <property name="top-attach">11</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">2</property>
-                        <property name="margin-bottom">2</property>
-                        <property name="pixbuf">Images/RunLft.png</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">5</property>
-                        <property name="top-attach">12</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_Y_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -647,11 +564,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">9</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_V_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -660,55 +577,29 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">13</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">2</property>
-                        <property name="margin-bottom">2</property>
-                        <property name="pixbuf">Images/RunRt.png</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">7</property>
-                        <property name="top-attach">8</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">2</property>
-                        <property name="margin-bottom">2</property>
-                        <property name="pixbuf">Images/RunRt.png</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">7</property>
-                        <property name="top-attach">10</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">2</property>
-                        <property name="margin-bottom">2</property>
-                        <property name="pixbuf">Images/RunRt.png</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">7</property>
                         <property name="top-attach">12</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_X_Plus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="pixbuf">Images/RunDown.png</property>
+                        <property name="pixbuf">Images/RunRt.png</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="Axis_Z_Plus">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="pixbuf">Images/RunRt.png</property>
                       </object>
                       <packing>
                         <property name="left-attach">7</property>
@@ -716,7 +607,20 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_U_Plus">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="pixbuf">Images/RunRt.png</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">11</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="Axis_Y_Plus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -725,7 +629,20 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">7</property>
-                        <property name="top-attach">13</property>
+                        <property name="top-attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="Axis_V_Plus">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="pixbuf">Images/RunDown.png</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">12</property>
                       </packing>
                     </child>
                     <child>
@@ -746,12 +663,12 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">15</property>
+                        <property name="top-attach">14</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_B">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">deg</property>
@@ -760,11 +677,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">3</property>
-                        <property name="top-attach">15</property>
+                        <property name="top-attach">14</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_B_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -773,11 +690,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">15</property>
+                        <property name="top-attach">14</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Axis_B_Plus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">2</property>
@@ -786,18 +703,18 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">7</property>
-                        <property name="top-attach">15</property>
+                        <property name="top-attach">14</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_02">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">14</property>
+                        <property name="top-attach">13</property>
                       </packing>
                     </child>
                     <child>
@@ -813,7 +730,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -828,7 +745,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">9</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -843,7 +760,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">10</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                     <child>
@@ -858,7 +775,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">12</property>
+                        <property name="top-attach">11</property>
                       </packing>
                     </child>
                     <child>
@@ -873,7 +790,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">13</property>
+                        <property name="top-attach">12</property>
                       </packing>
                     </child>
                     <child>
@@ -888,11 +805,11 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">15</property>
+                        <property name="top-attach">14</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_03">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -903,29 +820,29 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_04">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">11</property>
+                        <property name="top-attach">10</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_05">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">6</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Bottom_Page_Comment">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -939,56 +856,56 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">18</property>
+                        <property name="top-attach">17</property>
                         <property name="width">10</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_06">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">16</property>
+                        <property name="top-attach">15</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_07">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_08">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">8</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_09">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
                       </object>
                       <packing>
                         <property name="left-attach">4</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title - Stop">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -1006,7 +923,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title - Fwd">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -1024,7 +941,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title - Rev">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -1042,7 +959,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title - Comments">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -1063,7 +980,7 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="Horiz_Line">
                         <property name="height-request">5</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -1072,24 +989,133 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">17</property>
+                        <property name="top-attach">16</property>
                         <property name="width">10</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="R01Menu01_Title_Sp0_1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin-top">6</property>
+                        <property name="label" translatable="yes">Spindles</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
+                        <property name="width">2</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="Sp_I_Amt">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="text" translatable="yes">90.000</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="completion">Idx_entrycompletion</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">Sp0_Idx_adj</property>
+                        <property name="digits">3</property>
+                        <property name="numeric">True</property>
+                        <property name="value">90</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">3</property>
+                        <property name="width">2</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="valign">center</property>
+                        <property name="margin-left">4</property>
+                        <property name="margin-start">4</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="HAL_RadioButton" id="Sp_I_Deg">
+                            <property name="label" translatable="yes">deg</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="draw-indicator">True</property>
+                            <property name="group">Sp_I_Div</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="HAL_RadioButton" id="Sp_I_Div">
+                            <property name="label" translatable="yes">div</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="draw-indicator">True</property>
+                            <property name="group">Sp_I_Deg</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">3</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="valign">center</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="HAL_CheckButton" id="Sp0_I_Sel">
+                            <property name="label" translatable="yes">Sp0</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="active">True</property>
+                            <property name="draw-indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="HAL_CheckButton" id="Sp1_I_Sel">
+                            <property name="label" translatable="yes">Sp1</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="active">True</property>
+                            <property name="draw-indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">3</property>
+                      </packing>
                     </child>
                     <child>
                       <placeholder/>

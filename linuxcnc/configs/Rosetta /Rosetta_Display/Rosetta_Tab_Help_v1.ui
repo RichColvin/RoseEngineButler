@@ -38,7 +38,7 @@
                     <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Rosetta_Help">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -58,7 +58,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="User_Manual">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="valign">start</property>
@@ -73,7 +73,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_User_Manual">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -88,7 +88,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Rosetta_Logo">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
@@ -102,7 +102,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Gcode_Library">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="valign">start</property>
@@ -118,7 +118,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Gcode_Library">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -135,7 +135,7 @@ If you wish to share a program you have developed, ensure the code is documented
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Top">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -159,7 +159,7 @@ If you wish to share a program you have developed, ensure the code is documented
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="Comment_Web_Link_1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
@@ -176,7 +176,7 @@ The Rosetta Library is available at the web site:</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="Comment_Web_Link_2">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">center</property>
@@ -199,7 +199,7 @@ The Rosetta Library is available at the web site:</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSeparator">
+                  <object class="GtkSeparator" id="Horiz_Line">
                     <property name="height-request">3</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -211,7 +211,7 @@ The Rosetta Library is available at the web site:</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="Comment_Copyright">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>

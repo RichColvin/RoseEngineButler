@@ -1001,7 +1001,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="Horiz_Line">
                         <property name="height-request">5</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>

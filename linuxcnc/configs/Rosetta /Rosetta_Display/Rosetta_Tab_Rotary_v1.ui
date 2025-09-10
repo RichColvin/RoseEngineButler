@@ -71,6 +71,11 @@
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="Sp1_Idx_adj1">
+    <property name="upper">360</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkEntryCompletion" id="Sp1_SpdPct">
     <property name="inline-completion">True</property>
   </object>
@@ -102,7 +107,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <object class="GtkLabel" id="vbox1_Title">
+                      <object class="GtkLabel" id="Title - Run Spindles">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -121,7 +126,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="R01Menu01_Title_Sp0">
+                      <object class="GtkLabel" id="SubTitle_Sp0">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -219,7 +224,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSeparator">
+                      <object class="GtkSeparator" id="Horiz_Line">
                         <property name="height-request">5</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -233,7 +238,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title - Rotary Indexing">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -431,7 +436,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="Rosetta_Logo">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
@@ -466,10 +471,9 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_rpm">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">4</property>
                         <property name="margin-start">4</property>
                         <property name="label" translatable="yes">rpm</property>
                         <property name="width-chars">3</property>
@@ -481,12 +485,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="uom_pct_spindle_speed">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">center</property>
-                        <property name="margin-left">4</property>
                         <property name="margin-start">4</property>
                         <property name="label" translatable="yes">% Spindle Speed</property>
                         <property name="wrap">True</property>
@@ -500,13 +503,15 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Spindles">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="label" translatable="yes">Select which spindles are to be indexed.  Also select if rotation is in degrees or divisions of a circle.</property>
+                        <property name="label" translatable="yes">Select which spindles are to be indexed.  Also select if rotation is in degrees or divisions of a circle.  
+
+For Sp1, the % of spindle speed (Sp0) is set in the field above.</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
@@ -518,7 +523,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_B_Axis">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -540,7 +545,6 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="valign">center</property>
-                        <property name="margin-left">4</property>
                         <property name="margin-start">4</property>
                         <property name="orientation">vertical</property>
                         <child>
@@ -584,7 +588,6 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="valign">center</property>
-                        <property name="margin-left">4</property>
                         <property name="margin-start">4</property>
                         <property name="orientation">vertical</property>
                         <child>
@@ -624,7 +627,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_01">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -677,7 +680,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Sp0">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -695,7 +698,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Comment_Sp1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -755,7 +758,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_02">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -766,7 +769,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_03">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -777,7 +780,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Bottom_Page_Comment">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -796,7 +799,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_04">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -807,7 +810,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Middle_Page_Comment">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -826,7 +829,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Spacer_05">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -837,7 +840,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Run_Op_1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -860,7 +863,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Comment_1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -882,7 +885,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Comment_2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -904,7 +907,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Run_Op_2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -927,7 +930,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Fwd_1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -945,7 +948,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Stop_1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -963,7 +966,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Rev_1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -981,7 +984,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Fwd_2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -999,7 +1002,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Stop_2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -1017,7 +1020,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="Title_Rev_2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
