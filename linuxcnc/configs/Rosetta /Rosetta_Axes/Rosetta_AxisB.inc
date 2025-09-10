@@ -31,7 +31,7 @@
 #                                                                     #
 # Version                                                             #
 #   1.0 - 08 August 2025, R. Colvin                                   #
-#                                                                     #
+#######################################################################
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
 # The following MIT/X Consortium License applies to the Rosetta       #
@@ -152,7 +152,7 @@ LOCKING_INDEXER_JOINT    = 3
 # machine unit.
 #
 # Set to 6400 steps / rev
-ENCODER_SCALE            = 6400
+# ENCODER_SCALE            = 6400
 
 # ***********************
 # STEP_SCALE = number of pulses that corresponds to a move of one 
@@ -172,8 +172,12 @@ ENCODER_SCALE            = 6400
 # For servo systems, this is the number of feedback pulses per machine
 # unit. A second number, if specified, is ignored.
 #
+# ***** Commented out new settign
 SCALE				     = 17.778
-STEP_SCALE               = 17.778
+# STEP_SCALE               = 17.778
+
+# ***** From old settings
+STEP_SCALE               = 1280
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
@@ -228,6 +232,23 @@ FERROR                   = 100
 # 1 Indicates the joint is used as a locking indexer.
 LOCKING_INDEXER          = 1
 
+
+
+
+# pg 160
+HOME                     = 0.0
+
+# pg 160
+HOME_OFFSET              = 0.0
+
+# pg 160
+HOME_SEQUENCE            = 4
+
+# pg 158
+UNITS                    = degree
+
+
+
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
@@ -237,11 +258,23 @@ LOCKING_INDEXER          = 1
 # ***********************
 # For the Stepper Online DM542T Drivers
 # These are 5 μs = 5,000 ns
-DIRHOLD                  = 5000
-DIRSETUP                 = 5000
+
+# ***** Commented out new settign
+# DIRHOLD                  = 5000
+# DIRSETUP                 = 5000
+
+# ***** From old settings
+DIRHOLD                  = 10000
+DIRSETUP                 = 10000
+
+# ***** Commented out new setting
 # These are 2.5 μs = 2,500 ns
-STEPLEN                  = 2500
-STEPSPACE                = 2500
+# STEPLEN                  = 2500
+# STEPSPACE                = 2500
+
+# ***** From old settings
+STEPLEN                  = 5000
+STEPSPACE                = 5000
 # ********************************************************************
 
 # ********************************************************************
