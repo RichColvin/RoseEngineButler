@@ -121,27 +121,31 @@
 [AXIS_X]
 TYPE                     = LINEAR
 
-# Maximum acceleration for this axis in machine units per second squared.
+# Maximum acceleration for this axis
+#    units = machine units per second squared.
 MAX_ACCELERATION         = 30.0
 
-# Maximum velocity for this axis in machine units per second.
+# Maximum velocity for this axis
+#    units = machine units per second.
 MAX_VELOCITY             = 100.0
 
 # The maximum limit (soft limit) for axis motion, in machine units. 
 # When this limit is exceeded, the controller aborts axis motion. The
 # axis must be homed before MAX_LIMIT is in force. For a rotary axis 
-# (A,B,C typ) with unlimited rotation having no MAX_LIMIT for that axis
-# in the [AXIS_<letter>] section a value of 1e99 is used.
-MAX_LIMIT                = 9999.9
+# (A,B,C typ) with unlimited rotation having no MAX_LIMIT for that
+# axis in the [AXIS_<letter>] section a value of 1e99 is used.
+MAX_LIMIT                = 1e99
 
 # The minimum limit (soft limit) for axis motion, in machine units. 
 # When this limit is exceeded, the controller aborts axis motion. The 
 # axis must be homed before MIN_LIMIT is in force. For a rotary axis 
 # (A,B,C typ) with unlimited rotation having no MIN_LIMIT for that 
 # axis in the [AXIS_<letter>] section a value of -1e99 is used.
-MIN_LIMIT                = -9999.9
+MIN_LIMIT                = -1e99
 
-LOCKING_INDEXER_JOINT 	 = 0
+# This value selects a joint to use for a locking indexer for the
+# specified axis <letter>.
+# LOCKING_INDEXER_JOINT 	 = 0
 
 # ********************************************************************
 #       JJ  OOOOOO  IIIIIIII N     NN TTTTTTTT
@@ -153,20 +157,26 @@ LOCKING_INDEXER_JOINT 	 = 0
 # ********************************************************************
 [JOINT_0]
 TYPE                     = LINEAR
+
+# This over-rides the value specified in [TRAJ]LINEAR_UNITS
 UNITS 					 = INCH
 
 # ***********************
 # ENCODER_SCALE = number of pulses that corresponds to a move of one
-# machine unit.
+# machine unit.  This is optionally used in PnCconf built configs.
 #
 # Set to 20,320 steps / in
-ENCODER_SCALE            = 20320
+# ENCODER_SCALE            = 20320
 
 # ***********************
-# STEP_SCALE = number of pulses that corresponds to a move of one 
-# machine unit as set in the [TRAJ] section. 
-#
-# See also, calculation #3, above.
+
+# Specifies the number of pulses that corresponds to a move of one
+# machine unit as set in the [TRAJ] section. For stepper systems,
+# this is the number of step pulses issued per machine unit. For a
+# linear joint one machine unit will be equal to the setting of
+# LINEAR_UNITS. For an angular joint one unit is equal to the setting
+# in ANGULAR_UNITS. For servo systems, this is the number of feedback
+# pulses per machine unit. A second number, if specified, is ignored.
 #
 # For a linear joint one machine unit will be equal to the setting 
 # of LINEAR_UNITS. 
@@ -174,25 +184,30 @@ ENCODER_SCALE            = 20320
 # For an angular joint one unit is equal to the setting in 
 # ANGULAR_UNITS. 
 #
-# For stepper systems, this is the number of step pulses issued per
-# machine unit. 
+# See also, calculation #3, above.
 #
-# For servo systems, this is the number of feedback pulses per machine
-# unit. A second number, if specified, is ignored.
+#   * Stepper systems: this is the number of step pulses issued per
+#     machine unit. 
 #
+#   * Servo systems: this is the number of feedback pulses per
+#     machine unit. A second number, if specified, is ignored.
+#
+# SCALE is specified in Sample configs 
 SCALE                      = 20320
-STEP_SCALE                 = 20320
-
-# SCALE                      = 200
-# STEP_SCALE                 = 200
+# STEP_SCALE is specified in PnCconf built configs 
+# STEP_SCALE                 = 20320
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
 # squared.
 MAX_ACCELERATION           = 30
 
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
+# ********************************************************************
+# STEPGEN_MAXACCEL is USED FOR STEPPER MOTORS - Acceleration limit
+# for the step generator. This should be 1% to 10% larger than the
+# joint MAX_ACCELERATION. This value improves the tuning of StepGen’s
+# "position loop". If you have added backlash compensation to an joint
+# then this should be 1.5 to 2 times greater than MAX_ACCELERATION. 
 STEPGEN_MAXACCEL           = 2
 
 # ***********************
@@ -204,9 +219,13 @@ STEPGEN_MAXACCEL           = 2
 # Maximum velocity for this joint in machine units per second.
 MAX_VELOCITY           	   = 60
 
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
-STEPGEN_MAXVEL             = 1
+# STEPGEN_MAXVEL is USED FOR STEPPER MOTORS - Older configuration
+# files have a velocity limit for the step generator as well. If
+# specified, it should also be 1% to 10% larger than the joint
+# MAX_VELOCITY. Subsequent testing has shown that use of
+# STEPGEN_MAXVEL does not improve the tuning of StepGen’s position
+# loop.
+# STEPGEN_MAXVEL             = 1
 
 # ********************************************************************
 # Backlash in machine units. Backlash compensation value can be used 
@@ -238,6 +257,11 @@ FERROR                   = 100
 
 # 1 Indicates the joint is used as a locking indexer.
 LOCKING_INDEXER          = 1
+
+# ********************************************************************
+# Homing
+HOME					 = 0.0
+HOME_SEQUENCE			 = 1
 
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
