@@ -117,68 +117,28 @@ TYPE                     = ANGULAR
 [SPINDLE_0]
 TYPE                     = ANGULAR
 
-# ********************************************************************
-# STEP_SCALE = number of pulses that corresponds to a move of one 
-# machine unit as set in the [TRAJ] section. 
-#
-#   For the MDF Rose Engine,
-#
-#	         9 motor rev
-#   	    ------------- x 6,400 = 57,600
-#           1 spindle rev
-#
-SCALE				     = 57600
-STEP_SCALE               = 57600
-
-# ***********************
-# ENCODER_SCALE = number of pulses that corresponds to a move of one
-# machine unit.
-#
-# Set to 6400 steps / rev
-ENCODER_SCALE            = 6400
-
-# ********************************************************************
-# Sets the step size for spindle speed increment / decrement commands.
-# INCREMENT                = 0.1
-
-# The maximum spindle speed (in rpm) for the specified spindle.
-# The rosette phaser / multiplier needs to be able to run up to 10x the
-# spindle speed.
 MAX_VELOCITY           	 = 10
-# MAX_FORWARD_VELOCITY     = 10
-# MAX_REVERSE_VELOCITY     = 10
-
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_VELOCITY, it is set to 20
-STEPGEN_MAXVEL           = 2
-
-# Maximum acceleration for this joint in machine units per second
-# squared.
 MAX_ACCELERATION         = 30
 
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
-STEPGEN_MAXACCEL         = 1
-
-# ********************************************************************
-# Backlash in machine units.
 BACKLASH				 = 0.0000
 
-# The value in machine units by which the joint is permitted to
-# deviate from commanded position at very low speeds.
 MIN_FERROR               = 0.5
-
-# The maximum allowable following error, in machine units.
 FERROR                   = 5
 
-# 1 Indicates the joint is used as a locking indexer.
-LOCKING_INDEXER          = 1
+# LOCKING_INDEXER          = 1
 
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# These parameters are relevant to joints controlled by stepper
-# motors; they may not be needed when using servo motors
+# These parameters are only needed when using stepper motors.  They
+# are not relevant to joints controlled by servo motors.
+
+SCALE				     = 57600
+STEP_SCALE               = 57600
+ENCODER_SCALE            = 6400
+
+STEPGEN_MAXVEL           = 2
+STEPGEN_MAXACCEL         = 1
 
 # ***********************
 # For the Stepper Online DM542T Drivers
@@ -206,7 +166,6 @@ STEPSPACE                = 2500
 # motors; they are only needed when using servo motors
 
 # BIAS                     = 0.0
-
 # DEADBAND                 = 0.000015
 
 # The maximum value for the output of the PID compensation that is 

@@ -193,9 +193,9 @@ UNITS 					 = INCH
 #     machine unit. A second number, if specified, is ignored.
 #
 # SCALE is specified in Sample configs 
-SCALE                      = 20320
+# SCALE                      = 20320
 # STEP_SCALE is specified in PnCconf built configs 
-# STEP_SCALE                 = 20320
+STEP_SCALE                 = 2032
 
 # ***********************
 # Maximum acceleration for this joint in machine units per second
@@ -225,7 +225,7 @@ MAX_VELOCITY           	   = 60
 # MAX_VELOCITY. Subsequent testing has shown that use of
 # STEPGEN_MAXVEL does not improve the tuning of StepGen’s position
 # loop.
-# STEPGEN_MAXVEL             = 1
+STEPGEN_MAXVEL             = 75
 
 # ********************************************************************
 # Backlash in machine units. Backlash compensation value can be used 
