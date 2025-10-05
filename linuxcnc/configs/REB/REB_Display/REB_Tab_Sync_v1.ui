@@ -68,12 +68,11 @@
                       <object class="GtkLabel" id="vbox1_Title">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
                         <property name="valign">end</property>
-                        <property name="label" translatable="yes">Synchronized
-Movement</property>
+                        <property name="label" translatable="yes">Synchronized Movement</property>
                         <attributes>
-                          <attribute name="font-desc" value="DejaVu Serif 14"/>
+                          <attribute name="font-desc" value="DejaVu Serif 20"/>
                           <attribute name="weight" value="bold"/>
                           <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
@@ -81,7 +80,7 @@ Movement</property>
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
-                        <property name="width">5</property>
+                        <property name="width">10</property>
                       </packing>
                     </child>
                     <child>
@@ -190,13 +189,13 @@ Movement</property>
                       <object class="GtkImage" id="REB_Logo">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">end</property>
+                        <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="hexpand">True</property>
                         <property name="pixbuf">Images/REBLogo-Sm.png</property>
                       </object>
                       <packing>
-                        <property name="left-attach">9</property>
+                        <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
                       </packing>
                     </child>
@@ -1116,18 +1115,6 @@ Each can be a positive or negative distance.  The diagrams to the left show the 
                         <property name="left-attach">3</property>
                         <property name="top-attach">3</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

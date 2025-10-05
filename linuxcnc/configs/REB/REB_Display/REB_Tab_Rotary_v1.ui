@@ -110,12 +110,12 @@
                       <object class="GtkLabel" id="Title - Run Spindles">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
                         <property name="valign">end</property>
                         <property name="label" translatable="yes">Run Spindles</property>
                         <property name="justify">right</property>
                         <attributes>
-                          <attribute name="font-desc" value="DejaVu Serif 14"/>
+                          <attribute name="font-desc" value="DejaVu Serif 20"/>
                           <attribute name="weight" value="bold"/>
                           <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
@@ -123,6 +123,7 @@
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
+                        <property name="width">10</property>
                       </packing>
                     </child>
                     <child>
@@ -241,11 +242,12 @@
                       <object class="GtkLabel" id="Title - Rotary Indexing">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
                         <property name="valign">end</property>
                         <property name="label" translatable="yes">Rotary Indexing</property>
+                        <property name="justify">center</property>
                         <attributes>
-                          <attribute name="font-desc" value="DejaVu Serif 14"/>
+                          <attribute name="font-desc" value="DejaVu Serif 20"/>
                           <attribute name="weight" value="bold"/>
                           <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
@@ -253,6 +255,7 @@
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">9</property>
+                        <property name="width">10</property>
                       </packing>
                     </child>
                     <child>
@@ -439,13 +442,13 @@
                       <object class="GtkImage" id="REB_Logo">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">end</property>
+                        <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="hexpand">False</property>
                         <property name="pixbuf">Images/REBLogo-Sm.png</property>
                       </object>
                       <packing>
-                        <property name="left-attach">9</property>
+                        <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
                       </packing>
                     </child>
@@ -1036,57 +1039,6 @@ Operation</property>
                         <property name="left-attach">6</property>
                         <property name="top-attach">11</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

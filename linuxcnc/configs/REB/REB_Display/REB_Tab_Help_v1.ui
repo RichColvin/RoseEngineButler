@@ -41,12 +41,13 @@
                       <object class="GtkLabel" id="Title_REB_Help">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
                         <property name="valign">end</property>
                         <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Rose Engine Butler Help</property>
+                        <property name="justify">center</property>
                         <attributes>
-                          <attribute name="font-desc" value="DejaVu Serif 14"/>
+                          <attribute name="font-desc" value="DejaVu Serif 20"/>
                           <attribute name="weight" value="bold"/>
                           <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
@@ -94,10 +95,10 @@
                         <property name="halign">end</property>
                         <property name="valign">start</property>
                         <property name="xpad">0</property>
-                        <property name="pixbuf">Images/REBLogo-Black-Sm.png</property>
+                        <property name="pixbuf">Images/REBLogo-Sm.png</property>
                       </object>
                       <packing>
-                        <property name="left-attach">1</property>
+                        <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
                       </packing>
                     </child>
