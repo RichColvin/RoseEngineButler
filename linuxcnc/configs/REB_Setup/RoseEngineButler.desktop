@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Rose Engine Butler
+Comment=Desktop launcher for Rose Engine Butler
+Exec=linuxcnc /home/cnc/linuxcnc/configs/REB/REB.ini
+Icon=/home/cnc/linuxcnc/configs/REB_Images/Reuben.gif
+Path=/home/cnc/linuxcnc/configs/REB
+Terminal=false
+StartupNotify=false
