@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Rose Engine Butler
+Comment=Desktop launcher for Rose Engine Butler
+Exec=linuxcnc /home/cnc/linuxcnc/configs/RoseEngineButler/RoseEngineButler.ini
+Icon=/home/cnc/linuxcnc/configs/RoseEngineButler_Images/RoseEngineButlerLogo-Silver.gif
+Path=/home/cnc/linuxcnc/configs/RoseEngineButler
+Terminal=false
+StartupNotify=false
