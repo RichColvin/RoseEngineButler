@@ -28,7 +28,7 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 06 October 2025, R. Colvin                                  #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -78,6 +78,7 @@
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
 #   Y      1       03    LINEAR     2    P14
+# ********************************************************************
 
 [AXIS_Y]
 TYPE                 = LINEAR

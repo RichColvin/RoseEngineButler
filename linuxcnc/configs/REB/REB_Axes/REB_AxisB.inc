@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 08 August 2025, R. Colvin                                   #
+#   1.0 - 06 October 2025, R. Colvin                                  #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -79,24 +79,12 @@
 #  ----  -----  -------  -------  ----  ----  ------------------------
 #   B      3       06    ANGULAR    4    P17
 # ********************************************************************
-# The values used below are based on these calculations.
-#
-# ***********************
-# 1. Stepper motors use 1.8 deg / step.
-#
-# ***********************
-# 2. DM542T set to Microsteps  = 32
-#                  Steps / rev = 6,400
-#
-#   32 microsteps           microsteps
-#   -------------  = 17.778 ----------
-#      1.8 deg                degree
-# ********************************************************************
 
 [AXIS_B]
 TYPE                 = ANGULAR
 
-MAX_VELOCITY         = 1.0
+# 1"/min = 0.083"/sec
+MAX_VELOCITY         = 0.2
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -106,8 +94,8 @@ MAX_LIMIT            = 1e99
 TYPE                 = ANGULAR
 UNITS				 = DEGREE
 
-MAX_ACCELERATION     = 30
-MAX_VELOCITY         = 60
+MAX_VELOCITY         = 0.2
+MAX_ACCELERATION     = 20.0
 
 BACKLASH			 = 0.0000
 
@@ -123,22 +111,17 @@ HOME_SEQUENCE        = 4
 # LOCKING_INDEXER     = 1
 
 # ********************************************************************
-# Homing
-HOME                 = 0.0
-HOME_SEQUENCE        = 4
-
-# ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
 # These parameters are only needed when using stepper motors.  They
 # are not relevant to joints controlled by servo motors.
 
-SCALE                = 20320
-STEP_SCALE           = 20320
-ENCODER_SCALE        = 20320
+# SCALE                = 80000
+STEP_SCALE           = 800000
+ENCODER_SCALE        = 800000
 
-STEPGEN_MAXACCEL     = 3.0
-STEPGEN_MAXVEL       = 1.5
+STEPGEN_MAXACCEL     = 0.5
+STEPGEN_MAXVEL       = 0.25
 
 # For the DM542T, these are 5 μs = 5,000 ns
 DIRHOLD              = 5000

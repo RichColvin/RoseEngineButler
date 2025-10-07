@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 08 August 2025, R. Colvin                                   #
+#   1.0 - 06 October 2025, R. Colvin                                  #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -79,34 +79,12 @@
 #  ----  -----  -------  -------  ----  ----  ------------------------
 #   U      4       04    LINEAR     5    P15
 # ********************************************************************
-# The values used below are based on these calculations.
-#
-# ***********************
-# 1. Stepper motors use 1.8 deg / step.
-#
-# ***********************
-# 2. DM542T set to Microsteps  = 32
-#                  Steps / rev = 6,400
-#
-#   32 microsteps           microsteps
-#   -------------  = 17.778 ----------
-#      1.8 deg                degree
-#
-# ***********************
-# 3. Leadscrew
-#
-#    For the this device, a leadscrew with a 1-start, 2mm pitch
-#    is being used = 8mm / rev
-#
-#                6,400 step   1 rev   25.4 mm          steps
-#   STEP_SCALE = ---------- * ----- * ------- = 81,280 -----
-#                  1 rev      8 mm     1 inch           inch
-# ********************************************************************
 
 [AXIS_U]
 TYPE                 = LINEAR
 
-MAX_VELOCITY         = 1.0
+# 1"/min = 0.083"/sec
+MAX_VELOCITY         = 0.2
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -116,8 +94,8 @@ MAX_LIMIT            = 1e99
 TYPE                 = LINEAR
 UNITS 				 = INCH
 
-MAX_ACCELERATION     = 30
-MAX_VELOCITY         = 60
+MAX_VELOCITY         = 0.2
+MAX_ACCELERATION     = 20.0
 
 BACKLASH			 = 0.0000
 
@@ -138,12 +116,12 @@ HOME_SEQUENCE        = 5
 # These parameters are only needed when using stepper motors.  They
 # are not relevant to joints controlled by servo motors.
 
-SCALE                = 20320
-STEP_SCALE           = 20320
-ENCODER_SCALE        = 20320
+# SCALE                = 80000
+STEP_SCALE           = 800000
+ENCODER_SCALE        = 800000
 
-STEPGEN_MAXACCEL     = 3.0
-STEPGEN_MAXVEL       = 1.5
+STEPGEN_MAXACCEL     = 0.5
+STEPGEN_MAXVEL       = 0.25
 
 # For the DM542T, these are 5 μs = 5,000 ns
 DIRHOLD              = 5000
