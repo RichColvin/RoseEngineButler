@@ -113,95 +113,24 @@ MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
 [JOINT_4]
+TYPE                 = LINEAR
+UNITS 				 = INCH
 
-# ***********************
-# ENCODER_SCALE = number of pulses that corresponds to a move of one
-# machine unit.
-#
-# Set to 6400 steps / rev
-ENCODER_SCALE            = 6400
+MAX_ACCELERATION     = 30
+MAX_VELOCITY         = 60
 
-# ***********************
-# STEP_SCALE = number of pulses that corresponds to a move of one 
-# machine unit as set in the [TRAJ] section. 
-#
-# See also, calculation #3, above.
-#
-# For a linear joint one machine unit will be equal to the setting 
-# of LINEAR_UNITS. 
-# 
-# For an angular joint one unit is equal to the setting in 
-# ANGULAR_UNITS. 
-#
-# For stepper systems, this is the number of step pulses issued per
-# machine unit. 
-#
-# For servo systems, this is the number of feedback pulses per machine
-# unit. A second number, if specified, is ignored.
-#
-SCALE                      = 81280
-STEP_SCALE                 = 81280
+BACKLASH			 = 0.0000
 
-# ***********************
-# Maximum acceleration for this joint in machine units per second
-# squared.
-MAX_ACCELERATION           = 30
+MIN_LIMIT            = -1e99
+MAX_LIMIT            = 1e99
 
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_ACCELERATION, it is set to 1
-STEPGEN_MAXACCEL           = 2
+MIN_FERROR           = 10
+FERROR               = 100
 
-# ***********************
-#
-# 10 rev   360 deg   1 min
-# ------ x ------- x ------ = 60 deg/sec
-#  1 min    1 rev    60 sec
-#
-# Maximum velocity for this joint in machine units per second.
-MAX_VELOCITY           	   = 60
-
-# Hardware StepGen requires values in rps (revolution per second)
-# As it should be 10%+ higher than MAX_VELOCITY, it is set to 2
-STEPGEN_MAXVEL             = 1
-
-# ********************************************************************
-# Backlash in machine units. Backlash compensation value can be used 
-# to make up for small deficiencies in the hardware used to drive an 
-# joint. If backlash is added to an joint and you are using steppers 
-# the STEPGEN_MAXACCEL must be increased to 1.5 to 2 times the 
-# MAX_ACCELERATION for the joint. Excessive backlash compensation
-# can cause an joint to jerk as it changes direction.
-BACKLASH				 = 0.0000
-
-#  The minimum limit for joint motion, in machine units. When this
-# limit is reached, the controller aborts joint motion. For a
-# rotary joint with unlimited rotation having no MIN_LIMIT for
-# that joint in the [JOINT_N] section a the value -1e99 is used.
-MIN_LIMIT              = -1e99
-
-# The maximum limit for joint motion, in machine units. When this
-# limit is reached, the controller aborts joint motion. For a
-# rotary joint with unlimited rotation having no MAX_LIMIT for
-# that joint in the [JOINT_N] section a the value 1e99 is used.
-MAX_LIMIT              = 1e99
-
-# The value in machine units by which the joint is permitted to
-# deviate from commanded position at very low speeds.
-MIN_FERROR               = 10
-
-# The maximum allowable following error, in machine units.
-FERROR                   = 100
-
-# 1 Indicates the joint is used as a locking indexer.
-LOCKING_INDEXER          = 1
-
-
-
-
-# ********************************************************************
-# Homing
 HOME                 = 0.0
-HOME_SEQUENCE        = 2
+HOME_SEQUENCE        = 5
+
+# LOCKING_INDEXER	   = 1
 
 # ********************************************************************
 # STEPPER MOTOR SETTINGS

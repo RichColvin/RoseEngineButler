@@ -97,19 +97,19 @@
 # ********************************************************************
 
 [JOINT_7]
-SPINDLE             = 0
-TYPE                = ANGULAR
+SPINDLE              = 0
+TYPE                 = ANGULAR
 
 [SPINDLE_0]
-TYPE                = ANGULAR
+TYPE                 = ANGULAR
 
-MAX_VELOCITY        = 10
-MAX_ACCELERATION    = 30
+MAX_VELOCITY         = 10
+MAX_ACCELERATION     = 30
 
-BACKLASH			= 0.0000
+BACKLASH			 = 0.0000
 
-MIN_FERROR          = 0.5
-FERROR              = 5
+MIN_FERROR           = 0.5
+FERROR               = 5
 
 # LOCKING_INDEXER     = 1
 
@@ -119,21 +119,21 @@ FERROR              = 5
 # These parameters are only needed when using stepper motors.  They
 # are not relevant to joints controlled by servo motors.
 
-SCALE				= 57600
-STEP_SCALE          = 57600
-ENCODER_SCALE       = 6400
+SCALE				 = 57600
+STEP_SCALE           = 57600
+ENCODER_SCALE        = 6400
 
-STEPGEN_MAXVEL      = 2
-STEPGEN_MAXACCEL    = 1
+STEPGEN_MAXVEL       = 2
+STEPGEN_MAXACCEL     = 1
 
 # ***********************
 # For the Stepper Online DM542T Drivers
 # These are 5 μs = 5,000 ns
-DIRHOLD             = 5000
-DIRSETUP            = 5000
+DIRHOLD              = 5000
+DIRSETUP             = 5000
 # These are 2.5 μs = 2,500 ns
-STEPLEN             = 2500
-STEPSPACE           = 2500
+STEPLEN              = 2500
+STEPSPACE            = 2500
 # ********************************************************************
 
 # ********************************************************************

@@ -124,13 +124,13 @@ BACKLASH             = 0.0000
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-MIN_FERROR           = 0.5
-FERROR               = 5
+MIN_FERROR           = 10
+FERROR               = 100
 
-# ********************************************************************
-# Homing
 HOME                 = 0.0
 HOME_SEQUENCE        = 2
+
+# LOCKING_INDEXER	   = 1
 
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
