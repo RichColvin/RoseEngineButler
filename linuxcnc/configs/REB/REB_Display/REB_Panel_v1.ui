@@ -145,12 +145,12 @@
           </packing>
         </child>
         <child>
-          <!-- n-columns=6 n-rows=14 -->
+          <!-- n-columns=7 n-rows=14 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="Speed">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="valign">end</property>
@@ -160,7 +160,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">0</property>
                 <property name="width">2</property>
               </packing>
@@ -180,7 +180,7 @@
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">1</property>
-                <property name="width">6</property>
+                <property name="width">7</property>
               </packing>
             </child>
             <child>
@@ -202,6 +202,7 @@
               <object class="HAL_Label" id="Sp0_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -209,7 +210,7 @@
                 <property name="text-template">%.2f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">2</property>
               </packing>
             </child>
@@ -217,12 +218,13 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">RPM</property>
                 <property name="width-chars">6</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">2</property>
               </packing>
             </child>
@@ -245,6 +247,7 @@
               <object class="HAL_Label" id="Sp1_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -252,7 +255,7 @@
                 <property name="text-template">%.2f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">3</property>
               </packing>
             </child>
@@ -260,30 +263,31 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">RPM</property>
                 <property name="width-chars">6</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">3</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="valign">end</property>
-                <property name="label" translatable="yes">Command
-DRO</property>
+                <property name="label" translatable="yes">DRO</property>
                 <property name="justify">center</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">0</property>
+                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -297,7 +301,7 @@ DRO</property>
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">4</property>
-                <property name="width">6</property>
+                <property name="width">7</property>
               </packing>
             </child>
             <child>
@@ -315,7 +319,7 @@ DRO</property>
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">5</property>
-                <property name="width">6</property>
+                <property name="width">7</property>
               </packing>
             </child>
             <child>
@@ -344,7 +348,7 @@ DRO</property>
                 <property name="text-template">%.1f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">6</property>
               </packing>
             </child>
@@ -352,12 +356,13 @@ DRO</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">deg/sec</property>
                 <property name="width-chars">8</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">6</property>
               </packing>
             </child>
@@ -365,6 +370,7 @@ DRO</property>
               <object class="HAL_Label" id="B_DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -372,7 +378,7 @@ DRO</property>
                 <property name="text-template">%.4f</property>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">6</property>
               </packing>
             </child>
@@ -387,7 +393,7 @@ DRO</property>
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">7</property>
-                <property name="width">6</property>
+                <property name="width">7</property>
               </packing>
             </child>
             <child>
@@ -405,7 +411,7 @@ DRO</property>
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">8</property>
-                <property name="width">6</property>
+                <property name="width">7</property>
               </packing>
             </child>
             <child>
@@ -487,6 +493,7 @@ DRO</property>
               <object class="HAL_Label" id="X_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -494,7 +501,7 @@ DRO</property>
                 <property name="text-template">%.3f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">9</property>
               </packing>
             </child>
@@ -502,6 +509,7 @@ DRO</property>
               <object class="HAL_Label" id="Y_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -509,7 +517,7 @@ DRO</property>
                 <property name="text-template">%.3f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -517,6 +525,7 @@ DRO</property>
               <object class="HAL_Label" id="Z_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -524,7 +533,7 @@ DRO</property>
                 <property name="text-template">%.3f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">11</property>
               </packing>
             </child>
@@ -532,6 +541,7 @@ DRO</property>
               <object class="HAL_Label" id="U_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -539,7 +549,7 @@ DRO</property>
                 <property name="text-template">%.3f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -547,6 +557,7 @@ DRO</property>
               <object class="HAL_Label" id="V_Spd">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -554,7 +565,7 @@ DRO</property>
                 <property name="text-template">%.3f</property>
               </object>
               <packing>
-                <property name="left-attach">1</property>
+                <property name="left-attach">3</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -562,12 +573,13 @@ DRO</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">in/sec</property>
                 <property name="width-chars">8</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">9</property>
               </packing>
             </child>
@@ -575,12 +587,13 @@ DRO</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">in/sec</property>
                 <property name="width-chars">8</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -588,12 +601,13 @@ DRO</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">in/sec</property>
                 <property name="width-chars">8</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">11</property>
               </packing>
             </child>
@@ -601,12 +615,13 @@ DRO</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">in/sec</property>
                 <property name="width-chars">8</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -614,12 +629,13 @@ DRO</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">in/sec</property>
                 <property name="width-chars">8</property>
                 <property name="xalign">0.10000000149011612</property>
               </object>
               <packing>
-                <property name="left-attach">2</property>
+                <property name="left-attach">4</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -627,6 +643,7 @@ DRO</property>
               <object class="HAL_Label" id="X_DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -634,7 +651,7 @@ DRO</property>
                 <property name="text-template">%.4f</property>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">9</property>
               </packing>
             </child>
@@ -642,6 +659,7 @@ DRO</property>
               <object class="HAL_Label" id="Y_DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -649,7 +667,7 @@ DRO</property>
                 <property name="text-template">%.4f</property>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -657,6 +675,7 @@ DRO</property>
               <object class="HAL_Label" id="Z_DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -664,7 +683,7 @@ DRO</property>
                 <property name="text-template">%.4f</property>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">11</property>
               </packing>
             </child>
@@ -672,6 +691,7 @@ DRO</property>
               <object class="HAL_Label" id="U_DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -679,7 +699,7 @@ DRO</property>
                 <property name="text-template">%.4f</property>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -687,6 +707,7 @@ DRO</property>
               <object class="HAL_Label" id="V_DRO">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">end</property>
                 <property name="label" translatable="yes">-100.0</property>
                 <property name="justify">right</property>
                 <property name="width-chars">7</property>
@@ -694,7 +715,7 @@ DRO</property>
                 <property name="text-template">%.4f</property>
               </object>
               <packing>
-                <property name="left-attach">3</property>
+                <property name="left-attach">1</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -710,7 +731,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">2</property>
               </packing>
             </child>
@@ -723,7 +744,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">2</property>
               </packing>
             </child>
@@ -736,7 +757,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">3</property>
               </packing>
             </child>
@@ -749,7 +770,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">9</property>
               </packing>
             </child>
@@ -762,7 +783,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -775,7 +796,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">11</property>
               </packing>
             </child>
@@ -788,7 +809,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -801,7 +822,7 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -817,7 +838,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">3</property>
               </packing>
             </child>
@@ -833,7 +854,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">9</property>
               </packing>
             </child>
@@ -849,7 +870,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -865,7 +886,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">11</property>
               </packing>
             </child>
@@ -881,7 +902,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -897,7 +918,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -912,7 +933,7 @@ DRO</property>
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">0</property>
                 <property name="width">2</property>
               </packing>
@@ -944,7 +965,7 @@ DRO</property>
                 <property name="margin-bottom">2</property>
               </object>
               <packing>
-                <property name="left-attach">4</property>
+                <property name="left-attach">5</property>
                 <property name="top-attach">6</property>
               </packing>
             </child>
@@ -955,9 +976,93 @@ DRO</property>
                 <property name="led-blink-rate">0</property>
               </object>
               <packing>
-                <property name="left-attach">5</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">6</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">in</property>
+                <property name="width-chars">3</property>
+                <property name="xalign">0.10000000149011612</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">9</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">in</property>
+                <property name="width-chars">3</property>
+                <property name="xalign">0.10000000149011612</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">10</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">in</property>
+                <property name="width-chars">3</property>
+                <property name="xalign">0.10000000149011612</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">11</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">in</property>
+                <property name="width-chars">3</property>
+                <property name="xalign">0.10000000149011612</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">12</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">in</property>
+                <property name="width-chars">3</property>
+                <property name="xalign">0.10000000149011612</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">13</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">deg</property>
+                <property name="width-chars">3</property>
+                <property name="xalign">0.10000000149011612</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">6</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>
