@@ -1,5 +1,5 @@
 # Rose Engine Butler - a rose engine task automation system
 <img src="https://roseenginebutler.com/Images/REB%20-%20Software%20Library.png" width="500">
-The Rose Engine Butler system is designed to provide the ornamental turner a way for linking activities using synchronisation of stepper motors on their rose engine, and assist the ornamantal turner with automating onerous tasks.
+The Rose Engine Butler system was developed by ornamental turners for use with a rose engine.  It is designed to provide the ornamental turner a way for synchronising activities on the rose engine using stepper motors, in a manner which also assists the ornamantal turner with reducing the workload for onerous tasks. 
 <hr>
 Details about this project are at: https://roseenginebutler.com.
