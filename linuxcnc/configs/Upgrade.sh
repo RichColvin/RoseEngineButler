@@ -69,12 +69,12 @@ echo -e "\e[0;33;1;44m Copying files\e[0m"
 echo -e "$sSpaces" "\e[0;33;1;44m from /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs\e[0m"
 echo -e "$sSpaces" "\e[0;33;1;44m to /home/cnc/linuxcnc/configs\e[0m"
 cd /home/cnc/linuxcnc/configs
-sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/*.*
+sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/*.* .
 
-sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB
-sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_Images
-sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_MesaCard
-sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_Setup
+sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB .
+sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_Images .
+sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_MesaCard .
+sudo cp -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_Setup .
 
 sudo chmod 777 -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB
 sudo chmod 777 -R /home/cnc/Rosetta_LinuxCNC/linuxcnc/configs/REB_Images
