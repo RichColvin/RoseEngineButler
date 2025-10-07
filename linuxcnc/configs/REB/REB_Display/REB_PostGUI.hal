@@ -112,7 +112,7 @@ net spindle.1-enable					<=  gladevcp.Sp1_ENA
 # Rotary Axes
 
 net b-vel-cmd							 => gladevcp.B_Spd
-net b-pos-cmd							 => gladevcp.B_DRO
+net b-pos-fb							 => gladevcp.B_DRO
 net b-enable        		             => gladevcp.B_ENA_Status
 net b-enable							<=  gladevcp.B_ENA
 
@@ -120,26 +120,26 @@ net b-enable							<=  gladevcp.B_ENA
 # Linear Axes
 
 net x-vel-cmd							 => gladevcp.X_Spd
-net x-pos-cmd							 => gladevcp.X_DRO
+net x-pos-fb							 => gladevcp.X_DRO
 net x-enable        		             => gladevcp.X_ENA_Status
 net x-enable							<=  gladevcp.X_ENA
 
 net y-vel-cmd							 => gladevcp.Y_Spd
-net y-pos-cmd							 => gladevcp.Y_DRO
+net y-pos-fb							 => gladevcp.Y_DRO
 net y-enable        		             => gladevcp.Y_ENA_Status
 net y-enable							<=  gladevcp.Y_ENA
 
 net z-vel-cmd							 => gladevcp.Z_Spd
-net z-pos-cmd							 => gladevcp.Z_DRO
+net z-pos-fb							 => gladevcp.Z_DRO
 net z-enable        		             => gladevcp.Z_ENA_Status
 net z-enable							<=  gladevcp.Z_ENA
 
 net u-vel-cmd							 => gladevcp.U_Spd
-net u-pos-cmd							 => gladevcp.U_DRO
+net u-pos-fb							 => gladevcp.U_DRO
 net u-enable        		             => gladevcp.U_ENA_Status
 net u-enable							<=  gladevcp.U_ENA
 
 net v-vel-cmd							 => gladevcp.V_Spd
-net v-pos-cmd							 => gladevcp.V_DRO
+net v-pos-fb							 => gladevcp.V_DRO
 net v-enable        		             => gladevcp.V_ENA_Status
 net v-enable							<=  gladevcp.V_ENA
