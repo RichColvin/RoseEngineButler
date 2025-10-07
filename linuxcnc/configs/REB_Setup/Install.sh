@@ -196,35 +196,35 @@ fi
 #
 # ********************************************************************
 # Step 3 - Set desktop icons
-echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Step 3 - Setup desktop icons                                           ${NOCOLOR}"
-cd /home/cnc/Desktop
-echo -e "${CMNTTEXT}Set the REB.desktop icon                               ${NOCOLOR}"
-sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/REB.desktop" .
-if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: copy of Rose Engine Butler desktop icon                       ${NOCOLOR}"
-    echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
-    echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
-    echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
-    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-    exit $?
-fi
-echo -e "${CMNTTEXT}Set the Restore Rose Engine Butler Config Files desktop icon        ${NOCOLOR}"
-sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/Restore REB Config Files.desktop" .
-if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: copy of Restore REB Config Files.desktop         ${NOCOLOR}"
-    echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
-    echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
-    echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
-    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-    exit $?
-fi
-sudo chmod 777 /home/cnc/Desktop/*.desktop
-if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/Desktop/*.desktop failed                  ${NOCOLOR}"
-    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-    exit $?
-fi
+# echo -e "${TITLE}#######################################################################${NOCOLOR}"
+# echo -e "${TITLE}Step 3 - Setup desktop icons                                           ${NOCOLOR}"
+# cd /home/cnc/Desktop
+# echo -e "${CMNTTEXT}Set the REB.desktop icon                               ${NOCOLOR}"
+# sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/REB.desktop" .
+# if [ $? != 0 ]; then
+#    echo -e "${KEYNOTE}ERROR: copy of Rose Engine Butler desktop icon                       ${NOCOLOR}"
+#    echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
+#    echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
+#    echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+#    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+#    exit $?
+# fi
+# echo -e "${CMNTTEXT}Set the Restore Rose Engine Butler Config Files desktop icon        ${NOCOLOR}"
+# sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/Restore REB Config Files.desktop" .
+# if [ $? != 0 ]; then
+#     echo -e "${KEYNOTE}ERROR: copy of Restore REB Config Files.desktop         ${NOCOLOR}"
+#     echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
+#     echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
+#     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+#     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+#     exit $?
+# fi
+# sudo chmod 777 /home/cnc/Desktop/*.desktop
+# if [ $? != 0 ]; then
+#     echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/Desktop/*.desktop failed                  ${NOCOLOR}"
+#     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+#     exit $?
+# fi
 #
 # ********************************************************************
 # Step 4 - Backup key files
