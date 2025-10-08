@@ -115,6 +115,37 @@ HOME_SEQUENCE        = 2
 #
 # These parameters are only needed when using stepper motors.  They
 # are not relevant to joints controlled by servo motors.
+#
+# ********************************************************************
+# Configuration values
+#                                 Home   PCB
+#  Axis  Joint  Channel   Type     Seq  Plug  Comments
+#  ----  -----  -------  -------  ----  ----  ------------------------
+#   Y      1       03    LINEAR     2    P14
+# ********************************************************************
+# The values used below are based on these calculations.
+#
+# ***********************
+# 1. Stepper motors use 1.8 deg / step.
+#
+# ***********************
+# 2. DM542T set to Microsteps  = 32
+#                  Steps / rev = 6,400
+#
+#   32 microsteps           microsteps
+#   -------------  = 17.778 ----------
+#      1.8 deg                degree
+#
+# ***********************
+# 3. Leadscrew
+#
+#    For the this device, a leadscrew with a 4-start, 2mm pitch
+#    is being used = 8mm / rev
+#
+#                6,400 step   1 rev   25.4 mm          steps
+#   STEP_SCALE = ---------- * ----- * ------- = 20,320 -----
+#                  1 rev      8 mm     1 inch           inch
+# ********************************************************************
 
 # SCALE                = 80000
 STEP_SCALE           = 800000

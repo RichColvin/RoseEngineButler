@@ -115,6 +115,20 @@ HOME_SEQUENCE        = 4
 #
 # These parameters are only needed when using stepper motors.  They
 # are not relevant to joints controlled by servo motors.
+#
+# ********************************************************************
+# The values used below are based on these calculations.
+#
+# ***********************
+# 1. Stepper motors use 1.8 deg / step.
+#
+# ***********************
+# 2. DM542T set to Microsteps  = 32
+#                  Steps / rev = 6,400
+#
+#   32 microsteps           microsteps
+#   -------------  = 17.778 ----------
+#      1.8 deg                degree
 
 # SCALE                = 80000
 STEP_SCALE           = 800000

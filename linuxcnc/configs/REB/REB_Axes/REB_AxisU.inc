@@ -115,6 +115,38 @@ HOME_SEQUENCE        = 5
 #
 # These parameters are only needed when using stepper motors.  They
 # are not relevant to joints controlled by servo motors.
+#
+# ********************************************************************
+# The values used below are based on these calculations.
+#
+# ***********************
+# 1. Stepper motors use 1.8 deg / step.
+#
+# ***********************
+# 2. DM542T set to Microsteps  = 32
+#                  Steps / rev = 6,400
+#
+#   32 microsteps           microsteps
+#   -------------  = 17.778 ----------
+#      1.8 deg                degree
+#
+# ***********************
+# 3. Leadscrew
+#
+#    For the this device, a leadscrew with  a 2mm pitch is being 
+#    used.
+#
+#               1 rev   25.4 mm
+#   LEADSCREW = ----- * ------- = 12.7 rev/in
+#               2 mm     1 inch
+#
+#                6,400 step   12.7 rev
+#   STEP_SCALE = ---------- * --------
+#                  1 rev       inch
+#
+#   STEP_SCALE = 81,280 steps/inch
+#
+# ********************************************************************
 
 # SCALE                = 80000
 STEP_SCALE           = 800000
