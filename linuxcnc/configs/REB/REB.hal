@@ -84,15 +84,6 @@
 #  Sp0     7       05      n/a     n/a   P16
 #  Sp1     6       07      n/a     n/a   P18  Previously the C axis
 #
-# ********************************************************************
-# For the StepperOnline DM542T Digital Stepper Drive 
-# These are 5 μs = 5,000 ns
-#   DIRHOLD              = 5000
-#   DIRSETUP             = 5000
-# These are 2.5 μs = 2,500 ns
-#   STEPLEN              = 2500
-#   STEPSPACE            = 2500
-# ********************************************************************
 
 # ********************************************************************
 # Details about the fields are available in the 
@@ -152,10 +143,10 @@ net x-pos-cmd                            => pid.x.command
 net x-pos-fb                             => pid.x.feedback
 net x-output                            <=  pid.x.output
 
-setp hm2_7i92.0.stepgen.02.dirsetup         5000
-setp hm2_7i92.0.stepgen.02.dirhold          5000
-setp hm2_7i92.0.stepgen.02.steplen          2500
-setp hm2_7i92.0.stepgen.02.stepspace        2500
+setp hm2_7i92.0.stepgen.02.dirsetup         [JOINT_0]DIRSETUP
+setp hm2_7i92.0.stepgen.02.dirhold          [JOINT_0]DIRHOLD
+setp hm2_7i92.0.stepgen.02.steplen          [JOINT_0]STEPLEN
+setp hm2_7i92.0.stepgen.02.stepspace        [JOINT_0]STEPSPACE
 setp hm2_7i92.0.stepgen.02.position-scale   [JOINT_0]STEP_SCALE
 setp hm2_7i92.0.stepgen.02.step_type        0
 setp hm2_7i92.0.stepgen.02.control-type     1
@@ -198,10 +189,10 @@ net y-pos-cmd                            => pid.y.command
 net y-pos-fb                             => pid.y.feedback
 net y-output                            <=  pid.y.output
 
-setp hm2_7i92.0.stepgen.03.dirsetup         5000
-setp hm2_7i92.0.stepgen.03.dirhold          5000
-setp hm2_7i92.0.stepgen.03.steplen          2500
-setp hm2_7i92.0.stepgen.03.stepspace        2500
+setp hm2_7i92.0.stepgen.03.dirsetup         [JOINT_1]DIRSETUP
+setp hm2_7i92.0.stepgen.03.dirhold          [JOINT_1]DIRHOLD
+setp hm2_7i92.0.stepgen.03.steplen          [JOINT_1]STEPLEN
+setp hm2_7i92.0.stepgen.03.stepspace        [JOINT_1]STEPSPACE
 setp hm2_7i92.0.stepgen.03.position-scale   [JOINT_1]STEP_SCALE
 setp hm2_7i92.0.stepgen.03.step_type        0
 setp hm2_7i92.0.stepgen.03.control-type     1
@@ -244,10 +235,10 @@ net z-pos-cmd                            => pid.z.command
 net z-pos-fb                             => pid.z.feedback
 net z-output                            <=  pid.z.output
 
-setp hm2_7i92.0.stepgen.00.dirsetup         5000
-setp hm2_7i92.0.stepgen.00.dirhold          5000
-setp hm2_7i92.0.stepgen.00.steplen          2500
-setp hm2_7i92.0.stepgen.00.stepspace        2500
+setp hm2_7i92.0.stepgen.00.dirsetup         [JOINT_2]DIRSETUP
+setp hm2_7i92.0.stepgen.00.dirhold          [JOINT_2]DIRHOLD
+setp hm2_7i92.0.stepgen.00.steplen          [JOINT_2]STEPLEN
+setp hm2_7i92.0.stepgen.00.stepspace        [JOINT_2]STEPSPACE
 setp hm2_7i92.0.stepgen.00.position-scale   [JOINT_2]STEP_SCALE
 setp hm2_7i92.0.stepgen.00.step_type        0
 setp hm2_7i92.0.stepgen.00.control-type     1
@@ -290,10 +281,10 @@ net b-pos-cmd                            => pid.b.command
 net b-pos-fb                             => pid.b.feedback
 net b-output                            <=  pid.b.output
 
-setp hm2_7i92.0.stepgen.06.dirsetup         5000
-setp hm2_7i92.0.stepgen.06.dirhold          5000
-setp hm2_7i92.0.stepgen.06.steplen          2500
-setp hm2_7i92.0.stepgen.06.stepspace        2500
+setp hm2_7i92.0.stepgen.06.dirsetup         [JOINT_3]DIRSETUP
+setp hm2_7i92.0.stepgen.06.dirhold          [JOINT_3]DIRHOLD
+setp hm2_7i92.0.stepgen.06.steplen          [JOINT_3]STEPLEN
+setp hm2_7i92.0.stepgen.06.stepspace        [JOINT_3]STEPSPACE
 setp hm2_7i92.0.stepgen.06.position-scale   [JOINT_3]STEP_SCALE
 setp hm2_7i92.0.stepgen.06.step_type        0
 setp hm2_7i92.0.stepgen.06.control-type     1
@@ -340,10 +331,10 @@ net u-output                            <=  pid.u.output
 # setp pid.x.FF1 1
 # setp pid.x.Pgain 1000
 
-setp hm2_7i92.0.stepgen.04.dirsetup         5000
-setp hm2_7i92.0.stepgen.04.dirhold          5000
-setp hm2_7i92.0.stepgen.04.steplen          2500
-setp hm2_7i92.0.stepgen.04.stepspace        2500
+setp hm2_7i92.0.stepgen.04.dirsetup         [JOINT_4]DIRSETUP
+setp hm2_7i92.0.stepgen.04.dirhold          [JOINT_4]DIRHOLD
+setp hm2_7i92.0.stepgen.04.steplen          [JOINT_4]STEPLEN
+setp hm2_7i92.0.stepgen.04.stepspace        [JOINT_4]STEPSPACE
 setp hm2_7i92.0.stepgen.04.position-scale   [JOINT_4]STEP_SCALE
 setp hm2_7i92.0.stepgen.04.step_type        0
 setp hm2_7i92.0.stepgen.04.control-type     1
@@ -386,10 +377,10 @@ net v-pos-cmd                            => pid.v.command
 net v-pos-fb                             => pid.v.feedback
 net v-output                            <=  pid.v.output
 
-setp hm2_7i92.0.stepgen.01.dirsetup         5000
-setp hm2_7i92.0.stepgen.01.dirhold          5000
-setp hm2_7i92.0.stepgen.01.steplen          2500
-setp hm2_7i92.0.stepgen.01.stepspace        2500
+setp hm2_7i92.0.stepgen.01.dirsetup         [JOINT_5]DIRSETUP
+setp hm2_7i92.0.stepgen.01.dirhold          [JOINT_5]DIRHOLD
+setp hm2_7i92.0.stepgen.01.steplen          [JOINT_5]STEPLEN
+setp hm2_7i92.0.stepgen.01.stepspace        [JOINT_5]STEPSPACE
 setp hm2_7i92.0.stepgen.01.position-scale   [JOINT_5]STEP_SCALE
 setp hm2_7i92.0.stepgen.01.step_type        0
 setp hm2_7i92.0.stepgen.01.control-type     1
@@ -432,10 +423,10 @@ net spindle.0-vel-cmd-rpm                => pid.s0.command
 net spindle.0-vel-fb-rpm                 => pid.s0.feedback
 net spindle.0-output                    <=  pid.s0.output
 
-setp hm2_7i92.0.stepgen.05.dirsetup         5000
-setp hm2_7i92.0.stepgen.05.dirhold          5000
-setp hm2_7i92.0.stepgen.05.steplen          2500
-setp hm2_7i92.0.stepgen.05.stepspace        2500
+setp hm2_7i92.0.stepgen.05.dirsetup         [SPINDLE_0]DIRSETUP
+setp hm2_7i92.0.stepgen.05.dirhold          [SPINDLE_0]DIRHOLD
+setp hm2_7i92.0.stepgen.05.steplen          [SPINDLE_0]STEPLEN
+setp hm2_7i92.0.stepgen.05.stepspace        [SPINDLE_0]STEPSPACE
 setp hm2_7i92.0.stepgen.05.position-scale   [SPINDLE_0]STEP_SCALE
 setp hm2_7i92.0.stepgen.05.step_type        0
 setp hm2_7i92.0.stepgen.05.control-type     1
@@ -486,10 +477,10 @@ net spindle.1-vel-cmd-rpm                => pid.s1.command
 net spindle.1-vel-fb-rpm                 => pid.s1.feedback
 net spindle.1-output                    <=  pid.s1.output
 
-setp hm2_7i92.0.stepgen.07.dirsetup         5000
-setp hm2_7i92.0.stepgen.07.dirhold          5000
-setp hm2_7i92.0.stepgen.07.steplen          2500
-setp hm2_7i92.0.stepgen.07.stepspace        2500
+setp hm2_7i92.0.stepgen.07.dirsetup         [SPINDLE_1]DIRSETUP
+setp hm2_7i92.0.stepgen.07.dirhold          [SPINDLE_1]DIRHOLD
+setp hm2_7i92.0.stepgen.07.steplen          [SPINDLE_1]STEPLEN
+setp hm2_7i92.0.stepgen.07.stepspace        [SPINDLE_1]STEPSPACE
 setp hm2_7i92.0.stepgen.07.position-scale   [SPINDLE_1]STEP_SCALE
 setp hm2_7i92.0.stepgen.07.step_type        0
 setp hm2_7i92.0.stepgen.07.control-type     1

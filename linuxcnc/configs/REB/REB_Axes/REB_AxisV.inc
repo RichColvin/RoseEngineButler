@@ -167,4 +167,12 @@ D                    = 0.0
 FF0                  = 1.0
 FF1                  = 1.0
 FF2                  = 0.0
+
+# For the StepperOnline DM542T Digital Stepper Drive 
+# These are 5 μs = 5,000 ns
+DIRHOLD              = 5000
+DIRSETUP             = 5000
+# These are 2.5 μs = 2,500 ns
+STEPLEN              = 2500
+STEPSPACE            = 2500
 # ********************************************************************
