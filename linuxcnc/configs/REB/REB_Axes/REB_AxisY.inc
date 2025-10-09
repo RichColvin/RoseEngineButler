@@ -84,7 +84,7 @@
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 10.0
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -94,7 +94,7 @@ MAX_LIMIT            = 1e99
 TYPE                 = LINEAR
 UNITS                = INCH
 
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 10.0
 MAX_ACCELERATION     = 20.0
 
 BACKLASH             = 0.0000
@@ -147,12 +147,12 @@ HOME_SEQUENCE        = 2
 #                  1 rev      8 mm     1 inch           inch
 # ********************************************************************
 
-# SCALE                = 80000
-STEP_SCALE           = 800000
-ENCODER_SCALE        = 800000
+# SCALE                = 20320
+STEP_SCALE           = 20320
+ENCODER_SCALE        = 20320
 
 STEPGEN_MAXACCEL     = 0.5
-STEPGEN_MAXVEL       = 0.25
+STEPGEN_MAXVEL       = 12.5
 
 # For the DM542T, these are 5 μs = 5,000 ns
 DIRHOLD              = 5000

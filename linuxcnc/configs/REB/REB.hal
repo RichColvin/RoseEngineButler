@@ -13,7 +13,7 @@
 # LinuxCNC configuration for use with a Rose Engine					  #
 #																	  #
 # File:																  #
-#   REB.hal											  #
+#   REB.hal															  #
 #																	  #
 # Purpose:															  #
 #   This is used to setup hardware abstraction layer for LinuxCNC.	  #
@@ -28,7 +28,7 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 08 October 2025, R. Colvin                                  #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -379,15 +379,15 @@ net u-pos-limit                          => joint.4.pos-lim-sw-in
 # These parameters are not relevant to joints controlled by stepper
 # motors; they are only needed when using servo motors
 
-# setp pid.u.Pgain                            [JOINT_4]P
-# setp pid.u.Igain                            [JOINT_4]I
-# setp pid.u.Dgain                            [JOINT_4]D
-# setp pid.u.bias                             [JOINT_4]BIAS
-# setp pid.u.FF0                              [JOINT_4]FF0
-# setp pid.u.FF1                              [JOINT_4]FF1
-# setp pid.u.FF2                              [JOINT_4]FF2
-# setp pid.u.deadband                         [JOINT_4]DEADBAND
-# setp pid.u.maxoutput                        [JOINT_4]MAX_OUTPUT
+setp pid.u.Pgain                            [JOINT_4]P
+setp pid.u.Igain                            [JOINT_4]I
+setp pid.u.Dgain                            [JOINT_4]D
+setp pid.u.bias                             [JOINT_4]BIAS
+setp pid.u.FF0                              [JOINT_4]FF0
+setp pid.u.FF1                              [JOINT_4]FF1
+setp pid.u.FF2                              [JOINT_4]FF2
+setp pid.u.deadband                         [JOINT_4]DEADBAND
+setp pid.u.maxoutput                        [JOINT_4]MAX_OUTPUT
 # ********************************************************************
 
 #****************************

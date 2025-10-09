@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 06 October 2025, R. Colvin                                  #
+#   1.0 - 08 October 2025, R. Colvin                                  #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -80,6 +80,7 @@
 #   U      4       04    LINEAR     5    P15
 # ********************************************************************
 
+# ********************************************************************
 [AXIS_U]
 TYPE                 = LINEAR
 
@@ -90,6 +91,7 @@ MAX_ACCELERATION     = 20.0
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
+# ********************************************************************
 [JOINT_4]
 TYPE                 = LINEAR
 UNITS 				 = INCH
@@ -149,8 +151,8 @@ HOME_SEQUENCE        = 5
 # ********************************************************************
 
 # SCALE                = 80000
-STEP_SCALE           = 800000
-ENCODER_SCALE        = 800000
+STEP_SCALE           = 81280
+ENCODER_SCALE        = 81280
 
 STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 0.25
@@ -178,21 +180,14 @@ STEPSPACE            = 2500
 # These parameters are not relevant to joints controlled by stepper
 # motors; they are only needed when using servo motors
 
-# BIAS                     = 0.0
+BIAS                 = 0.0
+DEADBAND             = 0.000015
+MAX_OUTPUT           = 10.0
 
-# DEADBAND                 = 0.000015
-
-# The maximum value for the output of the PID compensation that is 
-# written to the motor amplifier, in volts. The computed output value 
-# is clamped to this limit. The limit is applied before scaling to raw
-# output units. The value is applied symmetrically to both the plus
-# and the minus side.
-# MAX_OUTPUT               = 10.0
-
-# P                        = 1000.0
-# I                        = 0.0
-# D                        = 0.0
-# FF0                      = 1.0
-# FF1                      = 0.0
-# FF2                      = 0.0
+P                    = 1000.0
+I                    = 0.0
+D                    = 0.0
+FF0                  = 1.0
+FF1                  = 0.0
+FF2                  = 0.0
 # ********************************************************************
