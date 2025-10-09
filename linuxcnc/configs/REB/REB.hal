@@ -351,10 +351,14 @@ net u-pos-cmd                            => pid.u.command
 net u-pos-fb                             => pid.u.feedback
 net u-output                            <=  pid.u.output
 
-setp hm2_7i92.0.stepgen.04.dirsetup         [JOINT_4]DIRSETUP
-setp hm2_7i92.0.stepgen.04.dirhold          [JOINT_4]DIRHOLD
-setp hm2_7i92.0.stepgen.04.steplen          [JOINT_4]STEPLEN
-setp hm2_7i92.0.stepgen.04.stepspace        [JOINT_4]STEPSPACE
+# Added per recommendatin from Peter
+# setp pid.x.FF1 1
+# setp pid.x.Pgain 1000
+
+setp hm2_7i92.0.stepgen.04.dirsetup         5000
+setp hm2_7i92.0.stepgen.04.dirhold          5000
+setp hm2_7i92.0.stepgen.04.steplen          2500
+setp hm2_7i92.0.stepgen.04.stepspace        2500
 setp hm2_7i92.0.stepgen.04.position-scale   [JOINT_4]STEP_SCALE
 setp hm2_7i92.0.stepgen.04.step_type        0
 setp hm2_7i92.0.stepgen.04.control-type     1
