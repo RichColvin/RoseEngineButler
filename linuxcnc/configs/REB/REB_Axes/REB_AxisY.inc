@@ -28,7 +28,7 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 06 October 2025, R. Colvin                                  #
+#   1.0 - 09 October 2025, R. Colvin                                  #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -84,7 +84,7 @@
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
-MAX_VELOCITY         = 10.0
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -94,35 +94,12 @@ MAX_LIMIT            = 1e99
 TYPE                 = LINEAR
 UNITS                = INCH
 
-MAX_VELOCITY         = 10.0
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
-
-BACKLASH             = 0.0000
-
-MIN_LIMIT            = -1e99
-MAX_LIMIT            = 1e99
-
-MIN_FERROR           = 10
-FERROR               = 100
-
-HOME                 = 0.0
-HOME_SEQUENCE        = 2
-
-# LOCKING_INDEXER	   = 1
 
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# These parameters are only needed when using stepper motors.  They
-# are not relevant to joints controlled by servo motors.
-#
-# ********************************************************************
-# Configuration values
-#                                 Home   PCB
-#  Axis  Joint  Channel   Type     Seq  Plug  Comments
-#  ----  -----  -------  -------  ----  ----  ------------------------
-#   Y      1       03    LINEAR     2    P14
-# ********************************************************************
 # The values used below are based on these calculations.
 #
 # ***********************
@@ -139,12 +116,18 @@ HOME_SEQUENCE        = 2
 # ***********************
 # 3. Leadscrew
 #
-#    For the this device, a leadscrew with a 4-start, 2mm pitch
-#    is being used = 8mm / rev
+#    For the this device, a leadscrew with a 
+#       * 4 starts
+#       * 2mm pitch
+#    Thusly, 1 rev = 8 mm movement
 #
-#                6,400 step   1 rev   25.4 mm          steps
-#   STEP_SCALE = ---------- * ----- * ------- = 20,320 -----
-#                  1 rev      8 mm     1 inch           inch
+#                6,400 steps   1 rev         steps
+#   STEP_SCALE = ----------- * ----- =   800 -----
+#                   1 rev      8 mm           mm
+#
+#                 800 steps   25.4 mm           steps
+#   STEP_SCALE = ----------- * ------- = 20,320 -----
+#                   1 mm       1 inch           inch
 # ********************************************************************
 
 # SCALE                = 20320
@@ -154,36 +137,31 @@ ENCODER_SCALE        = 20320
 STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 12.5
 
-# For the DM542T, these are 5 μs = 5,000 ns
-DIRHOLD              = 5000
-DIRSETUP             = 5000
-# For the DM542T, these are 2.5 μs = 2,500 ns
-STEPLEN              = 2500
-STEPSPACE            = 2500
 # ********************************************************************
-
-# ********************************************************************
-# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
-# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
-# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
-# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
-# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
-#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
-# ********************************************************************
-
-# ********************************************************************
-# SERVO MOTOR SETTINGS
+# STANDARD VALUES
 #
-# These parameters are only needed when using servo motors.  They are
-# not relevant to joints controlled by stepper motors.
+# These parameters are best left alone
 
-# BIAS                 = 0.0
-# DEADBAND             = 0.000015
+BACKLASH             = 0.0000
 
-# P                    = 1000.0
-# I                    = 0.0
-# D                    = 0.0
-# FF0                  = 1.0
-# FF1                  = 0.0
-# FF2                  = 0.0
+MIN_LIMIT            = -1e99
+MAX_LIMIT            = 1e99
+
+MIN_FERROR           = 10
+FERROR               = 100
+
+HOME                 = 0.0
+HOME_SEQUENCE        = 2
+
+# LOCKING_INDEXER	   = 1
+
+BIAS                 = 0.0
+DEADBAND             = 0.000015
+
+P                    = 1000.0
+I                    = 0.0
+D                    = 0.0
+FF0                  = 1.0
+FF1                  = 0.0
+FF2                  = 0.0
 # ********************************************************************

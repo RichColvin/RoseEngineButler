@@ -28,7 +28,7 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 08 October 2025, R. Colvin                                  #
+#   1.0 - 09 October 2025, R. Colvin                                  #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -83,6 +83,15 @@
 #
 #  Sp0     7       05      n/a     n/a   P16
 #  Sp1     6       07      n/a     n/a   P18  Previously the C axis
+#
+# ********************************************************************
+# For the StepperOnline DM542T Digital Stepper Drive 
+# These are 5 μs = 5,000 ns
+#   DIRHOLD              = 5000
+#   DIRSETUP             = 5000
+# These are 2.5 μs = 2,500 ns
+#   STEPLEN              = 2500
+#   STEPSPACE            = 2500
 # ********************************************************************
 
 # ********************************************************************
@@ -143,10 +152,10 @@ net x-pos-cmd                            => pid.x.command
 net x-pos-fb                             => pid.x.feedback
 net x-output                            <=  pid.x.output
 
-setp hm2_7i92.0.stepgen.02.dirsetup         [JOINT_0]DIRSETUP
-setp hm2_7i92.0.stepgen.02.dirhold          [JOINT_0]DIRHOLD
-setp hm2_7i92.0.stepgen.02.steplen          [JOINT_0]STEPLEN
-setp hm2_7i92.0.stepgen.02.stepspace        [JOINT_0]STEPSPACE
+setp hm2_7i92.0.stepgen.02.dirsetup         5000
+setp hm2_7i92.0.stepgen.02.dirhold          5000
+setp hm2_7i92.0.stepgen.02.steplen          2500
+setp hm2_7i92.0.stepgen.02.stepspace        2500
 setp hm2_7i92.0.stepgen.02.position-scale   [JOINT_0]STEP_SCALE
 setp hm2_7i92.0.stepgen.02.step_type        0
 setp hm2_7i92.0.stepgen.02.control-type     1
@@ -165,21 +174,15 @@ net x-home-sw                            => joint.0.home-sw-in
 net x-neg-limit                          => joint.0.neg-lim-sw-in
 net x-pos-limit                          => joint.0.pos-lim-sw-in
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.x.Pgain                            [JOINT_0]P
-# setp pid.x.Igain                            [JOINT_0]I
-# setp pid.x.Dgain                            [JOINT_0]D
-# setp pid.x.bias                             [JOINT_0]BIAS
-# setp pid.x.FF0                              [JOINT_0]FF0
-# setp pid.x.FF1                              [JOINT_0]FF1
-# setp pid.x.FF2                              [JOINT_0]FF2
-# setp pid.x.deadband                         [JOINT_0]DEADBAND
-# setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
+setp pid.x.Pgain                            [JOINT_0]P
+setp pid.x.Igain                            [JOINT_0]I
+setp pid.x.Dgain                            [JOINT_0]D
+setp pid.x.bias                             [JOINT_0]BIAS
+setp pid.x.FF0                              [JOINT_0]FF0
+setp pid.x.FF1                              [JOINT_0]FF1
+setp pid.x.FF2                              [JOINT_0]FF2
+setp pid.x.deadband                         [JOINT_0]DEADBAND
+setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 # ********************************************************************
 
 #****************************
@@ -195,10 +198,10 @@ net y-pos-cmd                            => pid.y.command
 net y-pos-fb                             => pid.y.feedback
 net y-output                            <=  pid.y.output
 
-setp hm2_7i92.0.stepgen.03.dirsetup         [JOINT_1]DIRSETUP
-setp hm2_7i92.0.stepgen.03.dirhold          [JOINT_1]DIRHOLD
-setp hm2_7i92.0.stepgen.03.steplen          [JOINT_1]STEPLEN
-setp hm2_7i92.0.stepgen.03.stepspace        [JOINT_1]STEPSPACE
+setp hm2_7i92.0.stepgen.03.dirsetup         5000
+setp hm2_7i92.0.stepgen.03.dirhold          5000
+setp hm2_7i92.0.stepgen.03.steplen          2500
+setp hm2_7i92.0.stepgen.03.stepspace        2500
 setp hm2_7i92.0.stepgen.03.position-scale   [JOINT_1]STEP_SCALE
 setp hm2_7i92.0.stepgen.03.step_type        0
 setp hm2_7i92.0.stepgen.03.control-type     1
@@ -217,21 +220,15 @@ net y-home-sw                            => joint.1.home-sw-in
 net y-neg-limit                          => joint.1.neg-lim-sw-in
 net y-pos-limit                          => joint.1.pos-lim-sw-in
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.y.Pgain                            [JOINT_1]P
-# setp pid.y.Igain                            [JOINT_1]I
-# setp pid.y.Dgain                            [JOINT_1]D
-# setp pid.y.bias                             [JOINT_1]BIAS
-# setp pid.y.FF0                              [JOINT_1]FF0
-# setp pid.y.FF1                              [JOINT_1]FF1
-# setp pid.y.FF2                              [JOINT_1]FF2
-# setp pid.y.deadband                         [JOINT_1]DEADBAND
-# setp pid.y.maxoutput                        [JOINT_1]MAX_OUTPUT
+setp pid.y.Pgain                            [JOINT_1]P
+setp pid.y.Igain                            [JOINT_1]I
+setp pid.y.Dgain                            [JOINT_1]D
+setp pid.y.bias                             [JOINT_1]BIAS
+setp pid.y.FF0                              [JOINT_1]FF0
+setp pid.y.FF1                              [JOINT_1]FF1
+setp pid.y.FF2                              [JOINT_1]FF2
+setp pid.y.deadband                         [JOINT_1]DEADBAND
+setp pid.y.maxoutput                        [JOINT_1]MAX_OUTPUT
 # ********************************************************************
 
 #****************************
@@ -247,10 +244,10 @@ net z-pos-cmd                            => pid.z.command
 net z-pos-fb                             => pid.z.feedback
 net z-output                            <=  pid.z.output
 
-setp hm2_7i92.0.stepgen.00.dirsetup         [JOINT_2]DIRSETUP
-setp hm2_7i92.0.stepgen.00.dirhold          [JOINT_2]DIRHOLD
-setp hm2_7i92.0.stepgen.00.steplen          [JOINT_2]STEPLEN
-setp hm2_7i92.0.stepgen.00.stepspace        [JOINT_2]STEPSPACE
+setp hm2_7i92.0.stepgen.00.dirsetup         5000
+setp hm2_7i92.0.stepgen.00.dirhold          5000
+setp hm2_7i92.0.stepgen.00.steplen          2500
+setp hm2_7i92.0.stepgen.00.stepspace        2500
 setp hm2_7i92.0.stepgen.00.position-scale   [JOINT_2]STEP_SCALE
 setp hm2_7i92.0.stepgen.00.step_type        0
 setp hm2_7i92.0.stepgen.00.control-type     1
@@ -269,21 +266,15 @@ net z-home-sw                            => joint.2.home-sw-in
 net z-neg-limit                          => joint.2.neg-lim-sw-in
 net z-pos-limit                          => joint.2.pos-lim-sw-in
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.z.Pgain                            [JOINT_2]P
-# setp pid.z.Igain                            [JOINT_2]I
-# setp pid.z.Dgain                            [JOINT_2]D
-# setp pid.z.bias                             [JOINT_2]BIAS
-# setp pid.z.FF0                              [JOINT_2]FF0
-# setp pid.z.FF1                              [JOINT_2]FF1
-# setp pid.z.FF2                              [JOINT_2]FF2
-# setp pid.z.deadband                         [JOINT_2]DEADBAND
-# setp pid.z.maxoutput                        [JOINT_2]MAX_OUTPUT
+setp pid.z.Pgain                            [JOINT_2]P
+setp pid.z.Igain                            [JOINT_2]I
+setp pid.z.Dgain                            [JOINT_2]D
+setp pid.z.bias                             [JOINT_2]BIAS
+setp pid.z.FF0                              [JOINT_2]FF0
+setp pid.z.FF1                              [JOINT_2]FF1
+setp pid.z.FF2                              [JOINT_2]FF2
+setp pid.z.deadband                         [JOINT_2]DEADBAND
+setp pid.z.maxoutput                        [JOINT_2]MAX_OUTPUT
 # ********************************************************************
 
 #****************************
@@ -299,10 +290,10 @@ net b-pos-cmd                            => pid.b.command
 net b-pos-fb                             => pid.b.feedback
 net b-output                            <=  pid.b.output
 
-setp hm2_7i92.0.stepgen.06.dirsetup         [JOINT_3]DIRSETUP
-setp hm2_7i92.0.stepgen.06.dirhold          [JOINT_3]DIRHOLD
-setp hm2_7i92.0.stepgen.06.steplen          [JOINT_3]STEPLEN
-setp hm2_7i92.0.stepgen.06.stepspace        [JOINT_3]STEPSPACE
+setp hm2_7i92.0.stepgen.06.dirsetup         5000
+setp hm2_7i92.0.stepgen.06.dirhold          5000
+setp hm2_7i92.0.stepgen.06.steplen          2500
+setp hm2_7i92.0.stepgen.06.stepspace        2500
 setp hm2_7i92.0.stepgen.06.position-scale   [JOINT_3]STEP_SCALE
 setp hm2_7i92.0.stepgen.06.step_type        0
 setp hm2_7i92.0.stepgen.06.control-type     1
@@ -321,21 +312,15 @@ net b-home-sw                            => joint.3.home-sw-in
 net b-neg-limit                          => joint.3.neg-lim-sw-in
 net b-pos-limit                          => joint.3.pos-lim-sw-in
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.b.Pgain                            [JOINT_3]P
-# setp pid.b.Igain                            [JOINT_3]I
-# setp pid.b.Dgain                            [JOINT_3]D
-# setp pid.b.bias                             [JOINT_3]BIAS
-# setp pid.b.FF0                              [JOINT_3]FF0
-# setp pid.b.FF1                              [JOINT_3]FF1
-# setp pid.b.FF2                              [JOINT_3]FF2
-# setp pid.b.deadband                         [JOINT_3]DEADBAND
-# setp pid.b.maxoutput                        [JOINT_3]MAX_OUTPUT
+setp pid.b.Pgain                            [JOINT_3]P
+setp pid.b.Igain                            [JOINT_3]I
+setp pid.b.Dgain                            [JOINT_3]D
+setp pid.b.bias                             [JOINT_3]BIAS
+setp pid.b.FF0                              [JOINT_3]FF0
+setp pid.b.FF1                              [JOINT_3]FF1
+setp pid.b.FF2                              [JOINT_3]FF2
+setp pid.b.deadband                         [JOINT_3]DEADBAND
+setp pid.b.maxoutput                        [JOINT_3]MAX_OUTPUT
 # ********************************************************************
 
 #****************************
@@ -377,12 +362,6 @@ net u-home-sw                            => joint.4.home-sw-in
 net u-neg-limit                          => joint.4.neg-lim-sw-in
 net u-pos-limit                          => joint.4.pos-lim-sw-in
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
 setp pid.u.Pgain                            [JOINT_4]P
 setp pid.u.Igain                            [JOINT_4]I
 setp pid.u.Dgain                            [JOINT_4]D
@@ -407,10 +386,10 @@ net v-pos-cmd                            => pid.v.command
 net v-pos-fb                             => pid.v.feedback
 net v-output                            <=  pid.v.output
 
-setp hm2_7i92.0.stepgen.01.dirsetup         [JOINT_5]DIRSETUP
-setp hm2_7i92.0.stepgen.01.dirhold          [JOINT_5]DIRHOLD
-setp hm2_7i92.0.stepgen.01.steplen          [JOINT_5]STEPLEN
-setp hm2_7i92.0.stepgen.01.stepspace        [JOINT_5]STEPSPACE
+setp hm2_7i92.0.stepgen.01.dirsetup         5000
+setp hm2_7i92.0.stepgen.01.dirhold          5000
+setp hm2_7i92.0.stepgen.01.steplen          2500
+setp hm2_7i92.0.stepgen.01.stepspace        2500
 setp hm2_7i92.0.stepgen.01.position-scale   [JOINT_5]STEP_SCALE
 setp hm2_7i92.0.stepgen.01.step_type        0
 setp hm2_7i92.0.stepgen.01.control-type     1
@@ -429,21 +408,15 @@ net v-home-sw                            => joint.5.home-sw-in
 net v-neg-limit                          => joint.5.neg-lim-sw-in
 net v-pos-limit                          => joint.5.pos-lim-sw-in
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.v.Pgain                            [JOINT_5]P
-# setp pid.v.Igain                            [JOINT_5]I
-# setp pid.v.Dgain                            [JOINT_5]D
-# setp pid.v.bias                             [JOINT_5]BIAS
-# setp pid.v.FF0                              [JOINT_5]FF0
-# setp pid.v.FF1                              [JOINT_5]FF1
-# setp pid.v.FF2                              [JOINT_5]FF2
-# setp pid.v.deadband                         [JOINT_5]DEADBAND
-# setp pid.v.maxoutput                        [JOINT_5]MAX_OUTPUT
+setp pid.v.Pgain                            [JOINT_5]P
+setp pid.v.Igain                            [JOINT_5]I
+setp pid.v.Dgain                            [JOINT_5]D
+setp pid.v.bias                             [JOINT_5]BIAS
+setp pid.v.FF0                              [JOINT_5]FF0
+setp pid.v.FF1                              [JOINT_5]FF1
+setp pid.v.FF2                              [JOINT_5]FF2
+setp pid.v.deadband                         [JOINT_5]DEADBAND
+setp pid.v.maxoutput                        [JOINT_5]MAX_OUTPUT
 # ********************************************************************
 
 #*******************************
@@ -459,10 +432,10 @@ net spindle.0-vel-cmd-rpm                => pid.s0.command
 net spindle.0-vel-fb-rpm                 => pid.s0.feedback
 net spindle.0-output                    <=  pid.s0.output
 
-setp hm2_7i92.0.stepgen.05.dirsetup         [SPINDLE_0]DIRSETUP
-setp hm2_7i92.0.stepgen.05.dirhold          [SPINDLE_0]DIRHOLD
-setp hm2_7i92.0.stepgen.05.steplen          [SPINDLE_0]STEPLEN
-setp hm2_7i92.0.stepgen.05.stepspace        [SPINDLE_0]STEPSPACE
+setp hm2_7i92.0.stepgen.05.dirsetup         5000
+setp hm2_7i92.0.stepgen.05.dirhold          5000
+setp hm2_7i92.0.stepgen.05.steplen          2500
+setp hm2_7i92.0.stepgen.05.stepspace        2500
 setp hm2_7i92.0.stepgen.05.position-scale   [SPINDLE_0]STEP_SCALE
 setp hm2_7i92.0.stepgen.05.step_type        0
 setp hm2_7i92.0.stepgen.05.control-type     1
@@ -489,21 +462,15 @@ net spindle.0-index-enable              <=> spindle.0.index-enable
 
 sets spindle.0-at-speed true
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.s0.Pgain                           [SPINDLE_0]P
-# setp pid.s0.Igain                           [SPINDLE_0]I
-# setp pid.s0.Dgain                           [SPINDLE_0]D
-# setp pid.s0.bias                            [SPINDLE_0]BIAS
-# setp pid.s0.FF0                             [SPINDLE_0]FF0
-# setp pid.s0.FF1                             [SPINDLE_0]FF1
-# setp pid.s0.FF2                             [SPINDLE_0]FF2
-# setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
-# setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
+setp pid.s0.Pgain                           [SPINDLE_0]P
+setp pid.s0.Igain                           [SPINDLE_0]I
+setp pid.s0.Dgain                           [SPINDLE_0]D
+setp pid.s0.bias                            [SPINDLE_0]BIAS
+setp pid.s0.FF0                             [SPINDLE_0]FF0
+setp pid.s0.FF1                             [SPINDLE_0]FF1
+setp pid.s0.FF2                             [SPINDLE_0]FF2
+setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
+setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
 # ********************************************************************
 
 #*******************************
@@ -519,10 +486,10 @@ net spindle.1-vel-cmd-rpm                => pid.s1.command
 net spindle.1-vel-fb-rpm                 => pid.s1.feedback
 net spindle.1-output                    <=  pid.s1.output
 
-setp hm2_7i92.0.stepgen.07.dirsetup         [SPINDLE_1]DIRSETUP
-setp hm2_7i92.0.stepgen.07.dirhold          [SPINDLE_1]DIRHOLD
-setp hm2_7i92.0.stepgen.07.steplen          [SPINDLE_1]STEPLEN
-setp hm2_7i92.0.stepgen.07.stepspace        [SPINDLE_1]STEPSPACE
+setp hm2_7i92.0.stepgen.07.dirsetup         5000
+setp hm2_7i92.0.stepgen.07.dirhold          5000
+setp hm2_7i92.0.stepgen.07.steplen          2500
+setp hm2_7i92.0.stepgen.07.stepspace        2500
 setp hm2_7i92.0.stepgen.07.position-scale   [SPINDLE_1]STEP_SCALE
 setp hm2_7i92.0.stepgen.07.step_type        0
 setp hm2_7i92.0.stepgen.07.control-type     1
@@ -550,21 +517,15 @@ net spindle.1-index-enable              <=> spindle.1.index-enable
 
 sets spindle.1-at-speed                     true
 
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# setp pid.s1.Pgain                           [SPINDLE_1]P
-# setp pid.s1.Igain                           [SPINDLE_1]I
-# setp pid.s1.Dgain                           [SPINDLE_1]D
-# setp pid.s1.bias                            [SPINDLE_1]BIAS
-# setp pid.s1.FF0                             [SPINDLE_1]FF0
-# setp pid.s1.FF1                             [SPINDLE_1]FF1
-# setp pid.s1.FF2                             [SPINDLE_1]FF2
-# setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
-# setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
+setp pid.s1.Pgain                           [SPINDLE_1]P
+setp pid.s1.Igain                           [SPINDLE_1]I
+setp pid.s1.Dgain                           [SPINDLE_1]D
+setp pid.s1.bias                            [SPINDLE_1]BIAS
+setp pid.s1.FF0                             [SPINDLE_1]FF0
+setp pid.s1.FF1                             [SPINDLE_1]FF1
+setp pid.s1.FF2                             [SPINDLE_1]FF2
+setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
+setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
 # ********************************************************************
 
 #******************************

@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 08 August 2025, R. Colvin                                   #
+#   1.0 - 09 August 2025, R. Colvin                                   #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -80,6 +80,16 @@
 #  Sp0     7       05      n/a     n/a 
 #  Sp1     6       07      n/a     n/a
 
+[JOINT_6]
+SPINDLE              = 1
+TYPE                 = ANGULAR
+
+[SPINDLE_1]
+TYPE                 = ANGULAR
+
+MAX_VELOCITY         = 100
+MAX_ACCELERATION     = 30
+
 # ********************************************************************
 # The values used below are based on these calculations.
 #
@@ -95,16 +105,17 @@
 #      1.8 deg                degree
 #
 # ********************************************************************
+SCALE				 = 57600
+STEP_SCALE           = 57600
+ENCODER_SCALE        = 6400
 
-[JOINT_6]
-SPINDLE              = 1
-TYPE                 = ANGULAR
+STEPGEN_MAXVEL       = 3
+STEPGEN_MAXACCEL     = 1
 
-[SPINDLE_1]
-TYPE                 = ANGULAR
-
-MAX_VELOCITY         = 100
-MAX_ACCELERATION     = 30
+# ********************************************************************
+# STANDARD VALUES
+#
+# These parameters are best left alone
 
 BACKLASH			 = 0.0000
 
@@ -113,59 +124,14 @@ FERROR               = 5
 
 # LOCKING_INDEXER     = 1
 
-# ********************************************************************
-# STEPPER MOTOR SETTINGS
-#
-# These parameters are relevant to joints controlled by stepper
-# motors; they may not be needed when using servo motors
+BIAS                 = 0.0
+DEADBAND             = 0.000015
+MAX_OUTPUT           = 10.0
 
-SCALE				 = 57600
-STEP_SCALE           = 57600
-ENCODER_SCALE        = 6400
-
-STEPGEN_MAXVEL       = 3
-STEPGEN_MAXACCEL     = 1
-
-# ***********************
-# For the Stepper Online DM542T Drivers
-# These are 5 μs = 5,000 ns
-DIRHOLD              = 5000
-DIRSETUP             = 5000
-# These are 2.5 μs = 2,500 ns
-STEPLEN              = 2500
-STEPSPACE            = 2500
-# ********************************************************************
-
-# ********************************************************************
-# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
-# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
-# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
-# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
-# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
-#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
-# ********************************************************************
-
-# ********************************************************************
-# SERVO MOTOR SETTINGS
-#
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
-
-# BIAS                     = 0.0
-
-# DEADBAND                 = 0.000015
-
-# The maximum value for the output of the PID compensation that is 
-# written to the motor amplifier, in volts. The computed output value 
-# is clamped to this limit. The limit is applied before scaling to raw
-# output units. The value is applied symmetrically to both the plus
-# and the minus side.
-# MAX_OUTPUT               = 10.0
-
-# P                        = 1000.0
-# I                        = 0.0
-# D                        = 0.0
-# FF0                      = 1.0
-# FF1                      = 0.0
-# FF2                      = 0.0
+P                    = 1000.0
+I                    = 0.0
+D                    = 0.0
+FF0                  = 1.0
+FF1                  = 0.0
+FF2                  = 0.0
 # ********************************************************************

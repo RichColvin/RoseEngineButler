@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 06 October 2025, R. Colvin                                  #
+#   1.0 - 09 October 2025, R. Colvin                                  #
 #																	  #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
@@ -97,26 +97,9 @@ UNITS				 = DEGREE
 MAX_VELOCITY         = 0.2
 MAX_ACCELERATION     = 20.0
 
-BACKLASH			 = 0.0000
-
-MIN_LIMIT            = -1e99
-MAX_LIMIT            = 1e99
-
-MIN_FERROR           = 10
-FERROR               = 100
-
-HOME                 = 0.0
-HOME_SEQUENCE        = 4
-
-# LOCKING_INDEXER     = 1
-
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# These parameters are only needed when using stepper motors.  They
-# are not relevant to joints controlled by servo motors.
-#
-# ********************************************************************
 # The values used below are based on these calculations.
 #
 # ***********************
@@ -137,44 +120,34 @@ ENCODER_SCALE        = 800000
 STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 0.25
 
-# For the DM542T, these are 5 μs = 5,000 ns
-DIRHOLD              = 5000
-DIRSETUP             = 5000
-# For the DM542T, these are 2.5 μs = 2,500 ns
-STEPLEN              = 2500
-STEPSPACE            = 2500
 # ********************************************************************
-
-# ********************************************************************
-# UU    UU N     NN UU    UU  SSSSSS  EEEEEEEE DDDDDDD
-# UU    UU NN    NN UU    UU SS    SS EE       DD    DD
-# UU    UU NNN   NN UU    UU  SSS     EEEEE    DD    DD    
-# UU    UU NN NN NN UU    UU     SSS  EE       DD    DD
-# UU    UU NN  NNNN UU    UU SS    SS EE       DD    DD
-#  UUUUUU  NN    NN  UUUUUU   SSSSSS  EEEEEEEE DDDDDDD
-# ********************************************************************
-
-# ********************************************************************
-# SERVO MOTOR SETTINGS
+# STANDARD VALUES
 #
-# These parameters are not relevant to joints controlled by stepper
-# motors; they are only needed when using servo motors
+# These parameters are best left alone
 
-# BIAS                     = 0.0
+BACKLASH			 = 0.0000
 
-# DEADBAND                 = 0.000015
+MIN_LIMIT            = -1e99
+MAX_LIMIT            = 1e99
 
-# The maximum value for the output of the PID compensation that is 
-# written to the motor amplifier, in volts. The computed output value 
-# is clamped to this limit. The limit is applied before scaling to raw
-# output units. The value is applied symmetrically to both the plus
-# and the minus side.
-# MAX_OUTPUT               = 10.0
+MIN_FERROR           = 10
+FERROR               = 100
 
-# P                        = 1000.0
-# I                        = 0.0
-# D                        = 0.0
-# FF0                      = 1.0
-# FF1                      = 0.0
-# FF2                      = 0.0
+HOME                 = 0.0
+HOME_SEQUENCE        = 4
+
+# LOCKING_INDEXER     = 1
+
+BIAS                 = 0.0
+DEADBAND             = 0.000015
+MAX_OUTPUT           = 10.0
+OUTPUT_SCALE		 = 1.000
+OUTPUT_OFFSET		 = 0.000
+
+P                    = 1000.0
+I                    = 0.0
+D                    = 0.0
+FF0                  = 1.0
+FF1                  = 0.0
+FF2                  = 0.0
 # ********************************************************************
