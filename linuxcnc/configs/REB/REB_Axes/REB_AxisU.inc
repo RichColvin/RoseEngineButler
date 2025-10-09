@@ -132,11 +132,11 @@ MAX_ACCELERATION     = 20.0
 #                   1 mm       1 inch           inch
 # ********************************************************************
 
-# SCALE                = 80000
+# SCALE                = 81280
 STEP_SCALE           = 81280
 ENCODER_SCALE        = 81280
 
-STEPGEN_MAXACCEL     = 0.15
+STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 1.25
 
 # ********************************************************************
@@ -149,8 +149,8 @@ BACKLASH			 = 0.0000
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-MIN_FERROR           = 10
-FERROR               = 100
+MIN_FERROR           = 0.05
+FERROR               = 0.5
 
 HOME                 = 0.0
 HOME_SEQUENCE        = 5
@@ -163,7 +163,7 @@ MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 1000.0
+P                    = 100.0
 I                    = 0.0
 D                    = 0.0
 FF0                  = 1.0
