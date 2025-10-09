@@ -85,7 +85,7 @@
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -96,7 +96,7 @@ MAX_LIMIT            = 1e99
 TYPE                 = LINEAR
 UNITS 				 = INCH
 
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 BACKLASH			 = 0.0000
@@ -154,8 +154,8 @@ HOME_SEQUENCE        = 5
 STEP_SCALE           = 81280
 ENCODER_SCALE        = 81280
 
-STEPGEN_MAXACCEL     = 0.5
-STEPGEN_MAXVEL       = 0.25
+STEPGEN_MAXACCEL     = 0.15
+STEPGEN_MAXVEL       = 1.25
 
 # For the DM542T, these are 5 μs = 5,000 ns
 DIRHOLD              = 5000
@@ -181,13 +181,15 @@ STEPSPACE            = 2500
 # motors; they are only needed when using servo motors
 
 BIAS                 = 0.0
-DEADBAND             = 0.000015
+DEADBAND             = 0.00005
 MAX_OUTPUT           = 10.0
+OUTPUT_SCALE		 = 1.000
+OUTPUT_OFFSET		 = 0.000
 
 P                    = 1000.0
 I                    = 0.0
 D                    = 0.0
 FF0                  = 1.0
-FF1                  = 0.0
+FF1                  = 1.0
 FF2                  = 0.0
 # ********************************************************************
