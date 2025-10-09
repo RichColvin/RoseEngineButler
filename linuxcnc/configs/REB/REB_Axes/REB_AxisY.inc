@@ -157,6 +157,9 @@ HOME_SEQUENCE        = 2
 
 BIAS                 = 0.0
 DEADBAND             = 0.000015
+MAX_OUTPUT           = 10.0
+OUTPUT_SCALE		 = 1.000
+OUTPUT_OFFSET		 = 0.000
 
 P                    = 1000.0
 I                    = 0.0
