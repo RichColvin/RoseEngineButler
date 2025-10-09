@@ -319,17 +319,13 @@ setp pid.b.maxoutput                        [JOINT_3]MAX_OUTPUT
 #****************************
 
 setp pid.u.error-previous-target            true
-setp pid.u.maxerror                         0.000500
+# setp pid.u.maxerror                         0.000500
 
 net u-index-enable                       => pid.u.index-enable
 net u-enable                             => pid.u.enable
 net u-pos-cmd                            => pid.u.command
 net u-pos-fb                             => pid.u.feedback
 net u-output                            <=  pid.u.output
-
-# Added per recommendatin from Peter
-# setp pid.x.FF1 1
-# setp pid.x.Pgain 1000
 
 setp hm2_7i92.0.stepgen.04.dirsetup         [JOINT_4]DIRSETUP
 setp hm2_7i92.0.stepgen.04.dirhold          [JOINT_4]DIRHOLD
