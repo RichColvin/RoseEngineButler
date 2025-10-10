@@ -136,7 +136,7 @@ net spindle.1-enable                     => hm2_7i92.0.outm.00.out-07
 #****************************
 
 setp pid.x.error-previous-target            true
-setp pid.x.maxerror                         0.000500
+# setp pid.x.maxerror                         0.000500
 net x-index-enable                       => pid.x.index-enable
 net x-enable                             => pid.x.enable
 net x-pos-cmd                            => pid.x.command
@@ -181,7 +181,7 @@ setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 #****************************
 
 setp pid.y.error-previous-target            true
-setp pid.y.maxerror                         0.000500
+# setp pid.y.maxerror                         0.000500
 
 net y-index-enable                       => pid.y.index-enable
 net y-enable                             => pid.y.enable
@@ -227,7 +227,7 @@ setp pid.y.maxoutput                        [JOINT_1]MAX_OUTPUT
 #****************************
 
 setp pid.z.error-previous-target            true
-setp pid.z.maxerror                         0.000500
+# setp pid.z.maxerror                         0.000500
 
 net z-index-enable                       => pid.z.index-enable
 net z-enable                             => pid.z.enable
@@ -273,7 +273,7 @@ setp pid.z.maxoutput                        [JOINT_2]MAX_OUTPUT
 #****************************
 
 setp pid.b.error-previous-target            true
-setp pid.b.maxerror                         0.000500
+# setp pid.b.maxerror                         0.000500
 
 net b-index-enable                       => pid.b.index-enable
 net b-enable                             => pid.b.enable
@@ -365,7 +365,7 @@ setp pid.u.maxoutput                        [JOINT_4]MAX_OUTPUT
 #****************************
 
 setp pid.v.error-previous-target            true
-setp pid.v.maxerror                         0.000500
+# setp pid.v.maxerror                         0.000500
 
 net v-index-enable                       => pid.v.index-enable
 net v-enable                             => pid.v.enable
@@ -411,7 +411,7 @@ setp pid.v.maxoutput                        [JOINT_5]MAX_OUTPUT
 #*******************************
 
 setp pid.s0.error-previous-target           true
-setp pid.s0.maxerror                        0.000500
+# setp pid.s0.maxerror                        0.000500
 
 net spindle.0-index-enable               => pid.s0.index-enable
 net spindle.0-enable                     => pid.s0.enable                                                                               
@@ -465,7 +465,7 @@ setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
 #*******************************
 
 setp pid.s1.error-previous-target           true
-setp pid.s1.maxerror                        0.000500
+# setp pid.s1.maxerror                        0.000500
 
 net spindle.1-index-enable               => pid.s1.index-enable
 net spindle.1-enable                     => pid.s1.enable
