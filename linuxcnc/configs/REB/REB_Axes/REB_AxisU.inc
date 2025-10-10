@@ -163,11 +163,19 @@ MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 100.0
-I                    = 0.0
-D                    = 0.0
-FF0                  = 1.0
-FF1                  = 1.0
+# Auto tuning parameters
+# P                    = 23.13579
+# I                    = 103.90964
+# D                    = 1.287854
+# FF0                  = 0.0
+# FF1                  = 0.0
+# FF2                  = 0.0
+
+P                    = 35
+I                    = 20
+D                    = 1.2
+FF0                  = 0.0
+FF1                  = 0.0
 FF2                  = 0.0
 
 # For the StepperOnline DM542T Digital Stepper Drive 
