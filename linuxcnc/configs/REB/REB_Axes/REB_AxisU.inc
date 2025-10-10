@@ -130,9 +130,10 @@ MAX_ACCELERATION     = 20.0
 #                3,200 steps   25.4 mm          steps
 #   STEP_SCALE = ----------- * ------- = 81,280 -----
 #                   1 mm       1 inch           inch
+#
+#   ENCODER_SCALE = STEP_SCALE
 # ********************************************************************
 
-# SCALE                = 81280
 STEP_SCALE           = 81280
 ENCODER_SCALE        = 81280
 
@@ -155,21 +156,11 @@ FERROR               = 0.5
 HOME                 = 0.0
 HOME_SEQUENCE        = 5
 
-# LOCKING_INDEXER	   = 1
-
 BIAS                 = 0.0
 DEADBAND             = 0.00005
 MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
-
-# Auto tuning parameters
-# P                    = 23.13579
-# I                    = 103.90964
-# D                    = 1.287854
-# FF0                  = 0.0
-# FF1                  = 0.0
-# FF2                  = 0.0
 
 P                    = 35
 I                    = 20

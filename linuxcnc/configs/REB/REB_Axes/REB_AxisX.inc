@@ -85,7 +85,7 @@
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -95,7 +95,7 @@ MAX_LIMIT            = 1e99
 TYPE                 = LINEAR
 UNITS 				 = INCH
 
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 # ********************************************************************
@@ -129,14 +129,15 @@ MAX_ACCELERATION     = 20.0
 #                 800 steps   25.4 mm           steps
 #   STEP_SCALE = ----------- * ------- = 20,320 -----
 #                   1 mm       1 inch           inch
+#
+#   ENCODER_SCALE = STEP_SCALE
 # ********************************************************************
 
-# SCALE                = 20320
 STEP_SCALE           = 20320
 ENCODER_SCALE        = 20320
 
 STEPGEN_MAXACCEL     = 0.5
-STEPGEN_MAXVEL       = 0.25
+STEPGEN_MAXVEL       = 1.25
 
 # ********************************************************************
 # STANDARD VALUES
@@ -154,19 +155,17 @@ FERROR               = 100
 HOME                 = 0.0
 HOME_SEQUENCE        = 1
 
-# LOCKING_INDEXER	   = 1
-
 BIAS                 = 0.0
 DEADBAND             = 0.00005
 MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 1000.0
-I                    = 0.0
-D                    = 0.0
-FF0                  = 1.0
-FF1                  = 1.0
+P                    = 35
+I                    = 20
+D                    = 1.2
+FF0                  = 0.0
+FF1                  = 0.0
 FF2                  = 0.0
 
 # For the StepperOnline DM542T Digital Stepper Drive 

@@ -122,8 +122,6 @@ BACKLASH			 = 0.0000
 MIN_FERROR           = 0.5
 FERROR               = 5
 
-# LOCKING_INDEXER     = 1
-
 BIAS                 = 0.0
 DEADBAND             = 0.000015
 MAX_OUTPUT           = 10.0
