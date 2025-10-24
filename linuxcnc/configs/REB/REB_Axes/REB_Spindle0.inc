@@ -119,6 +119,8 @@ STEPGEN_MAXACCEL     = 1
 
 BACKLASH			 = 0.0000
 
+ORIENT_OFFSET		 = 0
+
 MIN_FERROR           = 0.5
 FERROR               = 5
 

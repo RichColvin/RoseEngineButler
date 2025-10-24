@@ -160,9 +160,10 @@ MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 35
-I                    = 20
-D                    = 1.2
+P                    = 1.434757
+I                    = 0.0
+D                    = 0.0
+
 FF0                  = 0.0
 FF1                  = 0.0
 FF2                  = 0.0
