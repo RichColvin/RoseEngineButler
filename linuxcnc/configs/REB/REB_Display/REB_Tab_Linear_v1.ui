@@ -3,9 +3,6 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
-  <object class="GtkEntryCompletion" id="Idx_entrycompletion">
-    <property name="inline-completion">True</property>
-  </object>
   <object class="GtkImage" id="Sp0_Run_Stp">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -31,6 +28,12 @@
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/Stop.png</property>
   </object>
+  <object class="GtkAdjustment" id="U_Feed_adj">
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="U_Idx_adj">
     <property name="upper">100</property>
     <property name="step-increment">0.001</property>
@@ -51,6 +54,12 @@
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunDown.png</property>
   </object>
+  <object class="GtkAdjustment" id="V_Feed_adj">
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="V_Idx_adj">
     <property name="upper">100</property>
     <property name="step-increment">0.001</property>
@@ -60,6 +69,12 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunUp.png</property>
+  </object>
+  <object class="GtkAdjustment" id="X_Feed_adj">
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="X_Idx_adj">
     <property name="upper">100</property>
@@ -81,6 +96,12 @@
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunDown.png</property>
   </object>
+  <object class="GtkAdjustment" id="Y_Feed_adj">
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="Y_Idx_adj">
     <property name="upper">100</property>
     <property name="step-increment">0.001</property>
@@ -90,6 +111,12 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunUp.png</property>
+  </object>
+  <object class="GtkAdjustment" id="Z_Feed_adj">
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Z_Idx_adj">
     <property name="upper">100</property>
@@ -128,7 +155,7 @@
                 <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=9 n-rows=16 -->
+                  <!-- n-columns=12 n-rows=12 -->
                   <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -150,92 +177,103 @@
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">0</property>
-                        <property name="width">9</property>
+                        <property name="width">12</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="R01Menu01_Title_Xaxis">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">X Axis</property>
+                        <property name="label" translatable="yes">X</property>
+                        <property name="width-chars">3</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 14"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">2</property>
-                        <property name="width">2</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="R01Menu01_Title_YAxis">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">Y Axis</property>
+                        <property name="label" translatable="yes">Y</property>
+                        <property name="width-chars">3</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 14"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">4</property>
-                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="R01Menu01_Title_ZAxis">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">Z Axis</property>
+                        <property name="label" translatable="yes">Z</property>
+                        <property name="width-chars">3</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 14"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">6</property>
-                        <property name="width">2</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="R01Menu01_Title_UAxis">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">U Axis</property>
+                        <property name="label" translatable="yes">U</property>
+                        <property name="width-chars">3</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 14"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">9</property>
-                        <property name="width">2</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="R01Menu01_Title_VAxis">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">V Axis</property>
+                        <property name="label" translatable="yes">V
+</property>
+                        <property name="width-chars">3</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 14"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">11</property>
-                        <property name="width">2</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -244,18 +282,21 @@
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
-                        <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
+                        <property name="primary-icon-tooltip-text" translatable="yes">Set the distance for the linear index movement on the X axis</property>
+                        <property name="secondary-icon-tooltip-markup" translatable="yes">Set the distance for the linear index movement on the X axis</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">X_Idx_adj</property>
                         <property name="climb-rate">0.01</property>
-                        <property name="digits">4</property>
+                        <property name="digits">3</property>
                         <property name="numeric">True</property>
-                        <signal name="value-changed" handler="X_Idx_change_value" swapped="no"/>
+                        <property name="update-policy">if-valid</property>
+                        <signal name="change-value" handler="X_Idx_chg_value" swapped="no"/>
+                        <signal name="changed" handler="X_Idx_chg_value" swapped="no"/>
+                        <signal name="value-changed" handler="X_Idx_chg_value" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">0</property>
+                        <property name="left-attach">1</property>
                         <property name="top-attach">3</property>
                       </packing>
                     </child>
@@ -268,12 +309,12 @@
                         <property name="xalign">0.05000000074505806</property>
                       </object>
                       <packing>
-                        <property name="left-attach">1</property>
+                        <property name="left-attach">2</property>
                         <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="X_Idx_Stop">
+                      <object class="HAL_Button" id="X_Idx_Minus">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -291,7 +332,7 @@
                         <signal name="button-press-event" handler="X_Minus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
+                        <property name="left-attach">6</property>
                         <property name="top-attach">3</property>
                       </packing>
                     </child>
@@ -313,7 +354,7 @@
                         <signal name="button-press-event" handler="X_Plus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">5</property>
+                        <property name="left-attach">8</property>
                         <property name="top-attach">3</property>
                       </packing>
                     </child>
@@ -336,8 +377,8 @@
                         <signal name="button-press-event" handler="Y_Minus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">5</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -359,8 +400,8 @@
                         <signal name="button-press-event" handler="Z_Minus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">7</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
@@ -382,8 +423,8 @@
                         <signal name="button-press-event" handler="U_Minus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">10</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -405,8 +446,8 @@
                         <signal name="button-press-event" handler="V_Minus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">12</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -427,8 +468,8 @@
                         <signal name="button-press-event" handler="Y_Plus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">5</property>
-                        <property name="top-attach">5</property>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -449,8 +490,8 @@
                         <signal name="button-press-event" handler="Z_Plus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">5</property>
-                        <property name="top-attach">7</property>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
@@ -471,8 +512,8 @@
                         <signal name="button-press-event" handler="U_Plus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">5</property>
-                        <property name="top-attach">10</property>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -481,19 +522,20 @@
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
-                        <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the distance for the linear index movement on the Y axis</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">Y_Idx_adj</property>
                         <property name="climb-rate">0.01</property>
-                        <property name="digits">4</property>
+                        <property name="digits">3</property>
                         <property name="numeric">True</property>
-                        <signal name="value-changed" handler="Y_Idx_change_value" swapped="no"/>
+                        <signal name="change-value" handler="Y_Idx_chg_value" swapped="no"/>
+                        <signal name="changed" handler="Y_Idx_change_value" swapped="no"/>
+                        <signal name="value-changed" handler="Y_Idx_chg_value" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">5</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -502,19 +544,20 @@
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
-                        <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the distance for the linear index movement on the Z axis</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">Z_Idx_adj</property>
                         <property name="climb-rate">0.01</property>
-                        <property name="digits">4</property>
+                        <property name="digits">3</property>
                         <property name="numeric">True</property>
-                        <signal name="value-changed" handler="Z_Idx_change_value" swapped="no"/>
+                        <signal name="change-value" handler="Z_Idx_chg_value" swapped="no"/>
+                        <signal name="changed" handler="Z_Idx_change_value" swapped="no"/>
+                        <signal name="value-changed" handler="Z_Idx_chg_value" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">7</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
@@ -523,19 +566,20 @@
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
-                        <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the distance for the linear index movement on the U axis</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">U_Idx_adj</property>
                         <property name="climb-rate">0.01</property>
-                        <property name="digits">4</property>
+                        <property name="digits">3</property>
                         <property name="numeric">True</property>
-                        <signal name="value-changed" handler="U_Idx_change_value" swapped="no"/>
+                        <signal name="change-value" handler="U_Idx_chg_value" swapped="no"/>
+                        <signal name="changed" handler="U_Idx_change_value" swapped="no"/>
+                        <signal name="value-changed" handler="U_Idx_chg_value" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">10</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -544,19 +588,20 @@
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
-                        <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the distance for the linear index movement on the Y axis</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">V_Idx_adj</property>
                         <property name="climb-rate">0.01</property>
-                        <property name="digits">4</property>
+                        <property name="digits">3</property>
                         <property name="numeric">True</property>
-                        <signal name="value-changed" handler="V_Idx_change_value" swapped="no"/>
+                        <signal name="change-value" handler="V_Idx_chg_value" swapped="no"/>
+                        <signal name="changed" handler="V_Idx_change_value" swapped="no"/>
+                        <signal name="value-changed" handler="V_Idx_chg_value" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">12</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -568,8 +613,8 @@
                         <property name="xalign">0.05000000074505806</property>
                       </object>
                       <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">5</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -581,8 +626,8 @@
                         <property name="xalign">0.05000000074505806</property>
                       </object>
                       <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">7</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
@@ -594,8 +639,8 @@
                         <property name="xalign">0.05000000074505806</property>
                       </object>
                       <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">10</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -607,8 +652,8 @@
                         <property name="xalign">0.05000000074505806</property>
                       </object>
                       <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">12</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -629,8 +674,8 @@
                         <signal name="button-press-event" handler="V_Plus_on_button_press" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">5</property>
-                        <property name="top-attach">12</property>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -639,7 +684,6 @@
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
-                        <property name="hexpand">True</property>
                         <property name="pixbuf">Images/REBLogo-Sm.png</property>
                       </object>
                       <packing>
@@ -659,29 +703,21 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Spacer_02">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="width-chars">4</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">6</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkLabel" id="X_axis_comment">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">⊖ towards back / ⊕ towards operator</property>
                         <property name="wrap">True</property>
-                        <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
+                        </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">7</property>
+                        <property name="left-attach">10</property>
                         <property name="top-attach">3</property>
                         <property name="width">2</property>
                       </packing>
@@ -693,13 +729,16 @@
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">⊖ up / ⊕ down</property>
                         <property name="wrap">True</property>
-                        <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
+                        </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">7</property>
-                        <property name="top-attach">5</property>
+                        <property name="left-attach">10</property>
+                        <property name="top-attach">4</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -710,13 +749,16 @@
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">⊖ towards headstock / ⊕ away from headstock</property>
                         <property name="wrap">True</property>
-                        <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
+                        </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">7</property>
-                        <property name="top-attach">7</property>
+                        <property name="left-attach">10</property>
+                        <property name="top-attach">5</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -727,13 +769,17 @@
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">U is parallel to X
+⊖ towards back / ⊕ towards operator</property>
                         <property name="wrap">True</property>
-                        <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
+                        </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">7</property>
-                        <property name="top-attach">10</property>
+                        <property name="left-attach">10</property>
+                        <property name="top-attach">7</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -744,13 +790,17 @@
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">V is parallel to Y
+⊖ up / ⊕ down</property>
                         <property name="wrap">True</property>
-                        <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
+                        </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">7</property>
-                        <property name="top-attach">12</property>
+                        <property name="left-attach">10</property>
+                        <property name="top-attach">8</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
@@ -771,8 +821,8 @@
                         <property name="image-position">top</property>
                       </object>
                       <packing>
-                        <property name="left-attach">4</property>
-                        <property name="top-attach">5</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -792,8 +842,8 @@
                         <property name="image-position">top</property>
                       </object>
                       <packing>
-                        <property name="left-attach">4</property>
-                        <property name="top-attach">7</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
@@ -813,8 +863,8 @@
                         <property name="image-position">top</property>
                       </object>
                       <packing>
-                        <property name="left-attach">4</property>
-                        <property name="top-attach">10</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -834,12 +884,12 @@
                         <property name="image-position">top</property>
                       </object>
                       <packing>
-                        <property name="left-attach">4</property>
-                        <property name="top-attach">12</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="4X_Idx_Stop">
+                      <object class="HAL_Button" id="X_Idx_Stop">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -855,19 +905,8 @@
                         <property name="image-position">top</property>
                       </object>
                       <packing>
-                        <property name="left-attach">4</property>
+                        <property name="left-attach">7</property>
                         <property name="top-attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Spacer_03">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="width-chars">4</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">8</property>
                       </packing>
                     </child>
                     <child>
@@ -886,19 +925,8 @@
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">15</property>
-                        <property name="width">9</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Spacer_04">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="width-chars">4</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">13</property>
+                        <property name="top-attach">11</property>
+                        <property name="width">12</property>
                       </packing>
                     </child>
                     <child>
@@ -909,13 +937,12 @@
                         <property name="valign">center</property>
                         <property name="label" translatable="yes">⊖</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 24"/>
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
+                        <property name="left-attach">6</property>
                         <property name="top-attach">2</property>
                       </packing>
                     </child>
@@ -927,13 +954,12 @@
                         <property name="valign">center</property>
                         <property name="label" translatable="yes">⊕</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 24"/>
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">5</property>
+                        <property name="left-attach">8</property>
                         <property name="top-attach">2</property>
                       </packing>
                     </child>
@@ -955,7 +981,7 @@ Operation</property>
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">3</property>
+                        <property name="left-attach">6</property>
                         <property name="top-attach">1</property>
                         <property name="width">3</property>
                       </packing>
@@ -977,7 +1003,7 @@ Operation</property>
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">7</property>
+                        <property name="left-attach">10</property>
                         <property name="top-attach">1</property>
                         <property name="width">2</property>
                       </packing>
@@ -990,13 +1016,12 @@ Operation</property>
                         <property name="valign">center</property>
                         <property name="label" translatable="yes">Stop</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left-attach">4</property>
+                        <property name="left-attach">7</property>
                         <property name="top-attach">2</property>
                       </packing>
                     </child>
@@ -1008,66 +1033,315 @@ Operation</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">14</property>
-                        <property name="width">9</property>
+                        <property name="top-attach">10</property>
+                        <property name="width">12</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Title_Run_Operation1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">end</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="label" translatable="yes">Axis</property>
+                        <property name="justify">center</property>
+                        <property name="width-chars">3</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="X_axis_feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="label" translatable="yes">in / min</property>
+                        <property name="width-chars">8</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">3</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Y_axis_feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="label" translatable="yes">in / min</property>
+                        <property name="width-chars">8</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">4</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Z_axis_feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="label" translatable="yes">in / min</property>
+                        <property name="width-chars">8</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">5</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="U_axis_feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="label" translatable="yes">in / min</property>
+                        <property name="width-chars">8</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">7</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="V_axis_feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="label" translatable="yes">in / min</property>
+                        <property name="width-chars">8</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">8</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="X_Feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="primary-icon-tooltip-text" translatable="yes">Set the feed rate (speed)  for the linear index movement on the X axis</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the feed rate (speed)  for the linear index movement on the X axis</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">X_Feed_adj</property>
+                        <property name="climb-rate">0.10</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="update-policy">if-valid</property>
+                        <signal name="change-value" handler="X_Feed_chg_value" swapped="no"/>
+                        <signal name="changed" handler="X_Feed_chg_value" swapped="no"/>
+                        <signal name="value-changed" handler="X_Feed_chg_value" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">3</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="Y_Feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the feed rate (speed)  for the linear index movement on the Y axis</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">Y_Feed_adj</property>
+                        <property name="climb-rate">0.10</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <signal name="change-value" handler="Y_Feed_chg_value" swapped="no"/>
+                        <signal name="changed" handler="Y_Feed_chg_value" swapped="no"/>
+                        <signal name="value-changed" handler="Y_Feed_chg_value" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">4</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="Z_Feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the feed rate (speed)  for the linear index movement on the Z axis</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">Z_Feed_adj</property>
+                        <property name="climb-rate">0.10</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <signal name="changed" handler="Z_Feed_chg_value" swapped="no"/>
+                        <signal name="value-changed" handler="Z_Feed_chg_value" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">5</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="U_Feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the feed rate (speed)  for the linear index movement on the U axis</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">U_Feed_adj</property>
+                        <property name="climb-rate">0.10</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <signal name="change-value" handler="U_Feed_chg_value" swapped="no"/>
+                        <signal name="changed" handler="U_Feed_chg_value" swapped="no"/>
+                        <signal name="value-changed" handler="U_Feed_chg_value" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">7</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="V_Feed">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Set the feed rate (speed)  for the linear index movement on the V axis</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">V_Feed_adj</property>
+                        <property name="climb-rate">0.10</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <signal name="change-value" handler="V_Feed_chg_value" swapped="no"/>
+                        <signal name="changed" handler="V_Feed_chg_value" swapped="no"/>
+                        <signal name="value-changed" handler="V_Feed_chg_value" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">8</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Title_Run_Operation2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">end</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="label" translatable="yes">Distance</property>
+                        <property name="justify">center</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
+                        <property name="width">2</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Title_Run_Operation3">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">end</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="label" translatable="yes">Feed Rate</property>
+                        <property name="justify">center</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">1</property>
+                        <property name="width">2</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Title_Run_Operation4">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">end</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="justify">center</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">6</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Null spacer">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="width-chars">2</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">5</property>
+                        <property name="top-attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Null spacer1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="width-chars">2</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">9</property>
+                        <property name="top-attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Null spacer2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="width-chars">2</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">9</property>
+                      </packing>
                     </child>
                     <child>
                       <placeholder/>
@@ -1196,7 +1470,7 @@ Operation</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">0</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
