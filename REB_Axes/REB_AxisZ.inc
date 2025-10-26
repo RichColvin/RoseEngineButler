@@ -13,20 +13,20 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   REB_AxisV.inc                                                     #
+#   REB_AxisZ.inc                                                     #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the V axis for the configuration of         #
+#   This is used to setup the Z axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation: 											  #
 #   The end user of the Rose Engine Butler system may modify this     #
 #   file to accommodate their local configuration.  It is recommended #
 #   that a copy of this file be saved before changes are made.		  #
-#                                                                     #
-#   Changes to this file are not supported by Colvin Tools nor        #
-#   Brainwave Embedded.                                               #
-#                                                                     #
+#																	  #
+#   Changes to this file are not supported by Colvin Tools nor		  #
+#   Brainwave Embedded.												  #
+#																	  #
 # Version                                                             #
 #   1.0 - 09 October 2025, R. Colvin                                  #
 #                                                                     #
@@ -64,12 +64,12 @@
 #######################################################################
 
 # ********************************************************************
-#    AA    XX    XX IIIIIIII  SSSSSS      VV    VV
-#   AAAA    XX  XX    II     SS    SS     VV    VV
-#  AA  AA    XXXX     II      SSS         VV    VV
-# AAAAAAAA   XXXX     II         SSS       VV  VV
-# AA    AA  XX  XX    II     SS    SS       VVVV
-# AA    AA XX    XX IIIIIIII  SSSSSS         VV
+#    AA    XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
+#   AAAA    XX  XX    II     SS    SS          ZZ
+#  AA  AA    XXXX     II      SSS             ZZ
+# AAAAAAAA   XXXX     II         SSS        ZZ
+# AA    AA  XX  XX    II     SS    SS      ZZ
+# AA    AA XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
 # ********************************************************************
 
 # ********************************************************************
@@ -77,10 +77,10 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   V      5       01    LINEAR     6    P12
+#   Z      2       00    LINEAR     3    P11
 # ********************************************************************
 
-[AXIS_V]
+[AXIS_Z]
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
@@ -90,7 +90,7 @@ MAX_ACCELERATION     = 20.0
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-[JOINT_5]
+[JOINT_2]
 TYPE                 = LINEAR
 UNITS 				 = INCH
 
@@ -100,6 +100,7 @@ MAX_ACCELERATION     = 20.0
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
+# ********************************************************************
 # The values used below are based on these calculations.
 #
 # ***********************
@@ -152,7 +153,7 @@ MIN_FERROR           = 10
 FERROR               = 100
 
 HOME                 = 0.0
-HOME_SEQUENCE        = 6
+HOME_SEQUENCE        = 3
 
 BIAS                 = 0.0
 DEADBAND             = 0.00005
@@ -160,10 +161,9 @@ MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 1.434757
-I                    = 0.0
-D                    = 0.0
-
+P                    = 35
+I                    = 20
+D                    = 1.2
 FF0                  = 0.0
 FF1                  = 0.0
 FF2                  = 0.0

@@ -13,20 +13,20 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   REB_AxisZ.inc                                                     #
+#   REB_AxisU.inc                                                     #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the Z axis for the configuration of         #
+#   This is used to setup the U axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation: 											  #
 #   The end user of the Rose Engine Butler system may modify this     #
 #   file to accommodate their local configuration.  It is recommended #
 #   that a copy of this file be saved before changes are made.		  #
-#																	  #
-#   Changes to this file are not supported by Colvin Tools nor		  #
-#   Brainwave Embedded.												  #
-#																	  #
+#                                                                     #
+#   Changes to this file are not supported by Colvin Tools nor        #
+#   Brainwave Embedded.                                               #
+#                                                                     #
 # Version                                                             #
 #   1.0 - 09 October 2025, R. Colvin                                  #
 #                                                                     #
@@ -64,12 +64,12 @@
 #######################################################################
 
 # ********************************************************************
-#    AA    XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
-#   AAAA    XX  XX    II     SS    SS          ZZ
-#  AA  AA    XXXX     II      SSS             ZZ
-# AAAAAAAA   XXXX     II         SSS        ZZ
-# AA    AA  XX  XX    II     SS    SS      ZZ
-# AA    AA XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
+#    AA    XX    XX IIIIIIII  SSSSSS      UU    UU
+#   AAAA    XX  XX    II     SS    SS     UU    UU
+#  AA  AA    XXXX     II      SSS         UU    UU
+# AAAAAAAA   XXXX     II         SSS      UU    UU
+# AA    AA  XX  XX    II     SS    SS     UU    UU
+# AA    AA XX    XX IIIIIIII  SSSSSS       UUUUUU
 # ********************************************************************
 
 # ********************************************************************
@@ -77,10 +77,11 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   Z      2       00    LINEAR     3    P11
+#   U      4       04    LINEAR     5    P15
 # ********************************************************************
 
-[AXIS_Z]
+# ********************************************************************
+[AXIS_U]
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
@@ -90,7 +91,8 @@ MAX_ACCELERATION     = 20.0
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-[JOINT_2]
+# ********************************************************************
+[JOINT_4]
 TYPE                 = LINEAR
 UNITS 				 = INCH
 
@@ -100,7 +102,6 @@ MAX_ACCELERATION     = 20.0
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# ********************************************************************
 # The values used below are based on these calculations.
 #
 # ***********************
@@ -118,23 +119,23 @@ MAX_ACCELERATION     = 20.0
 # 3. Leadscrew
 #
 #    For the this device, a leadscrew with a 
-#       * 4 starts
+#       * single start
 #       * 2mm pitch
-#    Thusly, 1 rev = 8 mm movement
+#    Thusly, 1 rev = 2 mm movement
 #
 #                6,400 steps   1 rev         steps
-#   STEP_SCALE = ----------- * ----- =   800 -----
-#                   1 rev      8 mm           mm
+#   STEP_SCALE = ----------- * ----- = 3,200 -----
+#                   1 rev      2 mm           mm
 #
-#                 800 steps   25.4 mm           steps
-#   STEP_SCALE = ----------- * ------- = 20,320 -----
+#                3,200 steps   25.4 mm          steps
+#   STEP_SCALE = ----------- * ------- = 81,280 -----
 #                   1 mm       1 inch           inch
 #
 #   ENCODER_SCALE = STEP_SCALE
 # ********************************************************************
 
-STEP_SCALE           = 20320
-ENCODER_SCALE        = 20320
+STEP_SCALE           = 81280
+ENCODER_SCALE        = 81280
 
 STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 1.25
@@ -149,11 +150,11 @@ BACKLASH			 = 0.0000
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-MIN_FERROR           = 10
-FERROR               = 100
+MIN_FERROR           = 0.05
+FERROR               = 0.5
 
 HOME                 = 0.0
-HOME_SEQUENCE        = 3
+HOME_SEQUENCE        = 5
 
 BIAS                 = 0.0
 DEADBAND             = 0.00005
@@ -161,10 +162,9 @@ MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 1.434757
-I                    = 0.0
-D                    = 0.0
-
+P                    = 35
+I                    = 20
+D                    = 1.2
 FF0                  = 0.0
 FF1                  = 0.0
 FF2                  = 0.0

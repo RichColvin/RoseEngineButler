@@ -35,7 +35,7 @@
 #   Brainwave Embedded.
 #
 # Version
-#   1.0 - 11 Aug 2025, R. Colvin
+#   1.0 - 26 Oct 2025, R. Colvin
 #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.
 #
@@ -119,28 +119,28 @@ echo -e "${CMNTTEXT}Copy the files to /usr/lib/firmware/hm2/hostmot2${NOCOLOR}"
 #
 cd /usr/lib/firmware/hm2/hostmot2
 #
-sudo cp /home/cnc/linuxcnc/configs/REB_MesaCard/7i92t_RoseEngineButler.bin .
+sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Setup/MesaCard/7i92t_REB.bin .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: copy of                                                       ${NOCOLOR}"
-    echo -e "${KEYNOTE}   7i92t_RoseEngineButler.bin to /usr/lib/firmware/hm2/hostmot2      ${NOCOLOR}"
+    echo -e "${KEYNOTE}   7i92t_REB.bin to /usr/lib/firmware/hm2/hostmot2      ${NOCOLOR}"
     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
 #
-sudo cp /home/cnc/linuxcnc/configs/REB_MesaCard/7i92t_RoseEngineButler.pin .
+sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Setup/MesaCard/7i92t_REB.pin .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: copy of                                                       ${NOCOLOR}"
-    echo -e "${KEYNOTE}   7i92t_RoseEngineButler.pin to /usr/lib/firmware/hm2/hostmot2      ${NOCOLOR}"
+    echo -e "${KEYNOTE}   7i92t_REB.pin to /usr/lib/firmware/hm2/hostmot2      ${NOCOLOR}"
     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
 #
-sudo cp /home/cnc/linuxcnc/configs/REB_MesaCard/PIN_RoseEngineButler_34.vhd .
+sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Setup/MesaCard/PIN_REB_34.vhd .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: copy of                                                       ${NOCOLOR}"
-    echo -e "${KEYNOTE}   PIN_RoseEngineButler_34.vhd to /usr/lib/firmware/hm2/hostmot2     ${NOCOLOR}"
+    echo -e "${KEYNOTE}   PIN_REB_34.vhd to /usr/lib/firmware/hm2/hostmot2     ${NOCOLOR}"
     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
@@ -149,7 +149,7 @@ fi
 # Flash the Mesa card
 echo -e "${CMNTTEXT}Flash the Mesa Card Configuration${NOCOLOR}"
 # 
-mesaflash --device 7i92t --addr 192.168.1.121 --write 7i92t_RoseEngineButler.bin --reload
+mesaflash --device 7i92t --addr 192.168.1.121 --write 7i92t_REB.bin --reload
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: mesaflash failed.                                             ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
@@ -162,106 +162,140 @@ echo -e "${TITLE}###############################################################
 echo -e "${TITLE}Step 2 - Setup Rose Engine Butler file directories for LinuxCNC        ${NOCOLOR}"
 #
 # Set the security for the main directory
-echo -e "${CMNTTEXT}Set the security for                                                    ${NOCOLOR}"
-echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/REB/REB                                   ${NOCOLOR}"
-sudo chmod 777 -R /home/cnc/linuxcnc/configs/REB
+sudo chmod 777 -R /home/cnc/linuxcnc/configs/RoseEngineButler
 if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/linuxcnc/configs/REB         ${NOCOLOR}"
+    echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/linuxcnc/configs/RoseEngineButler         ${NOCOLOR}"
     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-# 
-# Set the security for the subdirectories
-echo -e "${CMNTTEXT}Set the security for /home/cnc/linuxcnc/configs/REB/REB_Axes${NOCOLOR}"
-echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/REB/REB_Axes${NOCOLOR}"
-sudo chmod 777 -R /home/cnc/linuxcnc/configs/REB/REB_Axes
+#
+# Create localization directories
+sudo mkdir RoseEngineButlerLocal
 if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: chmod for                                                     ${NOCOLOR}"
-    echo -e "${KEYNOTE}    /home/cnc/linuxcnc/configs/REB/REB_Axes${NOCOLOR}"
-    echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+    echo -e "${KEYNOTE}ERROR: Could not create RoseEngineButlerLocal directory.             ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-# 
-echo -e "${CMNTTEXT}Set the security for /home/cnc/linuxcnc/configs/REB/REB_Display${NOCOLOR}"
-sudo chmod 777 -R /home/cnc/linuxcnc/configs/REB/REB_Display
+cd RoseEngineButlerLocal
+#
+sudo mkdir REB_Axes
 if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: chmod for                                                     ${NOCOLOR}"
-    echo -e "${KEYNOTE}    /home/cnc/linuxcnc/configs/REB/REB_Display${NOCOLOR}"
+    echo -e "${KEYNOTE}ERROR: Could not create REB_Axes directory.                          ${NOCOLOR}"
+    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+    exit $?
+fi
+#
+sudo mkdir REB_Custom
+if [ $? != 0 ]; then
+    echo -e "${KEYNOTE}ERROR: Could not create REB_Custom directory.                        ${NOCOLOR}"
+    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+    exit $?
+fi
+#
+cd ..
+#
+# Set the security for the localization directories
+sudo chmod 777 -R /home/cnc/linuxcnc/configs/RoseEngineButlerLocal
+if [ $? != 0 ]; then
+    echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/linuxcnc/configs/RoseEngineButlerLocal    ${NOCOLOR}"
     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
 #
 # ********************************************************************
-# Step 3 - Set desktop icons
-# echo -e "${TITLE}#######################################################################${NOCOLOR}"
-# echo -e "${TITLE}Step 3 - Setup desktop icons                                           ${NOCOLOR}"
-# cd /home/cnc/Desktop
-# echo -e "${CMNTTEXT}Set the REB.desktop icon                               ${NOCOLOR}"
-# sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/REB.desktop" .
-# if [ $? != 0 ]; then
-#    echo -e "${KEYNOTE}ERROR: copy of Rose Engine Butler desktop icon                       ${NOCOLOR}"
-#    echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
-#    echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
-#    echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
-#    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-#    exit $?
-# fi
-# echo -e "${CMNTTEXT}Set the Restore Rose Engine Butler Config Files desktop icon        ${NOCOLOR}"
-# sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/Restore REB Config Files.desktop" .
-# if [ $? != 0 ]; then
-#     echo -e "${KEYNOTE}ERROR: copy of Restore REB Config Files.desktop         ${NOCOLOR}"
-#     echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
-#     echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
-#     echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
-#     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-#     exit $?
-# fi
-# sudo chmod 777 /home/cnc/Desktop/*.desktop
-# if [ $? != 0 ]; then
-#     echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/Desktop/*.desktop failed                  ${NOCOLOR}"
-#     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-#     exit $?
-# fi
+# Step 3 - Put key files in place
+echo -e "${TITLE}#######################################################################${NOCOLOR}"
+echo -e "${TITLE}Step 3 - Put key files in place                                        ${NOCOLOR}"
+echo -e "${TITLE}                                                                       ${NOCOLOR}"
+cd /home/cnc
+echo -e "${TITLE}    REB_Backup.sh                                                      ${NOCOLOR}"
+sudo cp /home/cnc/linuxcnc/RoseEngineButler/REB_Setup/REB_Backup.sh .
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: copy of REB_Backup.sh                                         ${NOCOLOR}"
+   echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/RoseEngineButler/REB_Setup               ${NOCOLOR}"
+   echo -e "${KEYNOTE}    to /home/cnc/                                                    ${NOCOLOR}"
+   echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+echo -e "${TITLE}    REB_Restore.sh                                                        ${NOCOLOR}"
+sudo cp /home/cnc/linuxcnc/RoseEngineButler/REB_Setup/REB_Restore.sh .
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: copy of REB_Restore.sh                                        ${NOCOLOR}"
+   echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/RoseEngineButler/REB_Setup               ${NOCOLOR}"
+   echo -e "${KEYNOTE}    to /home/cnc/                                                    ${NOCOLOR}"
+   echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+echo -e "${TITLE}    .axisrc                                                               ${NOCOLOR}"
+sudo cp /home/cnc/linuxcnc/RoseEngineButler/REB_Setup/axisrc .
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: copy of axisrc                                                ${NOCOLOR}"
+   echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/RoseEngineButler/REB_Setup               ${NOCOLOR}"
+   echo -e "${KEYNOTE}    to /home/cnc/                                                    ${NOCOLOR}"
+   echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+sudo mv axisrc .axisrc
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: rename of axisrc to .axisrc failed.                           ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+echo -e "${TITLE}#######################################################################${NOCOLOR}"
+echo -e "${TITLE}Step 3 - Setup desktop icons                                           ${NOCOLOR}"
+cd /home/cnc/Desktop
+echo -e "${CMNTTEXT}Set the REB.desktop icon                               ${NOCOLOR}"
+sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/REB.desktop" .
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: copy of Rose Engine Butler desktop icon                       ${NOCOLOR}"
+   echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
+   echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
+   echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+echo -e "${CMNTTEXT}Set the Restore Rose Engine Butler Config Files desktop icon        ${NOCOLOR}"
+sudo cp "/home/cnc/linuxcnc/configs/REB_Setup/Restore REB Config Files.desktop" .
+if [ $? != 0 ]; then
+    echo -e "${KEYNOTE}ERROR: copy of Restore REB Config Files.desktop         ${NOCOLOR}"
+    echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/REB_Setup/          ${NOCOLOR}"
+    echo -e "${KEYNOTE}    to /home/cnc/Desktop failed.                                     ${NOCOLOR}"
+    echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+    exit $?
+fi
+sudo chmod 777 /home/cnc/Desktop/*.desktop
+if [ $? != 0 ]; then
+    echo -e "${KEYNOTE}ERROR: chmod for /home/cnc/Desktop/*.desktop failed                  ${NOCOLOR}"
+    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+    exit $?
+fi
 #
 # ********************************************************************
 # Step 4 - Backup key files
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Backup /home/cnc/linuxcnc/Backup/REB                      ${NOCOLOR}"
-cd /home/cnc/linuxcnc
-sudo mkdir Backup
-cd Backup
-sudo mkdir REB
-cd REB
-#
-cd /home/cnc/linuxcnc/Backup/REB/
-sudo cp /home/cnc/linuxcnc/configs/REB/*.* .
+echo -e "${TITLE}Backup /home/cnc/linuxcnc/configs/RoseEngineButlerLocal                ${NOCOLOR}"
+cd /home/cnc/linuxcnc/configs
+sudo mkdir RoseEngineButlerLocal_Backup
+cd RoseEngineButlerLocal_Backup
 #
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}Backup /home/cnc/linuxcnc/Backup/REB/REB_Axes${NOCOLOR}"
-cd /home/cnc/linuxcnc/Backup/REB/
 sudo mkdir REB_Axes
 cd REB_Axes
-cd /home/cnc/linuxcnc/Backup/REB/REB_Axes
-sudo cp /home/cnc/linuxcnc/configs/REB/REB_Axes/*.* .
+sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Axes/*.* .
+cd ..
 #
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}Backup /home/cnc/linuxcnc/Backup/REB/REB_Custom${NOCOLOR}"
-cd /home/cnc/linuxcnc/Backup/REB/
 sudo mkdir REB_Custom
 cd REB_Custom
-cd /home/cnc/linuxcnc/Backup/REB/REB_Custom
-sudo cp /home/cnc/linuxcnc/configs/REB/REB_Custom/*.* .
-#
-echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Backup /home/cnc/linuxcnc/Backup/REB/REB_Display${NOCOLOR}"
-cd /home/cnc/linuxcnc/Backup/REB/
-sudo mkdir REB_Display
-cd REB_Display
-cd /home/cnc/linuxcnc/Backup/REB/REB_Display
-sudo cp /home/cnc/linuxcnc/configs/REB/REB_Display/*.* .
+sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Custom/*.* .
 ## ********************************************************************
 # Success
 echo -e "${TITLE}System successfully installed.                                         ${NOCOLOR}"

@@ -13,10 +13,10 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   REB_AxisU.inc                                                     #
+#   REB_AxisV.inc                                                     #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the U axis for the configuration of         #
+#   This is used to setup the V axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation: 											  #
@@ -64,12 +64,12 @@
 #######################################################################
 
 # ********************************************************************
-#    AA    XX    XX IIIIIIII  SSSSSS      UU    UU
-#   AAAA    XX  XX    II     SS    SS     UU    UU
-#  AA  AA    XXXX     II      SSS         UU    UU
-# AAAAAAAA   XXXX     II         SSS      UU    UU
-# AA    AA  XX  XX    II     SS    SS     UU    UU
-# AA    AA XX    XX IIIIIIII  SSSSSS       UUUUUU
+#    AA    XX    XX IIIIIIII  SSSSSS      VV    VV
+#   AAAA    XX  XX    II     SS    SS     VV    VV
+#  AA  AA    XXXX     II      SSS         VV    VV
+# AAAAAAAA   XXXX     II         SSS       VV  VV
+# AA    AA  XX  XX    II     SS    SS       VVVV
+# AA    AA XX    XX IIIIIIII  SSSSSS         VV
 # ********************************************************************
 
 # ********************************************************************
@@ -77,11 +77,10 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   U      4       04    LINEAR     5    P15
+#   V      5       01    LINEAR     6    P12
 # ********************************************************************
 
-# ********************************************************************
-[AXIS_U]
+[AXIS_V]
 TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
@@ -91,8 +90,7 @@ MAX_ACCELERATION     = 20.0
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-# ********************************************************************
-[JOINT_4]
+[JOINT_5]
 TYPE                 = LINEAR
 UNITS 				 = INCH
 
@@ -119,23 +117,23 @@ MAX_ACCELERATION     = 20.0
 # 3. Leadscrew
 #
 #    For the this device, a leadscrew with a 
-#       * single start
+#       * 4 starts
 #       * 2mm pitch
-#    Thusly, 1 rev = 2 mm movement
+#    Thusly, 1 rev = 8 mm movement
 #
 #                6,400 steps   1 rev         steps
-#   STEP_SCALE = ----------- * ----- = 3,200 -----
-#                   1 rev      2 mm           mm
+#   STEP_SCALE = ----------- * ----- =   800 -----
+#                   1 rev      8 mm           mm
 #
-#                3,200 steps   25.4 mm          steps
-#   STEP_SCALE = ----------- * ------- = 81,280 -----
+#                 800 steps   25.4 mm           steps
+#   STEP_SCALE = ----------- * ------- = 20,320 -----
 #                   1 mm       1 inch           inch
 #
 #   ENCODER_SCALE = STEP_SCALE
 # ********************************************************************
 
-STEP_SCALE           = 81280
-ENCODER_SCALE        = 81280
+STEP_SCALE           = 20320
+ENCODER_SCALE        = 20320
 
 STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 1.25
@@ -150,11 +148,11 @@ BACKLASH			 = 0.0000
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-MIN_FERROR           = 0.05
-FERROR               = 0.5
+MIN_FERROR           = 10
+FERROR               = 100
 
 HOME                 = 0.0
-HOME_SEQUENCE        = 5
+HOME_SEQUENCE        = 6
 
 BIAS                 = 0.0
 DEADBAND             = 0.00005
@@ -162,10 +160,9 @@ MAX_OUTPUT           = 10.0
 OUTPUT_SCALE		 = 1.000
 OUTPUT_OFFSET		 = 0.000
 
-P                    = 1.434757
-I                    = 0.0
-D                    = 0.0
-
+P                    = 35
+I                    = 20
+D                    = 1.2
 FF0                  = 0.0
 FF1                  = 0.0
 FF2                  = 0.0
