@@ -195,7 +195,7 @@ echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Axes
 echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
 #
 cd REB_Axes
-sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Axes .
+sudo cp -r /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Axes .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Could not copy files from                                     ${NOCOLOR}"
     echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Axes        ${NOCOLOR}"
@@ -218,7 +218,7 @@ echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Cust
 echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
 #
 cd REB_Custom
-sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Custom .
+sudo cp -r /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Custom .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Could not copy files from                                     ${NOCOLOR}"
     echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Custom      ${NOCOLOR}"
