@@ -184,17 +184,6 @@ echo -e "${CMNTTEXT}Security set on /home/cnc/linuxcnc/configs/RoseEngineButlerL
 echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
 cd RoseEngineButlerLocal
 #
-sudo mkdir REB_Axes
-if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: Could not create REB_Axes directory.                          ${NOCOLOR}"
-    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-    exit $?
-fi
-echo -e "${CMNTTEXT}Created directory                                                   ${NOCOLOR}"
-echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Axes        ${NOCOLOR}"
-echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
-#
-cd REB_Axes
 sudo cp -r /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Axes .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Could not copy files from                                     ${NOCOLOR}"
@@ -205,19 +194,7 @@ fi
 echo -e "${CMNTTEXT}Copied files to                                                     ${NOCOLOR}"
 echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Axes        ${NOCOLOR}"
 echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
-cd ..
 #
-sudo mkdir REB_Custom
-if [ $? != 0 ]; then
-    echo -e "${KEYNOTE}ERROR: Could not create REB_Custom directory.                        ${NOCOLOR}"
-    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-    exit $?
-fi
-echo -e "${CMNTTEXT}Created directory                                                   ${NOCOLOR}"
-echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Custom      ${NOCOLOR}"
-echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
-#
-cd REB_Custom
 sudo cp -r /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Custom .
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Could not copy files from                                     ${NOCOLOR}"
@@ -228,7 +205,6 @@ fi
 echo -e "${CMNTTEXT}Copied files to                                                     ${NOCOLOR}"
 echo -e "${CMNTTEXT}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Custom      ${NOCOLOR}"
 echo -e "${CMNTTEXT}--------------------------------------------------------------------${NOCOLOR}"
-cd ..
 #
 cd ..
 #
