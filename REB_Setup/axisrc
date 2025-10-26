@@ -71,8 +71,8 @@ root_window.tk.call("wm","protocol",".","WM_DELETE_WINDOW","destroy .")
 # fullscreen (not the best)
 # root_window.attributes('-fullscreen', True)
 #
-# Open Axis at a size of 1200x600 for the screen
-root_window.tk.call("wm","geometry",".","1200x600")
+# Open Axis at a size of 1600x900 for the screen
+root_window.tk.call("wm","geometry",".","1600x900")
 
 # Open Axis at the maximum size for the screen
 # maxgeo=root_window.tk.call("wm","maxsize",".")
