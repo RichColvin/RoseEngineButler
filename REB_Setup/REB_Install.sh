@@ -1,12 +1,12 @@
 #! /home/cnc/Downloads
 #######################################################################
-#                    RRRRRR    EEEEEEEE  BBBBBBB 					  #
-#                    RR   RR   EE        BB    BB 			   	      #
-#                    RR   RR   EE        BB    BB					  #
-#                    RRRRRR    EEEEEE    BBBBBBB 					  #
-#                    RR   RR   EE        BB    BB					  #
-#                    RR    RR  EE        BB    BB					  #
-#                    RR    RR  EEEEEEEE  BBBBBBB					  #
+#                    RRRRRR    EEEEEEEE  BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR   RR   EE        BB    BB                     #
+#                    RRRRRR    EEEEEE    BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR    RR  EE        BB    BB                     #
+#                    RR    RR  EEEEEEEE  BBBBBBB                      #
 #                                                                     #
 # Rose Engine Butler                                                  #
 #######################################################################
@@ -20,10 +20,10 @@
 #   This is used to install the Rose Engine Butler application.
 #   This program gets run after 
 #       1. Downloading the Rose Engine Butler system 
-#		   (REB.zip)
+#          (REB.zip)
 #       2. Unzipping the Rose Engine Butler system files. The 
-#    	   command needs to be run from the 
-# 		   /home/cnc/Downloads directory.
+#          command needs to be run from the 
+#          /home/cnc/Downloads directory.
 #
 #          sudo unzip REB.zip -d /home/cnc/linuxcnc/config
 #
@@ -77,13 +77,13 @@ NOCOLOR='\e[0m'
 #
 # ********************************************************************
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}#                    RRRRRR    EEEEEEEE  BBBBBBB 					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB 			   	       #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RRRRRR    EEEEEE    BBBBBBB 					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR    RR  EEEEEEEE  BBBBBBB					   #${NOCOLOR}"
+echo -e "${TITLE}#                    RRRRRR    EEEEEEEE  BBBBBBB                      #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RRRRRR    EEEEEE    BBBBBBB                      #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR    RR  EEEEEEEE  BBBBBBB                      #${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
 echo -e "${TITLE}Use of this system constitutes consent to the MIT/X Consortium License ${NOCOLOR}"
@@ -169,14 +169,19 @@ if [ $? != 0 ]; then
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
+echo -e "${TITLE}Security set on /home/cnc/linuxcnc/configs/RoseEngineButler            ${NOCOLOR}"
+echo -e "${TITLE}-----------------------------------------------------------------------${NOCOLOR}"
 #
 # Create localization directories
+cd /home/cnc/linuxcnc/configs/
 sudo mkdir RoseEngineButlerLocal
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Could not create RoseEngineButlerLocal directory.             ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
+echo -e "${TITLE}Security set on /home/cnc/linuxcnc/configs/RoseEngineButlerLocal       ${NOCOLOR}"
+echo -e "${TITLE}-----------------------------------------------------------------------${NOCOLOR}"
 cd RoseEngineButlerLocal
 #
 sudo mkdir REB_Axes
@@ -185,14 +190,18 @@ if [ $? != 0 ]; then
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-#
+echo -e "${TITLE}Created directory                                                      ${NOCOLOR}"
+echo -e "${TITLE}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Axes           ${NOCOLOR}"
+echo -e "${TITLE}-----------------------------------------------------------------------${NOCOLOR}"
 sudo mkdir REB_Custom
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Could not create REB_Custom directory.                        ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-#
+echo -e "${TITLE}Created directory                                                      ${NOCOLOR}"
+echo -e "${TITLE}   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/REB_Custom         ${NOCOLOR}"
+echo -e "${TITLE}-----------------------------------------------------------------------${NOCOLOR}"
 cd ..
 #
 # Set the security for the localization directories
@@ -203,6 +212,8 @@ if [ $? != 0 ]; then
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
+echo -e "${TITLE}Security set on /home/cnc/linuxcnc/configs/RoseEngineButlerLocal       ${NOCOLOR}"
+echo -e "${TITLE}-----------------------------------------------------------------------${NOCOLOR}"
 #
 # ********************************************************************
 # Step 3 - Put key files in place
