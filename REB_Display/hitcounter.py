@@ -307,7 +307,22 @@ class HandlerClass:
 
         self.Sp1Pct = widget.get_value()
 
+#######################################################################
+# U_Feed_chg_value                                                    #
+#                                                                     #
+# Called from:                                                        #
+#   Panel:  REB_Tab_Linear                                            #
+#   Button: U_Feed (on setting the value)                             #
+#                                                                     #
+# Purpose:                                                            #
+#   This is used to set the movement speed for the U axis.            #
+#######################################################################
+    def U_Feed_chg_value(self,widget):
 
+        self.UFeed = widget.get_value()
+
+        print("U_Feed_chg_value =")
+        print(self.UFeed)
 
 #######################################################################
 # U_Idx_change_value                                                  #
@@ -321,13 +336,10 @@ class HandlerClass:
 #######################################################################
     def U_Idx_change_value(self,widget):
 
-        # Ensure the system is in MDI mode
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
-
         self.UIdx = widget.get_value()
+
+        print("U_Idx_chg_value =")
+        print(self.UIdx)
 
 #######################################################################
 # U_Minus_on_button_press                                             #
@@ -350,7 +362,9 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 U-" + str(self.UIdx) + " F1"
+        Gcode = "G1 U-" + str(self.UIdx) + " F" + str(self.UFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -377,13 +391,30 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 U" + str(self.UIdx) + " F1"
-        c.mdi(Gcode)
+        Gcode = "G1 U" + str(self.UIdx) + " F" + str(self.UFeed)
 
-        print (Gcode)
+        print(Gcode)
+        c.mdi(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
+
+#######################################################################
+# V_Feed_chg_value                                                    #
+#                                                                     #
+# Called from:                                                        #
+#   Panel:  REB_Tab_Linear                                            #
+#   Button: V_Feed (on setting the value)                             #
+#                                                                     #
+# Purpose:                                                            #
+#   This is used to set the movement speed for the V axis.            #
+#######################################################################
+    def V_Feed_chg_value(self,widget):
+
+        self.VFeed = widget.get_value()
+
+        print("V_Feed_chg_value =")
+        print(self.VFeed)
 
 #######################################################################
 # V_Idx_change_value                                                  #
@@ -397,13 +428,10 @@ class HandlerClass:
 #######################################################################
     def V_Idx_change_value(self,widget):
 
-        # Ensure the system is in MDI mode
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
-
         self.VIdx = widget.get_value()
+
+        print("V_Idx_chg_value =")
+        print(self.VIdx)
 
 #######################################################################
 # V_Minus_on_button_press                                             #
@@ -424,7 +452,9 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 V-" + str(self.VIdx) + " F1"
+        Gcode = "G1 V-" + str(self.VIdx) + " F" + str(self.VFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -449,11 +479,30 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 V" + str(self.VIdx) + " F1"
+        Gcode = "G1 V" + str(self.VIdx) + " F" + str(self.VFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
+
+#######################################################################
+# X_Feed_chg_value                                                    #
+#                                                                     #
+# Called from:                                                        #
+#   Panel:  REB_Tab_Linear                                            #
+#   Button: X_Feed (on setting the value)                             #
+#                                                                     #
+# Purpose:                                                            #
+#   This is used to set the movement speed for the X axis.            #
+#######################################################################
+    def X_Feed_chg_value(self,widget):
+
+        self.XFeed = widget.get_value()
+
+        print("X_Feed_chg_value =")
+        print(self.XFeed)
 
 #######################################################################
 # X_Idx_change_value                                                  #
@@ -465,15 +514,12 @@ class HandlerClass:
 # Purpose:                                                            #
 #   This is used to set the movement distance for the Z axis.         #
 #######################################################################
-    def X_Idx_change_value(self,widget):
-
-        # Ensure the system is in MDI mode
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
+    def X_Idx_chg_value(self,widget):
 
         self.XIdx = widget.get_value()
+
+        print("X_Idx_chg_value =")
+        print(self.XIdx)
 
 #######################################################################
 # X_Minus_on_button_press                                             #
@@ -487,9 +533,6 @@ class HandlerClass:
 #######################################################################
     def X_Minus_on_button_press(self,widget,data):
 
-        print("*********************************************")
-        print("Starting X_Minus_on_button_press")
-
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -497,12 +540,10 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 X-" + str(self.XIdx) + " F1"
-        c.mdi(Gcode)
+        Gcode = "G1 X-" + str(self.XIdx) + " F" + str(self.XFeed)
 
         print(Gcode)
-        print("Ending X_Minus_on_button_press")
-        print("*********************************************")
+        c.mdi(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
@@ -519,9 +560,6 @@ class HandlerClass:
 #######################################################################
     def X_Plus_on_button_press(self,widget,data):
 
-        print("*********************************************")
-        print("Starting X_Plus_on_button_press")
-
         # Ensure the system is in MDI mode
         s.poll()
         if s.task_state != linuxcnc.MODE_MDI:
@@ -529,15 +567,30 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 X" + str(self.XIdx) + " F1"
-        c.mdi(Gcode)
+        Gcode = "G1 X" + str(self.XIdx) + " F" + str(self.XFeed)
 
         print(Gcode)
-        print("Ending X_Plus_on_button_press")
-        print("*********************************************")
+        c.mdi(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
+
+#######################################################################
+# Y_Feed_chg_value                                                    #
+#                                                                     #
+# Called from:                                                        #
+#   Panel:  REB_Tab_Linear                                            #
+#   Button: Y_Feed (on setting the value)                             #
+#                                                                     #
+# Purpose:                                                            #
+#   This is used to set the movement speed for the Y axis.            #
+#######################################################################
+    def Y_Feed_chg_value(self,widget):
+
+        self.YFeed = widget.get_value()
+
+        print("Y_Feed_chg_value =")
+        print(self.YFeed)
 
 #######################################################################
 # Y_Idx_change_value                                                  #
@@ -551,14 +604,11 @@ class HandlerClass:
 #######################################################################
     def Y_Idx_change_value(self,widget):
 
-        # Ensure the system is in MDI mode
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
-
         self.YIdx = widget.get_value()
 
+        print("Y_Idx_chg_value =")
+        print(self.YIdx)
+        
 #######################################################################
 # Y_Minus_on_button_press                                             #
 #                                                                     #
@@ -578,7 +628,9 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Y-" + str(self.YIdx) + " F1"
+        Gcode = "G1 Y-" + str(self.YIdx) + " F" + str(self.YFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -603,11 +655,30 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Y" + str(self.YIdx) + " F1"
+        Gcode = "G1 Y" + str(self.YIdx) + " F" + str(self.YFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
+
+#######################################################################
+# Z_Feed_chg_value                                                    #
+#                                                                     #
+# Called from:                                                        #
+#   Panel:  REB_Tab_Linear                                            #
+#   Button: Z_Feed (on setting the value)                             #
+#                                                                     #
+# Purpose:                                                            #
+#   This is used to set the movement speed for the Z axis.            #
+#######################################################################
+    def Z_Feed_chg_value(self,widget):
+
+        self.ZFeed = widget.get_value()
+
+        print("Z_Feed_chg_value =")
+        print(self.ZFeed)
 
 #######################################################################
 # Z_Idx_change_value                                                  #
@@ -621,13 +692,10 @@ class HandlerClass:
 #######################################################################
     def Z_Idx_change_value(self,widget):
 
-        # Ensure the system is in MDI mode
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
-
         self.ZIdx = widget.get_value()
+
+        print("Z_Idx_chg_value =")
+        print(self.ZIdx)
 
 #######################################################################
 # Z_Minus_on_button_press                                             #
@@ -648,7 +716,9 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Z-" + str(self.ZIdx) + " F1"
+        Gcode = "G1 Z-" + str(self.ZIdx) + " F" + str(self.ZFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -673,7 +743,9 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Z" + str(self.ZIdx) + " F1"
+        Gcode = "G1 Z" + str(self.ZIdx) + " F" + str(self.ZFeed)
+
+        print(Gcode)
         c.mdi(Gcode)
 
         # Wait for the command to complete
@@ -713,14 +785,19 @@ class HandlerClass:
         self.Sp1Idx     = 90.0      # Sp1 index degrees
         self.Sp1Pct     = 100.0     # Sp1 speed percentage of Sp0 speed
 
+        self.UFeed      = 1.0       # U axis feed rate
         self.UIdx       = 0.0       # U axis index distance
 
+        self.VFeed      = 1.0       # V axis feed rate
         self.VIdx       = 0.0       # V axis index distance
 
+        self.XFeed      = 1.0       # X axis feed rate
         self.XIdx       = 0.0       # X axis index distance
 
+        self.YFeed      = 1.0       # Y axis feed rate
         self.YIdx       = 0.0       # Y axis index distance
 
+        self.ZFeed      = 1.0       # Z axis feed rate
         self.ZIdx       = 0.0       # Z axis index distance
 
 def get_handlers(halcomp,builder,useropts):
