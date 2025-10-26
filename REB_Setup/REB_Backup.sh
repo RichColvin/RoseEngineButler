@@ -1,12 +1,12 @@
 #! /home/cnc/linuxcnc/
 #######################################################################
-#                    RRRRRR    EEEEEEEE  BBBBBBB 					  #
-#                    RR   RR   EE        BB    BB 			   	      #
-#                    RR   RR   EE        BB    BB					  #
-#                    RRRRRR    EEEEEE    BBBBBBB 					  #
-#                    RR   RR   EE        BB    BB					  #
-#                    RR    RR  EE        BB    BB					  #
-#                    RR    RR  EEEEEEEE  BBBBBBB					  #
+#                    RRRRRR    EEEEEEEE  BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR   RR   EE        BB    BB                     #
+#                    RRRRRR    EEEEEE    BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR    RR  EE        BB    BB                     #
+#                    RR    RR  EEEEEEEE  BBBBBBB                      #
 #                                                                     #
 # Rose Engine Butler                                                  #
 #######################################################################
@@ -70,13 +70,13 @@ sSpaces='   '
 #
 # ********************************************************************
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}#                    RRRRRR    EEEEEEEE  BBBBBBB 					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB 			   	       #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RRRRRR    EEEEEE    BBBBBBB 					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR    RR  EEEEEEEE  BBBBBBB					   #${NOCOLOR}"
+echo -e "${TITLE}#                    RRRRRR    EEEEEEEE  BBBBBBB                      #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RRRRRR    EEEEEE    BBBBBBB                      #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR    RR  EEEEEEEE  BBBBBBB                      #${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
 echo -e "${TITLE}Use of this system constitutes consent to the MIT/X Consortium License ${NOCOLOR}"
@@ -89,7 +89,7 @@ echo -e "${TITLE}                                                               
 #   from /home/cnc/linuxcnc/configs/RoseEngineButlerLocal/
 #   to   /home/cnc/linuxcnc/configs/RoseEngineButlerLocal_Backup/
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Backing up files      											        ${NOCOLOR}"
+echo -e "${TITLE}Backing up files                                                       ${NOCOLOR}"
 echo -e "${TITLE}from /home/cnc/linuxcnc/configs/RoseEngineButlerLocal.                 ${NOCOLOR}"
 echo -e "${TITLE}to /home/cnc/linuxcnc/configs/RoseEngineButlerLocal_Backup.            ${NOCOLOR}"
 cd /home/cnc/linuxcnc/configs/RoseEngineButlerLocal_Backup

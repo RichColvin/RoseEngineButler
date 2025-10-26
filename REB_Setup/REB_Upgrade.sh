@@ -1,12 +1,12 @@
 #! /home/cnc/linuxcnc/
 #######################################################################
-#                    RRRRRR    EEEEEEEE  BBBBBBB 					  #
-#                    RR   RR   EE        BB    BB 			   	      #
-#                    RR   RR   EE        BB    BB					  #
-#                    RRRRRR    EEEEEE    BBBBBBB 					  #
-#                    RR   RR   EE        BB    BB					  #
-#                    RR    RR  EE        BB    BB					  #
-#                    RR    RR  EEEEEEEE  BBBBBBB					  #
+#                    RRRRRR    EEEEEEEE  BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR   RR   EE        BB    BB                     #
+#                    RRRRRR    EEEEEE    BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR    RR  EE        BB    BB                     #
+#                    RR    RR  EEEEEEEE  BBBBBBB                      #
 #                                                                     #
 # Rose Engine Butler                                                  #
 #######################################################################
@@ -70,13 +70,13 @@ sSpaces='   '
 #
 # ********************************************************************
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}#                    RRRRRR    EEEEEEEE  BBBBBBB 					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB 			   	       #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RRRRRR    EEEEEE    BBBBBBB 					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR   RR   EE        BB    BB					   #${NOCOLOR}"
-echo -e "${TITLE}#                    RR    RR  EEEEEEEE  BBBBBBB					   #${NOCOLOR}"
+echo -e "${TITLE}#                    RRRRRR    EEEEEEEE  BBBBBBB                      #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RRRRRR    EEEEEE    BBBBBBB                      #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR   RR   EE        BB    BB                     #${NOCOLOR}"
+echo -e "${TITLE}#                    RR    RR  EEEEEEEE  BBBBBBB                      #${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
 echo -e "${TITLE}Use of this system constitutes consent to the MIT/X Consortium License ${NOCOLOR}"
@@ -85,7 +85,7 @@ echo -e "${TITLE}                                                               
 echo -e "${TITLE}Upgrade the system                                                     ${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Pull latest files from GitHub   								        ${NOCOLOR}"
+echo -e "${TITLE}Pull latest files from GitHub                                          ${NOCOLOR}"
 cd /home/cnc/linuxcnc/configs/RoseEngineButler
 git pull
 if [ $? != 0 ]; then
@@ -95,7 +95,7 @@ if [ $? != 0 ]; then
 fi
 echo -e "${TITLE}Latest files pulled from GitHub                                        ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Update the package indexes      								        ${NOCOLOR}"
+echo -e "${TITLE}Update the package indexes                                             ${NOCOLOR}"
 sudo apt update
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: Package update failed                                         ${NOCOLOR}"
@@ -104,7 +104,7 @@ if [ $? != 0 ]; then
 fi
 echo -e "${TITLE}Latest package updates secured                                         ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Upgrade the system      								        ${NOCOLOR}"
+echo -e "${TITLE}Upgrade the system                                             ${NOCOLOR}"
 sudo apt upgrade -y
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: System upgrade failed                                         ${NOCOLOR}"
