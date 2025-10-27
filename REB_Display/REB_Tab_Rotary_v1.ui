@@ -133,15 +133,19 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="valign">end</property>
                         <property name="margin-top">6</property>
                         <property name="label" translatable="yes">Spindle (Sp0)</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">2</property>
+                        <property name="top-attach">1</property>
+                        <property name="width">4</property>
+                        <property name="height">2</property>
                       </packing>
                     </child>
                     <child>
@@ -217,13 +221,14 @@
                         <property name="margin-top">6</property>
                         <property name="label" translatable="yes">Rosette Phaser/Multiplier (Sp1)</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">4</property>
-                        <property name="width">2</property>
+                        <property name="width">4</property>
                       </packing>
                     </child>
                     <child>
@@ -268,6 +273,7 @@
                         <property name="margin-top">6</property>
                         <property name="label" translatable="yes">Spindles</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
@@ -306,6 +312,7 @@
                         <property name="margin-top">12</property>
                         <property name="label" translatable="yes">B Axis</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
@@ -522,6 +529,9 @@ Fwd = CCW / Rev = CW</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 10"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">8</property>
@@ -542,6 +552,9 @@ Fwd = CCW / Rev = CW</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 10"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">8</property>
@@ -701,6 +714,9 @@ Fwd = CCW / Rev = CW</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 10"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">8</property>
@@ -721,6 +737,9 @@ Fwd = CCW / Rev = CW</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">6</property>
                         <property name="xalign">0.05000000074505806</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans 10"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">8</property>
@@ -799,9 +818,10 @@ Fwd = CCW / Rev = CW</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="vexpand">True</property>
-                        <property name="label" translatable="yes">★ Be sure to enable the selected axes for movement using the pane to the right.</property>
+                        <property name="label" translatable="yes">★ Be sure to enable the selected axes for movement using the pane to the right </property>
                         <property name="wrap">True</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
                           <attribute name="foreground" value="#a5a51d1d2d2d"/>
                         </attributes>
                       </object>
@@ -832,6 +852,7 @@ Fwd = CCW / Rev = CW</property>
                         <property name="label" translatable="yes">★ Be sure to enable the selected axes for movement using the pane to the right.</property>
                         <property name="wrap">True</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
                           <attribute name="foreground" value="#a5a51d1d2d2d"/>
                         </attributes>
                       </object>
@@ -953,6 +974,7 @@ Operation</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -971,6 +993,7 @@ Operation</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -989,6 +1012,7 @@ Operation</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1007,6 +1031,7 @@ Operation</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1025,6 +1050,7 @@ Operation</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1043,39 +1069,13 @@ Operation</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
                         <property name="top-attach">11</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

@@ -715,7 +715,7 @@
                         <property name="wrap">True</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
-                          <attribute name="font-desc" value="Sans 12"/>
+                          <attribute name="font-desc" value="Sans 10"/>
                         </attributes>
                       </object>
                       <packing>
@@ -735,7 +735,7 @@
                         <property name="wrap">True</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
-                          <attribute name="font-desc" value="Sans 12"/>
+                          <attribute name="font-desc" value="Sans 10"/>
                         </attributes>
                       </object>
                       <packing>
@@ -755,7 +755,7 @@
                         <property name="wrap">True</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
-                          <attribute name="font-desc" value="Sans 12"/>
+                          <attribute name="font-desc" value="Sans 10"/>
                         </attributes>
                       </object>
                       <packing>
@@ -776,7 +776,7 @@
                         <property name="wrap">True</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
-                          <attribute name="font-desc" value="Sans 12"/>
+                          <attribute name="font-desc" value="Sans 10"/>
                         </attributes>
                       </object>
                       <packing>
@@ -797,7 +797,7 @@
                         <property name="wrap">True</property>
                         <property name="xalign">0.05000000074505806</property>
                         <attributes>
-                          <attribute name="font-desc" value="Sans 12"/>
+                          <attribute name="font-desc" value="Sans 10"/>
                         </attributes>
                       </object>
                       <packing>
@@ -922,6 +922,7 @@
                         <property name="label" translatable="yes">★ Be sure to enable the selected axis for movement using the pane to the right.</property>
                         <property name="wrap">True</property>
                         <attributes>
+                          <attribute name="font-desc" value="Sans 12"/>
                           <attribute name="foreground" value="#a5a51d1d2d2d"/>
                         </attributes>
                       </object>
@@ -941,6 +942,7 @@
                         <property name="justify">center</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 24"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -958,6 +960,7 @@
                         <property name="justify">center</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 24"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1020,6 +1023,7 @@ Operation</property>
                         <property name="justify">center</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 11"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                         </attributes>
                       </object>
                       <packing>
