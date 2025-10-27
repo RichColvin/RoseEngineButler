@@ -27,7 +27,7 @@
 #   Brainwave Embedded.
 #
 # Version
-#   1.0 - 26 Oct 2025, R. Colvin
+#   1.0 - 27 Oct 2025, R. Colvin
 #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 
 #
@@ -87,7 +87,8 @@ echo -e "${TITLE}                                                               
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}Pull latest files from GitHub                                          ${NOCOLOR}"
 cd /home/cnc/linuxcnc/configs/RoseEngineButler
-git pull
+sudo git stash
+sudo git pull
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: git pull failed.                                              ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
