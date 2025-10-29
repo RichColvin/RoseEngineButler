@@ -23,6 +23,26 @@
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
+  <object class="GtkImage" id="C">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCW.png</property>
+  </object>
+  <object class="GtkImage" id="CC">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCCW.png</property>
+  </object>
+  <object class="GtkImage" id="CCW">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCCW.png</property>
+  </object>
+  <object class="GtkImage" id="CW">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCW.png</property>
+  </object>
   <object class="GtkEntryCompletion" id="Idx_entrycompletion">
     <property name="inline-completion">True</property>
   </object>
@@ -85,6 +105,16 @@
     <property name="upper">1000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCCW.png</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCW.png</property>
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
@@ -152,7 +182,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_CCW">
+                      <object class="HAL_Button" id="Sp0_CW">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -164,7 +194,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_Run_CCW</property>
+                        <property name="image">CW</property>
                         <property name="use-underline">True</property>
                         <property name="image-position">top</property>
                         <signal name="button-press-event" handler="Sp0_CCW_on_button_press" swapped="no"/>
@@ -197,7 +227,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_CW">
+                      <object class="HAL_Button" id="Sp0_CCW">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -207,7 +237,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_Run_CW</property>
+                        <property name="image">CCW</property>
                         <property name="image-position">top</property>
                         <signal name="button-press-event" handler="Sp0_CW_on_button_press" swapped="no"/>
                       </object>
@@ -299,7 +329,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_I_CW</property>
+                        <property name="image">CC</property>
                         <property name="image-position">top</property>
                       </object>
                       <packing>
@@ -338,7 +368,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_I_CCW</property>
+                        <property name="image">C</property>
                         <property name="use-underline">True</property>
                         <property name="image-position">top</property>
                       </object>
@@ -401,7 +431,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">B_I_CCW</property>
+                        <property name="image">image2</property>
                         <property name="image-position">top</property>
                       </object>
                       <packing>
@@ -422,7 +452,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">B_I_CW</property>
+                        <property name="image">image1</property>
                         <property name="image-position">top</property>
                       </object>
                       <packing>

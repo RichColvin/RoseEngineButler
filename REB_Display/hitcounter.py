@@ -360,7 +360,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 U-" + str(self.UIdx) + " F" + str(self.UFeed)
+        Gcode = "G0 U-" + str(self.UIdx) + " F" + str(self.UFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -389,7 +389,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 U" + str(self.UIdx) + " F" + str(self.UFeed)
+        Gcode = "G0 U" + str(self.UIdx) + " F" + str(self.UFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -450,7 +450,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 V-" + str(self.VIdx) + " F" + str(self.VFeed)
+        Gcode = "G0 V-" + str(self.VIdx) + " F" + str(self.VFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -477,7 +477,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 V" + str(self.VIdx) + " F" + str(self.VFeed)
+        Gcode = "G0 V" + str(self.VIdx) + " F" + str(self.VFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -538,7 +538,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 X-" + str(self.XIdx) + " F" + str(self.XFeed)
+        Gcode = "G0 X-" + str(self.XIdx) + " F" + str(self.XFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -565,7 +565,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 X" + str(self.XIdx) + " F" + str(self.XFeed)
+        Gcode = "G0 X" + str(self.XIdx) + " F" + str(self.XFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -626,7 +626,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Y-" + str(self.YIdx) + " F" + str(self.YFeed)
+        Gcode = "G0 Y-" + str(self.YIdx) + " F" + str(self.YFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -653,7 +653,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Y" + str(self.YIdx) + " F" + str(self.YFeed)
+        Gcode = "G0 Y" + str(self.YIdx) + " F" + str(self.YFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -714,7 +714,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Z-" + str(self.ZIdx) + " F" + str(self.ZFeed)
+        Gcode = "G0 Z-" + str(self.ZIdx) + " F" + str(self.ZFeed)
 
         print(Gcode)
         c.mdi(Gcode)
@@ -741,7 +741,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to move along the axis.
-        Gcode = "G1 Z" + str(self.ZIdx) + " F" + str(self.ZFeed)
+        Gcode = "G0 Z" + str(self.ZIdx) + " F" + str(self.ZFeed)
 
         print(Gcode)
         c.mdi(Gcode)
