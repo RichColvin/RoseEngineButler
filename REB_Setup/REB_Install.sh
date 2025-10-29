@@ -261,6 +261,16 @@ if [ $? != 0 ]; then
    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
    exit $?
 fi
+echo -e "${CMNTTEXT}    REB_Upgrade.sh                                                  ${NOCOLOR}"
+sudo cp /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Setup/REB_Upgrade.sh .
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: copy of REB_Upgrade.sh                                        ${NOCOLOR}"
+   echo -e "${KEYNOTE}    from /home/cnc/linuxcnc/configs/RoseEngineButler/REB_Setup       ${NOCOLOR}"
+   echo -e "${KEYNOTE}    to /home/cnc/                                                    ${NOCOLOR}"
+   echo -e "${KEYNOTE}failed.                                                              ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
 #
 # ********************************************************************
 # Step 4 - Backup key files
