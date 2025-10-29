@@ -130,7 +130,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to start spindles rotating.
-        c.mdi("M3 $-1")
+        c.mdi("M4 $-1")
 
         # Wait for the command to complete
         c.wait_complete()
@@ -156,7 +156,7 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to start spindles rotating.
-        c.mdi("M4 $-1")
+        c.mdi("M3 $-1")
 
         # Wait for the command to complete
         c.wait_complete()
@@ -204,8 +204,6 @@ class HandlerClass:
         # Send an MDI command to start spindles rotating.
         sSp0Spd = "M19 R" + str(self.Sp0Idx) + " P1 $0"
         c.mdi(sSp0Spd)
-
-        c.mdi("M3 $-1")
 
         # Wait for the command to complete
         c.wait_complete()
@@ -810,3 +808,5 @@ def get_handlers(halcomp,builder,useropts):
     the 'get_handlers' name is reserved - gladevcp expects it, so do not change
     '''
     return [HandlerClass(halcomp,builder,useropts)]
+    
+#

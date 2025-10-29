@@ -64,17 +64,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -83,10 +72,10 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="halign">end</property>
+                    <property name="halign">center</property>
                     <property name="label" translatable="yes">Rose Engine
 Butler</property>
-                    <property name="justify">right</property>
+                    <property name="justify">center</property>
                     <attributes>
                       <attribute name="font-desc" value="DejaVu Serif 20"/>
                       <attribute name="weight" value="bold"/>
@@ -122,8 +111,11 @@ Butler</property>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">1</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -942,7 +934,7 @@ Butler</property>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">16</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
@@ -951,12 +943,35 @@ Butler</property>
             <property name="can-focus">False</property>
             <property name="valign">end</property>
             <property name="margin-top">5</property>
+            <property name="vexpand">False</property>
             <property name="pixbuf">Images/AxesSm.png</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">17</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="Comment_Web_Link_2">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">end</property>
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">3</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="label" translatable="yes">www.RoseEngineButler.com</property>
+            <property name="wrap">True</property>
+            <attributes>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>

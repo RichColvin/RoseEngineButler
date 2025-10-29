@@ -138,11 +138,14 @@
     <property name="hexpand">False</property>
     <property name="vexpand">False</property>
     <child>
-      <object class="GtkScrolledWindow">
+      <object class="GtkScrolledWindow" id="scrolledwindow1">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
+        <property name="vscrollbar-policy">always</property>
+        <property name="window-placement-set">False</property>
         <property name="shadow-type">in</property>
-        <property name="overlay-scrolling">False</property>
+        <property name="propagate-natural-width">True</property>
+        <property name="propagate-natural-height">True</property>
         <child>
           <object class="GtkViewport">
             <property name="visible">True</property>
@@ -919,7 +922,7 @@
                         <property name="valign">start</property>
                         <property name="margin-top">5</property>
                         <property name="vexpand">True</property>
-                        <property name="label" translatable="yes">★ Be sure to enable the selected axis for movement using the pane to the right.</property>
+                        <property name="label" translatable="yes">★ Be sure to ENAble the selected axis for movement using the pane to the right.</property>
                         <property name="wrap">True</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans 12"/>
