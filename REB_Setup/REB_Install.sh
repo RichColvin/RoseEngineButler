@@ -273,9 +273,35 @@ if [ $? != 0 ]; then
 fi
 #
 # ********************************************************************
-# Step 4 - Backup key files
+# Step 4 - Install ClamAV
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Step 4 - Create backups                                                ${NOCOLOR}"
+echo -e "${TITLE}Step 4 - Install ClamAV                                                ${NOCOLOR}"
+echo -e "${TITLE}                                                                       ${NOCOLOR}"
+cd /home/cnc
+mkdir ClamAv
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: Could not create /home/cnc/ClamAV                             ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+cd ClamAv
+mkdir SuspiciousFiles
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: Could not create /home/cnc/ClamAV/SuspiciousFiles             ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+sudo apt install clamav
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: Could not install clamav                                      ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+#
+# ********************************************************************
+# Step 5 - Backup key files
+echo -e "${TITLE}#######################################################################${NOCOLOR}"
+echo -e "${TITLE}Step 5 - Create backups                                                ${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
 echo -e "${TITLE}Backup /home/cnc/linuxcnc/configs/RoseEngineButlerLocal                ${NOCOLOR}"
 cd /home/cnc/linuxcnc/configs
