@@ -89,17 +89,152 @@ class HandlerClass:
         self.builder.get_object('hits').set_label("Hits: %d" % (self.nhits))
 
 #######################################################################
-# B_Idx_change_value                                                  #
-#                                                                     #
-# Called from:                                                        #
-#   Panel:  REB_Tab_Rotary                                            #
-#   Button: B_Idx (on setting the value)                              #
-#                                                                     #
-# Purpose:                                                            #
-#   This is used to set the rotational distance (degrees) for the     #
-#   B axis.                                                           #
+# B_Idx_Deg_Sel
+#
+# Called from:
+#   Panel:  REB_Tab_Rotary
+#   Button: B_Idx_Deg  (HAL_RadioButton)
+#
+# Data Values
+#   Read:   (none)
+#   Used:   BIdxDist - Distance set by user
+#   Sets:   BIdxDeg - Degrees to index during movement
+#           BIdxDegDiv - type of distance measurement (Deg or Div)
+#   Writes: (none)
+#
+# Purpose:
+#   This is used to set the rotational distance measurement as
+#   degrees for the B axis.
 #######################################################################
-    def B_Idx_change_value(self,widget):
+    def B_Idx_Deg_Sel(self,widget,data):
+
+        print("=================================================")
+        print("FUNCTION B_Idx_Deg_Sel")
+
+        self.BIdxDeg = self.BIdxDist
+        self.BIdxDegDiv = "Deg"
+
+        Prt1 = "BIdxDegDiv = " + self.BIdxDegDiv
+        print(Prt1)
+        Prt2 = "BIdxDeg = " + str(self.BIdxDeg) + " deg"
+        print(Prt2)
+
+
+#######################################################################
+# B_Idx_Div_Sel
+#
+# Called from:
+#   Panel:  REB_Tab_Rotary
+#   Button: B_Idx_Div  (HAL_RadioButton)
+#
+# Data Values
+#   Read:   (none)
+#   Used:   BIdxDist - Distance set by user
+#   Sets:   BIdxDeg - Degrees to index during movement
+#           BIdxDegDiv - type of distance measurement (Deg or Div)
+#   Writes: (none)
+#
+# Purpose:
+#   This is used to set the rotational distance measurement as
+#   divisions of a circle for the B axis (deg = 360/div).
+#######################################################################
+    def B_Idx_Div_Sel(self,widget,data):
+
+        print("=================================================")
+        print("FUNCTION B_Idx_Div_Sel")
+
+        self.BIdxDeg = 360 / self.BIdxDist
+
+        self.BIdxDegDiv = "Div"
+
+        Prt1 = "BIdxDegDiv = " + self.BIdxDegDiv
+        print(Prt1)
+        Prt2 = "BIdxDeg = " + str(self.BIdxDeg) + " deg"
+        print(Prt2)
+
+
+#######################################################################
+# B_Idx_Dist
+#
+# Called from:
+#   Panel:  REB_Tab_Rotary
+#   Button: B_Idx_Dist  (HAL_SpinButton)
+#
+# Data Values
+#   Read:   BIdxDist - Distance set by user
+#   Used:   BIdxDegDiv - type of distance measurement (Deg or Div)
+#   Sets:   BIdxDeg - Degrees to index during movement
+#           BIdxDist - Distance set by user
+#   Writes: (none)
+#
+# Purpose:
+#   This is used to set the rotational distance (degrees or
+#   divisions of a circle) for the B axis.
+#######################################################################
+    def B_Idx_Dist(self,widget):
+
+        print("=================================================")
+        print("FUNCTION B_Idx_Dist")
+
+        self.BIdxDist = widget.get_value()
+
+        if self.BIdxDegDiv == "Deg":
+                self.BIdxDeg = self.BIdxDist
+        else:
+                self.BIdxDeg = 360 / self.BIdxDist
+
+        Prt1 = "BIdxDegDiv = " + self.BIdxDegDiv
+        print(Prt1)
+        Prt2 = "BIdxDeg = " + str(self.BIdxDeg) + " deg"
+        print(Prt2)
+
+#######################################################################
+# B_Idx_Feed
+#
+# Called from:
+#   Panel:  REB_Tab_Rotary    (HAL_SpinButton)
+#   Button: B_Feed
+#
+# Data Values
+#   Read:   BFeed - Feed rate set by user
+#   Used:   (none)
+#   Sets:   BFeed
+#   Writes: (none)
+#
+# Purpose:
+#   This is used to set the movement speed for the B axis.
+#######################################################################
+    def B_Idx_Feed(self,widget):
+
+        print("=================================================")
+        print("FUNCTION B_Idx_Feed")
+
+        self.BFeed = widget.get_value()
+
+        Prt1 = "BFeed = " + str(self.BFeed)
+        print(Prt1)
+
+#######################################################################
+# B_Idx_Fwd
+#
+# Called from:
+#   Panel:  REB_Tab_Rotary
+#   Button: B_Idx_Fwd  (Hal_Button)
+#
+# Data Values
+#   Read:   (none)
+#   Used:   (none)
+#   Sets:   BIdxQty - the quantity of indexes so far.  Forward
+#           increases this value.
+#   Writes: BIdxQty to BIdxQty
+#
+# Purpose:
+#   This is used to run the B axis forward using the G0 Gcode.
+#######################################################################
+    def B_Idx_Fwd(self,widget,data):
+
+        print("=================================================")
+        print("FUNCTION B_Idx_Fwd")
 
         # Ensure the system is in MDI mode
         s.poll()
@@ -107,46 +242,87 @@ class HandlerClass:
                 c.mode(linuxcnc.MODE_MDI)
                 c.wait_complete() # Wait for mode change to complete
 
-        self.BIdx = widget.get_value()
+        # Send an MDI command to move along the axis.
+        Gcode = "G0 B" + str(self.BIdxDeg) + " F" + str(self.BFeed)
 
-#######################################################################
-# Sp0_CCW_on_button_press                                             #
-#                                                                     #
-# Called from:                                                        #
-#   Panel:  REB_Tab_Rotary                                            #
-#   Button: Sp0_CCW (on click)                                        #
-#                                                                     #
-# Purpose:                                                            #
-#   This is used to start the spindles rotating counter-clockwise.    #
-#   Note:  this starts both Sp0 and Sp1.                              #
-#######################################################################
-    def Sp0_CCW_on_button_press(self,widget,data):
+        print(Gcode)
+        c.mdi(Gcode)
 
-        # Ensure the system is in MDI mode
-        c.mode(linuxcnc.MODE_MDI)
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
+        self.BIdxQty = self.BIdxQty + 1
+        Prt1 = "BIdxQty = " + str(self.BIdxQty)
+        print(Prt1)
 
-        # Send an MDI command to start spindles rotating.
-        c.mdi("M4 $-1")
+        # BIdxQtystr = str(self.BIdxQty)
+        # widget.set_label(BIdxQty, BIdxQtystr)
 
         # Wait for the command to complete
         c.wait_complete()
 
 #######################################################################
-# Sp0_CW_on_button_press                                              #
-#                                                                     #
-# Called from:                                                        #
-#   Panel:  REB_Tab_Rotary                                            #
-#   Button: Sp0_CW (on click)                                         #
-#                                                                     #
-# Purpose:                                                            #
-#   This is used to start the spindles rotating clockwise.            #
-#   Note:  this starts both Sp0 and Sp1.                              #
+# B_Idx_Rev
+#
+# Called from:
+#   Panel:  REB_Tab_Rotary
+#   Button: B_Idx_Rev  (Hal_Button)
+#
+# Data Values
+#   Read:   (none)
+#   Used:   (none)
+#   Sets:   BIdxQty - the quantity of indexes so far.  Reverse
+#           decreases this value.
+#   Writes: BIdxQty to BIdxQty
+#
+# Purpose:
+#   This is used to run the B axis in reverse using the G0 Gcode.
 #######################################################################
-    def Sp0_CW_on_button_press(self,widget,data):
+    def B_Idx_Rev(self,widget,data):
+
+        print("=================================================")
+        print("FUNCTION B_Idx_Rev")
+
+        # Ensure the system is in MDI mode
+        s.poll()
+        if s.task_state != linuxcnc.MODE_MDI:
+                c.mode(linuxcnc.MODE_MDI)
+                c.wait_complete() # Wait for mode change to complete
+
+        # Send an MDI command to move along the axis.
+        Gcode = "G0 B-" + str(self.BIdxDeg) + " F" + str(self.BFeed)
+
+        print(Gcode)
+        c.mdi(Gcode)
+
+        self.BIdxQty = self.BIdxQty - 1
+        Prt1 = "BIdxQty = " + str(self.BIdxQty)
+        print(Prt1)
+
+        # Wait for the command to complete
+        c.wait_complete()
+
+#######################################################################
+# Sp0_Fwd
+# 
+# Called from:
+#   Panel:  REB_Tab_Base
+#   Button: Sp0_Fwd  (Hal_Button)
+#	Signal:	GtkButton/pressed
+#			GtkWidget/button-press-event
+#
+# Data Values
+#   Read:   (none)
+#   Used:   (S Gcode sets speed)
+#   Sets:   (none)
+#   Writes: self.Sp0Spd to the S Gcode (Sspd $0)
+#   		Sp1Spd to the S Gcode (Sspd $1)
+#
+# Purpose:
+#   This is used to start the spindles rotating forward.
+#   Note:  this starts both Sp0 and Sp1.
+#######################################################################
+    def Sp0_Fwd(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp0_Fwd")
 
         # Ensure the system is in MDI mode
         c.mode(linuxcnc.MODE_MDI)
@@ -155,8 +331,25 @@ class HandlerClass:
                 c.mode(linuxcnc.MODE_MDI)
                 c.wait_complete() # Wait for mode change to complete
 
+        # In case the values had not already been written to the 
+        # Gcode S values, write them.  
+        Sp1Spd = self.Sp1Pct * self.Sp0Spd / 100
+
+        # Send an MDI command to set the spindles' speed.
+        sSp0Spd = "S" + str(self.Sp0Spd) + " $0"
+        sSp1Spd = "S" + str(Sp1Spd) + " $1"
+
+        print(sSp0Spd)
+        c.mdi(sSp0Spd)
+
+        print(sSp1Spd)
+        c.mdi(sSp1Spd)
+
         # Send an MDI command to start spindles rotating.
-        c.mdi("M3 $-1")
+        Gcode = "M3 $-1"
+
+        print(Gcode)
+        c.mdi(Gcode)
 
         # Wait for the command to complete
         c.wait_complete()
@@ -209,16 +402,84 @@ class HandlerClass:
         c.wait_complete()
 
 #######################################################################
-# Sp0_Spd_change_value                                                #
-#                                                                     #
-# Called from:                                                        #
-#   Panel:  REB_Tab_Rotary                                            #
-#   Button: Spd_Bar (on change)                                       #
-#                                                                     #
-# Purpose:                                                            #
-#   This is used to set the spee for the spindle.                     #
+# Sp0_Rev
+# 
+# Called from:
+#   Panel:  REB_Tab_Base
+#   Button: Sp0_Rev  (Hal_Button)
+#	Signal:	GtkButton/pressed
+#			GtkWidget/button-press-event
+#
+# Data Values
+#   Read:   (none)
+#   Used:   (S Gcode sets speed)
+#   Sets:   (none)
+#   Writes: self.Sp0Spd to the S Gcode (Sspd $0)
+#   		Sp1Spd to the S Gcode (Sspd $1)
+#
+# Purpose:
+#   This is used to start the spindles rotating in reverse.
+#   Note:  this starts both Sp0 and Sp1.
 #######################################################################
-    def Sp0_Spd_change_value(self,widget):
+    def Sp0_Rev(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp0_Rev")
+
+        # Ensure the system is in MDI mode
+        c.mode(linuxcnc.MODE_MDI)
+        s.poll()
+        if s.task_state != linuxcnc.MODE_MDI:
+                c.mode(linuxcnc.MODE_MDI)
+                c.wait_complete() # Wait for mode change to complete
+
+        # In case the values had not already been written to the 
+        # Gcode S values, write them.  
+        Sp1Spd = self.Sp1Pct * self.Sp0Spd / 100
+
+        # Send an MDI command to set the spindles' speed.
+        sSp0Spd = "S" + str(self.Sp0Spd) + " $0"
+        sSp1Spd = "S" + str(Sp1Spd) + " $1"
+
+        print(sSp0Spd)
+        c.mdi(sSp0Spd)
+
+        print(sSp1Spd)
+        c.mdi(sSp1Spd)
+
+        # Send an MDI command to start spindles rotating.
+        Gcode = "M4 $-1"
+
+        print(Gcode)
+        c.mdi(Gcode)
+
+        # Wait for the command to complete
+        c.wait_complete()
+
+#######################################################################
+# Sp0_Spd
+#
+# Called from:
+#   Panel:  REB_Tab_Base
+#   Button: Sp0_Spd  (Hal_SpinButton)
+#	Signal:	GtkSpinButton/value-changed
+#
+# Data Values
+#   Read:   Sp0Spd from Sp0_Spd
+#   Used:   Sp1Pct
+#   Sets:   self.Sp0Spd - the speed for the spindle (Sp0)
+#   	   	Sp1Spd - the speed for the rosette phaser multiplier (Sp1)
+#   Writes: self.Sp0Spd to the S Gcode (Sspd $0)
+#   		Sp1Spd to the S Gcode (Sspd $1)
+#
+# Purpose:
+#   This is used to set the speed for the spindle (Sp0) & the 
+#	rosette phaser multiplier (Sp1).
+#######################################################################
+    def Sp0_Spd(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp0_Spd")
 
         # Ensure the system is in MDI mode
         s.poll()
@@ -226,30 +487,45 @@ class HandlerClass:
                 c.mode(linuxcnc.MODE_MDI)
                 c.wait_complete() # Wait for mode change to complete
 
-        Sp0Spd = widget.get_value()
-        Sp1Spd = self.Sp1Pct * Sp0Spd / 100
+        self.Sp0Spd = widget.get_value()
+        Sp1Spd = self.Sp1Pct * self.Sp0Spd / 100
 
         # Send an MDI command to set the spindles' speed.
-        sSp0Spd = "S" + str(Sp0Spd) + " $0"
+        sSp0Spd = "S" + str(self.Sp0Spd) + " $0"
         sSp1Spd = "S" + str(Sp1Spd) + " $1"
 
+        print(sSp0Spd)
         c.mdi(sSp0Spd)
+
+        print(sSp1Spd)
         c.mdi(sSp1Spd)
 
         # Wait for the command to complete
         c.wait_complete()
 
 #######################################################################
-# Sp0_Stop_on_button_press                                            #
-#                                                                     #
-# Called from:                                                        #
-#   Panel:  REB_Tab_Rotary                                            #
-#   Button: Sp0_Stop (on click)                                       #
-#                                                                     #
-# Purpose:                                                            #
-#   This is used to stop the spindles.                                #
+# Sp0_Stop
+# 
+# Called from:
+#   Panel:  REB_Tab_Base
+#   Button: Sp0_Stop  (Hal_Button)
+#	Signal:	GtkButton/pressed
+#			GtkWidget/button-press-event
+#
+# Data Values
+#   Read:   (none)
+#   Used:   (none)
+#   Sets:   (none)
+#   Writes: (none)
+#
+# Purpose:
+#   This is used to stop the spindles rotating.
+#   Note:  this stops both Sp0 and Sp1.
 #######################################################################
-    def Sp0_Stop_on_button_press(self,widget,data):
+    def Sp0_Stop(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp0_Stop")
 
         # Ensure the system is in MDI mode
         s.poll()
@@ -258,6 +534,11 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         # Send an MDI command to stop the spindles from rotating.
+        Gcode = "M5"
+
+        print(Gcode)
+        c.mdi(Gcode)
+
         c.mdi("M5")
 
         # Wait for the command to complete
@@ -285,17 +566,27 @@ class HandlerClass:
         self.Sp1Idx = widget.get_value()
 
 #######################################################################
-# Sp1_Pct_of_Sp0                                                      #
-#                                                                     #
-# Called from:                                                        #
-#   Panel:  REB_Tab_Rotary                                            #
-#   Button: Sp1_Pct (on change)                                       #
-#                                                                     #
-# Purpose:                                                            #
-#   This is used to set the speed for the Sp1 spindle (rosette        #
-#   phaser/multiplier) as a percentage of the spindle speed.          #
+# Sp1_Pct
+#
+# Called from:
+#   Panel:  REB_Tab_Base
+#   Button: Sp1_Pct  (Hal_SpinButton)
+#	Signal:	GtkSpinButton/value-changed
+#
+# Data Values
+#   Read:   Sp1Pct from Sp1_Pct
+#   Used:   Sp0Spd
+#   Sets:   (none)
+#   Writes: Sp1Spd to the S Gcode (Sspd $1)
+#
+# Purpose:
+#   This is used to set the speed for the rosette phaser / multiplier
+#   (Sp0) as a percentage of the spindle speed.
 #######################################################################
-    def Sp1_Pct_of_Sp0(self,widget):
+    def Sp1_Pct(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp1_Pct")
 
         # Ensure the system is in MDI mode
         s.poll()
@@ -304,6 +595,16 @@ class HandlerClass:
                 c.wait_complete() # Wait for mode change to complete
 
         self.Sp1Pct = widget.get_value()
+        Sp1Spd = self.Sp0Spd * self.Sp1Pct / 100
+
+        # Send an MDI command to set the spindles' speed.
+        sSp1Spd = "S" + str(Sp1Spd) + " $1"
+
+        print(sSp1Spd)
+        c.mdi(sSp1Spd)
+
+        # Wait for the command to complete
+        c.wait_complete()
 
 #######################################################################
 # U_Feed_chg_value                                                    #
@@ -606,7 +907,7 @@ class HandlerClass:
 
         print("Y_Idx_chg_value =")
         print(self.YIdx)
-        
+
 #######################################################################
 # Y_Minus_on_button_press                                             #
 #                                                                     #
@@ -768,35 +1069,41 @@ class HandlerClass:
         The builder may be either of libglade or GtkBuilder type depending on the glade file format.
         '''
 
-        self.halcomp    = halcomp
-        self.builder    = builder
-        self.nhits      = 0
+        self.halcomp        = halcomp
+        self.builder        = builder
+        self.nhits          = 0
 
         ###############################################################
         # Global variables - declare and set initial value.           #
         ###############################################################
 
-        self.BIdx       = 90.0      # B axis index degrees
+        self.BFeed          = 10.0      # B axis feed rate
+        self.BIdxDeg        = 90.0      # B axis index degrees
+        self.BIdxDist       = 90.0      # B axis index distance
+        self.BIdxDegDiv     = "Deg"     # B axis index by degrees or divisions
+        self.BIdxQty        = 0         # B axis index amount
 
-        self.Sp0Idx     = 90.0      # Sp0 index degrees
+        self.Sp0Idx         = 90.0      # Sp0 index degrees
+        self.Sp0Spd          = 1.0       # Sp0 Speed
 
-        self.Sp1Idx     = 90.0      # Sp1 index degrees
-        self.Sp1Pct     = 100.0     # Sp1 speed percentage of Sp0 speed
+        self.Sp1Idx         = 90.0      # Sp1 index degrees
+        self.Sp1Pct         = 100.0     # Sp1 speed percentage of Sp0 speed
 
-        self.UFeed      = 1.0       # U axis feed rate
-        self.UIdx       = 0.0       # U axis index distance
+        self.UFeed          = 1.0       # U axis feed rate
+        self.UIdx           = 0.0       # U axis index distance
 
-        self.VFeed      = 1.0       # V axis feed rate
-        self.VIdx       = 0.0       # V axis index distance
+        self.VFeed          = 1.0       # V axis feed rate
+        self.VIdx           = 0.0       # V axis index distance
 
-        self.XFeed      = 1.0       # X axis feed rate
-        self.XIdx       = 0.0       # X axis index distance
+        self.XFeed          = 1.0       # X axis feed rate
+        self.XIdx           = 0.0       # X axis index distance
 
-        self.YFeed      = 1.0       # Y axis feed rate
-        self.YIdx       = 0.0       # Y axis index distance
+        self.YFeed          = 1.0       # Y axis feed rate
+        self.YIdx           = 0.0       # Y axis index distance
 
-        self.ZFeed      = 1.0       # Z axis feed rate
-        self.ZIdx       = 0.0       # Z axis index distance
+        self.ZFeed          = 1.0       # Z axis feed rate
+        self.ZIdx           = 0.0       # Z axis index distance
+
 
 def get_handlers(halcomp,builder,useropts):
     '''
@@ -808,5 +1115,5 @@ def get_handlers(halcomp,builder,useropts):
     the 'get_handlers' name is reserved - gladevcp expects it, so do not change
     '''
     return [HandlerClass(halcomp,builder,useropts)]
-    
+
 #
