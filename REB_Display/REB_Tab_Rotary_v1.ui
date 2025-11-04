@@ -3,16 +3,6 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
-  <object class="GtkImage" id="B_I_CCW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="B_I_CW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
-  </object>
   <object class="GtkAdjustment" id="B_Idx_Dist_adj">
     <property name="upper">360</property>
     <property name="step-increment">1</property>
@@ -24,83 +14,37 @@
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
-  <object class="GtkImage" id="C">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
-  </object>
-  <object class="GtkImage" id="CC">
+  <object class="GtkImage" id="Image_B_Idx_Fwd">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCCW.png</property>
   </object>
-  <object class="GtkImage" id="CW">
+  <object class="GtkImage" id="Image_B_Idx_Rev">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCW.png</property>
   </object>
-  <object class="GtkEntryCompletion" id="Idx_entrycompletion">
-    <property name="inline-completion">True</property>
-  </object>
-  <object class="GtkImage" id="Sp0_I_CCW">
+  <object class="GtkImage" id="Image_Sp0_Idx_Fwd">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCCW.png</property>
   </object>
-  <object class="GtkImage" id="Sp0_I_CW">
+  <object class="GtkImage" id="Image_Sp0_Idx_Rev">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCW.png</property>
   </object>
-  <object class="GtkAdjustment" id="Sp0_Idx_adj">
-    <property name="upper">360</property>
-    <property name="value">5</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Run_CCW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Run_CW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp0_Spd_adj">
+  <object class="GtkAdjustment" id="Sp0_Feed_adj">
     <property name="upper">10</property>
     <property name="value">1</property>
     <property name="step-increment">0.10</property>
     <property name="page-increment">1</property>
   </object>
-  <object class="GtkAdjustment" id="Sp1_Idx_adj">
+  <object class="GtkAdjustment" id="Sp0_Idx_Dist_adj">
     <property name="upper">360</property>
+    <property name="value">90</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp1_Idx_adj1">
-    <property name="upper">360</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkEntryCompletion" id="Sp1_SpdPct">
-    <property name="inline-completion">True</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp1_Spd_adj">
-    <property name="upper">1000</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
@@ -123,7 +67,7 @@
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=13 n-rows=10 -->
+                  <!-- n-columns=13 n-rows=9 -->
                   <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -160,8 +104,9 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">CC</property>
+                        <property name="image">Image_Sp0_Idx_Fwd</property>
                         <property name="image-position">top</property>
+                        <signal name="pressed" handler="Sp0_Move_Idx_Fwd" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
@@ -169,7 +114,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_Idx_CCW">
+                      <object class="HAL_Button" id="Sp0_Idx_Rev">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -181,7 +126,7 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">C</property>
+                        <property name="image">Image_Sp0_Idx_Rev</property>
                         <property name="use-underline">True</property>
                         <property name="image-position">top</property>
                       </object>
@@ -203,13 +148,13 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">image2</property>
+                        <property name="image">Image_B_Idx_Rev</property>
                         <property name="image-position">top</property>
-                        <signal name="button-press-event" handler="B_Idx_Rev" object="BIdxQty" swapped="no"/>
+                        <signal name="pressed" handler="B_Move_Idx_Rev" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">8</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -225,13 +170,13 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">image1</property>
+                        <property name="image">Image_B_Idx_Fwd</property>
                         <property name="image-position">top</property>
-                        <signal name="button-press-event" handler="B_Idx_Fwd" object="BIdxQty" swapped="no"/>
+                        <signal name="pressed" handler="B_Move_Idx_Fwd" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -263,7 +208,7 @@
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">B_Idx_Div</property>
-                            <signal name="button-press-event" handler="B_Idx_Deg_Sel" swapped="no"/>
+                            <signal name="button-press-event" handler="B_Set_Idx_by_Deg" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -279,7 +224,7 @@
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">B_Idx_Deg</property>
-                            <signal name="button-press-event" handler="B_Idx_Div_Sel" swapped="no"/>
+                            <signal name="button-press-event" handler="B_Set_Idx_by_Div" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -290,7 +235,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">2</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -301,13 +246,14 @@
                         <property name="margin-start">4</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="HAL_RadioButton" id="Sp0_Idx_Deg">
+                          <object class="HAL_RadioButton" id="Sp0_Set_Idx_by_Deg">
                             <property name="label" translatable="yes">deg</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
-                            <property name="group">Sp0_Idx_Div</property>
+                            <property name="group">Sp0_Set_Idx_by_Div</property>
+                            <signal name="button-press-event" handler="Sp0_Set_Idx_by_Deg" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -316,13 +262,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="HAL_RadioButton" id="Sp0_Idx_Div">
+                          <object class="HAL_RadioButton" id="Sp0_Set_Idx_by_Div">
                             <property name="label" translatable="yes">div</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
-                            <property name="group">Sp0_Idx_Deg</property>
+                            <property name="group">Sp0_Set_Idx_by_Deg</property>
+                            <signal name="button-press-event" handler="Sp0_Set_Idx_by_Div" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -343,13 +290,14 @@
                         <property name="valign">center</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="HAL_CheckButton" id="Sp0_Idx_Sel">
+                          <object class="HAL_CheckButton" id="Sp0_Set_Idx_OnOff">
                             <property name="label" translatable="yes">Sp0</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="active">True</property>
                             <property name="draw-indicator">True</property>
+                            <signal name="toggled" handler="Sp0_Set_Idx_OnOff" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -358,13 +306,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="HAL_CheckButton" id="Sp1_Idx_Sel">
+                          <object class="HAL_CheckButton" id="Sp1_Set_Idx_OnOff">
                             <property name="label" translatable="yes">Sp1</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="active">True</property>
                             <property name="draw-indicator">True</property>
+                            <signal name="toggled" handler="Sp1_Set_Idx_OnOff" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -603,12 +552,12 @@ Fwd = CCW / Rev = CW</property>
                         <property name="valign">center</property>
                         <property name="text" translatable="yes">90.000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp0_Idx_adj</property>
+                        <property name="adjustment">Sp0_Idx_Dist_adj</property>
                         <property name="digits">3</property>
                         <property name="numeric">True</property>
                         <property name="value">90</property>
+                        <signal name="value-changed" handler="Sp0_Set_Idx_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -616,41 +565,20 @@ Fwd = CCW / Rev = CW</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Sp1_Pct">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="halign">end</property>
-                        <property name="valign">center</property>
-                        <property name="text" translatable="yes">100.000</property>
-                        <property name="overwrite-mode">True</property>
-                        <property name="completion">Sp1_SpdPct</property>
-                        <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp1_Spd_adj</property>
-                        <property name="digits">3</property>
-                        <property name="numeric">True</property>
-                        <property name="value">100</property>
-                        <signal name="changed" handler="Sp1_Pct_of_Sp0" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_SpinButton" id="Sp0_Spd">
+                      <object class="HAL_SpinButton" id="Sp0_Feed">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="text" translatable="yes">0.0</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Sp1_SpdPct</property>
                         <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp0_Spd_adj</property>
+                        <property name="adjustment">Sp0_Feed_adj</property>
                         <property name="digits">1</property>
                         <property name="numeric">True</property>
                         <signal name="changed" handler="Sp0_Spd_change_value" swapped="no"/>
                         <signal name="changed" handler="Sp1_Pct_of_Sp0" object="Sp1_Pct" swapped="no"/>
+                        <signal name="value-changed" handler="Sp0_Set_Feed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">3</property>
@@ -672,76 +600,6 @@ Fwd = CCW / Rev = CW</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="uom_pct_spindle_speed">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="valign">center</property>
-                        <property name="margin-left">4</property>
-                        <property name="margin-start">4</property>
-                        <property name="label" translatable="yes">Sp1 %  of Sp0 Speed</property>
-                        <property name="wrap">True</property>
-                        <property name="width-chars">3</property>
-                        <property name="xalign">0.05000000074505806</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">2</property>
-                        <property name="top-attach">4</property>
-                        <property name="width">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Spacer_1">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="width-chars">4</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="R01Menu01_Title_BAxis">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="margin-top">12</property>
-                        <property name="label" translatable="yes">B Axis</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Sans Bold 13"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">6</property>
-                        <property name="width">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_SpinButton" id="B_Idx_Dist">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="halign">end</property>
-                        <property name="valign">center</property>
-                        <property name="text" translatable="yes">90.000</property>
-                        <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
-                        <property name="input-purpose">number</property>
-                        <property name="adjustment">B_Idx_Dist_adj</property>
-                        <property name="digits">3</property>
-                        <property name="numeric">True</property>
-                        <property name="value">90</property>
-                        <signal name="change-value" handler="B_Idx_Dist" swapped="no"/>
-                        <signal name="value-changed" handler="B_Idx_Dist" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">7</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="HAL_SpinButton" id="B_Feed">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -755,11 +613,11 @@ Fwd = CCW / Rev = CW</property>
                         <property name="digits">1</property>
                         <property name="numeric">True</property>
                         <property name="update-policy">if-valid</property>
-                        <signal name="value-changed" handler="B_Idx_Feed" swapped="no"/>
+                        <signal name="value-changed" handler="B_Set_Idx_Feed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">3</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -773,7 +631,7 @@ Fwd = CCW / Rev = CW</property>
                       </object>
                       <packing>
                         <property name="left-attach">4</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -791,7 +649,7 @@ Fwd = CCW / Rev = CW</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">9</property>
+                        <property name="top-attach">8</property>
                         <property name="width">13</property>
                       </packing>
                     </child>
@@ -857,7 +715,7 @@ Fwd = CCW / Rev = CW</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Label" id="BIdxQty1">
+                      <object class="HAL_Label" id="Sp0_Idx_Qty">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="valign">center</property>
@@ -874,7 +732,7 @@ Fwd = CCW / Rev = CW</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Label" id="BIdxQty">
+                      <object class="HAL_Label" id="B_Idx_Qty">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="valign">center</property>
@@ -887,7 +745,7 @@ Fwd = CCW / Rev = CW</property>
                       </object>
                       <packing>
                         <property name="left-attach">10</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -951,21 +809,57 @@ Fwd = CCW / Rev = CW</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">7</property>
                         <property name="width">13</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Spacer_1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="width-chars">4</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">4</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="R01Menu01_Title_BAxis">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin-top">12</property>
+                        <property name="label" translatable="yes">B Axis</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">5</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="HAL_SpinButton" id="B_Idx_Dist">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="text" translatable="yes">90.000</property>
+                        <property name="overwrite-mode">True</property>
+                        <property name="input-purpose">number</property>
+                        <property name="adjustment">B_Idx_Dist_adj</property>
+                        <property name="digits">3</property>
+                        <property name="numeric">True</property>
+                        <property name="value">90</property>
+                        <signal name="value-changed" handler="B_Set_Idx_Dist" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">6</property>
+                      </packing>
                     </child>
                     <child>
                       <placeholder/>

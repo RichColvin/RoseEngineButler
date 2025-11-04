@@ -3,99 +3,32 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
-  <object class="GtkImage" id="B_I_CCW">
+  <object class="GtkImage" id="Image_Fwd">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCCW.png</property>
   </object>
-  <object class="GtkImage" id="B_I_CW">
+  <object class="GtkImage" id="Image_Rev">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCW.png</property>
   </object>
-  <object class="GtkAdjustment" id="B_Idx_Dist_adj">
-    <property name="upper">360</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="B_Idx_Feed_adj">
-    <property name="upper">100</property>
-    <property name="value">60</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkImage" id="CCW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="CW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
-  </object>
-  <object class="GtkEntryCompletion" id="Idx_entrycompletion">
-    <property name="inline-completion">True</property>
-  </object>
-  <object class="GtkImage" id="Sp0_I_CCW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="Sp0_I_CW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp0_Idx_adj">
-    <property name="upper">360</property>
-    <property name="value">5</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Run_CCW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Run_CW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp0_Spd_adj">
-    <property name="upper">10</property>
-    <property name="value">1</property>
-    <property name="step-increment">0.10</property>
-    <property name="page-increment">1</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Stp">
+  <object class="GtkImage" id="Image_Stop">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/Stop.png</property>
   </object>
-  <object class="GtkAdjustment" id="Sp1_Idx_adj">
-    <property name="upper">360</property>
+  <object class="GtkAdjustment" id="Sp0_Set_Feed_adj">
+    <property name="upper">10</property>
+    <property name="value">1</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
-  <object class="GtkAdjustment" id="Sp1_Idx_adj1">
-    <property name="upper">360</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkEntryCompletion" id="Sp1_SpdPct">
-    <property name="inline-completion">True</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp1_Spd_adj">
+  <object class="GtkAdjustment" id="Sp1_Set_Move_Pct_adj">
     <property name="upper">1000</property>
+    <property name="value">100</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCW.png</property>
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
@@ -162,7 +95,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_Stop">
+                      <object class="HAL_Button" id="Sp0_Move_Stop">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -174,10 +107,9 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_Stp</property>
+                        <property name="image">Image_Stop</property>
                         <property name="image-position">top</property>
-                        <signal name="button-press-event" handler="Sp0_Stop" swapped="no"/>
-                        <signal name="pressed" handler="Sp0_Stop" swapped="no"/>
+                        <signal name="pressed" handler="Sp0_Move_Stop" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
@@ -185,7 +117,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_Fwd">
+                      <object class="HAL_Button" id="Sp0_Move_Fwd">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -195,10 +127,9 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">CCW</property>
+                        <property name="image">Image_Fwd</property>
                         <property name="image-position">top</property>
-                        <signal name="button-press-event" handler="Sp0_Fwd" swapped="no"/>
-                        <signal name="pressed" handler="Sp0_Fwd" swapped="no"/>
+                        <signal name="pressed" handler="Sp0_Move_Fwd" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">4</property>
@@ -206,7 +137,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="R01Menu01_Title_Sp1">
+                      <object class="GtkLabel" id="SubTitle_Sp1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -238,7 +169,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Middle_Page_Comment">
+                      <object class="GtkLabel" id="End_Page_Comment">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -258,7 +189,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_Rev">
+                      <object class="HAL_Button" id="Sp0_Move_Rev">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -270,11 +201,10 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">image3</property>
+                        <property name="image">Image_Rev</property>
                         <property name="use-underline">True</property>
                         <property name="image-position">top</property>
-                        <signal name="button-press-event" handler="Sp0_Rev" swapped="no"/>
-                        <signal name="pressed" handler="Sp0_Rev" swapped="no"/>
+                        <signal name="pressed" handler="Sp0_Move_Rev" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
@@ -282,19 +212,19 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Sp0_Spd">
+                      <object class="HAL_SpinButton" id="Sp0_Set_Feed">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="text" translatable="yes">0.0</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Sp1_SpdPct</property>
                         <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp0_Spd_adj</property>
+                        <property name="adjustment">Sp0_Set_Feed_adj</property>
                         <property name="digits">1</property>
                         <property name="numeric">True</property>
-                        <signal name="value-changed" handler="Sp0_Spd" swapped="no"/>
+                        <property name="value">1</property>
+                        <signal name="value-changed" handler="Sp0_Set_Feed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -313,7 +243,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Title_Run_Operation3">
+                      <object class="GtkLabel" id="Title_Feed_Rate">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -334,7 +264,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="uom_rpm">
+                      <object class="GtkLabel" id="Sp0_uom">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">4</property>
@@ -348,7 +278,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Title_Run_Op_1">
+                      <object class="GtkLabel" id="Title_Run_Operation">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -371,20 +301,19 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Sp1_Pct">
+                      <object class="HAL_SpinButton" id="Sp1_Set_Move_Pct">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="text" translatable="yes">100.000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Sp1_SpdPct</property>
                         <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp1_Spd_adj</property>
+                        <property name="adjustment">Sp1_Set_Move_Pct_adj</property>
                         <property name="digits">3</property>
                         <property name="numeric">True</property>
                         <property name="value">100</property>
-                        <signal name="value-changed" handler="Sp1_Pct" swapped="no"/>
+                        <signal name="value-changed" handler="Sp1_Set_Move_Pct" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -392,7 +321,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="uom_pct_spindle_speed">
+                      <object class="GtkLabel" id="Sp1_uom">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -410,7 +339,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Spacer_05">
+                      <object class="GtkLabel" id="Spacer_6">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="width-chars">4</property>
@@ -418,38 +347,6 @@ Operation</property>
                       <packing>
                         <property name="left-attach">0</property>
                         <property name="top-attach">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Title_Comment_1">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">end</property>
-                        <property name="margin-top">6</property>
-                        <property name="margin-bottom">6</property>
-                        <property name="label" translatable="yes">Comments</property>
-                        <property name="justify">center</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Sans Bold 13"/>
-                          <attribute name="weight" value="bold"/>
-                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="left-attach">8</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Spacer_03">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="width-chars">4</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">8</property>
-                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
@@ -486,7 +383,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Title_Fwd_1">
+                      <object class="GtkLabel" id="Subtitle_Fwd">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -505,7 +402,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Title_Stop_1">
+                      <object class="GtkLabel" id="Subtitle_Stop">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -524,7 +421,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="Title_Rev_1">
+                      <object class="GtkLabel" id="Subtitle_Rev">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
@@ -594,10 +491,25 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="Title_Comments">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">end</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="label" translatable="yes">Comments</property>
+                        <property name="justify">center</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 13"/>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">1</property>
+                      </packing>
                     </child>
                     <child>
                       <placeholder/>

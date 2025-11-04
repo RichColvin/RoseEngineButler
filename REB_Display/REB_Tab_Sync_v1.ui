@@ -3,29 +3,26 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
-  <object class="GtkEntryCompletion" id="Idx_entrycompletion">
-    <property name="inline-completion">True</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp0_Idx_adj">
-    <property name="upper">360</property>
-    <property name="value">90</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Run_CCW">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/RunCCW.png</property>
-  </object>
-  <object class="GtkImage" id="Sp0_Run_CW">
+  <object class="GtkImage" id="Image_Run_Sync_Fwd">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/RunCW.png</property>
   </object>
-  <object class="GtkImage" id="Sp0_Run_Stp">
+  <object class="GtkImage" id="Image_Run_Sync_Rev">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/RunCCW.png</property>
+  </object>
+  <object class="GtkImage" id="Image_Run_Sync_Stop">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/Stop.png</property>
+  </object>
+  <object class="GtkAdjustment" id="Sp0_Set_Idx_Dist_adj">
+    <property name="upper">360</property>
+    <property name="value">90</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Sp1_Idx_adj">
     <property name="upper">360</property>
@@ -33,10 +30,7 @@
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
-  <object class="GtkEntryCompletion" id="Sp1_SpdPct">
-    <property name="inline-completion">True</property>
-  </object>
-  <object class="GtkAdjustment" id="Sp1_Spd_adj">
+  <object class="GtkAdjustment" id="Sp1_Set_Move_Pct_adj">
     <property name="upper">1000</property>
     <property name="value">100</property>
     <property name="step-increment">1</property>
@@ -87,7 +81,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_CCW">
+                      <object class="HAL_Button" id="Run_Sync_Rev">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -99,9 +93,10 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_Run_CCW</property>
+                        <property name="image">Image_Run_Sync_Rev</property>
                         <property name="use-underline">True</property>
                         <property name="image-position">top</property>
+                        <signal name="pressed" handler="Run_Sync_Rev" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">7</property>
@@ -109,7 +104,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_Stop">
+                      <object class="HAL_Button" id="Run_Sync_Stop">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -121,8 +116,9 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_Run_Stp</property>
+                        <property name="image">Image_Run_Sync_Stop</property>
                         <property name="image-position">top</property>
+                        <signal name="pressed" handler="Sp0_Move_Stop" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
@@ -130,7 +126,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="Sp0_CW">
+                      <object class="HAL_Button" id="Run_Sync_Fwd">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -142,8 +138,9 @@
                         <property name="margin-end">2</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">Sp0_Run_CW</property>
+                        <property name="image">Image_Run_Sync_Fwd</property>
                         <property name="image-position">top</property>
+                        <signal name="pressed" handler="Run_Sync_Fwd" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
@@ -169,19 +166,19 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Sp1_Pct">
+                      <object class="HAL_SpinButton" id="Sp1_Set_Move_Pct">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="text" translatable="yes">100.000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Sp1_SpdPct</property>
                         <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp1_Spd_adj</property>
+                        <property name="adjustment">Sp1_Set_Move_Pct_adj</property>
                         <property name="digits">3</property>
                         <property name="numeric">True</property>
                         <property name="value">100</property>
+                        <signal name="value-changed" handler="Sp1_Set_Move_Pct" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -220,7 +217,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Syn_X_Dist">
+                      <object class="HAL_SpinButton" id="X_Move_Dist">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
@@ -229,11 +226,11 @@
                         <property name="margin-bottom">2</property>
                         <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
                         <property name="climb-rate">0.01</property>
                         <property name="digits">4</property>
                         <property name="numeric">True</property>
+                        <signal name="value-changed" handler="U_Set_Move_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -338,11 +335,11 @@ Operation</property>
                         <property name="margin-bottom">2</property>
                         <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
                         <property name="climb-rate">0.01</property>
                         <property name="digits">4</property>
                         <property name="numeric">True</property>
+                        <signal name="value-changed" handler="Y_Set_Move_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -360,11 +357,11 @@ Operation</property>
                         <property name="margin-bottom">2</property>
                         <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
                         <property name="climb-rate">0.01</property>
                         <property name="digits">4</property>
                         <property name="numeric">True</property>
+                        <signal name="value-changed" handler="Z_Set_Move_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -373,7 +370,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Syn_U_Dist">
+                      <object class="HAL_SpinButton" id="U_Move_Dist">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
@@ -382,11 +379,11 @@ Operation</property>
                         <property name="margin-bottom">2</property>
                         <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
                         <property name="climb-rate">0.01</property>
                         <property name="digits">4</property>
                         <property name="numeric">True</property>
+                        <signal name="value-changed" handler="U_Set_Move_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -395,7 +392,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Syn_V_Dist">
+                      <object class="HAL_SpinButton" id="V_Move_Dist">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
@@ -404,11 +401,11 @@ Operation</property>
                         <property name="margin-bottom">2</property>
                         <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
                         <property name="climb-rate">0.01</property>
                         <property name="digits">4</property>
                         <property name="numeric">True</property>
+                        <signal name="value-changed" handler="V_Set_Move_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
@@ -611,7 +608,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_CheckButton" id="Syn_X_Use">
+                      <object class="HAL_CheckButton" id="X_Sync_OnOff">
                         <property name="label" translatable="yes">X</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -620,6 +617,7 @@ Operation</property>
                         <property name="valign">center</property>
                         <property name="image-position">right</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="X_Set_Sync_OnOff" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -627,7 +625,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_CheckButton" id="Syn_Y_Use">
+                      <object class="HAL_CheckButton" id="Y_Sync_OnOff">
                         <property name="label" translatable="yes">Y</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -635,6 +633,7 @@ Operation</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="Y_Set_Sync_OnOff" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -642,7 +641,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_CheckButton" id="Syn_Z_Use">
+                      <object class="HAL_CheckButton" id="Z_Sync_OnOff">
                         <property name="label" translatable="yes">Z</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -650,6 +649,7 @@ Operation</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="Z_Set_Sync_OnOff" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -657,7 +657,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_CheckButton" id="Syn_U_Use">
+                      <object class="HAL_CheckButton" id="U_Sync_OnOff">
                         <property name="label" translatable="yes">U</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -665,6 +665,7 @@ Operation</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="U_Set_Sync_OnOff" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -743,19 +744,19 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_SpinButton" id="Sp_I_Amt">
+                      <object class="HAL_SpinButton" id="Sp0_Set_Idx_Dist">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="text" translatable="yes">90.000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
-                        <property name="adjustment">Sp0_Idx_adj</property>
+                        <property name="adjustment">Sp0_Set_Idx_Dist_adj</property>
                         <property name="digits">3</property>
                         <property name="numeric">True</property>
                         <property name="value">90</property>
+                        <signal name="value-changed" handler="Sp0_Set_Idx_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -772,13 +773,14 @@ Operation</property>
                         <property name="margin-start">4</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="HAL_RadioButton" id="Sp_I_Deg">
+                          <object class="HAL_RadioButton" id="Sp0_Set_Idx_by_Deg">
                             <property name="label" translatable="yes">deg</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
-                            <property name="group">Sp_I_Div</property>
+                            <property name="group">Sp0_Set_Idx_by_Div</property>
+                            <signal name="button-press-event" handler="Sp0_Set_Idx_by_Deg" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -787,13 +789,14 @@ Operation</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="HAL_RadioButton" id="Sp_I_Div">
+                          <object class="HAL_RadioButton" id="Sp0_Set_Idx_by_Div">
                             <property name="label" translatable="yes">div</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
-                            <property name="group">Sp_I_Deg</property>
+                            <property name="group">Sp0_Set_Idx_by_Deg</property>
+                            <signal name="button-press-event" handler="Sp0_Set_Idx_by_Div" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -821,6 +824,7 @@ Operation</property>
                             <property name="receives-default">False</property>
                             <property name="active">True</property>
                             <property name="draw-indicator">True</property>
+                            <signal name="toggled" handler="Sp0_Set_Idx_OnOff" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -836,6 +840,7 @@ Operation</property>
                             <property name="receives-default">False</property>
                             <property name="active">True</property>
                             <property name="draw-indicator">True</property>
+                            <signal name="toggled" handler="Sp1_Set_Idx_OnOff" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1089,7 +1094,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_CheckButton" id="Syn_V_Use">
+                      <object class="HAL_CheckButton" id="V_Sync_OnOff">
                         <property name="label" translatable="yes">V</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -1097,6 +1102,7 @@ Operation</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="V_Set_Sync_OnOff" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -1142,7 +1148,7 @@ Operation</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_CheckButton" id="Syn_B_Use">
+                      <object class="HAL_CheckButton" id="_Sync_OnOff">
                         <property name="label" translatable="yes">B</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -1150,6 +1156,7 @@ Operation</property>
                         <property name="halign">end</property>
                         <property name="valign">center</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="B_Set_Sync_OnOff" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -1166,11 +1173,11 @@ Operation</property>
                         <property name="margin-bottom">2</property>
                         <property name="text" translatable="yes">0.0000</property>
                         <property name="overwrite-mode">True</property>
-                        <property name="completion">Idx_entrycompletion</property>
                         <property name="input-purpose">number</property>
                         <property name="climb-rate">0.01</property>
                         <property name="digits">4</property>
                         <property name="numeric">True</property>
+                        <signal name="value-changed" handler="B_Set_Move_Dist" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
