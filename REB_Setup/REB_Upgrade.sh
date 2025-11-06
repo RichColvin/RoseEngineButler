@@ -112,5 +112,5 @@ if [ $? != 0 ]; then
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-echo -e "${TITLE}Sustem upgraded                                                        ${NOCOLOR}"
+echo -e "${TITLE}System upgraded                                                        ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
