@@ -28,6 +28,8 @@
 #
 # Version
 #   1.0 - 27 Oct 2025, R. Colvin
+#   1.1 - 23 Dec 2025, R. Colvin - Changed text from "upgrade" to
+#         "update".
 #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 
 #
