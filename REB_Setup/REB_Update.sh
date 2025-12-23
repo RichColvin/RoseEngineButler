@@ -14,7 +14,7 @@
 # LinuxCNC configuration for use with a Rose Engine
 #
 # File:
-#   Upgrade.sh
+#   REB_Update.sh
 #
 # Purpose:
 #   This updates the files pulled from GitHub.
@@ -82,7 +82,7 @@ echo -e "${TITLE}                                                               
 echo -e "${TITLE}Use of this system constitutes consent to the MIT/X Consortium License ${NOCOLOR}"
 echo -e "${TITLE}as it applies to the Rose Engine Butler system.                        ${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
-echo -e "${TITLE}Upgrade the system                                                     ${NOCOLOR}"
+echo -e "${TITLE}Update the system                                                     ${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}Pull latest files from GitHub                                          ${NOCOLOR}"
@@ -105,12 +105,12 @@ if [ $? != 0 ]; then
 fi
 echo -e "${TITLE}Latest package updates secured                                         ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Upgrade the system                                             ${NOCOLOR}"
+echo -e "${TITLE}Update the system                                             ${NOCOLOR}"
 sudo apt upgrade -y
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: System upgrade failed                                         ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-echo -e "${TITLE}System upgraded                                                        ${NOCOLOR}"
+echo -e "${TITLE}System Updated                                                        ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
