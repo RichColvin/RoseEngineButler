@@ -87,9 +87,14 @@ class HandlerClass:
         self.nhits += 1
         self.builder.get_object('hits').set_label("Hits: %d" % (self.nhits))
 
-#######################################################################
-# Axis B                                                              #
-#######################################################################
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      BBBBBBB
+#   AAAA    XX  XX    II     SS    SS     BB    BB
+#  AA  AA    XXXX     II      SSS         BBBBBBB
+# AAAAAAAA   XXXX     II         SSS      BB    BB
+# AA    AA  XX  XX    II     SS    SS     BB    BB
+# AA    AA XX    XX IIIIIIII  SSSSSS      BBBBBBB
+# ********************************************************************
 
 #######################################################################
 # B_Move_Idx_Fwd
@@ -423,6 +428,16 @@ class HandlerClass:
         Prt1 = "B_Feed = " + str(self.B_Feed)
         print(Prt1)
 
+
+# ********************************************************************
+#    AA     LL       LL              AA    XX    XX EEEEEEEE  SSSSSS 
+#   AAAA    LL       L              AAAA    XX  XX  EE       SSS   SS
+#  AA  AA   LL       LL            AA  AA    XXXX   EE        SSS 
+# AAAAAAAA  LL       LL           AAAAAAAA   XXXX   EEEEE        SSS 
+# AA    AA  LL       LL           AA    AA  XX  XX  EE       SS    SS
+# AA    AA  LLLLLLLL LLLLLLLL     AA    AA XX    XX EEEEEEEE  SSSSSS  
+# ********************************************************************
+
 #######################################################################
 # Synchronized Movement                                               #
 #######################################################################
@@ -514,10 +529,14 @@ class HandlerClass:
         c.wait_complete()
         '''
 
-
-#######################################################################
-# Spindle 0                                                           #
-#######################################################################
+# ********************************************************************
+#  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE   0000
+# SS    SS PP    PP    II    NN    NN DD    DD LL       EE        00  00
+#  SSS     PP    PP    II    NNN   NN DD    DD LL       EEEEE    00    00
+#     SSS  PPPPPPP     II    NN NN NN DD    DD LL       EE       00    00
+# SS    SS PP          II    NN  NNNN DD    DD LL       EE        00  00
+#  SSSSSS  PP       IIIIIIII NN    NN DDDDDDD  LLLLLLLL EEEEEEEE   0000
+# ********************************************************************
 
 #######################################################################
 # Sp0_Move_Fwd
@@ -1038,10 +1057,14 @@ class HandlerClass:
                 self.Sp0_Idx_Bool = True
                 print("Sp0_Idx_Bool = True")
 
-
-#######################################################################
-# Spindle 1                                                           #
-#######################################################################
+# ********************************************************************
+#  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE  1111
+# SS    SS PP    PP    II    NN    NN DD    DD LL       EE       11 11
+#  SSS     PP    PP    II    NNN   NN DD    DD LL       EEEEE       11
+#     SSS  PPPPPPP     II    NN NN NN DD    DD LL       EE          11
+# SS    SS PP          II    NN  NNNN DD    DD LL       EE          11
+#  SSSSSS  PP       IIIIIIII NN    NN DDDDDDD  LLLLLLLL EEEEEEEE 11111111
+# ********************************************************************
 
 #######################################################################
 # Sp1_Set_Idx_Dist
@@ -1151,11 +1174,14 @@ class HandlerClass:
         # Wait for the command to complete
         c.wait_complete()
 
-
-
-#######################################################################
-# Axis U                                                              #
-#######################################################################
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      UU    UU
+#   AAAA    XX  XX    II     SS    SS     UU    UU
+#  AA  AA    XXXX     II      SSS         UU    UU
+# AAAAAAAA   XXXX     II         SSS      UU    UU
+# AA    AA  XX  XX    II     SS    SS     UU    UU
+# AA    AA XX    XX IIIIIIII  SSSSSS       UUUUUU
+# ********************************************************************
 
 #######################################################################
 # U_Move_Minus
@@ -1360,10 +1386,14 @@ class HandlerClass:
                 self.U_Sync_Bool = True
                 print("U_Sync_Bool = True")
 
-
-#######################################################################
-# Axis V                                                              #
-#######################################################################
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      VV    VV
+#   AAAA    XX  XX    II     SS    SS     VV    VV
+#  AA  AA    XXXX     II      SSS         VV    VV
+# AAAAAAAA   XXXX     II         SSS       VV  VV
+# AA    AA  XX  XX    II     SS    SS       VVVV
+# AA    AA XX    XX IIIIIIII  SSSSSS         VV
+# ********************************************************************
 
 #######################################################################
 # V_Move_Minus
@@ -1568,10 +1598,14 @@ class HandlerClass:
                 self.V_Sync_Bool = True
                 print("V_Sync_Bool = True")
 
-
-#######################################################################
-# Axis X                                                              #
-#######################################################################
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      YY    YY
+#   AAAA    XX  XX    II     SS    SS      YY  YY
+#  AA  AA    XXXX     II      SSS           YYYY
+# AAAAAAAA   XXXX     II         SSS        XXXX
+# AA    AA  XX  XX    II     SS    SS      XX   XX
+# AA    AA XX    XX IIIIIIII  SSSSSS      XX     XX
+# ********************************************************************
 
 #######################################################################
 # X_Move_Minus
@@ -1776,10 +1810,14 @@ class HandlerClass:
                 self.X_Sync_Bool = True
                 print("X_Sync_Bool = True")
 
-
-#######################################################################
-# Axis Y                                                              #
-#######################################################################
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      YY    YY
+#   AAAA    XX  XX    II     SS    SS      YY  YY
+#  AA  AA    XXXX     II      SSS           YYYY
+# AAAAAAAA   XXXX     II         SSS         YY
+# AA    AA  XX  XX    II     SS    SS        YY
+# AA    AA XX    XX IIIIIIII  SSSSSS         YY
+# ********************************************************************
 
 #######################################################################
 # Y_Move_Minus
@@ -1984,10 +2022,14 @@ class HandlerClass:
                 self.Y_Sync_Bool = True
                 print("Y_Sync_Bool = True")
 
-
-#######################################################################
-# Axis Z                                                              #
-#######################################################################
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
+#   AAAA    XX  XX    II     SS    SS          ZZ
+#  AA  AA    XXXX     II      SSS             ZZ
+# AAAAAAAA   XXXX     II         SSS        ZZ
+# AA    AA  XX  XX    II     SS    SS      ZZ
+# AA    AA XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
+# ********************************************************************
 
 #######################################################################
 # Z_Move_Minus
