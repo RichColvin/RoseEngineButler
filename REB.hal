@@ -86,20 +86,24 @@
 #
 
 # ********************************************************************
-# Details about the fields are available in the 
-#   LinuxCNC 2.9.4 System Manual, 
+# Details about the fields are available in the
+#   LinuxCNC 2.9.4 System Manual,
 #   https://linuxcnc.org/docs/stable/html/
 # ********************************************************************
 
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES
 loadrt hostmot2
-loadrt hm2_eth board_ip="192.168.1.121" config="num_encoders=0 num_pwmgens=0 num_stepgens=8" 
+loadrt hm2_eth board_ip="192.168.1.121" config="num_encoders=0 num_pwmgens=0 num_stepgens=8"
+loadrt orient
+loadrt sum2
+
 # loadusr -Wn REBPanel pyvcp -c REBPanel REB_Display/Main.xml
 
 setp  hm2_7i92.0.watchdog.timeout_ns 5000000
 
-loadrt pid names=pid.x,pid.y,pid.z,pid.b,pid.u,pid.v,pid.s0,pid.s1
+# loadrt pid names=pid.x,pid.y,pid.z,pid.b,pid.u,pid.v,pid.s0,pid.s1
+loadrt pid names=pid.x,pid.y,pid.z,pid.b,pid.u,pid.v,pid.s0,pid.s1,pid.p0
 # loadrt pid num_chan=2
 
 addf hm2_7i92.0.read                        servo-thread
@@ -389,7 +393,7 @@ net v-vel-cmd                           <=  joint.5.vel-cmd
 net v-output                             => hm2_7i92.0.stepgen.01.velocity-cmd
 net v-pos-fb                            <=  hm2_7i92.0.stepgen.01.position-fb
 net v-pos-fb                             => joint.5.motor-pos-fb
-# net v-enable                            <=  joint.5.amp-enable-out
+# net v-enable                          <=  joint.5.amp-enable-out
 net v-enable                             => hm2_7i92.0.stepgen.01.enable
 
 net v-home-sw                            => joint.5.home-sw-in
@@ -415,10 +419,14 @@ setp pid.s0.error-previous-target           true
 # setp pid.s0.maxerror                        0.000500
 
 net spindle.0-index-enable               => pid.s0.index-enable
-net spindle.0-enable                     => pid.s0.enable                                                                               
+net spindle.0-enable                     => pid.s0.enable
 net spindle.0-vel-cmd-rpm                => pid.s0.command
 net spindle.0-vel-fb-rpm                 => pid.s0.feedback
-net spindle.0-output                    <=  pid.s0.output
+
+#****************************
+#  Below commented out 23 Dec 25 per instructions from Andy Pugh
+#****************************
+# net spindle.0-output                    <=  pid.s0.output
 
 setp hm2_7i92.0.stepgen.05.dirsetup         [SPINDLE_0]DIRSETUP
 setp hm2_7i92.0.stepgen.05.dirhold          [SPINDLE_0]DIRHOLD
@@ -433,13 +441,21 @@ setp hm2_7i92.0.stepgen.05.maxvel           [SPINDLE_0]STEPGEN_MAXVEL
 net machine-is-on                        => hm2_7i92.0.stepgen.05.enable
 
 net spindle.0-vel-cmd-rps                => hm2_7i92.0.stepgen.05.velocity-cmd
-net spindle.0-vel-fb-rps                <=  hm2_7i92.0.stepgen.05.velocity-fb
+# net spindle.0-vel-fb-rps                <=  hm2_7i92.0.stepgen.05.velocity-fb
 
 net spindle.0-vel-cmd-rps               <=  spindle.0.speed-out-rps
 net spindle.0-vel-cmd-rps-abs           <=  spindle.0.speed-out-rps-abs
 net spindle.0-vel-cmd-rpm               <=  spindle.0.speed-out
 net spindle.0-vel-cmd-rpm-abs           <=  spindle.0.speed-out-abs
+net spindle.0-vel-fb-rps                <=  hm2_7i92.0.stepgen.05.velocity-fb
+net spindle.0-vel-fb-rps                 => orient.0.position pid.p0.feedback
+
+net spindle.0-position-fb               <=  hm2_7i92.0.stepgen.05.position-fb
+net spindle.0-pos-mode-enable   spindle.0.orient orient.0.enable    => pid.p0.enable
+net spindle.0-pos-cmd           orient.0.command                    => pid.p0.command
+
 # net spindle.0-enable                    <=  spindle.0.on
+
 net spindle.0-cw                        <=  spindle.0.forward
 net spindle.0-ccw                       <=  spindle.0.reverse
 net spindle.0-brake                     <=  spindle.0.brake
@@ -450,15 +466,34 @@ net spindle.0-index-enable              <=> spindle.0.index-enable
 
 sets spindle.0-at-speed                     true
 
-setp pid.s0.Pgain                           [SPINDLE_0]P
-setp pid.s0.Igain                           [SPINDLE_0]I
-setp pid.s0.Dgain                           [SPINDLE_0]D
-setp pid.s0.bias                            [SPINDLE_0]BIAS
-setp pid.s0.FF0                             [SPINDLE_0]FF0
-setp pid.s0.FF1                             [SPINDLE_0]FF1
-setp pid.s0.FF2                             [SPINDLE_0]FF2
+setp pid.s0.Pgain                           [SPINDLE_0]P_VEL
+setp pid.s0.Igain                           [SPINDLE_0]I_VEL
+setp pid.s0.Dgain                           [SPINDLE_0]D_VEL
+setp pid.s0.bias                            [SPINDLE_0]BIAS_VEL
+setp pid.s0.FF0                             [SPINDLE_0]FF0_VEL
+setp pid.s0.FF1                             [SPINDLE_0]FF1_VEL
+setp pid.s0.FF2                             [SPINDLE_0]FF2_VEL
+
 setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
 setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT
+
+net spindle.0-output                    <=  sum2.0.out
+net spindle.0-output-vel  pid.s0.output  => sum2.0.in0
+net spindle.0-output-pos  pid.p0.output  => sum2.0.in1
+
+setp pid.p0.Pgain                           [SPINDLE_0]P_POS
+setp pid.p0.Igain                           [SPINDLE_0]I_POS
+setp pid.p0.Dgain                           [SPINDLE_0]D_POS
+setp pid.p0.bias                            [SPINDLE_0]BIAS_POS
+setp pid.p0.FF0                             [SPINDLE_0]FF0_POS
+setp pid.p0.FF1                             [SPINDLE_0]FF1_POS
+setp pid.p0.FF2                             [SPINDLE_0]FF2_POS
+
+
+#****************************
+#  Above added 23 Dec 25 per instructions from Andy Pugh
+#****************************
+
 # ********************************************************************
 
 #*******************************
