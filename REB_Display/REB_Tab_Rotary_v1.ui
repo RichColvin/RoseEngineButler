@@ -5,7 +5,7 @@
   <requires lib="gladevcp" version="0.0"/>
   <object class="GtkAdjustment" id="B_Idx_Dist_adj">
     <property name="upper">360</property>
-    <property name="step-increment">1</property>
+    <property name="step-increment">0.10</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="B_Idx_Feed_adj">
@@ -43,7 +43,7 @@
   <object class="GtkAdjustment" id="Sp0_Idx_Dist_adj">
     <property name="upper">360</property>
     <property name="value">90</property>
-    <property name="step-increment">1</property>
+    <property name="step-increment">0.10</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkWindow" id="window1">
@@ -208,7 +208,7 @@
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">B_Idx_Div</property>
-                            <signal name="button-press-event" handler="B_Set_Idx_by_Deg" swapped="no"/>
+                            <signal name="toggled" handler="B_Set_Idx_by_DegDiv" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -224,7 +224,6 @@
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">B_Idx_Deg</property>
-                            <signal name="button-press-event" handler="B_Set_Idx_by_Div" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -253,7 +252,7 @@
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">Sp0_Set_Idx_by_Div</property>
-                            <signal name="button-press-event" handler="Sp0_Set_Idx_by_Deg" swapped="no"/>
+                            <signal name="toggled" handler="Sp0_Set_Idx_by_DegDiv" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -269,7 +268,6 @@
                             <property name="receives-default">False</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">Sp0_Set_Idx_by_Deg</property>
-                            <signal name="button-press-event" handler="Sp0_Set_Idx_by_Div" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -554,7 +552,7 @@ Fwd = CCW / Rev = CW</property>
                         <property name="overwrite-mode">True</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">Sp0_Idx_Dist_adj</property>
-                        <property name="digits">3</property>
+                        <property name="digits">1</property>
                         <property name="numeric">True</property>
                         <property name="value">90</property>
                         <signal name="value-changed" handler="Sp0_Set_Idx_Dist" swapped="no"/>
@@ -851,7 +849,7 @@ Fwd = CCW / Rev = CW</property>
                         <property name="overwrite-mode">True</property>
                         <property name="input-purpose">number</property>
                         <property name="adjustment">B_Idx_Dist_adj</property>
-                        <property name="digits">3</property>
+                        <property name="digits">1</property>
                         <property name="numeric">True</property>
                         <property name="value">90</property>
                         <signal name="value-changed" handler="B_Set_Idx_Dist" swapped="no"/>

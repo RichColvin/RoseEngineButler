@@ -26,7 +26,7 @@
 #   Brainwave Embedded.
 #
 # Version
-#   1.0 - 03 November 2025, R. Colvin
+#   1.0 - 26 December 2025, R. Colvin
 #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.
 #
@@ -95,7 +95,7 @@ class HandlerClass:
 # B_Move_Idx_Fwd
 # Purpose:              This is used to run the B axis forward using
 #                       the G0 Gcode.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -145,7 +145,7 @@ class HandlerClass:
 # B_Move_Idx_Rev
 # Purpose:              This is used to run the B axis in reverse using
 #                       the G0 Gcode.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -188,10 +188,20 @@ class HandlerClass:
         c.wait_complete()
 
 #######################################################################
+# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
+# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
+# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
+# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
+# D   D  E      P      R   R  E      C      A   A    T    E      D   D
+# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
+# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
+# 
+# DEPRECATED:  This was replaced by B_Set_Idx_by_DegDiv
+#
 # B_Set_Idx_by_Deg
 # Purpose:              This is used to set the rotational distance
 #                       measurement as degrees for the B axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -222,12 +232,67 @@ class HandlerClass:
         Prt2 = "B_Idx_Deg = " + str(self.B_Idx_Deg) + " deg"
         print(Prt2)
 
+
+
 #######################################################################
+# Sp0_Set_Idx_by_DegDiv
+# Purpose:              This is used to set the rotational distance
+#                       measurement for the Sp0 & Sp1 spindles.
+#                       If degrees, set to divisions; 
+#                       if divisions, set to degrees.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Rotary
+#                       REB_Tab_Sync
+#   Button:             Sp0_Set_Idx_by_Deg  (HAL_RadioButton)
+#   Signal:             GtkWidget/button-press-event
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     self.Sp0_Idx_Dist - distance field data
+#       Set:            self.Sp0_Idx_Deg - degrees to index
+#                       self.Sp0_Idx_DegDiv - type of distance
+#                           measurement (Deg or Div)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def B_Set_Idx_by_DegDiv(self,widget):
+
+        print("=================================================")
+        print("FUNCTION B_Set_Idx_by_DegDiv")
+
+        if self.B_Idx_DegDiv == "Deg":
+		        self.B_Idx_DegDiv = "Div"
+		        self.B_Idx_Deg = round(360 / self.B_Idx_Dist, 1)
+        else:
+		        self.B_Idx_DegDiv = "Deg"
+		        self.B_Idx_Deg = round(self.B_Idx_Dist, 1)
+
+        Prt1 = "B_Idx_Deg = " + str(self.B_Idx_Deg)
+        print(Prt1)
+
+        Prt2 = "self.B_Idx_DegDiv = " + self.B_Idx_DegDiv
+        print(Prt2)
+
+#######################################################################
+# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
+# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
+# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
+# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
+# D   D  E      P      R   R  E      C      A   A    T    E      D   D
+# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
+# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
+# 
+# DEPRECATED:  This was replaced by B_Set_Idx_by_DegDiv
+#
 # B_Set_Idx_by_Div
 # Purpose:              This is used to set the rotational distance
 #                       measurement as divisions of a circle for the B
 #                       axis (deg = 360/div).
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -263,7 +328,7 @@ class HandlerClass:
 # B_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the B axis.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -293,7 +358,7 @@ class HandlerClass:
 # Purpose:              This is used to set the rotational distance
 #                       (degrees or divisions of a circle) for the B
 #                       axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -319,9 +384,9 @@ class HandlerClass:
         self.B_Idx_Dist = widget.get_value()
 
         if self.B_Idx_DegDiv == "Deg":
-                self.B_Idx_Deg = self.B_Idx_Dist
+                self.B_Idx_Deg = round(self.B_Idx_Dist, 1)
         else:
-                self.B_Idx_Deg = 360 / self.B_Idx_Dist
+                self.B_Idx_Deg = round(360 / self.B_Idx_Dist, 1)
 
         Prt1 = "B_Idx_DegDiv = " + self.B_Idx_DegDiv
         print(Prt1)
@@ -332,7 +397,7 @@ class HandlerClass:
 # B_Set_Idx_Feed
 # Purpose:              This is used to set the movement speed for the
 #                       B axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary    (HAL_SpinButton)
@@ -367,7 +432,7 @@ class HandlerClass:
 # Purpose:              This is used to start the spindles rotating in
 #                           reverse.
 #                       Note:  this starts both Sp0 and Sp1.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -459,7 +524,7 @@ class HandlerClass:
 # Purpose:              This is used to start the spindles rotating
 #                           forward.
 #                       Note:  this starts both Sp0 and Sp1.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Base
@@ -514,7 +579,7 @@ class HandlerClass:
 # Sp0_Move_Idx_Fwd
 # Purpose:              This is used to index the Sp0 spindle in a
 #                           forward direction.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -570,7 +635,7 @@ class HandlerClass:
 # Sp0_Move_Idx_Rev
 # Purpose:              This is used to index the Sp0 spindle in a
 #                           reverse direction.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -626,7 +691,7 @@ class HandlerClass:
 # Purpose:              This is used to start the spindles rotating in
 #                           reverse.
 #                       Note:  this starts both Sp0 and Sp1.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Base
@@ -682,7 +747,7 @@ class HandlerClass:
 # Sp0_Move_Stop
 # Purpose:              This is used to stop the spindles rotating.
 #                       Note:  this stops both Sp0 and Sp1.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Base
@@ -726,7 +791,7 @@ class HandlerClass:
 #                           spindle (Sp0) & the rosette phaser
 #                           multiplier (Sp1).  (Sp1 gets multiplied
 #                           by the value of Sp1Pct
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Base
@@ -748,15 +813,46 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION Sp0_Set_Feed")
 
-        self.Sp0_Feed = widget.get_value()
+        self.Sp0_Feed = round(widget.get_value(), 1)
         print("self.Sp0_Feed = " + str(self.Sp0_Feed))
 
+        Sp1_Feed = round(self.Sp0_Feed * self.Sp1_Pct / 100, 2)
+
+        Gcode0 = "S" + str(self.Sp0_Feed) + " $0"
+        Gcode1 = "S" + str(Sp1_Feed) + " $1"
+
+        # Ensure the system is in MDI mode
+        s.poll()
+        if s.task_state != linuxcnc.MODE_MDI:
+                c.mode(linuxcnc.MODE_MDI)
+                c.wait_complete() # Wait for mode change to complete
+
+        # Send an MDI commands to set the spindle speeds.
+        print(Gcode0)
+        c.mdi(Gcode0)
+
+        print(Gcode1)
+        c.mdi(Gcode1)
+
+        # Wait for the command to complete
+        c.wait_complete()
+
 #######################################################################
+# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
+# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
+# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
+# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
+# D   D  E      P      R   R  E      C      A   A    T    E      D   D
+# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
+# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
+# 
+# DEPRECATED:  This was replaced by Sp0_Set_Idx_by_DegDiv
+#
 # Sp0_Set_Idx_by_Deg
 # Purpose:              This is used to set the rotational distance
 #                       measurement as degrees for the Sp0 & Sp1
 #                       spindles.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -789,11 +885,64 @@ class HandlerClass:
         print(Prt2)
 
 #######################################################################
+# Sp0_Set_Idx_by_DegDiv
+# Purpose:              This is used to set the rotational distance
+#                       measurement for the Sp0 & Sp1 spindles.
+#                       If degrees, set to divisions; 
+#                       if divisions, set to degrees.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Rotary
+#                       REB_Tab_Sync
+#   Button:             Sp0_Set_Idx_by_Deg  (HAL_RadioButton)
+#   Signal:             GtkWidget/button-press-event
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     self.Sp0_Idx_Dist - distance field data
+#       Set:            self.Sp0_Idx_Deg - degrees to index
+#                       self.Sp0_Idx_DegDiv - type of distance
+#                           measurement (Deg or Div)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def Sp0_Set_Idx_by_DegDiv(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp0_Set_Idx_by_DegDiv")
+
+        if self.Sp0_Idx_DegDiv == "Deg":
+		        self.Sp0_Idx_DegDiv = "Div"
+		        self.Sp0_Idx_Deg = round(360 / self.Sp0_Idx_Dist, 1)
+        else:
+		        self.Sp0_Idx_DegDiv = "Deg"
+		        self.Sp0_Idx_Deg = round(self.Sp0_Idx_Dist, 1)
+
+        Prt1 = "Sp0_Idx_Deg = " + str(self.Sp0_Idx_Deg)
+        print(Prt1)
+
+        Prt2 = "self.Sp0_Idx_DegDiv = " + self.Sp0_Idx_DegDiv
+        print(Prt2)
+
+#######################################################################
+# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
+# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
+# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
+# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
+# D   D  E      P      R   R  E      C      A   A    T    E      D   D
+# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
+# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
+# 
+# DEPRECATED:  This was replaced by Sp0_Set_Idx_by_DegDiv
+#
 # Sp0_Set_Idx_by_Div
 # Purpose:              This is used to set the rotational distance
 #                       measurement as divisions of a circle for the
 #                       Sp0 & Sp1 spindles (deg = 360/div).
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -815,7 +964,7 @@ class HandlerClass:
     def Sp0_Set_Idx_by_Div(self,widget):
 
         print("=================================================")
-        print("Sp0_Set_Idx_by_Div B_Set_Idx_by_Div")
+        print("FUNCTION Sp0_Set_Idx_by_Div")
 
         self.Sp0_Idx_DegDiv = "Div"
         self.Sp0_Idx_Deg = 360 / self.Sp0_Idx_Dist
@@ -831,7 +980,7 @@ class HandlerClass:
 #                           operation moves the spindles(s).  This is
 #                           used with self.Sp0_Idx_DegDiv to set the
 #                           actual movement distance.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Base
@@ -853,14 +1002,14 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION Sp0_Set_Idx_Dist")
 
-        self.Sp0_Idx_Dist = widget.get_value()
+        self.Sp0_Idx_Dist = round(widget.get_value(), 1)
         print("self.Sp0_Idx_Dist = " + str(self.Sp0_Idx_Dist))
 
 #######################################################################
 # Sp0_Set_Idx_OnOff
 # Purpose:              This is used to set the use of Sp1 indexing
 #                           on or off.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -899,7 +1048,7 @@ class HandlerClass:
 # Purpose:              This is used to set the rotational distance
 #                           (degrees) for the Sp1 spindle (the
 #                           rosette phaser/multiplier).
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -926,7 +1075,7 @@ class HandlerClass:
 # Sp1_Set_Idx_OnOff
 # Purpose:              This is used to set the use of Sp1 indexing
 #                           on or off.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -959,7 +1108,7 @@ class HandlerClass:
 # Purpose:              This is used to set the speed for the rosette
 #                           phaser / multiplier (Sp0) as a percentage
 #                           of the spindle speed.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Base
@@ -980,8 +1129,29 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION Sp1_Set_Move_Pct")
 
-        self.Sp1_Pct = widget.get_value()
+        self.Sp1_Pct = round(widget.get_value(), 2)
+        Sp1_Feed = round(self.Sp0_Feed * self.Sp1_Pct / 100, 2)
+
+        Gcode1 = "S" + str(Sp1_Feed) + " $1"
+
+        print("self.Sp0_Feed = " + str(self.Sp0_Feed))
         print("self.Sp1_Pct = " + str(self.Sp1_Pct))
+        print("Sp1_Feed = " + str(Sp1_Feed))
+
+        # Ensure the system is in MDI mode
+        s.poll()
+        if s.task_state != linuxcnc.MODE_MDI:
+                c.mode(linuxcnc.MODE_MDI)
+                c.wait_complete() # Wait for mode change to complete
+
+        # Send an MDI command to set the spindle speed.
+        print(Gcode1)
+        c.mdi(Gcode1)
+
+        # Wait for the command to complete
+        c.wait_complete()
+
+
 
 #######################################################################
 # Axis U                                                              #
@@ -991,7 +1161,7 @@ class HandlerClass:
 # U_Move_Minus
 # Purpose:              This is used to index the U axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1032,7 +1202,7 @@ class HandlerClass:
 # U_Move_Plus
 # Purpose:              This is used to index the U axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1073,7 +1243,7 @@ class HandlerClass:
 # U_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           U axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1092,9 +1262,9 @@ class HandlerClass:
     def U_Set_Feed(self,widget):
 
         print("=================================================")
-        print("FUNCTION BU_Set_Feed")
+        print("FUNCTION U_Set_Feed")
 
-        self.U_Feed = widget.get_value()
+        self.U_Feed = round(widget.get_value(), 1)
 
         print("U_Set_Feed =")
         print(self.U_Feed)
@@ -1103,7 +1273,7 @@ class HandlerClass:
 # U_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the U axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1133,7 +1303,7 @@ class HandlerClass:
 # U_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the U axis.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1162,7 +1332,7 @@ class HandlerClass:
 # U_Set_Sync_OnOff
 # Purpose:              This is used to identify if this axis should
 #                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1199,7 +1369,7 @@ class HandlerClass:
 # V_Move_Minus
 # Purpose:              This is used to index the V axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1240,7 +1410,7 @@ class HandlerClass:
 # V_Move_Plus
 # Purpose:              This is used to index the V axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1281,7 +1451,7 @@ class HandlerClass:
 # V_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           V axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1302,7 +1472,7 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION V_Set_Feed")
 
-        self.V_Feed = widget.get_value()
+        self.V_Feed = round(widget.get_value(), 1)
 
         print("V_Set_Feed =")
         print(self.V_Feed)
@@ -1311,7 +1481,7 @@ class HandlerClass:
 # V_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the V axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1341,7 +1511,7 @@ class HandlerClass:
 # V_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the V axis.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1370,7 +1540,7 @@ class HandlerClass:
 # V_Set_Sync_OnOff
 # Purpose:              This is used to identify if this axis should
 #                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1407,7 +1577,7 @@ class HandlerClass:
 # X_Move_Minus
 # Purpose:              This is used to index the X axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1448,7 +1618,7 @@ class HandlerClass:
 # X_Move_Plus
 # Purpose:              This is used to index the X axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1489,7 +1659,7 @@ class HandlerClass:
 # X_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           X axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1510,7 +1680,7 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION X_Set_Feed")
 
-        self.X_Feed = widget.get_value()
+        self.X_Feed = round(widget.get_value(), 1)
 
         print("X_Set_Feed =")
         print(self.X_Feed)
@@ -1519,7 +1689,7 @@ class HandlerClass:
 # X_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the X axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1549,7 +1719,7 @@ class HandlerClass:
 # X_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the X axis.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1578,7 +1748,7 @@ class HandlerClass:
 # X_Set_Sync_OnOff
 # Purpose:              This is used to identify if this axis should
 #                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1615,7 +1785,7 @@ class HandlerClass:
 # Y_Move_Minus
 # Purpose:              This is used to index the Y axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1656,7 +1826,7 @@ class HandlerClass:
 # Y_Move_Plus
 # Purpose:              This is used to index the Y axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1697,7 +1867,7 @@ class HandlerClass:
 # Y_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           Y axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1718,7 +1888,7 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION Y_Set_Feed")
 
-        self.Y_Feed = widget.get_value()
+        self.Y_Feed = round(widget.get_value(), 1)
 
         print("Y_Set_Feed =")
         print(self.Y_Feed)
@@ -1727,7 +1897,7 @@ class HandlerClass:
 # Y_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the Y axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1757,7 +1927,7 @@ class HandlerClass:
 # Y_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the Y axis.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1786,7 +1956,7 @@ class HandlerClass:
 # Y_Set_Sync_OnOff
 # Purpose:              This is used to identify if this axis should
 #                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1823,7 +1993,7 @@ class HandlerClass:
 # Z_Move_Minus
 # Purpose:              This is used to index the Z axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1864,7 +2034,7 @@ class HandlerClass:
 # Z_Move_Plus
 # Purpose:              This is used to index the Z axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Rotary
@@ -1905,7 +2075,7 @@ class HandlerClass:
 # Z_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           Z axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1926,7 +2096,7 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION Z_Set_Feed")
 
-        self.Z_Feed = widget.get_value()
+        self.Z_Feed = round(widget.get_value(), 1)
 
         print("Z_Set_Feed =")
         print(self.Z_Feed)
@@ -1935,7 +2105,7 @@ class HandlerClass:
 # Z_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the Z axis.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1965,7 +2135,7 @@ class HandlerClass:
 # Z_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the Z axis.
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -1994,7 +2164,7 @@ class HandlerClass:
 # Z_Set_Sync_OnOff
 # Purpose:              This is used to identify if this axis should
 #                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 04 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Sync
@@ -2026,7 +2196,7 @@ class HandlerClass:
 #######################################################################
 # __init__
 # Purpose:              This is used to initialize everything.
-# Updated:              ver 1.0, 03 November 2025, R. Colvin
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
 #######################################################################
     def __init__(self, halcomp,builder,useropts):
         '''
