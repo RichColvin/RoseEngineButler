@@ -65,6 +65,7 @@ import hal
 import glib
 import time
 import linuxcnc
+import webbrowser
 
 # Establish connection to command and status channels
 c = linuxcnc.command()
@@ -437,6 +438,99 @@ class HandlerClass:
 # AA    AA  LL       LL           AA    AA  XX  XX  EE       SS    SS
 # AA    AA  LLLLLLLL LLLLLLLL     AA    AA XX    XX EEEEEEEE  SSSSSS  
 # ********************************************************************
+
+#######################################################################
+# OpenGcodeLibrary
+# Purpose:              This is used to open the Rose Engine Butler
+#                       Gcode library web page.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Help
+#   Button:             Gcode_Library
+#   Signal:             GtkButton/pressed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            self.Z_Sync_Bool
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def OpenGcodeLibrary(self,widget):
+
+        print("=================================================")
+        print("FUNCTION OpenGcodeLibrary")
+
+        url = "https://gcode.RoseEngineButler.com"
+        webbrowser.open(url)
+
+        Prt1 = "Opening website " + url
+        print(Prt1)
+
+#######################################################################
+# OpenLibrary
+# Purpose:              This is used to open the Rose Engine Butler
+#                       web page.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Help
+#   Button:             OpenLibrary
+#   Signal:             GtkButton/pressed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            self.Z_Sync_Bool
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def OpenLibrary(self,widget):
+
+        print("=================================================")
+        print("FUNCTION OpenLibrary")
+
+        url = "https://www.RoseEngineButler.com"
+        webbrowser.open(url)
+
+        Prt1 = "Opening website " + url
+        print(Prt1)
+
+#######################################################################
+# OpenUserManual
+# Purpose:              This is used to open the Rose Engine Butler
+#                       user manual web page.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Help
+#   Button:             User_Manual
+#   Signal:             GtkButton/pressed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            self.Z_Sync_Bool
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def OpenUserManual(self,widget):
+
+        print("=================================================")
+        print("FUNCTION OpenUserManual")
+
+        url = "https://manual.RoseEngineButler.com"
+        webbrowser.open(url)
+
+        Prt1 = "Opening website " + url
+        print(Prt1)
 
 #######################################################################
 # Synchronized Movement                                               #
