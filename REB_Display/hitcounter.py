@@ -252,7 +252,7 @@ class HandlerClass:
 #   UI:                 REB_Tab_Rotary
 #                       REB_Tab_Sync
 #   Button:             Sp0_Set_Idx_by_Deg  (HAL_RadioButton)
-#   Signal:             GtkWidget/button-press-event
+#   Signal:             GtkToggledButton/toggled
 # ---------------------------------------------------------------------
 # Data
 #   Read from UI:       (none)
@@ -1009,7 +1009,7 @@ class HandlerClass:
 #   UI:                 REB_Tab_Rotary
 #                       REB_Tab_Sync
 #   Button:             Sp0_Set_Idx_by_Deg  (HAL_RadioButton)
-#   Signal:             GtkWidget/button-press-event
+#   Signal:             GtkToggledButton/toggled
 # ---------------------------------------------------------------------
 # Data
 #   Read from UI:       (none)
