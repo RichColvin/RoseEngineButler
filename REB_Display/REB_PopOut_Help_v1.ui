@@ -11,17 +11,28 @@
   <object class="GtkImage" id="GcodeQuickRef">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">Images/REB-Gcode.png</property>
+    <property name="pixbuf">Images/GCodeQuickRef.png</property>
   </object>
-  <object class="GtkImage" id="ReubenHeadSm">
+  <object class="GtkImage" id="Librar">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">Images/ReubenHeadSmall.png</property>
+    <property name="hexpand">True</property>
+    <property name="pixbuf">Images/Library.png</property>
+  </object>
+  <object class="GtkImage" id="OTHndyBk">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/OT_HandyBook.png</property>
   </object>
   <object class="GtkImage" id="UserManual">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/REB-UserManual.png</property>
+  </object>
+  <object class="GtkImage" id="User_Foru">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/REB-UserForum.png</property>
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
@@ -50,48 +61,13 @@
                 <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=11 n-rows=5 -->
+                  <!-- n-columns=5 n-rows=3 -->
                   <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
                     <child>
-                      <object class="GtkLabel" id="Title_REB_Help">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">end</property>
-                        <property name="hexpand">True</property>
-                        <property name="label" translatable="yes">Rose Engine Butler Help</property>
-                        <property name="justify">center</property>
-                        <attributes>
-                          <attribute name="font-desc" value="DejaVu Serif 20"/>
-                          <attribute name="weight" value="bold"/>
-                          <attribute name="foreground" value="#1a1a5f5fb4b4"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">0</property>
-                        <property name="width">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage" id="REB_Logo">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="valign">start</property>
-                        <property name="xpad">0</property>
-                        <property name="pixbuf">Images/REBLogo-Sm.png</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Comment_Top">
+                      <object class="GtkLabel" id="Comment_Bottom">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
@@ -103,12 +79,12 @@
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">1</property>
-                        <property name="width">4</property>
+                        <property name="top-attach">2</property>
+                        <property name="width">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="HAL_Button" id="OpenLibrary">
+                      <object class="HAL_Button" id="Library">
                         <property name="label" translatable="yes">www.RoseEngineButler.com</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -122,49 +98,16 @@
                         <property name="margin-end">5</property>
                         <property name="margin-top">2</property>
                         <property name="margin-bottom">2</property>
-                        <property name="image">ReubenHeadSm</property>
+                        <property name="image">Librar</property>
                         <property name="relief">half</property>
                         <property name="use-underline">True</property>
                         <property name="image-position">top</property>
                         <signal name="pressed" handler="OpenLibrary" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left-attach">9</property>
-                        <property name="top-attach">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="Comment_Web_Link_1">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">end</property>
-                        <property name="margin-end">5</property>
-                        <property name="margin-top">4</property>
-                        <property name="label" translatable="yes">You can access the Rose Engine
- Butler Library by clicking on the
- site noted above (or click on
-Reuben's head).
-</property>
-                        <property name="wrap">True</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">9</property>
-                        <property name="top-attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkSeparator" id="Vert_Line">
-                        <property name="width-request">5</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-start">5</property>
-                        <property name="margin-end">5</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">8</property>
-                        <property name="top-attach">2</property>
-                        <property name="height">3</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                        <property name="width">5</property>
                       </packing>
                     </child>
                     <child>
@@ -177,7 +120,7 @@ Reuben's head).
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">2</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
@@ -190,7 +133,7 @@ Reuben's head).
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
-                        <property name="top-attach">2</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
@@ -199,128 +142,38 @@ Reuben's head).
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="image">GcodeQuickRef</property>
+                        <signal name="pressed" handler="OpenGcodeQuickReference" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">2</property>
-                        <property name="top-attach">2</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="HAL_Button" id="User_Forum">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="image">User_Foru</property>
+                        <signal name="pressed" handler="OpenUserForum" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">1</property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="HAL_Button" id="OT_HandyBook">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="image">OTHndyBk</property>
+                        <signal name="pressed" handler="OpenOTHandyBook" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">1</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
