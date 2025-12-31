@@ -540,13 +540,14 @@ net spindle.1-index-enable              <=> spindle.1.index-enable
 
 sets spindle.1-at-speed                     true
 
-setp pid.s1.Pgain                           [SPINDLE_1]P
-setp pid.s1.Igain                           [SPINDLE_1]I
-setp pid.s1.Dgain                           [SPINDLE_1]D
-setp pid.s1.bias                            [SPINDLE_1]BIAS
-setp pid.s1.FF0                             [SPINDLE_1]FF0
-setp pid.s1.FF1                             [SPINDLE_1]FF1
-setp pid.s1.FF2                             [SPINDLE_1]FF2
+setp pid.s1.Pgain                           [SPINDLE_1]P_VEL
+setp pid.s1.Igain                           [SPINDLE_1]I_VEL
+setp pid.s1.Dgain                           [SPINDLE_1]D_VEL
+setp pid.s1.bias                            [SPINDLE_1]BIAS_VEL
+setp pid.s1.FF0                             [SPINDLE_1]FF0_VEL
+setp pid.s1.FF1                             [SPINDLE_1]FF1_VEL
+setp pid.s1.FF2                             [SPINDLE_1]FF2_VEL
+
 setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
 setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
 # ********************************************************************
