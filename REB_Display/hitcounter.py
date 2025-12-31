@@ -471,14 +471,14 @@ class HandlerClass:
         print(Prt1)
 
 #######################################################################
-# OpenLibrary
-# Purpose:              This is used to open the Rose Engine Butler
-#                       web page.
+# OpenGcodeQuickReference
+# Purpose:              This is used to open the LinuxCNC Gcode Quick
+#                       Reference.
 # Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Help
-#   Button:             OpenLibrary
+#   Button:             Gcode_QuickRef
 #   Signal:             GtkButton/pressed
 # ---------------------------------------------------------------------
 # Data
@@ -486,6 +486,37 @@ class HandlerClass:
 #   Program Variables
 #       Referenced:     (none)
 #       Set:            self.Z_Sync_Bool
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def OpenGcodeQuickReference(self,widget):
+
+        print("=================================================")
+        print("FUNCTION OpenGcodeQuickReference")
+
+        url = "https://linuxcnc.org/docs/html/gcode.html"
+        webbrowser.open(url)
+
+        Prt1 = "Opening website " + url
+        print(Prt1)
+
+#######################################################################
+# OpenLibrary
+# Purpose:              This is used to open the Rose Engine Butler
+#                       web page.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_PopOut_Help_v1
+#   Button:             OpenLibrary
+#   Signal:             GtkButton/pressed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
 #   Written to UI:      (none)
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
@@ -502,14 +533,14 @@ class HandlerClass:
         print(Prt1)
 
 #######################################################################
-# OpenUserManual
-# Purpose:              This is used to open the Rose Engine Butler
-#                       user manual web page.
+# OpenOTHandyBook
+# Purpose:              This is used to open the Ornamentall Turner's
+#                       Handy Book
 # Updated:              ver 1.0, 26 December 2025, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Help
-#   Button:             User_Manual
+#   Button:             User_Forum
 #   Signal:             GtkButton/pressed
 # ---------------------------------------------------------------------
 # Data
@@ -517,6 +548,68 @@ class HandlerClass:
 #   Program Variables
 #       Referenced:     (none)
 #       Set:            self.Z_Sync_Bool
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def OpenOTHandyBook(self,widget):
+
+        print("=================================================")
+        print("FUNCTION OpenOTHandyBook")
+
+        url = "https://mdfre2.colvintools.com/Documents/OTHB.pdf"
+        webbrowser.open(url)
+
+        Prt1 = "Opening website " + url
+        print(Prt1)
+
+#######################################################################
+# OpenUserForum
+# Purpose:              This is used to open the Rose Engine Butler
+#                       forum web page.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Help
+#   Button:             User_Forum
+#   Signal:             GtkButton/pressed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            self.Z_Sync_Bool
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+#######################################################################
+    def OpenUserForum(self,widget):
+
+        print("=================================================")
+        print("FUNCTION OpenUserForum")
+
+        url = "https://forum.RoseEngineButler.com"
+        webbrowser.open(url)
+
+        Prt1 = "Opening website " + url
+        print(Prt1)
+
+#######################################################################
+# OpenUserManual
+# Purpose:              This is used to open the Rose Engine Butler
+#                       user manual web page.
+# Updated:              ver 1.0, 26 December 2025, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_PopOut_Help_v1
+#   Button:             User_Manual
+#   Signal:             GtkButton/pressed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
 #   Written to UI:      (none)
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
