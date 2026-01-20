@@ -237,7 +237,7 @@ echo -e "${CMNTTEXT}------------------------------------------------------------
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}Step 4 - Put key files in place                                        ${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
-cd /home/cnc
+cd /home/reuben
 echo -e "${CMNTTEXT}    REB_Backup.sh                                                      ${NOCOLOR}"
 sudo cp /home/reuben/linuxcnc/configs/RoseEngineButler/REB_Setup/REB_Backup.sh .
 if [ $? != 0 ]; then
@@ -290,7 +290,7 @@ fi
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
 echo -e "${TITLE}Step 5 - Install ClamAV                                                ${NOCOLOR}"
 echo -e "${TITLE}                                                                       ${NOCOLOR}"
-cd /home/cnc
+cd /home/reuben
 mkdir ClamAv
 if [ $? != 0 ]; then
    echo -e "${KEYNOTE}ERROR: Could not create /home/reuben/ClamAV                             ${NOCOLOR}"
