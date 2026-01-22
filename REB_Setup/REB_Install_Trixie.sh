@@ -30,7 +30,7 @@
 #   1.0 - 26 Oct 2025, R. Colvin
 #   1.1 - 23 Dec 2025, R. Colvin - Changed text from "upgrade" to
 #         "update".
-#   1.2 - 19 Jan 2026, R. Colvin - Updated for the Trixie install.
+#   1.2 - 22 Jan 2026, R. Colvin - Updated for the Trixie install.
 #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.
 #
@@ -306,7 +306,13 @@ if [ $? != 0 ]; then
 fi
 sudo apt install clamav
 if [ $? != 0 ]; then
-   echo -e "${KEYNOTE}ERROR: Could not install clamav                                      ${NOCOLOR}"
+   echo -e "${KEYNOTE}ERROR: Could not install ClamAV                                      ${NOCOLOR}"
+   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
+   exit $?
+fi
+sudo freshclam
+if [ $? != 0 ]; then
+   echo -e "${KEYNOTE}ERROR: Could not update the ClamAV database                          ${NOCOLOR}"
    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
    exit $?
 fi
