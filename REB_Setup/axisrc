@@ -30,8 +30,10 @@
 #                                                                     #
 # Version                                                             #
 #   1.0 - 30 July 2025, R. Colvin                                     #
+#   1.1 - 22 January 2026, R. Colvin - changed the default to be      #
+#              full-screen.                                           #
 #                                                                     #
-# Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
 # The following MIT/X Consortium License applies to the Rosetta       #
 # system. Use of this system constitutes consent to the terms         #
@@ -68,11 +70,11 @@
 root_window.tk.call("wm","protocol",".","WM_DELETE_WINDOW","destroy .")
 
 # Set the window size
-# fullscreen (not the best)
-# root_window.attributes('-fullscreen', True)
+# fullscreen
+root_window.attributes('-fullscreen', True)
 #
 # Open Axis at a size of 1600x800 for the screen
-root_window.tk.call("wm","geometry",".","1600x800")
+# root_window.tk.call("wm","geometry",".","1600x800")
 
 # Open Axis at the maximum size for the screen
 # maxgeo=root_window.tk.call("wm","maxsize",".")
