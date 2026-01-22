@@ -310,12 +310,6 @@ if [ $? != 0 ]; then
    echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
    exit $?
 fi
-sudo freshclam
-if [ $? != 0 ]; then
-   echo -e "${KEYNOTE}ERROR: Could not update the ClamAV database                          ${NOCOLOR}"
-   echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
-   exit $?
-fi
 #
 # ********************************************************************
 # Step 6 - Backup key files

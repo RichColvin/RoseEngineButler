@@ -112,12 +112,12 @@ if [ $? != 0 ]; then
 fi
 echo -e "${TITLE}Latest package updates secured                                         ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
-echo -e "${TITLE}Update the system                                             ${NOCOLOR}"
+echo -e "${TITLE}Update the system                                                      ${NOCOLOR}"
 sudo apt upgrade -y
 if [ $? != 0 ]; then
     echo -e "${KEYNOTE}ERROR: System upgrade failed                                         ${NOCOLOR}"
     echo -e "${KEYNOTE}PROGRAM TERMINATED PREMATURELY                                       ${NOCOLOR}"
     exit $?
 fi
-echo -e "${TITLE}System Updated                                                        ${NOCOLOR}"
+echo -e "${TITLE}System Updated                                                         ${NOCOLOR}"
 echo -e "${TITLE}#######################################################################${NOCOLOR}"
