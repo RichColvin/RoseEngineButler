@@ -3,12 +3,12 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
-  <object class="GtkImage" id="GcodeLibrary">
+  <object class="GtkImage" id="GcodeLibrarysm">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/REB-Gcodesm.png</property>
   </object>
-  <object class="GtkImage" id="GcodeQuickRef">
+  <object class="GtkImage" id="GcodeQuickRefsm">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/GCodeQuickRefsm.png</property>
@@ -19,20 +19,20 @@
     <property name="hexpand">True</property>
     <property name="pixbuf">Images/Library.png</property>
   </object>
-  <object class="GtkImage" id="OTHndyBk">
+  <object class="GtkImage" id="OT_HandyBooksm">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/OTHandyBooksm.png</property>
   </object>
-  <object class="GtkImage" id="UserManual">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="pixbuf">Images/REB-UserManualsm.png</property>
-  </object>
-  <object class="GtkImage" id="User_Foru">
+  <object class="GtkImage" id="UserForumsm">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">Images/REB-Forumsm.png</property>
+  </object>
+  <object class="GtkImage" id="UserManualsm">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">Images/REB-UserManualsm.png</property>
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
@@ -61,125 +61,161 @@
                 <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=5 n-rows=3 -->
-                  <object class="GtkGrid">
+                  <object class="HAL_Button" id="Library">
+                    <property name="label" translatable="yes">www.RoseEngineButler.com</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hexpand">True</property>
-                    <child>
-                      <object class="GtkLabel" id="Comment_Bottom">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="label" translatable="yes">Rose Engine Butler is implemented as a set of configurations for use on LinuxCNC and designed for use with stepper motors on a rose engine.</property>
-                        <property name="wrap">True</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">2</property>
-                        <property name="width">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_Button" id="Library">
-                        <property name="label" translatable="yes">www.RoseEngineButler.com</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="has-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="halign">center</property>
-                        <property name="valign">start</property>
-                        <property name="margin-left">2</property>
-                        <property name="margin-right">2</property>
-                        <property name="margin-start">2</property>
-                        <property name="margin-end">5</property>
-                        <property name="margin-top">2</property>
-                        <property name="margin-bottom">2</property>
-                        <property name="image">Librar</property>
-                        <property name="relief">half</property>
-                        <property name="use-underline">True</property>
-                        <property name="image-position">top</property>
-                        <signal name="pressed" handler="OpenLibrary" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">0</property>
-                        <property name="width">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_Button" id="User_Manual">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="image">UserManual</property>
-                        <signal name="pressed" handler="OpenUserManual" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_Button" id="Gcode_Library">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="image">GcodeLibrary</property>
-                        <signal name="pressed" handler="OpenGcodeLibrary" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_Button" id="Gcode_QuickRef">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="image">GcodeQuickRef</property>
-                        <signal name="pressed" handler="OpenGcodeQuickReference" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">2</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_Button" id="User_Forum">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="image">User_Foru</property>
-                        <signal name="pressed" handler="OpenUserForum" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">3</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="HAL_Button" id="OT_HandyBook">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="image">OTHndyBk</property>
-                        <signal name="pressed" handler="OpenOTHandyBook" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left-attach">4</property>
-                        <property name="top-attach">1</property>
-                      </packing>
-                    </child>
+                    <property name="can-focus">True</property>
+                    <property name="has-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin-left">2</property>
+                    <property name="margin-right">2</property>
+                    <property name="margin-start">2</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">2</property>
+                    <property name="margin-bottom">2</property>
+                    <property name="image">Librar</property>
+                    <property name="relief">half</property>
+                    <property name="use-underline">True</property>
+                    <property name="image-position">top</property>
+                    <property name="always-show-image">True</property>
+                    <signal name="pressed" handler="OpenLibrary" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <!-- n-columns=6 n-rows=1 -->
+                  <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="HAL_Button" id="User_Manual">
+                        <property name="width-request">1</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="image">UserManualsm</property>
+                        <property name="relief">none</property>
+                        <property name="always-show-image">True</property>
+                        <signal name="pressed" handler="OpenUserManual" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_Button" id="Gcode_Library">
+                        <property name="width-request">1</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="image">GcodeLibrarysm</property>
+                        <property name="relief">none</property>
+                        <property name="always-show-image">True</property>
+                        <signal name="pressed" handler="OpenGcodeLibrary" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_Button" id="Gcode_QuickRef">
+                        <property name="width-request">1</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="image">GcodeQuickRefsm</property>
+                        <property name="relief">none</property>
+                        <signal name="pressed" handler="OpenGcodeQuickReference" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_Button" id="User_Forum">
+                        <property name="width-request">1</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="image">UserForumsm</property>
+                        <property name="relief">none</property>
+                        <signal name="pressed" handler="OpenUserForum" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_Button" id="OT_HandyBook">
+                        <property name="width-request">1</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="image">OT_HandyBooksm</property>
+                        <property name="relief">none</property>
+                        <signal name="pressed" handler="OpenOTHandyBook" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="Filler1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">5</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="Comment_Bottom">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="label" translatable="yes">Rose Engine Butler is implemented as a set of configurations for use on LinuxCNC and designed for use with stepper motors on a rose engine.</property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
