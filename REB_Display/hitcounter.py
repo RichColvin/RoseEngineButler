@@ -26,9 +26,9 @@
 #   Brainwave Embedded.
 #
 # Version
-#   1.0 - 26 December 2025, R. Colvin
+#   1.0 - 03 March 2026, R. Colvin
 #
-# Copyright (c) 2025 Colvin Tools and Brainwave Embedded.
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.
 #
 # The following MIT/X Consortium License applies to the Rose Engine
 # Butler system. Use of this system constitutes consent to the terms

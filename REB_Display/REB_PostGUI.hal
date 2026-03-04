@@ -13,7 +13,7 @@
 # LinuxCNC configuration for use with a Rose Engine					  #
 #																	  #
 # File:																  #
-#   REB_PostGUI.hal									  #
+#   REB_PostGUI.hal									  				  #
 #																	  #
 # Purpose:															  #
 #   This is used to setup hardware abstraction layer for LinuxCNC.	  #
@@ -28,9 +28,9 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 04 March 2026, R. Colvin	                                  #
 #																	  #
-# Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
 # The following MIT/X Consortium License applies to the 			  #
 # Rose Engine Butler system. Use of this system constitutes consent   #
@@ -62,14 +62,10 @@
 # use or other dealings in this Software without prior written		  #
 # authorization from COPYRIGHT HOLDERS.								  #
 #######################################################################
-#
+
 # ********************************************************************
-#
-# Details about the fields are available in 
-#   the LinuxCNC 2.9.4 System Manual
-#   §12 Virtual Control Panels, starting on 
-#   pg. 952
-#
+# Details about the fields are available in the LinuxCNC System Manual
+#   in §12 Virtual Control Panels
 # ********************************************************************
 
 # ********************************************************************
@@ -82,9 +78,9 @@
 #   Y      1       03    LINEAR     2    P14
 #   Z      2       00    LINEAR     3    P11
 #
-#   A      -       --    ------     -
-#   B      3       06    ANGULAR    4    P17
-#   C      -       --    ------     -
+#   A      -       --    ------     -    --- 
+#   B      3       06    ANGULAR    4    P17  Rotary axis
+#   C      -       --    ------     -    --- 
 #
 #   U      4       04    LINEAR     5    P15
 #   V      5       01    LINEAR     6    P12
@@ -95,7 +91,7 @@
 # ********************************************************************
 
 # ********************************************************************
-# Setup the variables needed for the PyVCP Virtual Control Panels
+#  Connect signals to pins
 
 # ******************************************
 # Spindles
@@ -143,3 +139,9 @@ net u-enable							<=  gladevcp.U_ENA
 net v-pos-fb							 => gladevcp.V_DRO
 net v-enable        		             => gladevcp.V_ENA_Status
 net v-enable							<=  gladevcp.V_ENA
+
+# ********************************************************************
+#  Set pin values
+
+# ********************************************************************
+#  Set signal values

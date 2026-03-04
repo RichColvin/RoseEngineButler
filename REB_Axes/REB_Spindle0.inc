@@ -28,9 +28,9 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 09 August 2025, R. Colvin                                   #
+#   1.0 - 04 March 2026, R. Colvin                                   #
 #                                                                     #
-# Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
 # The following MIT/X Consortium License applies to the Rose Engine   #
 # Butler system. Use of this system constitutes consent to the terms  #
@@ -78,7 +78,6 @@
 #  Axis  Joint  Channel   Type     Seq   Comments
 #  ----  -----  -------  -------  ----   ------------------------
 #  Sp0     7       05      n/a     n/a 
-#  Sp1     6       07      n/a     n/a
 
 [JOINT_7]
 SPINDLE              = 0
@@ -123,7 +122,6 @@ MIN_FERROR           = 0.5
 FERROR               = 5
 
 DEADBAND             = 0.000015
-MAX_OUTPUT           = 10.0
 
 P_VEL                = 1000.0
 I_VEL                = 0.0
@@ -132,6 +130,7 @@ BIAS_VEL             = 0.0
 FF0_VEL              = 1.0
 FF1_VEL              = 0.0
 FF2_VEL              = 0.0
+MAX_OUTPUT_VEL       = 10.0
 
 P_POS                = 1000.0
 I_POS                = 0.0
@@ -140,6 +139,7 @@ BIAS_POS             = 0.0
 FF0_POS              = 1.0
 FF1_POS              = 0.0
 FF2_POS              = 0.0
+MAX_OUTPUT_POS		 = 2.0
 
 # For the StepperOnline DM542T Digital Stepper Drive 
 # These are 5 μs = 5,000 ns
