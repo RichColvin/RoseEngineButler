@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 04 March 2026, R. Colvin                                    #
+#   1.0 - 22 June 2026, R. Colvin                                     #
 #                                                                     #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -100,24 +100,23 @@ MAX_ACCELERATION     = 20.0
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
 #
-# The values used below are based on these calculations.
+# The values used below are outlined in the user manual 
+# (manual.roseenginebutler.com) in the entry titled,
 #
-# ***********************
-# 1. Stepper motors use 1.8 deg / step.
+#      Updating the Axis Configuration File
 #
-# ***********************
-# 2. DM542T set to Microsteps  = 32
-#                  Steps / rev = 6,400
+#  For the this device, a leadscrew with a 
+#   * 1 starts
+#   * 2 mm pitch
+#  is being used.
 #
-#   32 microsteps           microsteps
-#   -------------  = 17.778 ----------
-#      1.8 deg                degree
+#                6,400 steps   1 rev   25.4 steps          steps
+#   STEP_SCALE = ----------- X ----- X ---------- = 81,280 -----
+#                   1 rev      2 mm      1 inch             inch
 #
-#   ENCODER_SCALE = STEP_SCALE
-# ********************************************************************
 
-STEP_SCALE           = 800000
-ENCODER_SCALE        = 800000
+STEP_SCALE           = 81280
+ENCODER_SCALE        = 81280
 
 STEPGEN_MAXACCEL     = 0.5
 STEPGEN_MAXVEL       = 12.5

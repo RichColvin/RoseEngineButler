@@ -28,9 +28,9 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 04 March 2026, R. Colvin                                   #
+#   1.0 - 09 August 2025, R. Colvin                                   #
 #                                                                     #
-# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
+# Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
 # The following MIT/X Consortium License applies to the Rose Engine   #
 # Butler system. Use of this system constitutes consent to the terms  #
@@ -77,6 +77,7 @@
 #                                 Home 
 #  Axis  Joint  Channel   Type     Seq   Comments
 #  ----  -----  -------  -------  ----   ------------------------
+#  Sp0     7       05      n/a     n/a 
 #  Sp1     6       07      n/a     n/a
 
 [JOINT_6]
