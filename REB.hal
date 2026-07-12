@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 04 March 2026, R. Colvin                                    #
+#   1.0 - 10 July 2025, R. Colvin 	                                  #
 #                                                                     #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -62,12 +62,7 @@
 # use or other dealings in this Software without prior written        #
 # authorization from COPYRIGHT HOLDERS.                               #
 #######################################################################
-
-# ********************************************************************
-# Details about the fields are available in the LinuxCNC System Manual,
-#   https://linuxcnc.org/docs/stable/html/
-# ********************************************************************
-
+#
 # ********************************************************************
 # Configuration values
 #
@@ -75,65 +70,43 @@
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
 #   X      0       02    LINEAR     1    P13
-#   Y      1       03    LINEAR     2    P14
-#   Z      2       00    LINEAR     3    P11
+#   Y      -       --    ------     -		  Not available as LATHE=1
+#   Z      1       00    LINEAR     2    P11
 #
-#   A      -       --    ------     -    --- 
-#   B      3       06    ANGULAR    4    P17  Rotary axis
-#   C      -       --    ------     -    --- 
+#   A      -       --    ------     -		  Not used
+#   B      2       06    ANGULAR    3    P17
+#   C      -       --    ------     -		  Not used
 #
-#   U      4       04    LINEAR     5    P15
-#   V      5       01    LINEAR     6    P12
-#   W      -       --    ------     -
+#   U      3       04    LINEAR     4    P15
+#   V      4       01    LINEAR     5    P12
+#   W      5       03    LINEAR     6    P14
 #
 #  Sp0     7       05      n/a     n/a   P16
 #  Sp1     6       07      n/a     n/a   P18  Previously the C axis
 #
 
 # ********************************************************************
-#  Load real-time HAL components
+# Details about the fields are available in the
+#   LinuxCNC System Manual, https://linuxcnc.org/docs/stable/html/
+# ********************************************************************
+
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES
+loadrt encoder num_chan=2
 loadrt hostmot2
 loadrt hm2_eth board_ip="192.168.1.121" config="num_encoders=0 num_pwmgens=0 num_stepgens=8"
 loadrt orient
 loadrt sum2
-loadrt pid names=pid.x,pid.y,pid.z,pid.b,pid.u,pid.v,pid.s0,pid.s1,pid.p0,orient.0-pid
-loadrt encoder num_chan=2
+loadrt pid names=pid.x,pid.z,pid.b,pid.u,pid.v,pid.w,pid.s0,pid.s1,pid.p0,orient.0-pid
 
-# ********************************************************************
-#  Add functions to a real-time thread
 addf hm2_7i92.0.read                        servo-thread
 addf hm2_7i92.0.write                       servo-thread
 addf motion-command-handler                 servo-thread
 addf motion-controller                      servo-thread
 
-# ********************************************************************
-#  Set pin values
 setp hm2_7i92.0.dpll.01.timer-us            -50
 setp hm2_7i92.0.stepgen.timer-number        1
 setp hm2_7i92.0.watchdog.timeout_ns 		5000000
-
-# ********************************************************************
-#  Connect signals to pins
-net estop-out                           <=  iocontrol.0.user-enable-out
-net estop-out                            => iocontrol.0.emc-enable-in
-
-net in-position                         <=  motion.in-position
-
-net jog-selected-neg                    <=  halui.axis.selected.minus
-
-net jog-selected-pos                    <=  halui.axis.selected.plus
-
-net jog-speed                            => halui.axis.jog-speed
-
-net machine-is-enabled                  <=  motion.motion-enabled
-
-net machine-is-on                       <=  halui.machine.is-on
-
-net MDI-mode                            <=  halui.mode.is-mdi
-
-net probe-in                             => motion.probe-input
 
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      YY    YY
@@ -150,22 +123,23 @@ net probe-in                             => motion.probe-input
 #  ----  -----  -------  -------  ----  ----  ------------------------
 #   X      0       02    LINEAR     1    P13
 # ********************************************************************
-
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
-#  Add functions to a real-time thread
+
 addf pid.x.do-pid-calcs                     servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
-net axis-select-x                        => halui.axis.x.select
 
-net jog-x-analog                         => halui.axis.x.analog
+net axis-select-x                           halui.axis.x.select
 
-net jog-x-neg                            => halui.axis.x.minus
+net jog-x-analog                            halui.axis.x.analog
 
-net jog-x-pos                            => halui.axis.x.plus
+net jog-x-neg                               halui.axis.x.minus
 
-# ***** See also the REB_PostGui.hal
+net jog-x-pos                               halui.axis.x.plus
+
+# See also the REB_PostGui.hal
 net x-enable                             => hm2_7i92.0.outm.00.out-02
 net x-enable                             => hm2_7i92.0.stepgen.02.enable
 net x-enable                             => pid.x.enable
@@ -174,7 +148,7 @@ net x-home-sw                            => joint.0.home-sw-in
 
 net x-index-enable                       => pid.x.index-enable
 
-net x-is-homed                          <=  halui.joint.0.is-homed
+net x-is-homed                              halui.joint.0.is-homed
 
 net x-neg-limit                          => joint.0.neg-lim-sw-in
 
@@ -206,8 +180,6 @@ setp hm2_7i92.0.stepgen.02.maxvel           [JOINT_0]STEPGEN_MAXVEL
 
 setp pid.x.error-previous-target            true
 
-setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
-
 setp pid.x.Pgain                            [JOINT_0]P
 setp pid.x.Igain                            [JOINT_0]I
 setp pid.x.Dgain                            [JOINT_0]D
@@ -216,6 +188,7 @@ setp pid.x.FF0                              [JOINT_0]FF0
 setp pid.x.FF1                              [JOINT_0]FF1
 setp pid.x.FF2                              [JOINT_0]FF2
 setp pid.x.deadband                         [JOINT_0]DEADBAND
+setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 
 # ********************************************************************
 #  Set signal values
@@ -235,79 +208,11 @@ setp pid.x.deadband                         [JOINT_0]DEADBAND
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   Y      1       03    LINEAR     2    P14
+#   NA     NA      NA      NA      NA    NA
 # ********************************************************************
-
+#  Modified 10 July 2026 by R. Colvin
 # ********************************************************************
-#  Add functions to a real-time thread
-addf pid.y.do-pid-calcs                     servo-thread
-
-# ********************************************************************
-#  Connect signals to pins
-net axis-select-y                        => halui.axis.y.select
-
-net jog-y-analog                         => halui.axis.y.analog
-
-net jog-y-neg                            => halui.axis.y.minus
-
-net jog-y-pos                            => halui.axis.y.plus
-
-# ***** See also the REB_PostGui.hal
-net y-enable                             => hm2_7i92.0.outm.00.out-03
-net y-enable                             => hm2_7i92.0.stepgen.03.enable
-net y-enable                             => pid.y.enable
-
-net y-home-sw                            => joint.1.home-sw-in
-
-net y-index-enable                       => pid.y.index-enable
-
-net y-is-homed                          <=  halui.joint.1.is-homed
-
-net y-neg-limit                          => joint.1.neg-lim-sw-in
-
-net y-pos-cmd                           <=  joint.1.motor-pos-cmd
-net y-pos-cmd                            => pid.y.command
-
-net y-pos-fb                            <=  hm2_7i92.0.stepgen.03.position-fb
-net y-pos-fb                             => joint.1.motor-pos-fb
-net y-pos-fb                             => pid.y.feedback
-
-net y-output                            <=  pid.y.output
-net y-output                             => hm2_7i92.0.stepgen.03.velocity-cmd
-
-net y-pos-limit                          => joint.1.pos-lim-sw-in
-
-net y-vel-cmd                           <=  joint.1.vel-cmd
-
-# ********************************************************************
-#  Set pin values
-setp hm2_7i92.0.stepgen.03.dirsetup         [JOINT_1]DIRSETUP
-setp hm2_7i92.0.stepgen.03.dirhold          [JOINT_1]DIRHOLD
-setp hm2_7i92.0.stepgen.03.steplen          [JOINT_1]STEPLEN
-setp hm2_7i92.0.stepgen.03.stepspace        [JOINT_1]STEPSPACE
-setp hm2_7i92.0.stepgen.03.position-scale   [JOINT_1]STEP_SCALE
-setp hm2_7i92.0.stepgen.03.step_type        0
-setp hm2_7i92.0.stepgen.03.control-type     1
-setp hm2_7i92.0.stepgen.03.maxaccel         [JOINT_1]STEPGEN_MAXACCEL
-setp hm2_7i92.0.stepgen.03.maxvel           [JOINT_1]STEPGEN_MAXVEL
-
-setp pid.y.error-previous-target            true
-
-setp pid.y.maxoutput                        [JOINT_1]MAX_OUTPUT
-
-setp pid.y.Pgain                            [JOINT_1]P
-setp pid.y.Igain                            [JOINT_1]I
-setp pid.y.Dgain                            [JOINT_1]D
-setp pid.y.bias                             [JOINT_1]BIAS
-setp pid.y.FF0                              [JOINT_1]FF0
-setp pid.y.FF1                              [JOINT_1]FF1
-setp pid.y.FF2                              [JOINT_1]FF2
-setp pid.y.deadband                         [JOINT_1]DEADBAND
-
-# ********************************************************************
-#  Set signal values
-
-# ********************************************************************
+# Axis Y is not used.
 
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
@@ -324,72 +229,72 @@ setp pid.y.deadband                         [JOINT_1]DEADBAND
 #  ----  -----  -------  -------  ----  ----  ------------------------
 #   Z      2       00    LINEAR     3    P11
 # ********************************************************************
-
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
-#  Add functions to a real-time thread
+
 addf pid.z.do-pid-calcs                     servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
-net axis-select-z                        => halui.axis.z.select
 
-net jog-z-analog                         => halui.axis.z.analog
+net axis-select-z                           halui.axis.z.select
 
-net jog-z-neg                            => halui.axis.z.minus
+net jog-z-analog                            halui.axis.z.analog
 
-net jog-z-pos                            => halui.axis.z.plus
+net jog-z-neg                               halui.axis.z.minus
 
-# ***** See also the REB_PostGui.hal
+net jog-z-pos                               halui.axis.z.plus
+
+# See also the REB_PostGui.hal
 net z-enable                             => hm2_7i92.0.outm.00.out-00
 net z-enable                             => hm2_7i92.0.stepgen.00.enable
 net z-enable                             => pid.z.enable
 
-net z-home-sw                            => joint.2.home-sw-in
+net z-home-sw                            => joint.1.home-sw-in
 
 net z-index-enable                       => pid.z.index-enable
 
-net z-is-homed                          <=  halui.joint.2.is-homed
+net z-is-homed                              halui.joint.1.is-homed
 
-net z-neg-limit                          => joint.2.neg-lim-sw-in
+net z-neg-limit                          => joint.1.neg-lim-sw-in
 
 net z-output                            <=  pid.z.output
 net z-output                             => hm2_7i92.0.stepgen.00.velocity-cmd
 
-net z-pos-cmd                           <=  joint.2.motor-pos-cmd
+net z-pos-cmd                           <=  joint.1.motor-pos-cmd
 net z-pos-cmd                            => pid.z.command
 
 net z-pos-fb                            <=  hm2_7i92.0.stepgen.00.position-fb
-net z-pos-fb                             => joint.2.motor-pos-fb
+net z-pos-fb                             => joint.1.motor-pos-fb
 net z-pos-fb                             => pid.z.feedback
 
-net z-pos-limit                          => joint.2.pos-lim-sw-in
+net z-pos-limit                          => joint.1.pos-lim-sw-in
 
-net z-vel-cmd                           <=  joint.2.vel-cmd
+net z-vel-cmd                           <=  joint.1.vel-cmd
 
 # ********************************************************************
 #  Set pin values
-setp hm2_7i92.0.stepgen.00.dirsetup         [JOINT_2]DIRSETUP
-setp hm2_7i92.0.stepgen.00.dirhold          [JOINT_2]DIRHOLD
-setp hm2_7i92.0.stepgen.00.steplen          [JOINT_2]STEPLEN
-setp hm2_7i92.0.stepgen.00.stepspace        [JOINT_2]STEPSPACE
-setp hm2_7i92.0.stepgen.00.position-scale   [JOINT_2]STEP_SCALE
+setp hm2_7i92.0.stepgen.00.dirsetup         [JOINT_1]DIRSETUP
+setp hm2_7i92.0.stepgen.00.dirhold          [JOINT_1]DIRHOLD
+setp hm2_7i92.0.stepgen.00.steplen          [JOINT_1]STEPLEN
+setp hm2_7i92.0.stepgen.00.stepspace        [JOINT_1]STEPSPACE
+setp hm2_7i92.0.stepgen.00.position-scale   [JOINT_1]STEP_SCALE
 setp hm2_7i92.0.stepgen.00.step_type        0
 setp hm2_7i92.0.stepgen.00.control-type     1
-setp hm2_7i92.0.stepgen.00.maxaccel         [JOINT_2]STEPGEN_MAXACCEL
-setp hm2_7i92.0.stepgen.00.maxvel           [JOINT_2]STEPGEN_MAXVEL
+setp hm2_7i92.0.stepgen.00.maxaccel         [JOINT_1]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.00.maxvel           [JOINT_1]STEPGEN_MAXVEL
 
 setp pid.z.error-previous-target            true
 
-setp pid.z.maxoutput                        [JOINT_2]MAX_OUTPUT
-
-setp pid.z.Pgain                            [JOINT_2]P
-setp pid.z.Igain                            [JOINT_2]I
-setp pid.z.Dgain                            [JOINT_2]D
-setp pid.z.bias                             [JOINT_2]BIAS
-setp pid.z.FF0                              [JOINT_2]FF0
-setp pid.z.FF1                              [JOINT_2]FF1
-setp pid.z.FF2                              [JOINT_2]FF2
-setp pid.z.deadband                         [JOINT_2]DEADBAND
+setp pid.z.Pgain                            [JOINT_1]P
+setp pid.z.Igain                            [JOINT_1]I
+setp pid.z.Dgain                            [JOINT_1]D
+setp pid.z.bias                             [JOINT_1]BIAS
+setp pid.z.FF0                              [JOINT_1]FF0
+setp pid.z.FF1                              [JOINT_1]FF1
+setp pid.z.FF2                              [JOINT_1]FF2
+setp pid.z.deadband                         [JOINT_1]DEADBAND
+setp pid.z.maxoutput                        [JOINT_1]MAX_OUTPUT
 
 # ********************************************************************
 #  Set signal values
@@ -410,75 +315,74 @@ setp pid.z.deadband                         [JOINT_2]DEADBAND
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   B      3       06    ANGULAR    4    P17
+#   B      2       06    ANGULAR    4    P17
+# ********************************************************************
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
 
-# ********************************************************************
-#  Add functions to a real-time thread
 addf pid.b.do-pid-calcs                     servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
 
-net axis-select-b                        => halui.axis.b.select
+net axis-select-b                           halui.axis.b.select
 
-net jog-b-analog                         => halui.axis.b.analog
+net jog-b-analog                            halui.axis.b.analog
 
-net jog-b-neg                            => halui.axis.b.minus
+net jog-b-neg                               halui.axis.b.minus
 
-net jog-b-pos                            => halui.axis.b.plus
+net jog-b-pos                               halui.axis.b.plus
 
-# ***** See also the REB_PostGui.hal
+# See also the REB_PostGui.hal
 net b-enable                             => hm2_7i92.0.outm.00.out-06
 net b-enable                             => hm2_7i92.0.stepgen.06.enable
 net b-enable                             => pid.b.enable
 
-net b-home-sw                            => joint.3.home-sw-in
+net b-home-sw                            => joint.2.home-sw-in
 
 net b-index-enable                       => pid.b.index-enable
 
-net b-is-homed                          <=  halui.joint.3.is-homed
+net b-is-homed                              halui.joint.2.is-homed
 
-net b-neg-limit                          => joint.3.neg-lim-sw-in
+net b-neg-limit                          => joint.2.neg-lim-sw-in
 
 net b-output                            <=  pid.b.output
 net b-output                             => hm2_7i92.0.stepgen.06.velocity-cmd
 
-net b-pos-limit                          => joint.3.pos-lim-sw-in
+net b-pos-limit                          => joint.2.pos-lim-sw-in
 
-net b-pos-cmd                           <=  joint.3.motor-pos-cmd
+net b-pos-cmd                           <=  joint.2.motor-pos-cmd
 net b-pos-cmd                            => pid.b.command
 
 net b-pos-fb                            <=  hm2_7i92.0.stepgen.06.position-fb
-net b-pos-fb                             => joint.3.motor-pos-fb
+net b-pos-fb                             => joint.2.motor-pos-fb
 net b-pos-fb                             => pid.b.feedback
 
-net b-vel-cmd                           <=  joint.3.vel-cmd
+net b-vel-cmd                           <=  joint.2.vel-cmd
 
 # ********************************************************************
 #  Set pin values
-setp hm2_7i92.0.stepgen.06.dirsetup         [JOINT_3]DIRSETUP
-setp hm2_7i92.0.stepgen.06.dirhold          [JOINT_3]DIRHOLD
-setp hm2_7i92.0.stepgen.06.steplen          [JOINT_3]STEPLEN
-setp hm2_7i92.0.stepgen.06.stepspace        [JOINT_3]STEPSPACE
-setp hm2_7i92.0.stepgen.06.position-scale   [JOINT_3]STEP_SCALE
+setp hm2_7i92.0.stepgen.06.dirsetup         [JOINT_2]DIRSETUP
+setp hm2_7i92.0.stepgen.06.dirhold          [JOINT_2]DIRHOLD
+setp hm2_7i92.0.stepgen.06.steplen          [JOINT_2]STEPLEN
+setp hm2_7i92.0.stepgen.06.stepspace        [JOINT_2]STEPSPACE
+setp hm2_7i92.0.stepgen.06.position-scale   [JOINT_2]STEP_SCALE
 setp hm2_7i92.0.stepgen.06.step_type        0
 setp hm2_7i92.0.stepgen.06.control-type     1
-setp hm2_7i92.0.stepgen.06.maxaccel         [JOINT_3]STEPGEN_MAXACCEL
-setp hm2_7i92.0.stepgen.06.maxvel           [JOINT_3]STEPGEN_MAXVEL
+setp hm2_7i92.0.stepgen.06.maxaccel         [JOINT_2]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.06.maxvel           [JOINT_2]STEPGEN_MAXVEL
 
 setp pid.b.error-previous-target            true
 
-setp pid.b.maxoutput                        [JOINT_3]MAX_OUTPUT
-
-setp pid.b.Pgain                            [JOINT_3]P
-setp pid.b.Igain                            [JOINT_3]I
-setp pid.b.Dgain                            [JOINT_3]D
-setp pid.b.bias                             [JOINT_3]BIAS
-setp pid.b.FF0                              [JOINT_3]FF0
-setp pid.b.FF1                              [JOINT_3]FF1
-setp pid.b.FF2                              [JOINT_3]FF2
-setp pid.b.deadband                         [JOINT_3]DEADBAND
+setp pid.b.Pgain                            [JOINT_2]P
+setp pid.b.Igain                            [JOINT_2]I
+setp pid.b.Dgain                            [JOINT_2]D
+setp pid.b.bias                             [JOINT_2]BIAS
+setp pid.b.FF0                              [JOINT_2]FF0
+setp pid.b.FF1                              [JOINT_2]FF1
+setp pid.b.FF2                              [JOINT_2]FF2
+setp pid.b.deadband                         [JOINT_2]DEADBAND
+setp pid.b.maxoutput                        [JOINT_2]MAX_OUTPUT
 
 # ********************************************************************
 #  Set signal values
@@ -498,74 +402,74 @@ setp pid.b.deadband                         [JOINT_3]DEADBAND
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   U      4       04    LINEAR     5    P15
+#   U      3       04    LINEAR     6    P15
+# ********************************************************************
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
 
-# ********************************************************************
-#  Add functions to a real-time thread
 addf pid.u.do-pid-calcs                     servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
-net axis-select-u                        => halui.axis.u.select
 
-net jog-u-analog                         => halui.axis.u.analog
+net axis-select-u                           halui.axis.u.select
 
-net jog-u-neg                            => halui.axis.u.minus
+net jog-u-analog                            halui.axis.u.analog
 
-net jog-u-pos                            => halui.axis.u.plus
+net jog-u-neg                               halui.axis.u.minus
 
-# ***** See also the REB_PostGui.hal
+net jog-u-pos                               halui.axis.u.plus
+
+# See also the REB_PostGui.hal
 net u-enable                             => hm2_7i92.0.outm.00.out-04
 net u-enable                             => hm2_7i92.0.stepgen.04.enable
 net u-enable                             => pid.u.enable
 
-net u-home-sw                            => joint.4.home-sw-in
+net u-home-sw                            => joint.3.home-sw-in
 
 net u-index-enable                       => pid.u.index-enable
 
-net u-is-homed                          <=  halui.joint.4.is-homed
+net u-is-homed                              halui.joint.3.is-homed
 
-net u-neg-limit                          => joint.4.neg-lim-sw-in
+net u-neg-limit                          => joint.3.neg-lim-sw-in
 
 net u-output                            <=  pid.u.output
 net u-output                             => hm2_7i92.0.stepgen.04.velocity-cmd
 
 net u-pos-cmd                            => pid.u.command
-net u-pos-cmd                           <=  joint.4.motor-pos-cmd
+net u-pos-cmd                           <=  joint.3.motor-pos-cmd
 
 net u-pos-fb                            <=  hm2_7i92.0.stepgen.04.position-fb
-net u-pos-fb                             => joint.4.motor-pos-fb
+net u-pos-fb                             => joint.3.motor-pos-fb
 net u-pos-fb                             => pid.u.feedback
 
-net u-pos-limit                          => joint.4.pos-lim-sw-in
+net u-pos-limit                          => joint.3.pos-lim-sw-in
 
-net u-vel-cmd                           <=  joint.4.vel-cmd
+net u-vel-cmd                           <=  joint.3.vel-cmd
 
 # ********************************************************************
 #  Set pin values
-setp hm2_7i92.0.stepgen.04.dirsetup         [JOINT_4]DIRSETUP
-setp hm2_7i92.0.stepgen.04.dirhold          [JOINT_4]DIRHOLD
-setp hm2_7i92.0.stepgen.04.steplen          [JOINT_4]STEPLEN
-setp hm2_7i92.0.stepgen.04.stepspace        [JOINT_4]STEPSPACE
-setp hm2_7i92.0.stepgen.04.position-scale   [JOINT_4]STEP_SCALE
+setp hm2_7i92.0.stepgen.04.dirsetup         [JOINT_3]DIRSETUP
+setp hm2_7i92.0.stepgen.04.dirhold          [JOINT_3]DIRHOLD
+setp hm2_7i92.0.stepgen.04.steplen          [JOINT_3]STEPLEN
+setp hm2_7i92.0.stepgen.04.stepspace        [JOINT_3]STEPSPACE
+setp hm2_7i92.0.stepgen.04.position-scale   [JOINT_3]STEP_SCALE
 setp hm2_7i92.0.stepgen.04.step_type        0
 setp hm2_7i92.0.stepgen.04.control-type     1
-setp hm2_7i92.0.stepgen.04.maxaccel         [JOINT_4]STEPGEN_MAXACCEL
-setp hm2_7i92.0.stepgen.04.maxvel           [JOINT_4]STEPGEN_MAXVEL
+setp hm2_7i92.0.stepgen.04.maxaccel         [JOINT_3]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.04.maxvel           [JOINT_3]STEPGEN_MAXVEL
 
 setp pid.u.error-previous-target            true
 
-setp pid.u.maxoutput                        [JOINT_4]MAX_OUTPUT
-
-setp pid.u.Pgain                            [JOINT_4]P
-setp pid.u.Igain                            [JOINT_4]I
-setp pid.u.Dgain                            [JOINT_4]D
-setp pid.u.bias                             [JOINT_4]BIAS
-setp pid.u.FF0                              [JOINT_4]FF0
-setp pid.u.FF1                              [JOINT_4]FF1
-setp pid.u.FF2                              [JOINT_4]FF2
-setp pid.u.deadband                         [JOINT_4]DEADBAND
+setp pid.u.Pgain                            [JOINT_3]P
+setp pid.u.Igain                            [JOINT_3]I
+setp pid.u.Dgain                            [JOINT_3]D
+setp pid.u.bias                             [JOINT_3]BIAS
+setp pid.u.FF0                              [JOINT_3]FF0
+setp pid.u.FF1                              [JOINT_3]FF1
+setp pid.u.FF2                              [JOINT_3]FF2
+setp pid.u.deadband                         [JOINT_3]DEADBAND
+setp pid.u.maxoutput                        [JOINT_3]MAX_OUTPUT
 
 # ********************************************************************
 #  Set signal values
@@ -585,74 +489,161 @@ setp pid.u.deadband                         [JOINT_4]DEADBAND
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   V      5       01    LINEAR     6    P12
+#   V      4       01    LINEAR     5    P12
+# ********************************************************************
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
 
-# ********************************************************************
-#  Add functions to a real-time thread
 addf pid.v.do-pid-calcs                     servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
-net axis-select-v                        => halui.axis.v.select
 
-net jog-v-analog                         => halui.axis.v.analog
+net axis-select-v                           halui.axis.v.select
 
-net jog-v-neg                            => halui.axis.v.minus
+net jog-v-analog                            halui.axis.v.analog
 
-net jog-v-pos                            => halui.axis.v.plus
+net jog-v-neg                               halui.axis.v.minus
 
-# ***** See also the REB_PostGui.hal
+net jog-v-pos                               halui.axis.v.plus
+
+# See also the REB_PostGui.hal
 net v-enable                             => hm2_7i92.0.outm.00.out-01
 net v-enable                             => hm2_7i92.0.stepgen.01.enable
 net v-enable                             => pid.v.enable
 
-net v-home-sw                            => joint.5.home-sw-in
+net v-home-sw                            => joint.4.home-sw-in
 
 net v-index-enable                       => pid.v.index-enable
 
-net v-is-homed                          <=  halui.joint.5.is-homed
+net v-is-homed                              halui.joint.4.is-homed
 
-net v-neg-limit                          => joint.5.neg-lim-sw-in
+net v-neg-limit                          => joint.4.neg-lim-sw-in
 
 net v-output                            <=  pid.v.output
 net v-output                             => hm2_7i92.0.stepgen.01.velocity-cmd
 
-net v-pos-cmd                           <=  joint.5.motor-pos-cmd
+net v-pos-cmd                           <=  joint.4.motor-pos-cmd
 net v-pos-cmd                            => pid.v.command
 
 net v-pos-fb                            <=  hm2_7i92.0.stepgen.01.position-fb
-net v-pos-fb                             => joint.5.motor-pos-fb
+net v-pos-fb                             => joint.4.motor-pos-fb
 net v-pos-fb                             => pid.v.feedback
 
-net v-pos-limit                          => joint.5.pos-lim-sw-in
+net v-pos-limit                          => joint.4.pos-lim-sw-in
 
-net v-vel-cmd                           <=  joint.5.vel-cmd
+net v-vel-cmd                           <=  joint.4.vel-cmd
 
 # ********************************************************************
 #  Set pin values
-setp hm2_7i92.0.stepgen.01.dirsetup         [JOINT_5]DIRSETUP
-setp hm2_7i92.0.stepgen.01.dirhold          [JOINT_5]DIRHOLD
-setp hm2_7i92.0.stepgen.01.steplen          [JOINT_5]STEPLEN
-setp hm2_7i92.0.stepgen.01.stepspace        [JOINT_5]STEPSPACE
-setp hm2_7i92.0.stepgen.01.position-scale   [JOINT_5]STEP_SCALE
+setp hm2_7i92.0.stepgen.01.dirsetup         [JOINT_4]DIRSETUP
+setp hm2_7i92.0.stepgen.01.dirhold          [JOINT_4]DIRHOLD
+setp hm2_7i92.0.stepgen.01.steplen          [JOINT_4]STEPLEN
+setp hm2_7i92.0.stepgen.01.stepspace        [JOINT_4]STEPSPACE
+setp hm2_7i92.0.stepgen.01.position-scale   [JOINT_4]STEP_SCALE
 setp hm2_7i92.0.stepgen.01.step_type        0
 setp hm2_7i92.0.stepgen.01.control-type     1
-setp hm2_7i92.0.stepgen.01.maxaccel         [JOINT_5]STEPGEN_MAXACCEL
-setp hm2_7i92.0.stepgen.01.maxvel           [JOINT_5]STEPGEN_MAXVEL
+setp hm2_7i92.0.stepgen.01.maxaccel         [JOINT_4]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.01.maxvel           [JOINT_4]STEPGEN_MAXVEL
 
 setp pid.v.error-previous-target            true
 
-setp pid.v.maxoutput                        [JOINT_5]MAX_OUTPUT
+setp pid.v.Pgain                            [JOINT_4]P
+setp pid.v.Igain                            [JOINT_4]I
+setp pid.v.Dgain                            [JOINT_4]D
+setp pid.v.bias                             [JOINT_4]BIAS
+setp pid.v.FF0                              [JOINT_4]FF0
+setp pid.v.FF1                              [JOINT_4]FF1
+setp pid.v.FF2                              [JOINT_4]FF2
+setp pid.v.deadband                         [JOINT_4]DEADBAND
+setp pid.v.maxoutput                        [JOINT_4]MAX_OUTPUT
 
-setp pid.v.Pgain                            [JOINT_5]P
-setp pid.v.Igain                            [JOINT_5]I
-setp pid.v.Dgain                            [JOINT_5]D
-setp pid.v.bias                             [JOINT_5]BIAS
-setp pid.v.FF0                              [JOINT_5]FF0
-setp pid.v.FF1                              [JOINT_5]FF1
-setp pid.v.FF2                              [JOINT_5]FF2
-setp pid.v.deadband                         [JOINT_5]DEADBAND
+# ********************************************************************
+#  Set signal values
+
+# ********************************************************************
+
+# ********************************************************************
+#    AA    XX    XX IIIIIIII  SSSSSS      WW       WW
+#   AAAA    XX  XX    II     SS    SS     WW       WW
+#  AA  AA    XXXX     II      SSS         WW   W   WW
+# AAAAAAAA   XXXX     II         SSS       WW WWW WW
+# AA    AA  XX  XX    II     SS    SS       WWW WWW
+# AA    AA XX    XX IIIIIIII  SSSSSS         W   W
+# ********************************************************************
+#
+# Configuration values
+#                                 Home   PCB
+#  Axis  Joint  Channel   Type     Seq  Plug  Comments
+#  ----  -----  -------  -------  ----  ----  ------------------------
+#   W      5       03    LINEAR     6    P14
+# ********************************************************************
+#  Modified 03 Mar 26 by R. Colvin
+# ********************************************************************
+
+# addf pid.w.do-pid-calcs                     servo-thread
+
+# ********************************************************************
+#  Connect signals to pins
+
+net axis-select-w                           halui.axis.w.select
+
+net jog-w-analog                            halui.axis.w.analog
+
+net jog-w-neg                               halui.axis.w.minus
+
+net jog-w-pos                               halui.axis.w.plus
+
+# See also the REB_PostGui.hal
+net w-enable                             => hm2_7i92.0.outm.00.out-03
+net w-enable                             => hm2_7i92.0.stepgen.03.enable
+# net w-enable                             => pid.w.enable
+
+net w-home-sw                            => joint.5.home-sw-in
+
+# net w-index-enable                       => pid.w.index-enable
+
+net w-is-homed                              halui.joint.5.is-homed
+
+net w-neg-limit                          => joint.5.neg-lim-sw-in
+
+net w-pos-cmd                           <=  joint.5.motor-pos-cmd
+# net w-pos-cmd                            => pid.w.command
+
+net w-pos-fb                            <=  hm2_7i92.0.stepgen.03.position-fb
+net w-pos-fb                             => joint.5.motor-pos-fb
+# net w-pos-fb                             => pid.w.feedback
+
+# net w-output                            <=  pid.w.output
+net w-output                             => hm2_7i92.0.stepgen.03.velocity-cmd
+
+net w-pos-limit                          => joint.5.pos-lim-sw-in
+
+net w-vel-cmd                           <=  joint.5.vel-cmd
+
+# ********************************************************************
+#  Set pin values
+setp hm2_7i92.0.stepgen.03.dirsetup         [JOINT_5]DIRSETUP
+setp hm2_7i92.0.stepgen.03.dirhold          [JOINT_5]DIRHOLD
+setp hm2_7i92.0.stepgen.03.steplen          [JOINT_5]STEPLEN
+setp hm2_7i92.0.stepgen.03.stepspace        [JOINT_5]STEPSPACE
+setp hm2_7i92.0.stepgen.03.position-scale   [JOINT_5]STEP_SCALE
+setp hm2_7i92.0.stepgen.03.step_type        0
+setp hm2_7i92.0.stepgen.03.control-type     1
+setp hm2_7i92.0.stepgen.03.maxaccel         [JOINT_5]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.03.maxvel           [JOINT_5]STEPGEN_MAXVEL
+
+setp pid.w.error-previous-target            true
+
+setp pid.w.Pgain                            [JOINT_5]P
+setp pid.w.Igain                            [JOINT_5]I
+setp pid.w.Dgain                            [JOINT_5]D
+setp pid.w.bias                             [JOINT_5]BIAS
+setp pid.w.FF0                              [JOINT_5]FF0
+setp pid.w.FF1                              [JOINT_5]FF1
+setp pid.w.FF2                              [JOINT_5]FF2
+setp pid.w.deadband                         [JOINT_5]DEADBAND
+setp pid.w.maxoutput                        [JOINT_5]MAX_OUTPUT
 
 # ********************************************************************
 #  Set signal values
@@ -674,14 +665,15 @@ setp pid.v.deadband                         [JOINT_5]DEADBAND
 #  ----  -----  -------  -------  ----   ------------------------
 #  Sp0     7       05      n/a     n/a 
 # ********************************************************************
-
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
-#  Add functions to a real-time thread
+
 addf orient.0                               servo-thread
 addf pid.p0.do-pid-calcs                    servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
+
 net machine-is-on                        => hm2_7i92.0.stepgen.05.enable
 
 net orient.0-angle                       => orient.0.angle
@@ -703,7 +695,8 @@ net spindle.0-brake                     <=  spindle.0.brake
 net spindle.0-cw                        <=  spindle.0.forward
 net spindle.0-ccw                       <=  spindle.0.reverse
 
-# ***** See also the REB_PostGui.hal
+
+# See also the REB_PostGui.hal
 net spindle.0-enable                     => hm2_7i92.0.outm.00.out-05
 net spindle.0-enable                     => pid.s0.enable
 
@@ -711,10 +704,10 @@ net spindle.0-index-enable              <=> spindle.0.index-enable
 net spindle.0-index-enable               => pid.p0.index-enable
 net spindle.0-index-enable              <=> encoder.0.index-enable
 
-net spindle.0-manual-cw                  => halui.spindle.0.forward
-net spindle.0-manual-ccw                 => halui.spindle.0.reverse
+net spindle.0-manual-cw                     halui.spindle.0.forward
+net spindle.0-manual-ccw                    halui.spindle.0.reverse
 
-net spindle.0-manual-stop                => halui.spindle.0.stop
+net spindle.0-manual-stop                   halui.spindle.0.stop
 
 net spindle.0-output                    <=  sum2.0.out
 
@@ -764,11 +757,8 @@ setp hm2_7i92.0.stepgen.05.control-type     1
 setp hm2_7i92.0.stepgen.05.maxaccel         [SPINDLE_0]STEPGEN_MAXACCEL
 setp hm2_7i92.0.stepgen.05.maxvel           [SPINDLE_0]STEPGEN_MAXVEL
 
-setp pid.p0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_POS
-
 setp pid.s0.error-previous-target           true
 
-# Positional data for indexing the spindle
 setp pid.p0.Pgain                           [SPINDLE_0]P_POS
 setp pid.p0.Igain                           [SPINDLE_0]I_POS
 setp pid.p0.Dgain                           [SPINDLE_0]D_POS
@@ -776,9 +766,7 @@ setp pid.p0.bias                            [SPINDLE_0]BIAS_POS
 setp pid.p0.FF0                             [SPINDLE_0]FF0_POS
 setp pid.p0.FF1                             [SPINDLE_0]FF1_POS
 setp pid.p0.FF2                             [SPINDLE_0]FF2_POS
-
-# Speed data for traditional rotation of the spindle
-setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_VEL
+setp pid.p0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_POS
 
 setp pid.s0.Pgain                           [SPINDLE_0]P_VEL
 setp pid.s0.Igain                           [SPINDLE_0]I_VEL
@@ -788,6 +776,7 @@ setp pid.s0.FF0                             [SPINDLE_0]FF0_VEL
 setp pid.s0.FF1                             [SPINDLE_0]FF1_VEL
 setp pid.s0.FF2                             [SPINDLE_0]FF2_VEL
 setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
+setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_VEL
 
 # ********************************************************************
 #  Set signal values
@@ -810,11 +799,9 @@ sets spindle.0-at-speed                     true
 #  ----  -----  -------  -------  ----   ------------------------
 #  Sp1     6       07      n/a     n/a
 # ********************************************************************
-#  Modified 04 Mar 26 by R. Colvin
+#  Modified 03 Mar 26 by R. Colvin
 # ********************************************************************
 
-# ********************************************************************
-#  Add functions to a real-time thread
 addf pid.s1.do-pid-calcs                    servo-thread
 
 # ********************************************************************
@@ -828,17 +815,17 @@ net spindle.1-brake                     <=  spindle.1.brake
 net spindle.1-cw                        <=  spindle.1.forward
 net spindle.1-ccw                       <=  spindle.1.reverse
 
-# ***** See also the REB_PostGui.hal
+# See also the REB_PostGui.hal
 net spindle.1-enable                     => hm2_7i92.0.outm.00.out-07
 net spindle.1-enable                     => pid.s1.enable
 
 net spindle.1-index-enable              <=> spindle.1.index-enable
 net spindle.1-index-enable               => pid.s1.index-enable
 
-net spindle.1-manual-cw                  => halui.spindle.1.forward
-net spindle.1-manual-ccw                 => halui.spindle.1.reverse
+net spindle.1-manual-cw                     halui.spindle.1.forward
+net spindle.1-manual-ccw                    halui.spindle.1.reverse
 
-net spindle.1-manual-stop                => halui.spindle.1.stop
+net spindle.1-manual-stop                   halui.spindle.1.stop
 
 net spindle.1-output                    <=  pid.s1.output
 
@@ -876,11 +863,6 @@ setp hm2_7i92.0.stepgen.07.maxvel           [SPINDLE_1]STEPGEN_MAXVEL
 
 setp pid.s1.error-previous-target           true
 
-# Positional data for indexing the spindle
-
-# Speed data for traditional rotation of the spindle
-setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
-
 setp pid.s1.Pgain                           [SPINDLE_1]P_VEL
 setp pid.s1.Igain                           [SPINDLE_1]I_VEL
 setp pid.s1.Dgain                           [SPINDLE_1]D_VEL
@@ -888,10 +870,39 @@ setp pid.s1.bias                            [SPINDLE_1]BIAS_VEL
 setp pid.s1.FF0                             [SPINDLE_1]FF0_VEL
 setp pid.s1.FF1                             [SPINDLE_1]FF1_VEL
 setp pid.s1.FF2                             [SPINDLE_1]FF2_VEL
+
 setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
+setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
 
 # ********************************************************************
 #  Set signal values
 sets spindle.1-at-speed                     true
+
+# ********************************************************************
+
+# ********************************************************************
+#  Connect miscellaneous signals to pins
+# ********************************************************************
+#  Modified 03 Mar 26 by R. Colvin
+# ********************************************************************
+
+net estop-out                           <=  iocontrol.0.user-enable-out
+net estop-out                            => iocontrol.0.emc-enable-in
+
+net in-position                         <=  motion.in-position
+
+net jog-selected-neg                        halui.axis.selected.minus
+
+net jog-selected-pos                        halui.axis.selected.plus
+
+net jog-speed                               halui.axis.jog-speed
+
+net machine-is-enabled                  <=  motion.motion-enabled
+
+net machine-is-on                           halui.machine.is-on
+
+net MDI-mode                                halui.mode.is-mdi
+
+net probe-in                             => motion.probe-input
 
 # *********************** NOTHING FOLLOWS ****************************
