@@ -77,7 +77,7 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   V      5       01    LINEAR     6    P12
+#   V      4       01    LINEAR     5    P12
 # ********************************************************************
 
 [AXIS_V]
@@ -90,7 +90,7 @@ MAX_ACCELERATION     = 20.0
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-[JOINT_5]
+[JOINT_4]
 TYPE                 = LINEAR
 UNITS                = INCH
 
@@ -135,7 +135,7 @@ MIN_FERROR           = 10
 FERROR               = 100
 
 HOME                 = 0.0
-HOME_SEQUENCE        = 6
+HOME_SEQUENCE        = 5
 
 BIAS                 = 0.0
 DEADBAND             = 0.00005

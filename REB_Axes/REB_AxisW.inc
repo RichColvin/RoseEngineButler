@@ -13,10 +13,10 @@
 # LinuxCNC configuration for use with a Rose Engine                   #
 #                                                                     #
 # File:                                                               #
-#   REB_AxisB.inc                                                     #
+#   REB_AxisY.inc                                                     #
 #                                                                     #
 # Purpose:                                                            #
-#   This is used to setup the B axis for the configuration of         #
+#   This is used to setup the W axis for the configuration of         #
 #   LinuxCNC.                                                         #
 #                                                                     #
 # End User Customisation:                                             #
@@ -64,12 +64,12 @@
 #######################################################################
 
 # ********************************************************************
-#    AA    XX    XX IIIIIIII  SSSSSS      BBBBBBB
-#   AAAA    XX  XX    II     SS    SS     BB    BB
-#  AA  AA    XXXX     II      SSS         BBBBBBB
-# AAAAAAAA   XXXX     II         SSS      BB    BB
-# AA    AA  XX  XX    II     SS    SS     BB    BB
-# AA    AA XX    XX IIIIIIII  SSSSSS      BBBBBBB
+#    AA    XX    XX IIIIIIII  SSSSSS      WW       WW
+#   AAAA    XX  XX    II     SS    SS     WW       WW
+#  AA  AA    XXXX     II      SSS         WW   W   WW
+# AAAAAAAA   XXXX     II         SSS       WW WWW WW
+# AA    AA  XX  XX    II     SS    SS       WWW WWW
+# AA    AA XX    XX IIIIIIII  SSSSSS         W   W
 # ********************************************************************
 
 # ********************************************************************
@@ -77,24 +77,24 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   B      2       06    ANGULAR    3    P17
+#   W      5       03    LINEAR     6    P14
 # ********************************************************************
 
-[AXIS_B]
-TYPE                 = ANGULAR
+[AXIS_W]
+TYPE                 = LINEAR
 
 # 1"/min = 0.083"/sec
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
 MAX_LIMIT            = 1e99
 
-[JOINT_2]
-TYPE                 = ANGULAR
-UNITS                = DEGREE
+[JOINT_5]
+TYPE                 = LINEAR
+UNITS                = INCH
 
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 0.1
 MAX_ACCELERATION     = 20.0
 
 # ********************************************************************
@@ -103,23 +103,23 @@ MAX_ACCELERATION     = 20.0
 # The values used below are outlined in the user manual 
 # (manual.roseenginebutler.com) in the entry titled,
 #
-#      Updating the Axis Configuration File
+#        Updating the Axis Configuration File
 #
 #  For the this device, a leadscrew with a 
-#   * 1 starts
+#   * 4 starts
 #   * 2 mm pitch
 #  is being used.
 #
 #                6,400 steps   1 rev   25.4 steps          steps
-#   STEP_SCALE = ----------- X ----- X ---------- = 81,280 -----
-#                   1 rev      2 mm      1 inch             inch
+#   STEP_SCALE = ----------- X ----- X ---------- = 20,320 -----
+#                   1 rev      8 mm      1 inch             inch
 #
 
-STEP_SCALE           = 81280
-ENCODER_SCALE        = 81280
+STEP_SCALE           = 20320
+ENCODER_SCALE        = 20320
 
 STEPGEN_MAXACCEL     = 0.5
-STEPGEN_MAXVEL       = 12.5
+STEPGEN_MAXVEL       = 1.25
 
 # ********************************************************************
 # STANDARD VALUES
@@ -135,7 +135,7 @@ MIN_FERROR           = 10
 FERROR               = 100
 
 HOME                 = 0.0
-HOME_SEQUENCE        = 3
+HOME_SEQUENCE        = 6
 
 BIAS                 = 0.0
 DEADBAND             = 0.000015
