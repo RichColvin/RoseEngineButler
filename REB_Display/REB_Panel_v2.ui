@@ -343,7 +343,7 @@
                 <signal name="pressed" handler="Sp0_Move_Rev" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">7</property>
               </packing>
             </child>
@@ -359,7 +359,7 @@
                 <signal name="pressed" handler="Sp0_Move_Fwd" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">7</property>
               </packing>
             </child>
@@ -454,7 +454,7 @@
                 <signal name="pressed" handler="Sp0_Move_Idx_Fwd" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">7</property>
               </packing>
             </child>
@@ -471,7 +471,7 @@
                 <signal name="pressed" handler="Sp0_Move_Idx_Rev" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">7</property>
               </packing>
             </child>
@@ -533,7 +533,7 @@
                 <signal name="pressed" handler="B_Move_Idx_Rev" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">17</property>
               </packing>
             </child>
@@ -549,7 +549,7 @@
                 <signal name="pressed" handler="B_Move_Idx_Fwd" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">17</property>
               </packing>
             </child>
@@ -566,7 +566,7 @@
                 <signal name="pressed" handler="X_Move_Minus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -616,7 +616,7 @@
                 <signal name="pressed" handler="Z_Move_Minus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -633,7 +633,7 @@
                 <signal name="pressed" handler="U_Move_Minus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -649,7 +649,7 @@
                 <signal name="pressed" handler="X_Move_Plus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -665,7 +665,7 @@
                 <signal name="pressed" handler="Z_Move_Plus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -681,7 +681,7 @@
                 <signal name="pressed" handler="U_Move_Plus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -698,7 +698,7 @@
                 <signal name="pressed" handler="Y_Move_Minus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">14</property>
               </packing>
             </child>
@@ -714,7 +714,7 @@
                 <signal name="pressed" handler="V_Move_Plus" swapped="no"/>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">14</property>
               </packing>
             </child>
@@ -1038,7 +1038,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">5</property>
               </packing>
             </child>
@@ -1213,7 +1213,7 @@ feed rate</property>
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">12</property>
+                <property name="left-attach">13</property>
                 <property name="top-attach">5</property>
               </packing>
             </child>
@@ -1247,7 +1247,7 @@ feed rate</property>
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">13</property>
+                <property name="left-attach">12</property>
                 <property name="top-attach">5</property>
               </packing>
             </child>
@@ -1277,6 +1277,7 @@ feed rate</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif Bold 12"/>
                   <attribute name="weight" value="bold"/>
+                  <attribute name="foreground" value="#e5e5a5a50a0a"/>
                 </attributes>
               </object>
               <packing>
@@ -1309,6 +1310,7 @@ feed rate</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif Bold 12"/>
                   <attribute name="weight" value="bold"/>
+                  <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                 </attributes>
               </object>
               <packing>
@@ -1324,6 +1326,7 @@ feed rate</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif Bold 12"/>
                   <attribute name="weight" value="bold"/>
+                  <attribute name="foreground" value="#e5e5a5a50a0a"/>
                 </attributes>
               </object>
               <packing>
@@ -1339,6 +1342,7 @@ feed rate</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif Bold 12"/>
                   <attribute name="weight" value="bold"/>
+                  <attribute name="foreground" value="#a5a51d1d2d2d"/>
                 </attributes>
               </object>
               <packing>
@@ -1354,6 +1358,7 @@ feed rate</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif Bold 12"/>
                   <attribute name="weight" value="bold"/>
+                  <attribute name="foreground" value="#1a1a5f5fb4b4"/>
                 </attributes>
               </object>
               <packing>
@@ -1990,6 +1995,7 @@ feed rate</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif Bold 12"/>
                   <attribute name="weight" value="bold"/>
+                  <attribute name="foreground" value="#a5a51d1d2d2d"/>
                 </attributes>
               </object>
               <packing>
@@ -2024,7 +2030,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -2039,7 +2045,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">10</property>
               </packing>
             </child>
@@ -2130,7 +2136,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -2145,7 +2151,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">12</property>
               </packing>
             </child>
@@ -2161,7 +2167,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -2176,7 +2182,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">13</property>
               </packing>
             </child>
@@ -2192,7 +2198,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">14</property>
               </packing>
             </child>
@@ -2207,7 +2213,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">14</property>
               </packing>
             </child>
@@ -2222,7 +2228,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">15</property>
               </packing>
             </child>
@@ -2237,7 +2243,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">17</property>
               </packing>
             </child>
@@ -2252,7 +2258,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">8</property>
+                <property name="left-attach">6</property>
                 <property name="top-attach">17</property>
               </packing>
             </child>
@@ -2268,7 +2274,7 @@ feed rate</property>
                 <property name="image-position">top</property>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">15</property>
               </packing>
             </child>
@@ -2286,7 +2292,7 @@ feed rate</property>
                 </attributes>
               </object>
               <packing>
-                <property name="left-attach">6</property>
+                <property name="left-attach">8</property>
                 <property name="top-attach">5</property>
               </packing>
             </child>
@@ -2327,64 +2333,24 @@ feed rate</property>
               </packing>
             </child>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
+              <object class="GtkLabel" id="V_axis_feed1">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="margin-start">2</property>
+                <property name="label" translatable="yes">U is parallel to X
+V is parallel to Y | B is rotation around Y
+W is parallel to Z</property>
+                <property name="wrap">True</property>
+                <property name="xalign">0.5</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">19</property>
+                <property name="width">10</property>
+                <property name="height">2</property>
+              </packing>
             </child>
             <child>
               <placeholder/>
