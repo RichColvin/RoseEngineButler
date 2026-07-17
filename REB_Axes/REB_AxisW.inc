@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 22 June 2026, R. Colvin                                     #
+#   1.0 - 13 July 2026, R. Colvin                                     #
 #                                                                     #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -77,7 +77,7 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   W      5       03    LINEAR     6    P14
+#   W      5       00    LINEAR     5    P11
 # ********************************************************************
 
 [AXIS_W]
@@ -135,7 +135,7 @@ MIN_FERROR           = 10
 FERROR               = 100
 
 HOME                 = 0.0
-HOME_SEQUENCE        = 6
+HOME_SEQUENCE        = 5
 
 BIAS                 = 0.0
 DEADBAND             = 0.000015

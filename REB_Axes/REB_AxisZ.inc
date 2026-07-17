@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 22 June 2026, R. Colvin                                     #
+#   1.0 - 13 July 2026, R. Colvin                                     #
 #                                                                     #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -77,7 +77,7 @@
 #                                 Home   PCB
 #  Axis  Joint  Channel   Type     Seq  Plug  Comments
 #  ----  -----  -------  -------  ----  ----  ------------------------
-#   Z      1       00    LINEAR     2    P11
+#   Z      1       01    LINEAR     2    P12
 # ********************************************************************
 
 [AXIS_Z]

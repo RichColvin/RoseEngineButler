@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 09 August 2025, R. Colvin                                   #
+#   1.0 - 13 July 2026, R. Colvin                                     #
 #                                                                     #
 # Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -77,7 +77,7 @@
 #                                 Home 
 #  Axis  Joint  Channel   Type     Seq   Comments
 #  ----  -----  -------  -------  ----   ------------------------
-#  Sp0     7       05      n/a     n/a 
+#  Sp0     7       06      n/a     n/a 
 #  Sp1     6       07      n/a     n/a
 
 [JOINT_6]
