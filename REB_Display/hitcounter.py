@@ -600,7 +600,7 @@ class HandlerClass:
         print("=================================================")
         print("FUNCTION OpenUserForum")
 
-        url = "https://forum.RoseEngineButler.com"
+        url = "https://RoseEngineButler.com/Forum"
         webbrowser.open(url)
 
         Prt1 = "Opening website " + url
