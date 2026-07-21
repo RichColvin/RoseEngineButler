@@ -67,7 +67,23 @@ import time
 import linuxcnc
 import webbrowser
 import subprocess
+import re
 from gi.repository import Gdk
+
+# Axis id (as used in REB_Settings_v1.ini and the Settings tab spin
+# buttons) -> hm2_7i92.0 stepgen channel. Verified against the actual
+# "net <axis>-enable => hm2_7i92.0.stepgen.NN.enable" lines in REB.hal
+# - NOT the documentation table in REB.ini, which does not match.
+AXIS_STEPGEN = {
+    "X":   "04",
+    "Z":   "01",
+    "B":   "05",
+    "U":   "02",
+    "V":   "03",
+    "W":   "00",
+    "Sp0": "06",
+    "Sp1": "07",
+}
 
 # Establish connection to command and status channels
 c = linuxcnc.command()
@@ -118,6 +134,60 @@ class HandlerClass:
             return True
 
         return False
+
+    def _load_scale_settings(self):
+        '''
+        Reads persisted axis scale values from REB_Settings_v1.ini
+        (an XML file living alongside this script) and applies them
+        to the Settings tab's spin buttons and the real stepgen
+        position-scale HAL pins.
+
+        Only runs in the component that actually owns the Settings
+        tab's spin buttons (X_Set_Scale etc.) - every other tab/panel
+        also using hitcounter.py will find that widget missing and
+        return immediately.
+        '''
+        if self.builder.get_object("X_Set_Scale") is None:
+            return
+
+        settings_path = "/home/reuben/linuxcnc/configs/RoseEngineButlerLocal/REB_Settings_v1.ini"
+
+        try:
+            with open(settings_path, "r") as f:
+                xml_text = f.read()
+        except OSError as e:
+            print("Could not read " + settings_path + ": " + str(e))
+            return
+
+        for axis_id, stepgen_ch in AXIS_STEPGEN.items():
+            match = re.search(
+                r'<axis\s+id="' + re.escape(axis_id) + r'">\s*<scale>([\d.]+)</scale>',
+                xml_text
+            )
+            if not match:
+                print("No stored scale found for axis " + axis_id
+                      + " in " + settings_path)
+                continue
+
+            value = float(match.group(1))
+
+            widget = self.builder.get_object(axis_id + "_Set_Scale")
+            if widget is not None:
+                widget.set_value(value)
+
+            hal_pin = "hm2_7i92.0.stepgen." + stepgen_ch + ".position-scale"
+            try:
+                subprocess.run(
+                    ["halcmd", "setp", hal_pin, str(value)],
+                    check=True,
+                    capture_output=True,
+                    text=True
+                )
+                print("Restored " + hal_pin + " = " + str(value))
+            except subprocess.CalledProcessError as e:
+                print("Error restoring " + hal_pin + ": " + e.stderr)
+            except FileNotFoundError:
+                print("halcmd not found - is the LinuxCNC environment sourced?")
 
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      BBBBBBB
@@ -353,7 +423,7 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
         # Send the new scale to the X axis stepgen via halcmd.
-        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        hal_pin = "hm2_7i92.0.stepgen.05.position-scale"
         cmd = ["halcmd", "setp", hal_pin, str(B_Scale)]
 
         try:
@@ -1126,7 +1196,7 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
         # Send the new scale to the X axis stepgen via halcmd.
-        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        hal_pin = "hm2_7i92.0.stepgen.06.position-scale"
         cmd = ["halcmd", "setp", hal_pin, str(Sp0_Scale)]
 
         try:
@@ -1317,7 +1387,7 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
         # Send the new scale to the X axis stepgen via halcmd.
-        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        hal_pin = "hm2_7i92.0.stepgen.07.position-scale"
         cmd = ["halcmd", "setp", hal_pin, str(Sp1_Scale)]
 
         try:
@@ -1571,7 +1641,7 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
         # Send the new scale to the X axis stepgen via halcmd.
-        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        hal_pin = "hm2_7i92.0.stepgen.02.position-scale"
         cmd = ["halcmd", "setp", hal_pin, str(U_Scale)]
 
         try:
@@ -1825,7 +1895,7 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
         # Send the new scale to the X axis stepgen via halcmd.
-        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        hal_pin = "hm2_7i92.0.stepgen.03.position-scale"
         cmd = ["halcmd", "setp", hal_pin, str(V_Scale)]
 
         try:
@@ -2079,7 +2149,7 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
         # Send the new scale to the X axis stepgen via halcmd.
-        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        hal_pin = "hm2_7i92.0.stepgen.00.position-scale"
         cmd = ["halcmd", "setp", hal_pin, str(W_Scale)]
 
         try:
@@ -2630,6 +2700,13 @@ class HandlerClass:
         # own enable button is doing. Defaults to "allow enabled".
         self.halcomp.newpin("X_Ena_Override", hal.HAL_BIT, hal.HAL_OUT)
         self.halcomp['X_Ena_Override'] = True
+
+        # Restore persisted axis scale values (REB_Settings_v1.ini)
+        # into the Settings tab's spin buttons and the real stepgen
+        # scale pins. No-ops in every component other than the
+        # Settings tab (REBHlp), which is the only one with these
+        # widgets.
+        self._load_scale_settings()
 
         ###############################################################
         # Global Program Variables - declare and set initial value.

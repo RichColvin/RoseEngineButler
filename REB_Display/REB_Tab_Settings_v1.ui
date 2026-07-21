@@ -558,7 +558,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">B_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
                 <signal name="value-changed" handler="B_Set_Scale" swapped="no"/>
