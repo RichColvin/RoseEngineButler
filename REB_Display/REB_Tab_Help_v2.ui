@@ -130,7 +130,7 @@
                     <property name="can-focus">True</property>
                     <property name="has-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="halign">start</property>
+                    <property name="halign">center</property>
                     <property name="valign">start</property>
                     <property name="margin-left">2</property>
                     <property name="margin-right">2</property>
@@ -156,7 +156,7 @@
                   <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="halign">start</property>
+                    <property name="halign">center</property>
                     <property name="valign">start</property>
                     <property name="hexpand">True</property>
                     <child>
@@ -272,7 +272,7 @@
                     <property name="valign">start</property>
                     <property name="margin-top">12</property>
                     <property name="margin-bottom">12</property>
-                    <property name="label" translatable="yes">Rose Engine Butler is implemented as a set of configurations for use on LinuxCNC and designed for use with stepper motors on a rose engine.</property>
+                    <property name="label" translatable="yes">Rose Engine Butler is implemented as a set of configurations for use on LinuxCNC, and is designed for use with stepper motors on a rose engine.</property>
                     <property name="wrap">True</property>
                   </object>
                   <packing>
