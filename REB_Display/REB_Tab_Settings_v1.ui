@@ -762,30 +762,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="Cmts">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">start</property>
-                <property name="margin-left">4</property>
-                <property name="margin-start">4</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">For these fields, enter a number between 100,000 and -100,000 (without the commas).
-
-If the axis is running in the wrong direction, reverse the polarity of the number (make a + into a -, or vice versa).</property>
-                <property name="wrap">True</property>
-                <attributes>
-                  <attribute name="font-desc" value="DejaVu Serif 10"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="left-attach">4</property>
-                <property name="top-attach">4</property>
-                <property name="height">13</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -839,7 +815,30 @@ If the axis is running in the wrong direction, reverse the polarity of the numbe
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="margin-left">4</property>
+                <property name="margin-start">4</property>
+                <property name="label" translatable="yes">For these fields, enter a number between 100,000 and -100,000 (without the commas).
+
+Setting the Values
+The best manner for setting these is to have your machine move a certain distance (e.g., 1 inch or 10 degrees), and then change this value as necessary to achieve that movement.
+
+Reversing the Direction
+If the axis is running in the wrong direction, reverse the polarity of the number (i.e., make a + into a -, or vice versa).</property>
+                <property name="wrap">True</property>
+                <attributes>
+                  <attribute name="font-desc" value="DejaVu Serif 10"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left-attach">4</property>
+                <property name="top-attach">3</property>
+                <property name="height">14</property>
+              </packing>
             </child>
             <child>
               <placeholder/>
