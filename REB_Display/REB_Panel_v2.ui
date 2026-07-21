@@ -373,7 +373,7 @@
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
                     <property name="group">Sp0_Set_Idx_bW_Div</property>
-                    <signal name="toggled" handler="Sp0_Set_Idx_bW_DegDiv" swapped="no"/>
+                    <signal name="toggled" handler="Sp0_Set_Idx_DegDiv" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -389,7 +389,7 @@
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
                     <property name="group">Sp0_Set_Idx_bW_Deg</property>
-                    <signal name="toggled" handler="Sp0_Set_Idx_bW_DegDiv" swapped="no"/>
+                    <signal name="toggled" handler="Sp0_Set_Idx_DegDiv" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -470,7 +470,7 @@
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
                     <property name="group">B_Idx_Div</property>
-                    <signal name="toggled" handler="B_Set_Idx_bW_DegDiv" swapped="no"/>
+                    <signal name="toggled" handler="B_Set_Idx_DegDiv" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -486,7 +486,7 @@
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
                     <property name="group">B_Idx_Deg</property>
-                    <signal name="toggled" handler="B_Set_Idx_bW_DegDiv" swapped="no"/>
+                    <signal name="toggled" handler="B_Set_Idx_DegDiv" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>

@@ -62,6 +62,7 @@
 #######################################################################
 
 import hal
+import hal_glib
 import glib
 import time
 import linuxcnc
@@ -413,10 +414,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("B axis is enabled - disabling")
                 self.halcomp['B_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("B axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -1186,10 +1187,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("Sp0 axis is enabled - disabling")
                 self.halcomp['Sp0_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("Sp0 axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -1377,10 +1378,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("Sp1 axis is enabled - disabling")
                 self.halcomp['Sp1_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("Sp1 axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -1631,10 +1632,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("U axis is enabled - disabling")
                 self.halcomp['U_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("U axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -1885,10 +1886,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("V axis is enabled - disabling")
                 self.halcomp['V_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("V axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -2139,10 +2140,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("W axis is enabled - disabling")
                 self.halcomp['W_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("W axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -2647,10 +2648,10 @@ class HandlerClass:
             print(status_pin + " = " + result.stdout.strip())
 
             if is_enabled:
-                print("X axis is enabled - disabling")
+                print("Z axis is enabled - disabling")
                 self.halcomp['Z_Ena_Override'] = False
             else:
-                print("X axis is already disabled")
+                print("Z axis is already disabled")
         except subprocess.CalledProcessError as e:
             print("Error checking " + status_pin + ": " + e.stderr)
         except FileNotFoundError:
@@ -2695,11 +2696,24 @@ class HandlerClass:
         self.builder        = builder
         self.nhits          = 0
 
-        # Independent pin this component owns, used to force X axis
-        # disable from this tab regardless of what the main panel's
-        # own enable button is doing. Defaults to "allow enabled".
-        self.halcomp.newpin("X_Ena_Override", hal.HAL_BIT, hal.HAL_OUT)
-        self.halcomp['X_Ena_Override'] = True
+        # Independent pins this component owns, used to force each
+        # axis disabled from this tab regardless of what the main
+        # panel's own enable button is doing. Each defaults to "allow
+        # enabled". ANDed with the panel button per-axis in
+        # REB_PostGUI.hal (REBHlp.<Axis>_Ena_Override).
+        #
+        # Per the GladeVCP docs, an output pin must be created via
+        # hal_glib.GPin(halcomp.newpin(...)) - not a bare newpin() -
+        # for writes through halcomp[name] = value to actually take
+        # effect. The GPin objects are kept on self so they aren't
+        # garbage-collected.
+        self._ena_override_pins = {}
+        for axis_id in AXIS_STEPGEN:
+            pin_name = axis_id + "_Ena_Override"
+            self._ena_override_pins[axis_id] = hal_glib.GPin(
+                self.halcomp.newpin(pin_name, hal.HAL_BIT, hal.HAL_OUT)
+            )
+            self.halcomp[pin_name] = True
 
         # Restore persisted axis scale values (REB_Settings_v1.ini)
         # into the Settings tab's spin buttons and the real stepgen
