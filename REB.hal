@@ -19,16 +19,15 @@
 #   This is used to setup hardware abstraction layer for LinuxCNC.    #
 #                                                                     #
 # End User Customisation:                                             #
-#   The end user of the Rose Engine Butler system may modify this     #
-#   file to accommodate their local configuration.  It is             #
-#   recommended that a copy of this file be saved before changes are  #
-#   made.                                                             #
+#   The end user of the Rose Engine Butler system should not modify   #
+#   this file.  Changes to this file are not supported by Colvin      #
+#   Tools nor Brainwave Embedded.                                     #
 #                                                                     #
 #   Changes to this file are not supported by Colvin Tools nor        #
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 13 July 2025, R. Colvin 	                                  #
+#   1.0 - 21 July 2026, R. Colvin 	                                  #
 #                                                                     #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
