@@ -757,7 +757,7 @@ setp hm2_7i92.0.stepgen.06.dirsetup         [SPINDLE_0]DIRSETUP
 setp hm2_7i92.0.stepgen.06.dirhold          [SPINDLE_0]DIRHOLD
 setp hm2_7i92.0.stepgen.06.steplen          [SPINDLE_0]STEPLEN
 setp hm2_7i92.0.stepgen.06.stepspace        [SPINDLE_0]STEPSPACE
-setp hm2_7i92.0.stepgen.06.position-scale   [SPINDLE_0]STEP_SCALE
+# setp hm2_7i92.0.stepgen.06.position-scale   [SPINDLE_0]STEP_SCALE
 setp hm2_7i92.0.stepgen.06.step_type        0
 setp hm2_7i92.0.stepgen.06.control-type     1
 setp hm2_7i92.0.stepgen.06.maxaccel         [SPINDLE_0]STEPGEN_MAXACCEL
@@ -861,7 +861,7 @@ setp hm2_7i92.0.stepgen.07.dirsetup         [SPINDLE_1]DIRSETUP
 setp hm2_7i92.0.stepgen.07.dirhold          [SPINDLE_1]DIRHOLD
 setp hm2_7i92.0.stepgen.07.steplen          [SPINDLE_1]STEPLEN
 setp hm2_7i92.0.stepgen.07.stepspace        [SPINDLE_1]STEPSPACE
-setp hm2_7i92.0.stepgen.07.position-scale   [SPINDLE_1]STEP_SCALE
+# setp hm2_7i92.0.stepgen.07.position-scale   [SPINDLE_1]STEP_SCALE
 setp hm2_7i92.0.stepgen.07.step_type        0
 setp hm2_7i92.0.stepgen.07.control-type     1
 setp hm2_7i92.0.stepgen.07.maxaccel         [SPINDLE_1]STEPGEN_MAXACCEL
