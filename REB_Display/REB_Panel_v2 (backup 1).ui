@@ -195,17 +195,13 @@
             <property name="margin-top">4</property>
             <property name="vexpand">True</property>
             <child>
-              <object class="HAL_Button" id="Sp0_ENA">
+              <object class="HAL_ToggleButton" id="Sp0_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="margin-left">2</property>
-                <property name="margin-right">2</property>
-                <property name="margin-top">2</property>
-                <property name="margin-bottom">2</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -229,7 +225,7 @@
               </packing>
             </child>
             <child>
-              <object class="HAL_Button" id="Sp1_ENA">
+              <object class="HAL_ToggleButton" id="Sp1_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -1355,7 +1351,7 @@ feed rate</property>
               </packing>
             </child>
             <child>
-              <object class="HAL_Button" id="Z_ENA">
+              <object class="HAL_ToggleButton" id="Z_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -1373,7 +1369,7 @@ feed rate</property>
               </packing>
             </child>
             <child>
-              <object class="HAL_Button" id="U_ENA">
+              <object class="HAL_ToggleButton" id="U_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -1391,7 +1387,7 @@ feed rate</property>
               </packing>
             </child>
             <child>
-              <object class="HAL_Button" id="V_ENA">
+              <object class="HAL_ToggleButton" id="V_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -1409,7 +1405,7 @@ feed rate</property>
               </packing>
             </child>
             <child>
-              <object class="HAL_Button" id="W_ENA">
+              <object class="HAL_ToggleButton" id="W_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
