@@ -28,9 +28,9 @@
 #   Brainwave Embedded.												  #
 #																	  #
 # Version															  #
-#   1.0 - 05 August 2025, R. Colvin                                   #
+#   1.0 - 21 July 2026, R. Colvin                                     #
 #																	  #
-# Copyright (c) 2025 Colvin Tools and Brainwave Embedded. 			  #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded. 			  #
 #																	  #
 # The following MIT/X Consortium License applies to the 			  #
 # Rose Engine Butler system. Use of this system constitutes consent   #
@@ -97,79 +97,70 @@
 # ********************************************************************
 # Setup the variables needed for the PyVCP Virtual Control Panels
 
+# ENA buttons (Sp0, Sp1, B, X, Z, U, V, W) are momentary HAL_Buttons;
+# each click toggles that axis's enable via a flipflop (a D-type
+# flip-flop - pins: data, clk, set, reset, out - made into a toggle
+# by feeding its own inverted output back into "data", so each clk
+# rising edge flips "out" without the button staying visually
+# pressed in). X additionally ANDs in an independent "allow" pin
+# owned by the Settings tab (REBHlp.X_Ena_Override), so the Settings
+# tab can force X disabled regardless of the panel button's state.
+#
+# All instances of a given realtime component must be declared in a
+# single loadrt line - the underlying kernel module can only be
+# inserted once.
+loadrt flipflop names=sp0-ena-flip,sp1-ena-flip,b-ena-flip,x-ena-flip,z-ena-flip,u-ena-flip,v-ena-flip,w-ena-flip
+loadrt not names=sp0-ena-not,sp1-ena-not,b-ena-not,x-ena-not,z-ena-not,u-ena-not,v-ena-not,w-ena-not
+loadrt and2 names=x-ena-and
+
 # ******************************************
 # Spindles
 
-# Spindle 0 ********************************
-loadrt and2 names=spindle.0-ena-and
-loadrt flipflop names=spindle.0-ena-flip
-loadrt not names=spindle.0-ena-not
-addf spindle.0-ena-not servo-thread
-addf spindle.0-ena-flip servo-thread
-addf spindle.0-ena-and servo-thread
+addf sp0-ena-not servo-thread
+addf sp1-ena-not servo-thread
+addf sp0-ena-flip servo-thread
+addf sp1-ena-flip servo-thread
 
-net spindle.0-ena-btn                   <=  gladevcp.Sp0_ENA
-net spindle.0-ena-btn                    => spindle.0-ena-flip.clk
-net spindle.0-ena-panel                 <=  spindle.0-ena-flip.out
-net spindle.0-ena-panel                  => spindle.0-ena-and.in0
-net spindle.0-ena-panel                  => spindle.0-ena-not.in
-net spindle.0-ena-panel-inv             <=  spindle.0-ena-not.out
-net spindle.0-ena-panel-inv              => spindle.0-ena-flip.data
-# net spindle.0-ena-settings-allow        <=  REBHlp.Sp0_Ena_Override
-net spindle.0-ena-settings-allow         => spindle.0-ena-and.in1
-net spindle.0-enable                    <=  spindle.0-ena-and.out
+# net spindle.0-vel-cmd-rpm 				 => gladevcp.Sp0_Spd
+net sp0-ena-btn                          <= gladevcp.Sp0_ENA
+net sp0-ena-btn                          => sp0-ena-flip.clk
+net spindle.0-enable                     <= sp0-ena-flip.out
 net spindle.0-enable                     => gladevcp.Sp0_ENA_Status
+net spindle.0-enable                     => sp0-ena-not.in
+net sp0-ena-inv                          <= sp0-ena-not.out
+net sp0-ena-inv                          => sp0-ena-flip.data
 
-# Spindle 1 ********************************
-loadrt and2 names=spindle.1-ena-and
-loadrt flipflop names=spindle.1-ena-flip
-loadrt not names=spindle.1-ena-not
-addf spindle.1-ena-not servo-thread
-addf spindle.1-ena-flip servo-thread
-addf spindle.1-ena-and servo-thread
-
-net spindle.1-ena-btn                   <=  gladevcp.Sp1_ENA
-net spindle.1-ena-btn                    => spindle.1-ena-flip.clk
-net spindle.1-ena-panel                 <=  spindle.1-ena-flip.out
-net spindle.1-ena-panel                  => spindle.1-ena-and.in0
-net spindle.1-ena-panel                  => spindle.1-ena-not.in
-net spindle.1-ena-panel-inv             <=  spindle.1-ena-not.out
-net spindle.1-ena-panel-inv              => spindle.1-ena-flip.data
-# net spindle.1-ena-settings-allow        <=  REBHlp.Sp1_Ena_Override
-net spindle.1-ena-settings-allow         => spindle.1-ena-and.in1
-net spindle.1-enable                    <=  spindle.1-ena-and.out
+# net spindle.1-vel-cmd-rpm 				 => gladevcp.Sp1_Spd
+net sp1-ena-btn                          <= gladevcp.Sp1_ENA
+net sp1-ena-btn                          => sp1-ena-flip.clk
+net spindle.1-enable                     <= sp1-ena-flip.out
 net spindle.1-enable                     => gladevcp.Sp1_ENA_Status
+net spindle.1-enable                     => sp1-ena-not.in
+net sp1-ena-inv                          <= sp1-ena-not.out
+net sp1-ena-inv                          => sp1-ena-flip.data
 
 # ******************************************
 # Rotary Axes
 
-# B Axis ***********************************
-loadrt and2 names=b-ena-and
-loadrt flipflop names=b-ena-flip
-loadrt not names=b-ena-not
 addf b-ena-not servo-thread
 addf b-ena-flip servo-thread
-addf b-ena-and servo-thread
 
+# net b-vel-cmd							 => gladevcp.B_Spd
+# net b-pos-fb							 => gladevcp.B_DRO
 net b-ena-btn                            <= gladevcp.B_ENA
 net b-ena-btn                            => b-ena-flip.clk
-net b-ena-panel                          <= b-ena-flip.out
-net b-ena-panel                          => b-ena-and.in0
-net b-ena-panel                          => b-ena-not.in
-net b-ena-panel-inv                      <= b-ena-not.out
-net b-ena-panel-inv                      => b-ena-flip.data
-# net b-ena-settings-allow                 <= REBHlp.B_Ena_Override
-net b-ena-settings-allow                 => b-ena-and.in1
-net b-enable                             <= b-ena-and.out
+net b-enable                             <= b-ena-flip.out
 net b-enable                             => gladevcp.B_ENA_Status
+net b-enable                             => b-ena-not.in
+net b-ena-inv                            <= b-ena-not.out
+net b-ena-inv                            => b-ena-flip.data
 
 # ******************************************
 # Linear Axes
 
-# X Axis ***********************************
-loadrt and2 names=x-ena-and
-loadrt flipflop names=x-ena-flip
-loadrt not names=x-ena-not
+# net x-vel-cmd							 => gladevcp.X_Spd
+# net x-pos-fb							 => gladevcp.X_DRO
+
 addf x-ena-not servo-thread
 addf x-ena-flip servo-thread
 addf x-ena-and servo-thread
@@ -181,87 +172,61 @@ net x-ena-panel                          => x-ena-and.in0
 net x-ena-panel                          => x-ena-not.in
 net x-ena-panel-inv                      <= x-ena-not.out
 net x-ena-panel-inv                      => x-ena-flip.data
-# net x-ena-settings-allow                 <= REBHlp.X_Ena_Override
+net x-ena-settings-allow                 <= REBHlp.X_Ena_Override
 net x-ena-settings-allow                 => x-ena-and.in1
 net x-enable                             <= x-ena-and.out
 net x-enable                             => gladevcp.X_ENA_Status
 
-# Z Axis ***********************************
-loadrt and2 names=z-ena-and
-loadrt flipflop names=z-ena-flip
-loadrt not names=z-ena-not
-addf z-ena-not servo-thread
-addf z-ena-flip servo-thread
-addf z-ena-and servo-thread
+# net y-vel-cmd							 => gladevcp.Y_Spd
+# net y-pos-fb							 => gladevcp.Y_DRO
+# net y-enable        		             => gladevcp.Y_ENA_Status
+# net y-enable							<=  gladevcp.Y_ENA
 
+addf z-ena-not servo-thread
+addf u-ena-not servo-thread
+addf v-ena-not servo-thread
+addf w-ena-not servo-thread
+addf z-ena-flip servo-thread
+addf u-ena-flip servo-thread
+addf v-ena-flip servo-thread
+addf w-ena-flip servo-thread
+
+# net z-vel-cmd							 => gladevcp.Z_Spd
+# net z-pos-fb							 => gladevcp.Z_DRO
 net z-ena-btn                            <= gladevcp.Z_ENA
 net z-ena-btn                            => z-ena-flip.clk
-net z-ena-panel                          <= z-ena-flip.out
-net z-ena-panel                          => z-ena-and.in0
-net z-ena-panel                          => z-ena-not.in
-net z-ena-panel-inv                      <= z-ena-not.out
-net z-ena-panel-inv                      => z-ena-flip.data
-# net z-ena-settings-allow                 <= REBHlp.Z_Ena_Override
-net z-ena-settings-allow                 => z-ena-and.in1
-net z-enable                             <= z-ena-and.out
+net z-enable                             <= z-ena-flip.out
 net z-enable                             => gladevcp.Z_ENA_Status
+net z-enable                             => z-ena-not.in
+net z-ena-inv                            <= z-ena-not.out
+net z-ena-inv                            => z-ena-flip.data
 
-# U Axis ***********************************
-loadrt and2 names=u-ena-and
-loadrt flipflop names=u-ena-flip
-loadrt not names=u-ena-not
-addf u-ena-not servo-thread
-addf u-ena-flip servo-thread
-addf u-ena-and servo-thread
-
+# net u-vel-cmd							 => gladevcp.U_Spd
+# net u-pos-fb							 => gladevcp.U_DRO
 net u-ena-btn                            <= gladevcp.U_ENA
 net u-ena-btn                            => u-ena-flip.clk
-net u-ena-panel                          <= u-ena-flip.out
-net u-ena-panel                          => u-ena-and.in0
-net u-ena-panel                          => u-ena-not.in
-net u-ena-panel-inv                      <= u-ena-not.out
-net u-ena-panel-inv                      => u-ena-flip.data
-# net u-ena-settings-allow                 <= REBHlp.U_Ena_Override
-net u-ena-settings-allow                 => u-ena-and.in1
-net u-enable                             <= u-ena-and.out
+net u-enable                             <= u-ena-flip.out
 net u-enable                             => gladevcp.U_ENA_Status
+net u-enable                             => u-ena-not.in
+net u-ena-inv                            <= u-ena-not.out
+net u-ena-inv                            => u-ena-flip.data
 
-# V Axis ***********************************
-loadrt and2 names=v-ena-and
-loadrt flipflop names=v-ena-flip
-loadrt not names=v-ena-not
-addf v-ena-not servo-thread
-addf v-ena-flip servo-thread
-addf v-ena-and servo-thread
-
+# net v-vel-cmd							 => gladevcp.V_Spd
+# net v-pos-fb							 => gladevcp.V_DRO
 net v-ena-btn                            <= gladevcp.V_ENA
 net v-ena-btn                            => v-ena-flip.clk
-net v-ena-panel                          <= v-ena-flip.out
-net v-ena-panel                          => v-ena-and.in0
-net v-ena-panel                          => v-ena-not.in
-net v-ena-panel-inv                      <= v-ena-not.out
-net v-ena-panel-inv                      => v-ena-flip.data
-# net v-ena-settings-allow                 <= REBHlp.V_Ena_Override
-net v-ena-settings-allow                 => v-ena-and.in1
-net v-enable                             <= v-ena-and.out
+net v-enable                             <= v-ena-flip.out
 net v-enable                             => gladevcp.V_ENA_Status
+net v-enable                             => v-ena-not.in
+net v-ena-inv                            <= v-ena-not.out
+net v-ena-inv                            => v-ena-flip.data
 
-# W Axis ***********************************
-loadrt and2 names=w-ena-and
-loadrt flipflop names=w-ena-flip
-loadrt not names=w-ena-not
-addf w-ena-not servo-thread
-addf w-ena-flip servo-thread
-addf w-ena-and servo-thread
-
+# net w-vel-cmd							 => gladevcp.W_Spd
+# net w-pos-fb							 => gladevcp.W_DRO
 net w-ena-btn                            <= gladevcp.W_ENA
 net w-ena-btn                            => w-ena-flip.clk
-net w-ena-panel                          <= w-ena-flip.out
-net w-ena-panel                          => w-ena-and.in0
-net w-ena-panel                          => w-ena-not.in
-net w-ena-panel-inv                      <= w-ena-not.out
-net w-ena-panel-inv                      => w-ena-flip.data
-# net w-ena-settings-allow                 <= REBHlp.W_Ena_Override
-net w-ena-settings-allow                 => w-ena-and.in1
-net w-enable                             <= w-ena-and.out
+net w-enable                             <= w-ena-flip.out
 net w-enable                             => gladevcp.W_ENA_Status
+net w-enable                             => w-ena-not.in
+net w-ena-inv                            <= w-ena-not.out
+net w-ena-inv                            => w-ena-flip.data

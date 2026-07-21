@@ -1,51 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.40.0 -->
-<interface>
+<!-- 
+#######################################################################
+#                    RRRRRR    EEEEEEEE  BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR   RR   EE        BB    BB                     #
+#                    RRRRRR    EEEEEE    BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR    RR  EE        BB    BB                     #
+#                    RR    RR  EEEEEEEE  BBBBBBB                      #
+#                                                                     #
+# Rose Engine Butler                                                  #
+#######################################################################
+#                                                                     #
+# LinuxCNC configuration for use with a Rose Engine                   #
+#                                                                     #
+# File:                                                               #
+#   REB_Tab_Settings_v1.ui                                            #
+#                                                                     #
+# Purpose:                                                            #
+#   This is a Glade VCP panel used to provide the user the ability    #
+#   to modify the axis scales without having to edit a text file,     #
+#   or to stop and then re-start LinuxCNC.                            #
+#                                                                     #
+# End User Customisation:                                             #
+#   The end user of the Rose Engine Butler system should not modify   #
+#   this file.  Changes to this file are not supported by Colvin      #
+#   Tools nor Brainwave Embedded.                                     #
+#                                                                     #
+# Version                                                             #
+#   1.0 - 21 July 2026, R. Colvin                                     #
+#                                                                     #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
+#                                                                     #
+# The following MIT/X Consortium License applies to the               #
+# Rose Engine Butler system. Use of this system constitutes consent   #
+# to the terms outlined below.                                        #
+#                                                                     #
+# Permission is hereby granted, free of charge, to any person         #
+# obtaining a copy of this software and associated documentation      #
+# files (the "Software"), to deal in the Software without             #
+# restriction, including without limitation the rights to use, copy,  #
+# modify, merge, publish, distribute, sublicense, and/or sell copies  #
+# of the Software, and to permit persons to whom the Software is      #
+# furnished to do so, subject to the following conditions:            #
+#                                                                     #
+#       The above copyright notice and this permission notice shall   #
+#       be included in all copies or substantial portions of the      #
+#       Software.                                                     #
+#                                                                     #
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,     #
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF  #
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND               #
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS #
+# BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN  #
+# ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN   #
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE    #
+# SOFTWARE.                                                           #
+#                                                                     #
+# Except as contained in this notice, the name of COPYRIGHT HOLDERS   #
+# shall not be used in advertising or otherwise to promote the sale,  #
+# use or other dealings in this Software without prior written        #
+# authorization from COPYRIGHT HOLDERS.                               #
+#######################################################################
+--><interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
   <object class="GtkAdjustment" id="B_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Sp0_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Sp1_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="U_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="V_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="W_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="X_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Z_Set_Scale_adj">
+    <property name="lower">-100000</property>
     <property name="upper">100000</property>
     <property name="value">20000</property>
     <property name="step-increment">1</property>
@@ -65,7 +136,7 @@
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
         <child>
-          <!-- n-columns=4 n-rows=17 -->
+          <!-- n-columns=5 n-rows=19 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -326,7 +397,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">X_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
                 <signal name="value-changed" handler="X_Set_Scale" swapped="no"/>
@@ -369,7 +440,6 @@
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">1</property>
-                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -387,7 +457,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">Z_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
               </object>
@@ -411,7 +481,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">U_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
               </object>
@@ -435,7 +505,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">V_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
               </object>
@@ -459,7 +529,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">W_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
               </object>
@@ -507,7 +577,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">Sp0_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
               </object>
@@ -531,7 +601,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">Sp1_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">3</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
               </object>
@@ -665,6 +735,118 @@
                 <property name="left-attach">2</property>
                 <property name="top-attach">5</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">end</property>
+                <property name="label" translatable="yes">Comments</property>
+                <attributes>
+                  <attribute name="font-desc" value="DejaVu Serif 10"/>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left-attach">4</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Cmts">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="margin-left">4</property>
+                <property name="margin-start">4</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">For these fields, enter a number between 100,000 and -100,000 (without the commas).
+
+If the axis is running in the wrong direction, reverse the polarity of the number (make a + into a -, or vice versa).</property>
+                <property name="wrap">True</property>
+                <attributes>
+                  <attribute name="font-desc" value="DejaVu Serif 10"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left-attach">4</property>
+                <property name="top-attach">4</property>
+                <property name="height">13</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="margin-left">4</property>
+                <property name="margin-start">4</property>
+                <property name="width-chars">2</property>
+                <attributes>
+                  <attribute name="font-desc" value="DejaVu Serif 10"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left-attach">3</property>
+                <property name="top-attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="height-request">5</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property>
+                <property name="hexpand">True</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">17</property>
+                <property name="width">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="HAL_Button" id="Library">
+                <property name="label" translatable="yes">www.RoseEngineButler.com</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">end</property>
+                <property name="relief">none</property>
+                <property name="use-underline">True</property>
+                <property name="image-position">top</property>
+                <property name="always-show-image">True</property>
+                <signal name="pressed" handler="OpenLibrary" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">18</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>

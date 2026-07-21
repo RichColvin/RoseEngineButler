@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.40.0 -->
+<!-- 
+#######################################################################
+#                    RRRRRR    EEEEEEEE  BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR   RR   EE        BB    BB                     #
+#                    RRRRRR    EEEEEE    BBBBBBB                      #
+#                    RR   RR   EE        BB    BB                     #
+#                    RR    RR  EE        BB    BB                     #
+#                    RR    RR  EEEEEEEE  BBBBBBB                      #
+#                                                                     #
+# Rose Engine Butler                                                  #
+#######################################################################
+#                                                                     #
+# LinuxCNC configuration for use with a Rose Engine                   #
+#                                                                     #
+# File:                                                               #
+#   REB_Panel_v2.ui                                                   #
+#                                                                     #
+# Purpose:                                                            #
+#   This is the main Glade VCP panel used to provide the user         #
+#   capabilities.                                                     #
+#                                                                     #
+# End User Customisation:                                             #
+#   The end user of the Rose Engine Butler system should not modify   #
+#   this file.  Changes to this file are not supported by Colvin      #
+#   Tools nor Brainwave Embedded.                                     #
+#                                                                     #
+# Version                                                             #
+#   1.0 - 21 July 2026, R. Colvin                                     #
+#                                                                     #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
+#                                                                     #
+# The following MIT/X Consortium License applies to the               #
+# Rose Engine Butler system. Use of this system constitutes consent   #
+# to the terms outlined below.                                        #
+#                                                                     #
+# Permission is hereby granted, free of charge, to any person         #
+# obtaining a copy of this software and associated documentation      #
+# files (the "Software"), to deal in the Software without             #
+# restriction, including without limitation the rights to use, copy,  #
+# modify, merge, publish, distribute, sublicense, and/or sell copies  #
+# of the Software, and to permit persons to whom the Software is      #
+# furnished to do so, subject to the following conditions:            #
+#                                                                     #
+#       The above copyright notice and this permission notice shall   #
+#       be included in all copies or substantial portions of the      #
+#       Software.                                                     #
+#                                                                     #
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,     #
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF  #
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND               #
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS #
+# BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN  #
+# ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN   #
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE    #
+# SOFTWARE.                                                           #
+#                                                                     #
+# Except as contained in this notice, the name of COPYRIGHT HOLDERS   #
+# shall not be used in advertising or otherwise to promote the sale,  #
+# use or other dealings in this Software without prior written        #
+# authorization from COPYRIGHT HOLDERS.                               #
+#######################################################################
+-->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
@@ -176,6 +239,7 @@
     <property name="can-focus">False</property>
     <property name="halign">start</property>
     <property name="valign">start</property>
+    <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <child>
       <object class="GtkBox" id="vbox1">
@@ -202,10 +266,6 @@
                 <property name="receives-default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="margin-left">2</property>
-                <property name="margin-right">2</property>
-                <property name="margin-top">2</property>
-                <property name="margin-bottom">2</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -865,7 +925,7 @@
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="hexpand">True</property>
-                <property name="label" translatable="yes">Alpha Version - 13 Jul 26</property>
+                <property name="label" translatable="yes">Alpha Version - 20 Jul 26</property>
                 <property name="justify">right</property>
                 <property name="width-chars">9</property>
                 <attributes>
@@ -1928,7 +1988,7 @@ feed rate</property>
               </packing>
             </child>
             <child>
-              <object class="HAL_ToggleButton" id="B_ENA">
+              <object class="HAL_Button" id="B_ENA">
                 <property name="label" translatable="yes">ENA</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -2004,6 +2064,7 @@ feed rate</property>
                 <property name="receives-default">True</property>
                 <property name="halign">start</property>
                 <property name="valign">end</property>
+                <property name="vexpand">True</property>
                 <property name="relief">none</property>
                 <property name="use-underline">True</property>
                 <property name="image-position">top</property>
@@ -2012,7 +2073,7 @@ feed rate</property>
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">21</property>
-                <property name="width">10</property>
+                <property name="width">4</property>
               </packing>
             </child>
             <child>
@@ -2022,6 +2083,7 @@ feed rate</property>
                 <property name="halign">start</property>
                 <property name="valign">start</property>
                 <property name="margin-start">2</property>
+                <property name="vexpand">True</property>
                 <property name="label" translatable="yes">U is parallel to X
 V is parallel to Y | B is rotation around Y
 W is parallel to Z</property>
@@ -2034,6 +2096,24 @@ W is parallel to Z</property>
                 <property name="width">10</property>
                 <property name="height">2</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>

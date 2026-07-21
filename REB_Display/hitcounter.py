@@ -26,7 +26,7 @@
 #   Brainwave Embedded.
 #
 # Version
-#   1.0 - 20 July 2026, R. Colvin
+#   1.0 - 21 July 2026, R. Colvin
 #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.
 #
@@ -132,7 +132,7 @@ class HandlerClass:
 # B_Move_Idx_Fwd
 # Purpose:              This is used to run the B axis forward using
 #                       the G0 Gcode.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -182,7 +182,7 @@ class HandlerClass:
 # B_Move_Idx_Rev
 # Purpose:              This is used to run the B axis in reverse using
 #                       the G0 Gcode.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -225,59 +225,12 @@ class HandlerClass:
         c.wait_complete()
 
 #######################################################################
-# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
-# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
-# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
-# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
-# D   D  E      P      R   R  E      C      A   A    T    E      D   D
-# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
-# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
-# 
-# DEPRECATED:  This was replaced by B_Set_Idx_bW_DegDiv
-#
-# B_Set_Idx_bW_Deg
-# Purpose:              This is used to set the rotational distance
-#                       measurement as degrees for the B axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             B_Move_Idx_Deg  (HAL_RadioButton)
-#   Signal:             GtkWidget/button-press-event
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     B_Idx_Dist - Distance set by user
-#       Set:            B_Idx_Deg - Degrees to index during movement
-#                       B_Idx_DegDiv - type of distance measurement
-#                           (Deg or Div)
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def B_Set_Idx_bW_Deg(self,widget):
-
-        print("=================================================")
-        print("FUNCTION B_Set_Idx_bW_Deg")
-
-        self.B_Idx_Deg = self.B_Idx_Dist
-        self.B_Idx_DegDiv = "Deg"
-
-        Prt1 = "B_Idx_DegDiv = " + self.B_Idx_DegDiv
-        print(Prt1)
-        Prt2 = "B_Idx_Deg = " + str(self.B_Idx_Deg) + " deg"
-        print(Prt2)
-
-
-
-#######################################################################
-# Sp0_Set_Idx_bW_DegDiv
+# Sp0_Set_Idx_DegDiv
 # Purpose:              This is used to set the rotational distance
 #                       measurement for the Sp0 & Sp1 spindles.
 #                       If degrees, set to divisions; 
 #                       if divisions, set to degrees.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -295,10 +248,10 @@ class HandlerClass:
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
 #######################################################################
-    def B_Set_Idx_bW_DegDiv(self,widget):
+    def B_Set_Idx_DegDiv(self,widget):
 
         print("=================================================")
-        print("FUNCTION B_Set_Idx_bW_DegDiv")
+        print("FUNCTION B_Set_Idx_DegDiv")
 
         if self.B_Idx_DegDiv == "Deg":
                         self.B_Idx_DegDiv = "Div"
@@ -314,57 +267,10 @@ class HandlerClass:
         print(Prt2)
 
 #######################################################################
-# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
-# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
-# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
-# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
-# D   D  E      P      R   R  E      C      A   A    T    E      D   D
-# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
-# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
-# 
-# DEPRECATED:  This was replaced by B_Set_Idx_bW_DegDiv
-#
-# B_Set_Idx_bW_Div
-# Purpose:              This is used to set the rotational distance
-#                       measurement as divisions of a circle for the B
-#                       axis (deg = 360/div).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             B_Move_Idx_Div  (HAL_RadioButton)
-#   Signal:             GtkWidget/button-press-event
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     B_Idx_Dist - Distance set by user
-#       Set:            B_Idx_Deg - Degrees to index during movement
-#                       B_Idx_DegDiv - type of distance measurement
-#                           (Deg or Div)
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def B_Set_Idx_bW_Div(self,widget):
-
-        print("=================================================")
-        print("FUNCTION B_Set_Idx_bW_Div")
-
-        self.B_Idx_Deg = 360 / self.B_Idx_Dist
-
-        self.B_Idx_DegDiv = "Div"
-
-        Prt1 = "B_Idx_DegDiv = " + self.B_Idx_DegDiv
-        print(Prt1)
-        Prt2 = "B_Idx_Deg = " + str(self.B_Idx_Deg) + " deg"
-        print(Prt2)
-
-#######################################################################
 # B_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the B axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -394,7 +300,7 @@ class HandlerClass:
 # Purpose:              This is used to set the rotational distance
 #                       (degrees or divisions of a circle) for the B
 #                       axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -433,7 +339,7 @@ class HandlerClass:
 # B_Set_Idx_Feed
 # Purpose:              This is used to set the movement speed for the
 #                       B axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -473,7 +379,7 @@ class HandlerClass:
 # OpenGcodeLibrary
 # Purpose:              This is used to open the Rose Engine Butler
 #                       Gcode library web page.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Help
@@ -484,7 +390,7 @@ class HandlerClass:
 #   Read from UI:       (none)
 #   Program Variables
 #       Referenced:     (none)
-#       Set:            self.Z_Sync_Bool
+#       Set:            (none)
 #   Written to UI:      (none)
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
@@ -504,7 +410,7 @@ class HandlerClass:
 # OpenGcodeQuickReference
 # Purpose:              This is used to open the LinuxCNC Gcode Quick
 #                       Reference.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Help
@@ -515,7 +421,7 @@ class HandlerClass:
 #   Read from UI:       (none)
 #   Program Variables
 #       Referenced:     (none)
-#       Set:            self.Z_Sync_Bool
+#       Set:            (none)
 #   Written to UI:      (none)
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
@@ -535,12 +441,13 @@ class HandlerClass:
 # OpenLibrary
 # Purpose:              This is used to open the Rose Engine Butler
 #                       web page.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
-#   UI:                 REB_Help
-#                       REB_Panel
-#   Button:             OpenLibrary
+#   UI:                 REB_Panel
+#                       REB_Tab_Help
+#                       REB_Tab_Settings
+#   Button:             Library
 #   Signal:             GtkButton/pressed
 # ---------------------------------------------------------------------
 # Data
@@ -565,20 +472,20 @@ class HandlerClass:
 
 #######################################################################
 # OpenOTHandyBook
-# Purpose:              This is used to open the Ornamentall Turner's
+# Purpose:              This is used to open the Ornamental Turner's
 #                       Handy Book
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Help
-#   Button:             User_Forum
+#   Button:             OT_HandyBook
 #   Signal:             GtkButton/pressed
 # ---------------------------------------------------------------------
 # Data
 #   Read from UI:       REB_Help
 #   Program Variables
 #       Referenced:     (none)
-#       Set:            self.Z_Sync_Bool
+#       Set:            (none)
 #   Written to UI:      (none)
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
@@ -598,7 +505,7 @@ class HandlerClass:
 # OpenUserForum
 # Purpose:              This is used to open the Rose Engine Butler
 #                       forum web page.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Help
@@ -609,7 +516,7 @@ class HandlerClass:
 #   Read from UI:       REB_Help
 #   Program Variables
 #       Referenced:     (none)
-#       Set:            self.Z_Sync_Bool
+#       Set:            (none)
 #   Written to UI:      (none)
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
@@ -629,10 +536,10 @@ class HandlerClass:
 # OpenUserManual
 # Purpose:              This is used to open the Rose Engine Butler
 #                       user manual web page.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
-#   UI:                 REB_Help
+#   UI:                 REB_Tab_Help
 #   Button:             User_Manual
 #   Signal:             GtkButton/pressed
 # ---------------------------------------------------------------------
@@ -656,97 +563,6 @@ class HandlerClass:
         Prt1 = "Opening website " + url
         print(Prt1)
 
-#######################################################################
-# Synchronized Movement                                               #
-#######################################################################
-
-#######################################################################
-# Run_Sync_Fwd
-# Purpose:              This is used to start the spindles rotating in
-#                           reverse.
-#                       Note:  this starts both Sp0 and Sp1.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             Run_Sync_Fwd  (Hal_Button)
-#   Signal:             GtkButton/pressed
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     self.Sp0_Sync_Bool
-#                       self.Sp1_Sync_Bool
-#                       self.B_Sync_Bool
-#                       self.U_Sync_Bool
-#                       self.V_Sync_Bool
-#                       self.X_Sync_Bool
-#                       self.W_Sync_Bool
-#                       self.Z_Sync_Bool
-#
-#                       self.Sp0_Feed
-#                       self.Sp1_Pct
-#       Set:            (none)
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        S, M4
-#######################################################################
-    def Run_Sync_Fwd(self,widget):
-
-
-# This is not complete yet  - R. Colvin #
-
-        '''
-
-        print("=================================================")
-        print("FUNCTION Run_Sync_Fwd")
-
-
-        if self.Sp0_Idx_Bool:
-                self.Sp0_Idx_Bool = False
-                print("Sp0_Idx_Bool = False")
-        else:
-                self.Sp0_Idx_Bool = True
-                print("Sp0_Idx_Bool = True")
-
-
-
-
-
-
-
-
-        # Ensure the system is in MDI mode
-        c.mode(linuxcnc.MODE_MDI)
-        s.poll()
-        if s.task_state != linuxcnc.MODE_MDI:
-                c.mode(linuxcnc.MODE_MDI)
-                c.wait_complete() # Wait for mode change to complete
-
-        # In case the values had not already been written to the
-        # Gcode S values, write them.
-        Sp1_Feed = self.Sp1_Pct * self.Sp0_Feed / 100
-
-        # Send an MDI command to set the spindles' speed.
-        sSp0_Feed = "S" + str(self.Sp0_Feed) + " $0"
-        sSp1_Feed = "S" + str(Sp1_Feed) + " $1"
-
-        print(sSp0_Feed)
-        c.mdi(sSp0_Feed)
-
-        print(sSp1_Feed)
-        c.mdi(sSp1_Feed)
-
-        # Send an MDI command to start spindles rotating.
-        Gcode = "M4 $-1"
-
-        print(Gcode)
-        c.mdi(Gcode)
-
-        # Wait for the command to complete
-        c.wait_complete()
-        '''
-
 # ********************************************************************
 #  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE   0000
 # SS    SS PP    PP    II    NN    NN DD    DD LL       EE        00  00
@@ -761,7 +577,7 @@ class HandlerClass:
 # Purpose:              This is used to start the spindles rotating
 #                           forward.
 #                       Note:  this starts both Sp0 and Sp1.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -816,7 +632,7 @@ class HandlerClass:
 # Sp0_Move_Idx_Fwd
 # Purpose:              This is used to index the Sp0 spindle in a
 #                           forward direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -872,7 +688,7 @@ class HandlerClass:
 # Sp0_Move_Idx_Rev
 # Purpose:              This is used to index the Sp0 spindle in a
 #                           reverse direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -928,7 +744,7 @@ class HandlerClass:
 # Purpose:              This is used to start the spindles rotating in
 #                           reverse.
 #                       Note:  this starts both Sp0 and Sp1.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -983,15 +799,11 @@ class HandlerClass:
 #######################################################################
 # Move_Stop
 # Purpose:              This is used to stop any movement.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
 #   Buttons:            Sp0_Move_Stop  (Hal_Button)
-#                       U_Move_Stop  (Hal_Button)
-#                       V_Move_Stop  (Hal_Button)
-#                       W_Move_Stop  (Hal_Button)
-#                       Z_Move_Stop  (Hal_Button)
 #   Signal:             GtkButton/pressed
 # ---------------------------------------------------------------------
 # Data
@@ -1031,7 +843,7 @@ class HandlerClass:
 #                           spindle (Sp0) & the rosette phaser
 #                           multiplier (Sp1).  (Sp1 gets multiplied
 #                           by the value of Sp1Pct
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1078,62 +890,17 @@ class HandlerClass:
         c.wait_complete()
 
 #######################################################################
-# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
-# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
-# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
-# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
-# D   D  E      P      R   R  E      C      A   A    T    E      D   D
-# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
-# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
-# 
-# DEPRECATED:  This was replaced by Sp0_Set_Idx_bW_DegDiv
-#
-# Sp0_Set_Idx_bW_Deg
-# Purpose:              This is used to set the rotational distance
-#                       measurement as degrees for the Sp0 & Sp1
-#                       spindles.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             Sp0_Set_Idx_bW_Deg  (HAL_RadioButton)
-#   Signal:             GtkWidget/button-press-event
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     self.Sp0_Idx_Dist - distance field data
-#       Set:            self.Sp0_Idx_Deg - degrees to index
-#                       self.Sp0_Idx_DegDiv - type of distance
-#                           measurement (Deg or Div)
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def Sp0_Set_Idx_bW_Deg(self,widget):
-
-        print("=================================================")
-        print("FUNCTION Sp0_Set_Idx_bW_Deg")
-
-        self.Sp0_Idx_DegDiv = "Deg"
-        self.Sp0_Idx_Deg = self.Sp0_Idx_Dist
-
-        Prt1 = "Sp0_Idx_DegDiv = " + self.Sp0_Idx_DegDiv
-        print(Prt1)
-        Prt2 = "Sp0_Idx_Deg = " + str(self.Sp0_Idx_Deg) + " deg"
-        print(Prt2)
-
-#######################################################################
 # Sp0_Set_Idx_bW_DegDiv
 # Purpose:              This is used to set the rotational distance
 #                       measurement for the Sp0 & Sp1 spindles.
 #                       If degrees, set to divisions; 
 #                       if divisions, set to degrees.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
-#   Button:             Sp0_Set_Idx_bW_Deg  (HAL_RadioButton)
+#   Button:             Sp0_Set_Idx_Deg  (HAL_RadioButton)
+#                       Sp0_Set_Idx_Div  (HAL_RadioButton)
 #   Signal:             GtkToggledButton/toggled
 # ---------------------------------------------------------------------
 # Data
@@ -1147,10 +914,10 @@ class HandlerClass:
 # ---------------------------------------------------------------------
 # Gcodes Called:        (none)
 #######################################################################
-    def Sp0_Set_Idx_bW_DegDiv(self,widget):
+    def Sp0_Set_Idx_DegDiv(self,widget):
 
         print("=================================================")
-        print("FUNCTION Sp0_Set_Idx_bW_DegDiv")
+        print("FUNCTION Sp0_Set_Idx_DegDiv")
 
         if self.Sp0_Idx_DegDiv == "Deg":
                         self.Sp0_Idx_DegDiv = "Div"
@@ -1166,59 +933,12 @@ class HandlerClass:
         print(Prt2)
 
 #######################################################################
-# DDDD   EEEEE  PPPP   RRRR   EEEEE    CC    AAA   TTTTT  EEEEE  DDDD 
-# D   D  E      P   P  R   R  E       C  C  A   A    T    E      D   D
-# D   D  E      P   P  R   R  E      C      A   A    T    E      D   D
-# D   D  EEE    PPPP   RRRR   EEE    C      AAAAA    T    EEE    D   D
-# D   D  E      P      R   R  E      C      A   A    T    E      D   D
-# D   D  E      P      R   R  E       C  C  A   A    T    E      D   D
-# DDDD   EEEEE  P      R   R  EEEEE    CC   A   A    T    EEEEE  DDDD 
-# 
-# DEPRECATED:  This was replaced by Sp0_Set_Idx_bW_DegDiv
-#
-# Sp0_Set_Idx_bW_Div
-# Purpose:              This is used to set the rotational distance
-#                       measurement as divisions of a circle for the
-#                       Sp0 & Sp1 spindles (deg = 360/div).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#                       REB_Panel
-#   Button:             Sp0_Set_Idx_bW_Div  (HAL_RadioButton)
-#   Signal:             GtkWidget/button-press-event
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     self.Sp0_Idx_Dist - distance field data
-#       Set:            self.Sp0_Idx_Deg - degrees to index
-#                       self.Sp0_Idx_DegDiv - type of distance
-#                           measurement (Deg or Div)
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def Sp0_Set_Idx_bW_Div(self,widget):
-
-        print("=================================================")
-        print("FUNCTION Sp0_Set_Idx_bW_Div")
-
-        self.Sp0_Idx_DegDiv = "Div"
-        self.Sp0_Idx_Deg = 360 / self.Sp0_Idx_Dist
-
-        Prt1 = "Sp0_Idx_DegDiv = " + self.Sp0_Idx_DegDiv
-        print(Prt1)
-        Prt2 = "Sp0_Idx_Deg = " + str(self.Sp0_Idx_Deg) + " deg"
-        print(Prt2)
-
-#######################################################################
 # Sp0_Set_Idx_Dist
 # Purpose:              This is used to set the distance that and index
 #                           operation moves the spindles(s).  This is
 #                           used with self.Sp0_Idx_DegDiv to set the
 #                           actual movement distance.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1246,7 +966,7 @@ class HandlerClass:
 # Sp0_Set_Idx_OnOff
 # Purpose:              This is used to set the use of Sp1 indexing
 #                           on or off.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1288,7 +1008,7 @@ class HandlerClass:
 # Purpose:              This is used to set the rotational distance
 #                           (degrees) for the Sp1 spindle (the
 #                           rosette phaser/multiplier).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1315,7 +1035,7 @@ class HandlerClass:
 # Sp1_Set_Idx_OnOff
 # Purpose:              This is used to set the use of Sp1 indexing
 #                           on or off.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1348,7 +1068,7 @@ class HandlerClass:
 # Purpose:              This is used to set the speed for the rosette
 #                           phaser / multiplier (Sp0) as a percentage
 #                           of the spindle speed.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1404,7 +1124,7 @@ class HandlerClass:
 # U_Idx_Minus
 # Purpose:              This is used to index the U axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1445,7 +1165,7 @@ class HandlerClass:
 # U_Idx_Plus
 # Purpose:              This is used to index the U axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1486,7 +1206,7 @@ class HandlerClass:
 # U_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           U axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1516,7 +1236,7 @@ class HandlerClass:
 # U_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the U axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1546,7 +1266,7 @@ class HandlerClass:
 # U_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the U axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1571,38 +1291,6 @@ class HandlerClass:
 
         print("U_Move_Dist = " + str(self.U_Move_Dist))
 
-#######################################################################
-# U_Set_Sync_OnOff
-# Purpose:              This is used to identify if this axis should
-#                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             U_Sync_OnOff
-#   Signal:             GtkToggleButton/toggled
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     (none)
-#       Set:            self.U_Sync_Bool
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def U_Set_Sync_OnOff(self,widget):
-
-        print("=================================================")
-        print("FUNCTION U_Set_Sync_OnOff")
-
-        if self.U_Sync_Bool:
-                self.U_Sync_Bool = False
-                print("U_Sync_Bool = False")
-        else:
-                self.U_Sync_Bool = True
-                print("U_Sync_Bool = True")
-
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      VV    VV
 #   AAAA    XX  XX    II     SS    SS     VV    VV
@@ -1616,7 +1304,7 @@ class HandlerClass:
 # V_Idx_Minus
 # Purpose:              This is used to index the V axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1657,7 +1345,7 @@ class HandlerClass:
 # V_Idx_Plus
 # Purpose:              This is used to index the V axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1698,7 +1386,7 @@ class HandlerClass:
 # V_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           V axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1728,7 +1416,7 @@ class HandlerClass:
 # V_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the V axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1758,7 +1446,7 @@ class HandlerClass:
 # V_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the V axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1783,38 +1471,6 @@ class HandlerClass:
 
         print("V_Move_Dist = " + str(self.V_Move_Dist))
 
-#######################################################################
-# V_Set_Sync_OnOff
-# Purpose:              This is used to identify if this axis should
-#                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             V_Sync_OnOff
-#   Signal:             GtkToggleButton/toggled
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     (none)
-#       Set:            self.V_Sync_Bool
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def V_Set_Sync_OnOff(self,widget):
-
-        print("=================================================")
-        print("FUNCTION V_Set_Sync_OnOff")
-
-        if self.V_Sync_Bool:
-                self.V_Sync_Bool = False
-                print("V_Sync_Bool = False")
-        else:
-                self.V_Sync_Bool = True
-                print("V_Sync_Bool = True")
-
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      WW       WW
 #   AAAA    XX  XX    II     SS    SS     WW       WW
@@ -1828,7 +1484,7 @@ class HandlerClass:
 # W_Idx_Minus
 # Purpose:              This is used to index the W axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1869,7 +1525,7 @@ class HandlerClass:
 # W_Idx_Plus
 # Purpose:              This is used to index the W axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1910,7 +1566,7 @@ class HandlerClass:
 # W_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           W axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1940,7 +1596,7 @@ class HandlerClass:
 # W_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the W axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -1970,7 +1626,7 @@ class HandlerClass:
 # W_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the W axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -1995,39 +1651,6 @@ class HandlerClass:
 
         print("W_Move_Dist = " + str(self.W_Move_Dist))
 
-#######################################################################
-# W_Set_Sync_OnOff
-# Purpose:              This is used to identify if this axis should
-#                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             W_Sync_OnOff
-#   Signal:             GtkToggleButton/toggled
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     (none)
-#       Set:            self.W_Sync_Bool
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def W_Set_Sync_OnOff(self,widget):
-
-        print("=================================================")
-        print("FUNCTION W_Set_Sync_OnOff")
-
-        if self.W_Sync_Bool:
-                self.W_Sync_Bool = False
-                print("W_Sync_Bool = False")
-        else:
-                self.W_Sync_Bool = True
-                print("W_Sync_Bool = True")
-
-
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      YY    YY
 #   AAAA    XX  XX    II     SS    SS      YY  YY
@@ -2041,7 +1664,7 @@ class HandlerClass:
 # X_Idx_Minus
 # Purpose:              This is used to index the X axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -2082,7 +1705,7 @@ class HandlerClass:
 # X_Idx_Plus
 # Purpose:              This is used to index the X axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -2123,7 +1746,7 @@ class HandlerClass:
 # X_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           X axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -2153,7 +1776,7 @@ class HandlerClass:
 # X_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the X axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -2183,7 +1806,7 @@ class HandlerClass:
 # X_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the X axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -2212,7 +1835,7 @@ class HandlerClass:
 # X_Set_Scale
 # Purpose:              This is used to set the scale distance for the
 #                           X axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Settings
@@ -2282,38 +1905,6 @@ class HandlerClass:
         except FileNotFoundError:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
-#######################################################################
-# X_Set_Sync_OnOff
-# Purpose:              This is used to identify if this axis should
-#                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             X_Sync_OnOff
-#   Signal:             GtkToggleButton/toggled
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     (none)
-#       Set:            self.X_Sync_Bool
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def X_Set_Sync_OnOff(self,widget):
-
-        print("=================================================")
-        print("FUNCTION X_Set_Sync_OnOff")
-
-        if self.X_Sync_Bool:
-                self.X_Sync_Bool = False
-                print("X_Sync_Bool = False")
-        else:
-                self.X_Sync_Bool = True
-                print("X_Sync_Bool = True")
-
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      ZZZZZZZZ
 #   AAAA    XX  XX    II     SS    SS          ZZ
@@ -2327,7 +1918,7 @@ class HandlerClass:
 # Z_Idx_Minus
 # Purpose:              This is used to index the Z axis in the
 #                           minus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -2368,7 +1959,7 @@ class HandlerClass:
 # Z_Idx_Plus
 # Purpose:              This is used to index the Z axis in the
 #                           plus direction.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -2409,7 +2000,7 @@ class HandlerClass:
 # Z_Set_Feed
 # Purpose:              This is used to set the movement speed for the
 #                           Z axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -2439,7 +2030,7 @@ class HandlerClass:
 # Z_Set_Idx_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the Z axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Linear
@@ -2469,7 +2060,7 @@ class HandlerClass:
 # Z_Set_Move_Dist
 # Purpose:              This is used to set the movement distance for
 #                           the Z axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Panel
@@ -2498,7 +2089,7 @@ class HandlerClass:
 # Z_Set_Scale
 # Purpose:              This is used to set the scale distance for the
 #                           Z axis.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 # ---------------------------------------------------------------------
 # Called from:
 #   UI:                 REB_Tab_Settings
@@ -2569,42 +2160,9 @@ class HandlerClass:
             print("halcmd not found - is the LinuxCNC environment sourced?")
 
 #######################################################################
-# Z_Set_Sync_OnOff
-# Purpose:              This is used to identify if this axis should
-#                           synchronized with the Spindle (or not).
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
-# ---------------------------------------------------------------------
-# Called from:
-#   UI:                 REB_Panel
-#   Button:             Z_Sync_OnOff
-#   Signal:             GtkToggleButton/toggled
-# ---------------------------------------------------------------------
-# Data
-#   Read from UI:       (none)
-#   Program Variables
-#       Referenced:     (none)
-#       Set:            self.Z_Sync_Bool
-#   Written to UI:      (none)
-# ---------------------------------------------------------------------
-# Gcodes Called:        (none)
-#######################################################################
-    def Z_Set_Sync_OnOff(self,widget):
-
-        print("=================================================")
-        print("FUNCTION Z_Set_Sync_OnOff")
-
-        if self.Z_Sync_Bool:
-                self.Z_Sync_Bool = False
-                print("Z_Sync_Bool = False")
-        else:
-                self.W_Sync_Bool = True
-                print("Z_Sync_Bool = True")
-
-
-#######################################################################
 # __init__
 # Purpose:              This is used to initialize everything.
-# Updated:              ver 1.0, 20 July 2026, R. Colvin
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
 #######################################################################
     def __init__(self, halcomp,builder,useropts):
         '''
@@ -2639,7 +2197,6 @@ class HandlerClass:
         self.B_Idx_Dist     = 90.0      # B axis index distance
         self.B_Idx_Qty      = 0         # B axis index counter
         self.B_Move_Dist    = 0.0       # B axis move distance
-        self.B_Sync_Bool    = False     # Sync this axis with the spindle?
 
         self.Sp0_Feed       = 1.0       # Sp0 Speed
         self.Sp0_Idx_Bool   = False     # Index this spindle?
@@ -2647,44 +2204,36 @@ class HandlerClass:
         self.Sp0_Idx_Deg    = 90.0      # Sp0 index degrees
         self.Sp0_Idx_Dist   = 90.0      # B axis index distance
         self.Sp0_Idx_Qty    = 0         # Sp0 axis index counter
-        self.Sp0_Sync_Bool  = False     # Sync this spindle with the axes?
 
         self.Sp1_Idx_Bool   = False     # Index this spindle?
         self.Sp1_Idx_Dist   = 90.0      # Sp1 index degrees
         self.Sp1_Idx_Qty    = 0         # Sp1 axis index counter
         self.Sp1_Pct        = 100.0     # Sp1 speed percentage of Sp0 speed
-        self.Sp1_Sync_Bool  = False     # Sync this spindle with the axes?
 
         self.U_Feed         = 1.0       # U axis feed rate
         self.U_Idx_Dist     = 0.0       # U axis index distance
         self.U_Idx_Qty      = 0         # U axis index counter
         self.U_Move_Dist    = 0.0       # U axis move distance
-        self.U_Sync_Bool    = False     # Sync this axis with the spindle?
 
         self.V_Feed         = 1.0       # V axis feed rate
         self.V_Idx_Dist     = 0.0       # V axis index distance
         self.V_Idx_Qty      = 0         # V axis index counter
         self.V_Move_Dist    = 0.0       # V axis move distance
-        self.V_Sync_Bool    = False     # Sync this axis with the spindle?
 
         self.W_Feed         = 1.0       # W axis feed rate
         self.W_Idx_Dist     = 0.0       # W axis index distance
         self.W_Idx_Qty      = 0         # W axis index counter
         self.W_Move_Dist    = 0.0       # W axis move distance
-        self.W_Sync_Bool    = False     # Sync this axis with the spindle?
 
         self.X_Feed         = 1.0       # X axis feed rate
         self.X_Idx_Dist     = 0.0       # X axis index distance
         self.X_Idx_Qty      = 0         # X axis index counter
         self.X_Move_Dist    = 0.0       # X axis move distance
-        self.X_Sync_Bool    = False     # Sync this axis with the spindle?
 
         self.Z_Feed         = 1.0       # Z axis feed rate
         self.Z_Idx_Dist     = 0.0       # Z axis index distance
         self.Z_Idx_Qty      = 0         # Z axis index counter
         self.Z_Move_Dist    = 0.0       # Z axis move distance
-        self.Z_Sync_Bool    = False     # Sync this axis with the spindle?
-
 
 def get_handlers(halcomp,builder,useropts):
     '''
