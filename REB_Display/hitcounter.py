@@ -296,6 +296,80 @@ class HandlerClass:
         print("B_Move_Dist = " + str(self.B_Move_Dist))
 
 #######################################################################
+# B_Set_Scale
+# Purpose:              This is used to set the scale distance for the
+#                           B axis.
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Settings
+#   Button:             B_Set_Scale (on setting the value)
+#   Signal:             HAL_SpinButton/value-changed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+# ---------------------------------------------------------------------
+# HAL Commands:         halcmd setp hm2_7i92.0.stepgen.04.position-scale
+#                              (value)
+#######################################################################
+    def B_Set_Scale(self,widget):
+
+        print("=================================================")
+        print("FUNCTION B_Set_Scale")
+
+        B_Scale = round(widget.get_value(), 1)
+
+        # B_ENA_Status belongs to the main panel's HAL component
+        # ("gladevcp"); read it cross-component via halcmd. To disable
+        # the axis, drive this component's own B_Ena_Override pin
+        # (ANDed with the panel button in REB_PostGUI.hal) instead of
+        # trying to write another component's pin directly.
+        status_pin = "gladevcp.B_ENA_Status"
+
+        try:
+            result = subprocess.run(
+                ["halcmd", "getp", status_pin],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            is_enabled = result.stdout.strip().upper() in ("TRUE", "1")
+            print(status_pin + " = " + result.stdout.strip())
+
+            if is_enabled:
+                print("X axis is enabled - disabling")
+                self.halcomp['B_Ena_Override'] = False
+            else:
+                print("X axis is already disabled")
+        except subprocess.CalledProcessError as e:
+            print("Error checking " + status_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+        # Send the new scale to the X axis stepgen via halcmd.
+        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        cmd = ["halcmd", "setp", hal_pin, str(B_Scale)]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Set " + hal_pin + " = " + str(B_Scale))
+        except subprocess.CalledProcessError as e:
+            print("Error setting " + hal_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+#######################################################################
 # B_Set_Idx_Dist
 # Purpose:              This is used to set the rotational distance
 #                       (degrees or divisions of a circle) for the B
@@ -994,6 +1068,80 @@ class HandlerClass:
                 self.Sp0_Idx_Bool = True
                 print("Sp0_Idx_Bool = True")
 
+#######################################################################
+# Sp0_Set_Scale
+# Purpose:              This is used to set the scale distance for the
+#                           Sp0 Spindle.
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Settings
+#   Button:             Sp0_Set_Scale (on setting the value)
+#   Signal:             HAL_SpinButton/value-changed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+# ---------------------------------------------------------------------
+# HAL Commands:         halcmd setp hm2_7i92.0.stepgen.04.position-scale
+#                              (value)
+#######################################################################
+    def Sp0_Set_Scale(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp0_Set_Scale")
+
+        Sp0_Scale = round(widget.get_value(), 1)
+
+        # Sp0_ENA_Status belongs to the main panel's HAL component
+        # ("gladevcp"); read it cross-component via halcmd. To disable
+        # the axis, drive this component's own Sp0_Ena_Override pin
+        # (ANDed with the panel button in RESp0_PostGUI.hal) instead of
+        # trying to write another component's pin directly.
+        status_pin = "gladevcp.Sp0_ENA_Status"
+
+        try:
+            result = subprocess.run(
+                ["halcmd", "getp", status_pin],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            is_enabled = result.stdout.strip().upper() in ("TRUE", "1")
+            print(status_pin + " = " + result.stdout.strip())
+
+            if is_enabled:
+                print("X axis is enabled - disabling")
+                self.halcomp['Sp0_Ena_Override'] = False
+            else:
+                print("X axis is already disabled")
+        except subprocess.CalledProcessError as e:
+            print("Error checking " + status_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+        # Send the new scale to the X axis stepgen via halcmd.
+        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        cmd = ["halcmd", "setp", hal_pin, str(Sp0_Scale)]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Set " + hal_pin + " = " + str(Sp0_Scale))
+        except subprocess.CalledProcessError as e:
+            print("Error setting " + hal_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
 # ********************************************************************
 #  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE  1111
 # SS    SS PP    PP    II    NN    NN DD    DD LL       EE       11 11
@@ -1110,6 +1258,80 @@ class HandlerClass:
 
         # Wait for the command to complete
         c.wait_complete()
+
+#######################################################################
+# Sp1_Set_Scale
+# Purpose:              This is used to set the scale distance for the
+#                           Sp1 Spindle.
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Settings
+#   Button:             Sp1_Set_Scale (on setting the value)
+#   Signal:             HAL_SpinButton/value-changed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+# ---------------------------------------------------------------------
+# HAL Commands:         halcmd setp hm2_7i92.0.stepgen.04.position-scale
+#                              (value)
+#######################################################################
+    def Sp1_Set_Scale(self,widget):
+
+        print("=================================================")
+        print("FUNCTION Sp1_Set_Scale")
+
+        Sp1_Scale = round(widget.get_value(), 1)
+
+        # Sp1_ENA_Status belongs to the main panel's HAL component
+        # ("gladevcp"); read it cross-component via halcmd. To disable
+        # the axis, drive this component's own Sp1_Ena_Override pin
+        # (ANDed with the panel button in RESp1_PostGUI.hal) instead of
+        # trying to write another component's pin directly.
+        status_pin = "gladevcp.Sp1_ENA_Status"
+
+        try:
+            result = subprocess.run(
+                ["halcmd", "getp", status_pin],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            is_enabled = result.stdout.strip().upper() in ("TRUE", "1")
+            print(status_pin + " = " + result.stdout.strip())
+
+            if is_enabled:
+                print("X axis is enabled - disabling")
+                self.halcomp['Sp1_Ena_Override'] = False
+            else:
+                print("X axis is already disabled")
+        except subprocess.CalledProcessError as e:
+            print("Error checking " + status_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+        # Send the new scale to the X axis stepgen via halcmd.
+        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        cmd = ["halcmd", "setp", hal_pin, str(Sp1_Scale)]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Set " + hal_pin + " = " + str(Sp1_Scale))
+        except subprocess.CalledProcessError as e:
+            print("Error setting " + hal_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
 
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      UU    UU
@@ -1291,6 +1513,80 @@ class HandlerClass:
 
         print("U_Move_Dist = " + str(self.U_Move_Dist))
 
+#######################################################################
+# U_Set_Scale
+# Purpose:              This is used to set the scale distance for the
+#                           U axis.
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Settings
+#   Button:             U_Set_Scale (on setting the value)
+#   Signal:             HAL_SpinButton/value-changed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+# ---------------------------------------------------------------------
+# HAL Commands:         halcmd setp hm2_7i92.0.stepgen.04.position-scale
+#                              (value)
+#######################################################################
+    def U_Set_Scale(self,widget):
+
+        print("=================================================")
+        print("FUNCTION U_Set_Scale")
+
+        U_Scale = round(widget.get_value(), 1)
+
+        # U_ENA_Status belongs to the main panel's HAL component
+        # ("gladevcp"); read it cross-component via halcmd. To disable
+        # the axis, drive this component's own U_Ena_Override pin
+        # (ANDed with the panel button in REU_PostGUI.hal) instead of
+        # trying to write another component's pin directly.
+        status_pin = "gladevcp.U_ENA_Status"
+
+        try:
+            result = subprocess.run(
+                ["halcmd", "getp", status_pin],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            is_enabled = result.stdout.strip().upper() in ("TRUE", "1")
+            print(status_pin + " = " + result.stdout.strip())
+
+            if is_enabled:
+                print("X axis is enabled - disabling")
+                self.halcomp['U_Ena_Override'] = False
+            else:
+                print("X axis is already disabled")
+        except subprocess.CalledProcessError as e:
+            print("Error checking " + status_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+        # Send the new scale to the X axis stepgen via halcmd.
+        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        cmd = ["halcmd", "setp", hal_pin, str(U_Scale)]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Set " + hal_pin + " = " + str(U_Scale))
+        except subprocess.CalledProcessError as e:
+            print("Error setting " + hal_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      VV    VV
 #   AAAA    XX  XX    II     SS    SS     VV    VV
@@ -1471,6 +1767,80 @@ class HandlerClass:
 
         print("V_Move_Dist = " + str(self.V_Move_Dist))
 
+#######################################################################
+# V_Set_Scale
+# Purpose:              This is used to set the scale distance for the
+#                           V axis.
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Settings
+#   Button:             V_Set_Scale (on setting the value)
+#   Signal:             HAL_SpinButton/value-changed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+# ---------------------------------------------------------------------
+# HAL Commands:         halcmd setp hm2_7i92.0.stepgen.04.position-scale
+#                              (value)
+#######################################################################
+    def V_Set_Scale(self,widget):
+
+        print("=================================================")
+        print("FUNCTION V_Set_Scale")
+
+        V_Scale = round(widget.get_value(), 1)
+
+        # V_ENA_Status belongs to the main panel's HAL component
+        # ("gladevcp"); read it cross-component via halcmd. To disable
+        # the axis, drive this component's own V_Ena_Override pin
+        # (ANDed with the panel button in REV_PostGUI.hal) instead of
+        # trying to write another component's pin directly.
+        status_pin = "gladevcp.V_ENA_Status"
+
+        try:
+            result = subprocess.run(
+                ["halcmd", "getp", status_pin],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            is_enabled = result.stdout.strip().upper() in ("TRUE", "1")
+            print(status_pin + " = " + result.stdout.strip())
+
+            if is_enabled:
+                print("X axis is enabled - disabling")
+                self.halcomp['V_Ena_Override'] = False
+            else:
+                print("X axis is already disabled")
+        except subprocess.CalledProcessError as e:
+            print("Error checking " + status_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+        # Send the new scale to the X axis stepgen via halcmd.
+        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        cmd = ["halcmd", "setp", hal_pin, str(V_Scale)]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Set " + hal_pin + " = " + str(V_Scale))
+        except subprocess.CalledProcessError as e:
+            print("Error setting " + hal_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      WW       WW
 #   AAAA    XX  XX    II     SS    SS     WW       WW
@@ -1650,6 +2020,80 @@ class HandlerClass:
         self.W_Move_Dist = widget.get_value()
 
         print("W_Move_Dist = " + str(self.W_Move_Dist))
+
+#######################################################################
+# W_Set_Scale
+# Purpose:              This is used to set the scale distance for the
+#                           W axis.
+# Updated:              ver 1.0, 21 July 2026, R. Colvin
+# ---------------------------------------------------------------------
+# Called from:
+#   UI:                 REB_Tab_Settings
+#   Button:             W_Set_Scale (on setting the value)
+#   Signal:             HAL_SpinButton/value-changed
+# ---------------------------------------------------------------------
+# Data
+#   Read from UI:       (none)
+#   Program Variables
+#       Referenced:     (none)
+#       Set:            (none)
+#   Written to UI:      (none)
+# ---------------------------------------------------------------------
+# Gcodes Called:        (none)
+# ---------------------------------------------------------------------
+# HAL Commands:         halcmd setp hm2_7i92.0.stepgen.04.position-scale
+#                              (value)
+#######################################################################
+    def W_Set_Scale(self,widget):
+
+        print("=================================================")
+        print("FUNCTION W_Set_Scale")
+
+        W_Scale = round(widget.get_value(), 1)
+
+        # W_ENA_Status belongs to the main panel's HAL component
+        # ("gladevcp"); read it cross-component via halcmd. To disable
+        # the axis, drive this component's own W_Ena_Override pin
+        # (ANDed with the panel button in REB_PostGUI.hal) instead of
+        # trying to write another component's pin directly.
+        status_pin = "gladevcp.W_ENA_Status"
+
+        try:
+            result = subprocess.run(
+                ["halcmd", "getp", status_pin],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            is_enabled = result.stdout.strip().upper() in ("TRUE", "1")
+            print(status_pin + " = " + result.stdout.strip())
+
+            if is_enabled:
+                print("X axis is enabled - disabling")
+                self.halcomp['W_Ena_Override'] = False
+            else:
+                print("X axis is already disabled")
+        except subprocess.CalledProcessError as e:
+            print("Error checking " + status_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
+
+        # Send the new scale to the X axis stepgen via halcmd.
+        hal_pin = "hm2_7i92.0.stepgen.04.position-scale"
+        cmd = ["halcmd", "setp", hal_pin, str(W_Scale)]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Set " + hal_pin + " = " + str(W_Scale))
+        except subprocess.CalledProcessError as e:
+            print("Error setting " + hal_pin + ": " + e.stderr)
+        except FileNotFoundError:
+            print("halcmd not found - is the LinuxCNC environment sourced?")
 
 # ********************************************************************
 #    AA    XX    XX IIIIIIII  SSSSSS      YY    YY

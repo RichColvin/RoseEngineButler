@@ -63,7 +63,8 @@
 # use or other dealings in this Software without prior written        #
 # authorization from COPYRIGHT HOLDERS.                               #
 #######################################################################
---><interface>
+-->
+<interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
   <object class="GtkAdjustment" id="B_Set_Scale_adj">
@@ -460,6 +461,7 @@
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="Z_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -484,6 +486,7 @@
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="U_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -508,6 +511,7 @@
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="V_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -532,6 +536,7 @@
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="W_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -556,6 +561,7 @@
                 <property name="digits">3</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="B_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -580,6 +586,7 @@
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="Sp0_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -604,6 +611,7 @@
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
+                <signal name="value-changed" handler="Sp1_Set_Scale" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
