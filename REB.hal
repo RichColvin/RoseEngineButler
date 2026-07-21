@@ -169,6 +169,8 @@ net x-pos-fb                             => pid.x.feedback
 
 net x-pos-limit                          => joint.0.pos-lim-sw-in
 
+# net x-scale                                 hm2_7i92.0.stepgen.04.position-scale
+
 net x-vel-cmd                           <=  joint.0.vel-cmd
 
 # ********************************************************************
