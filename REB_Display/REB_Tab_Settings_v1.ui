@@ -137,7 +137,7 @@
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
         <child>
-          <!-- n-columns=5 n-rows=19 -->
+          <!-- n-columns=5 n-rows=20 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -810,7 +810,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">18</property>
+                <property name="top-attach">19</property>
                 <property name="width">2</property>
               </packing>
             </child>
@@ -822,16 +822,16 @@
                 <property name="valign">start</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
+                <property name="margin-end">4</property>
                 <property name="label" translatable="yes">For these fields, enter a number between 100,000 and -100,000 (without the commas).
 
 SETTING THE VALUES
-The best manner for setting these is to direct your machine move a certain distance (e.g., 1 inch or 10 degrees), and then change this value as necessary to achieve the requested movement.  For example, if you directed it to move 1 inch, and it moves 1.1 inches, then divide the setting by 1.1.  You may have to go thru a few iterations of this to get it perfect.
+The best manner for setting these is to direct your machine to move a certain distance (e.g., 1 inch or 10 degrees), and then change this value as necessary to achieve the requested movement.  For example, if you directed it to move 1 inch, and it moves 1.1 inches, then divide the setting by 1.1.  You may have to go thru a few iterations of this to get it perfect.
+
+For the spindles, 360° is a good starting point.  For rotary axes, 10° is a good starting point.
 
 REVERSING THE DIRECTION
-If the axis is running in the wrong direction, reverse the polarity of the number (i.e., make a + into a -, or vice versa).
-
-GOOD PRACTICE
-Add a label to each device with the values used by that device.  Then, when using that device, you will have the needed data at the ready.</property>
+If the axis is running in the wrong direction, reverse the polarity of the number (i.e., make a + into a -, or vice versa).</property>
                 <property name="wrap">True</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
@@ -841,6 +841,29 @@ Add a label to each device with the values used by that device.  Then, when usin
                 <property name="left-attach">4</property>
                 <property name="top-attach">3</property>
                 <property name="height">14</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="margin-left">4</property>
+                <property name="margin-right">4</property>
+                <property name="margin-start">4</property>
+                <property name="margin-end">4</property>
+                <property name="label" translatable="yes">GOOD PRACTICE
+Add a label to each device with the values used by that device.  Then, when using that device, you will have the needed data at the ready.</property>
+                <property name="wrap">True</property>
+                <attributes>
+                  <attribute name="font-desc" value="DejaVu Serif 10"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">18</property>
+                <property name="width">5</property>
               </packing>
             </child>
             <child>
