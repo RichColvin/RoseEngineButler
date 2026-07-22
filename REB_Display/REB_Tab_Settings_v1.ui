@@ -824,11 +824,14 @@
                 <property name="margin-start">4</property>
                 <property name="label" translatable="yes">For these fields, enter a number between 100,000 and -100,000 (without the commas).
 
-Setting the Values
+SETTING THE VALUES
 The best manner for setting these is to direct your machine move a certain distance (e.g., 1 inch or 10 degrees), and then change this value as necessary to achieve the requested movement.  For example, if you directed it to move 1 inch, and it moves 1.1 inches, then divide the setting by 1.1.  You may have to go thru a few iterations of this to get it perfect.
 
-Reversing the Direction
-If the axis is running in the wrong direction, reverse the polarity of the number (i.e., make a + into a -, or vice versa).</property>
+REVERSING THE DIRECTION
+If the axis is running in the wrong direction, reverse the polarity of the number (i.e., make a + into a -, or vice versa).
+
+GOOD PRACTICE
+Add a label to each device with the values used by that device.  Then, when using that device, you will have the needed data at the ready.</property>
                 <property name="wrap">True</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
