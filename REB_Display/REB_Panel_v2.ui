@@ -925,7 +925,7 @@
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="hexpand">True</property>
-                <property name="label" translatable="yes">Alpha Version - 21 Jul 26</property>
+                <property name="label" translatable="yes">Alpha Version - 22 Jul 26</property>
                 <property name="justify">right</property>
                 <property name="width-chars">9</property>
                 <attributes>

@@ -416,7 +416,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / in</property>
+                <property name="label" translatable="yes">pulses / in</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -558,7 +558,7 @@
                 <property name="input-purpose">number</property>
                 <property name="adjustment">B_Set_Scale_adj</property>
                 <property name="climb-rate">0.009999999776482582</property>
-                <property name="digits">1</property>
+                <property name="digits">3</property>
                 <property name="numeric">True</property>
                 <property name="value">20000</property>
                 <signal name="value-changed" handler="B_Set_Scale" swapped="no"/>
@@ -626,7 +626,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / in</property>
+                <property name="label" translatable="yes">pulses / in</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -644,7 +644,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / in</property>
+                <property name="label" translatable="yes">pulses / in</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -662,7 +662,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / in</property>
+                <property name="label" translatable="yes">pulses / in</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -680,7 +680,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / in</property>
+                <property name="label" translatable="yes">pulses / in</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -698,7 +698,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / deg</property>
+                <property name="label" translatable="yes">pulses / deg</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -716,7 +716,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / deg</property>
+                <property name="label" translatable="yes">pulses / deg</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -734,7 +734,7 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">steps / deg</property>
+                <property name="label" translatable="yes">pulses / deg</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
