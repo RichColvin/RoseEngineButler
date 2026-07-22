@@ -28,9 +28,9 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 13 July 2026, R. Colvin                                     #
+#   1.0 - 22 July 2026, R. Colvin                                     #
 #                                                                     #
-# Copyright (c) 2025 Colvin Tools and Brainwave Embedded.             #
+# Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
 # The following MIT/X Consortium License applies to the Rose Engine   #
 # Butler system. Use of this system constitutes consent to the terms  #
@@ -87,27 +87,8 @@ TYPE                 = ANGULAR
 [SPINDLE_1]
 TYPE                 = ANGULAR
 
-MAX_VELOCITY         = 100
+MAX_VELOCITY         = 200
 MAX_ACCELERATION     = 30
-
-# ********************************************************************
-# The values used below are based on these calculations.
-#
-# ***********************
-# 1. Stepper motors use 1.8 deg / step.
-#
-# ***********************
-# 2. DM542T set to Microsteps  = 32
-#                  Steps / rev = 6,400
-#
-#   32 microsteps           microsteps
-#   -------------  = 17.778 ----------
-#      1.8 deg                degree
-#
-# ********************************************************************
-SCALE                = 57600
-STEP_SCALE           = 57600
-ENCODER_SCALE        = 6400
 
 STEPGEN_MAXVEL       = 3
 STEPGEN_MAXACCEL     = 1

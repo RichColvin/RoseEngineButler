@@ -28,7 +28,7 @@
 #   Brainwave Embedded.                                               #
 #                                                                     #
 # Version                                                             #
-#   1.0 - 13 July 2026, R. Colvin                                     #
+#   1.0 - 22 July 2026, R. Colvin                                     #
 #                                                                     #
 # Copyright (c) 2026 Colvin Tools and Brainwave Embedded.             #
 #                                                                     #
@@ -84,7 +84,7 @@
 TYPE                 = ANGULAR
 
 # 1"/min = 0.083"/sec
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 20.0
 MAX_ACCELERATION     = 20.0
 
 MIN_LIMIT            = -1e99
@@ -94,32 +94,16 @@ MAX_LIMIT            = 1e99
 TYPE                 = ANGULAR
 UNITS                = DEGREE
 
-MAX_VELOCITY         = 0.2
+MAX_VELOCITY         = 20.0
 MAX_ACCELERATION     = 20.0
 
 # ********************************************************************
 # STEPPER MOTOR SETTINGS
-#
-# The values used below are outlined in the user manual 
-# (manual.roseenginebutler.com) in the entry titled,
-#
-#      Updating the Axis Configuration File
-#
-#  For the this device, a leadscrew with a 
-#   * 1 starts
-#   * 2 mm pitch
-#  is being used.
-#
-#                6,400 steps   1 rev   25.4 steps          steps
-#   STEP_SCALE = ----------- X ----- X ---------- = 81,280 -----
-#                   1 rev      2 mm      1 inch             inch
-#
 
-STEP_SCALE           = 81280
-ENCODER_SCALE        = 81280
-
-STEPGEN_MAXACCEL     = 0.5
-STEPGEN_MAXVEL       = 12.5
+# STEPGEN_MAXACCEL     = 0.5
+STEPGEN_MAXACCEL     = 5.0
+# STEPGEN_MAXVEL       = 12.5
+STEPGEN_MAXVEL       = 100
 
 # ********************************************************************
 # STANDARD VALUES
