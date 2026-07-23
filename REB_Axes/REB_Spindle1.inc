@@ -87,11 +87,13 @@ TYPE                 = ANGULAR
 [SPINDLE_1]
 TYPE                 = ANGULAR
 
-MAX_VELOCITY         = 200
+MAX_VELOCITY         = 100
 MAX_ACCELERATION     = 30
 
-STEPGEN_MAXVEL       = 3
-STEPGEN_MAXACCEL     = 1
+# STEPGEN_MAXVEL       = 3
+STEPGEN_MAXVEL       = 8
+# STEPGEN_MAXACCEL     = 1
+STEPGEN_MAXACCEL     = 6
 
 # ********************************************************************
 # STANDARD VALUES
@@ -106,21 +108,25 @@ FERROR               = 5
 DEADBAND             = 0.000015
 MAX_OUTPUT           = 10.0
 
-P_VEL                = 1000.0
-I_VEL                = 0.0
-D_VEL                = 0.0
+P_VEL                = 35
+I_VEL                = 20
+D_VEL                = 1.2
 BIAS_VEL             = 0.0
 FF0_VEL              = 1.0
 FF1_VEL              = 0.0
 FF2_VEL              = 0.0
 
-P_POS                = 1000.0
-I_POS                = 0.0
-D_POS                = 0.0
+MAX_OUTPUT_VEL       = 10.0
+
+P_POS                = 35
+I_POS                = 20
+D_POS                = 1.2
 BIAS_POS             = 0.0
 FF0_POS              = 1.0
 FF1_POS              = 0.0
 FF2_POS              = 0.0
+
+MAX_OUTPUT_POS		 = 2.0
 
 # For the StepperOnline DM542T Digital Stepper Drive 
 # These are 5 μs = 5,000 ns
