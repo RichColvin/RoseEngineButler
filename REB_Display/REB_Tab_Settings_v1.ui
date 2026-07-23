@@ -68,58 +68,50 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="gladevcp" version="0.0"/>
   <object class="GtkAdjustment" id="B_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Sp0_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Sp1_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="U_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="V_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="W_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="X_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="Z_Set_Scale_adj">
-    <property name="lower">-100000</property>
-    <property name="upper">100000</property>
-    <property name="value">20000</property>
+    <property name="lower">-1000000</property>
+    <property name="upper">1000000</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
@@ -400,7 +392,6 @@
                 <property name="climb-rate">0.009999999776482582</property>
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
-                <property name="value">20000</property>
                 <signal name="value-changed" handler="X_Set_Scale" swapped="no"/>
               </object>
               <packing>
@@ -460,7 +451,6 @@
                 <property name="climb-rate">0.009999999776482582</property>
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
-                <property name="value">20000</property>
                 <signal name="value-changed" handler="Z_Set_Scale" swapped="no"/>
               </object>
               <packing>
@@ -485,7 +475,6 @@
                 <property name="climb-rate">0.009999999776482582</property>
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
-                <property name="value">20000</property>
                 <signal name="value-changed" handler="U_Set_Scale" swapped="no"/>
               </object>
               <packing>
@@ -560,7 +549,6 @@
                 <property name="climb-rate">0.009999999776482582</property>
                 <property name="digits">3</property>
                 <property name="numeric">True</property>
-                <property name="value">20000</property>
                 <signal name="value-changed" handler="B_Set_Scale" swapped="no"/>
               </object>
               <packing>
@@ -585,7 +573,6 @@
                 <property name="climb-rate">0.009999999776482582</property>
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
-                <property name="value">20000</property>
                 <signal name="value-changed" handler="Sp0_Set_Scale" swapped="no"/>
               </object>
               <packing>
@@ -610,7 +597,6 @@
                 <property name="climb-rate">0.009999999776482582</property>
                 <property name="digits">1</property>
                 <property name="numeric">True</property>
-                <property name="value">20000</property>
                 <signal name="value-changed" handler="Sp1_Set_Scale" swapped="no"/>
               </object>
               <packing>
@@ -716,7 +702,8 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">pulses / deg</property>
+                <property name="label" translatable="yes">pulses / 
+revolution</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -734,7 +721,8 @@
                 <property name="valign">center</property>
                 <property name="margin-left">4</property>
                 <property name="margin-start">4</property>
-                <property name="label" translatable="yes">pulses / deg</property>
+                <property name="label" translatable="yes">pulses /
+revolution</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
                 </attributes>
@@ -854,7 +842,10 @@ If the axis is running in the wrong direction, reverse the polarity of the numbe
                 <property name="margin-start">4</property>
                 <property name="margin-end">4</property>
                 <property name="label" translatable="yes">GOOD PRACTICE
-Add a label to each device with the values used by that device.  Then, when using that device, you will have the needed data at the ready.</property>
+Add a label to each device with the values used by that device.  Then, when using that device, you will have the needed data at the ready.
+
+MORE HELP
+There is far more descriptive help  in the Rose Engine Butler's User Manual, in the entry, "Axis Settings for a Device".  You can get to the User Manual via the ℛ Help tab.  To get to the full library, use the button below.</property>
                 <property name="wrap">True</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Serif 10"/>
