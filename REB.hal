@@ -77,9 +77,16 @@
 #   Y      -       --    ------     -		  Not available as LATHE=1
 #   Z      1       01    LINEAR     2    P12
 #
-#   A      -       --    ------     -		  Not used
+#   A      -       08    ANGULAR    -    --   Not currently assigned to
+#                                              a channel (placeholder -
+#                                              any of X,Z,U,V,W,A,B,C,
+#                                              Sp0,Sp1 can be assigned
+#                                              to any of the 8 real
+#                                              channels via the Axis
+#                                              Selection tab)
 #   B      2       05    ANGULAR    6    P16
-#   C      -       --    ------     -		  Not used
+#   C      -       09    ANGULAR    -    --   Not currently assigned -
+#                                              see A above
 #
 #   U      3       02    LINEAR     3    P13
 #   V      4       03    LINEAR     4    P14
@@ -99,9 +106,23 @@ loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JO
 loadrt encoder num_chan=2
 loadrt hostmot2
 loadrt hm2_eth board_ip="192.168.1.121" config="num_encoders=0 num_pwmgens=0 num_stepgens=8"
-loadrt orient
+loadrt orient count=2
 loadrt sum2
-loadrt pid names=pid.x,pid.z,pid.b,pid.u,pid.v,pid.w,pid.s0,pid.s1,pid.p0,orient.0-pid
+# mux2.0/mux2.1 select spindle velocity source; mux2.2/mux2.3 select the
+# Sp0/Sp1 orient target angle source (M19 vs the simultaneous-index path -
+# see the Sp0/Sp1 sections below).
+loadrt mux2 count=4
+# or2.0/or2.1 merge the M19-driven orient-enable with the simultaneous-index
+# path's own trigger bit for Sp0/Sp1 respectively - see the Sp0/Sp1 sections
+# below.
+loadrt or2 count=2
+# pid.a/pid.c added 13 September 2026 (any of X,Z,U,V,W,A,B,C,Sp0,Sp1
+# can now be assigned to any of the 8 physical channels - see CLAUDE.md
+# and REB_Setup/REB_Generate_Local_Ini.py) - loaded unconditionally
+# like every other role's pid component, even on a launch where A/C
+# aren't currently assigned to any channel (harmless idle, no net wired
+# to them in that case - see the AXIS_A/AXIS_C blocks below).
+loadrt pid names=pid.x,pid.z,pid.b,pid.a,pid.c,pid.u,pid.v,pid.w,pid.s0,pid.s1,pid.p0,pid.p1,orient.0-pid
 
 addf hm2_7i92.0.read                        servo-thread
 addf hm2_7i92.0.write                       servo-thread
@@ -130,6 +151,7 @@ setp hm2_7i92.0.watchdog.timeout_ns 		5000000
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: X
 addf pid.x.do-pid-calcs                     servo-thread
 
 # ********************************************************************
@@ -186,13 +208,19 @@ setp hm2_7i92.0.stepgen.04.maxvel           [JOINT_0]STEPGEN_MAXVEL
 
 setp pid.x.error-previous-target            true
 
-setp pid.x.Pgain                            [JOINT_0]P
-setp pid.x.Igain                            [JOINT_0]I
-setp pid.x.Dgain                            [JOINT_0]D
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.x.Pgain                            [JOINT_0]P
+# setp pid.x.Igain                            [JOINT_0]I
+# setp pid.x.Dgain                            [JOINT_0]D
 setp pid.x.bias                             [JOINT_0]BIAS
-setp pid.x.FF0                              [JOINT_0]FF0
-setp pid.x.FF1                              [JOINT_0]FF1
-setp pid.x.FF2                              [JOINT_0]FF2
+# setp pid.x.FF0                              [JOINT_0]FF0
+# setp pid.x.FF1                              [JOINT_0]FF1
+# setp pid.x.FF2                              [JOINT_0]FF2
 setp pid.x.deadband                         [JOINT_0]DEADBAND
 setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 
@@ -202,6 +230,7 @@ setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 # ********************************************************************
 
 # ********************************************************************
+# ROLE_BLOCK_END: X
 #    AA    XX    XX IIIIIIII  SSSSSS      YY    YY
 #   AAAA    XX  XX    II     SS    SS      YY  YY
 #  AA  AA    XXXX     II      SSS           YYYY
@@ -238,6 +267,7 @@ setp pid.x.maxoutput                        [JOINT_0]MAX_OUTPUT
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: Z
 addf pid.z.do-pid-calcs                     servo-thread
 
 # ********************************************************************
@@ -292,13 +322,19 @@ setp hm2_7i92.0.stepgen.01.maxvel           [JOINT_1]STEPGEN_MAXVEL
 
 setp pid.z.error-previous-target            true
 
-setp pid.z.Pgain                            [JOINT_1]P
-setp pid.z.Igain                            [JOINT_1]I
-setp pid.z.Dgain                            [JOINT_1]D
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.z.Pgain                            [JOINT_1]P
+# setp pid.z.Igain                            [JOINT_1]I
+# setp pid.z.Dgain                            [JOINT_1]D
 setp pid.z.bias                             [JOINT_1]BIAS
-setp pid.z.FF0                              [JOINT_1]FF0
-setp pid.z.FF1                              [JOINT_1]FF1
-setp pid.z.FF2                              [JOINT_1]FF2
+# setp pid.z.FF0                              [JOINT_1]FF0
+# setp pid.z.FF1                              [JOINT_1]FF1
+# setp pid.z.FF2                              [JOINT_1]FF2
 setp pid.z.deadband                         [JOINT_1]DEADBAND
 setp pid.z.maxoutput                        [JOINT_1]MAX_OUTPUT
 
@@ -308,6 +344,7 @@ setp pid.z.maxoutput                        [JOINT_1]MAX_OUTPUT
 # ********************************************************************
 
 # ********************************************************************
+# ROLE_BLOCK_END: Z
 #    AA    XX    XX IIIIIIII  SSSSSS      BBBBBBB
 #   AAAA    XX  XX    II     SS    SS     BB    BB
 #  AA  AA    XXXX     II      SSS         BBBBBBB
@@ -326,6 +363,7 @@ setp pid.z.maxoutput                        [JOINT_1]MAX_OUTPUT
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: B
 addf pid.b.do-pid-calcs                     servo-thread
 
 # ********************************************************************
@@ -339,7 +377,10 @@ net jog-b-neg                               halui.axis.b.minus
 
 net jog-b-pos                               halui.axis.b.plus
 
-# See also the REB_PostGui.hal
+# B's panel ENA button (REB_Panel_v1.ui) was restored 19 September 2026
+# with its own independent row (temporarily replaced by A's 18 September
+# 2026, while A had no row of its own yet - see CLAUDE.md). See
+# REB_PostGUI_v1.hal for the panel-toggle chain b-enable is driven from.
 net b-enable                             => hm2_7i92.0.outm.00.out-05
 net b-enable                             => hm2_7i92.0.stepgen.05.enable
 net b-enable                             => pid.b.enable
@@ -380,13 +421,19 @@ setp hm2_7i92.0.stepgen.05.maxvel           [JOINT_2]STEPGEN_MAXVEL
 
 setp pid.b.error-previous-target            true
 
-setp pid.b.Pgain                            [JOINT_2]P
-setp pid.b.Igain                            [JOINT_2]I
-setp pid.b.Dgain                            [JOINT_2]D
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.b.Pgain                            [JOINT_2]P
+# setp pid.b.Igain                            [JOINT_2]I
+# setp pid.b.Dgain                            [JOINT_2]D
 setp pid.b.bias                             [JOINT_2]BIAS
-setp pid.b.FF0                              [JOINT_2]FF0
-setp pid.b.FF1                              [JOINT_2]FF1
-setp pid.b.FF2                              [JOINT_2]FF2
+# setp pid.b.FF0                              [JOINT_2]FF0
+# setp pid.b.FF1                              [JOINT_2]FF1
+# setp pid.b.FF2                              [JOINT_2]FF2
 setp pid.b.deadband                         [JOINT_2]DEADBAND
 setp pid.b.maxoutput                        [JOINT_2]MAX_OUTPUT
 
@@ -396,6 +443,225 @@ setp pid.b.maxoutput                        [JOINT_2]MAX_OUTPUT
 # ********************************************************************
 
 # ********************************************************************
+# ROLE_BLOCK_END: B
+#    AA
+#   AAAA
+#  AA  AA
+# AAAAAAAA
+# AA    AA
+# AA    AA
+# ********************************************************************
+#
+# Configuration values
+#                                 Home   PCB
+#  Axis  Joint  Channel   Type     Seq  Plug  Comments
+#  ----  -----  -------  -------  ----  ----  ------------------------
+#   A      -       08    ANGULAR    -    --   Added 13 September 2026 -
+#                                              placeholder channel/plug,
+#                                              not currently assigned to
+#                                              any of the 8 real
+#                                              channels (00-07) - see
+#                                              REB_Setup/
+#                                              REB_Generate_Local_Ini.py
+# ********************************************************************
+#  Added 13 September 2026, Claude - any of X,Z,U,V,W,A,B,C,Sp0,Sp1 can
+#  now be assigned to any of the 8 physical channels (see CLAUDE.md).
+#  This block mirrors AXIS_B's shape exactly. The "08" channel number
+#  and [JOINT_8] ini section below are placeholders only - never a real
+#  hm2 channel (only 00-07 exist) - REB_Generate_Local_Ini.py rewrites
+#  both to A's real, currently-computed channel/joint number if the
+#  operator ever assigns A to a channel via the Axis Selection tab, and
+#  omits this entire block from the generated REB.local.hal whenever A
+#  isn't currently assigned to any channel (as in the shipped default).
+# ********************************************************************
+
+# ROLE_BLOCK_START: A
+addf pid.a.do-pid-calcs                     servo-thread
+
+# ********************************************************************
+#  Connect signals to pins
+
+net axis-select-a                           halui.axis.a.select
+
+net jog-a-analog                            halui.axis.a.analog
+
+net jog-a-neg                               halui.axis.a.minus
+
+net jog-a-pos                               halui.axis.a.plus
+
+# A now has its own panel ENA-toggle button (A_ENA on REB_Panel_v1.ui,
+# added 18 September 2026) driving a dedicated "a-enable" signal via
+# REB_PostGUI_v1.hal's a-ena-flip/a-ena-and/a-estop-and chain, the same
+# pattern every other axis letter already uses - see that file for the
+# full chain (panel toggle AND settings-tab override AND machine-is-on).
+net a-enable                             => hm2_7i92.0.outm.00.out-08
+net a-enable                             => hm2_7i92.0.stepgen.08.enable
+net a-enable                             => pid.a.enable
+
+net a-home-sw                            => joint.8.home-sw-in
+
+net a-index-enable                       => pid.a.index-enable
+
+net a-is-homed                              halui.joint.8.is-homed
+
+net a-neg-limit                          => joint.8.neg-lim-sw-in
+
+net a-output                            <=  pid.a.output
+net a-output                             => hm2_7i92.0.stepgen.08.velocity-cmd
+
+net a-pos-limit                          => joint.8.pos-lim-sw-in
+
+net a-pos-cmd                           <=  joint.8.motor-pos-cmd
+net a-pos-cmd                            => pid.a.command
+
+net a-pos-fb                            <=  hm2_7i92.0.stepgen.08.position-fb
+net a-pos-fb                             => joint.8.motor-pos-fb
+net a-pos-fb                             => pid.a.feedback
+
+net a-vel-cmd                           <=  joint.8.vel-cmd
+
+# ********************************************************************
+#  Set pin values
+setp hm2_7i92.0.stepgen.08.dirsetup         [JOINT_8]DIRSETUP
+setp hm2_7i92.0.stepgen.08.dirhold          [JOINT_8]DIRHOLD
+setp hm2_7i92.0.stepgen.08.steplen          [JOINT_8]STEPLEN
+setp hm2_7i92.0.stepgen.08.stepspace        [JOINT_8]STEPSPACE
+# setp hm2_7i92.0.stepgen.08.position-scale   [JOINT_8]STEP_SCALE
+setp hm2_7i92.0.stepgen.08.step_type        0
+setp hm2_7i92.0.stepgen.08.control-type     1
+setp hm2_7i92.0.stepgen.08.maxaccel         [JOINT_8]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.08.maxvel           [JOINT_8]STEPGEN_MAXVEL
+
+setp pid.a.error-previous-target            true
+
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.a.Pgain                            [JOINT_8]P
+# setp pid.a.Igain                            [JOINT_8]I
+# setp pid.a.Dgain                            [JOINT_8]D
+setp pid.a.bias                             [JOINT_8]BIAS
+# setp pid.a.FF0                              [JOINT_8]FF0
+# setp pid.a.FF1                              [JOINT_8]FF1
+# setp pid.a.FF2                              [JOINT_8]FF2
+setp pid.a.deadband                         [JOINT_8]DEADBAND
+setp pid.a.maxoutput                        [JOINT_8]MAX_OUTPUT
+
+# ********************************************************************
+#  Set signal values
+
+# ********************************************************************
+
+# ********************************************************************
+# ROLE_BLOCK_END: A
+#  CCCCCCC
+# CC     CC
+# CC
+# CC
+# CC     CC
+#  CCCCCCC
+# ********************************************************************
+#
+# Configuration values
+#                                 Home   PCB
+#  Axis  Joint  Channel   Type     Seq  Plug  Comments
+#  ----  -----  -------  -------  ----  ----  ------------------------
+#   C      -       09    ANGULAR    -    --   Added 13 September 2026 -
+#                                              placeholder channel/plug,
+#                                              not currently assigned to
+#                                              any of the 8 real
+#                                              channels (00-07) - see
+#                                              REB_Setup/
+#                                              REB_Generate_Local_Ini.py
+# ********************************************************************
+#  Added 13 September 2026, Claude - see the AXIS_A block above for the
+#  full explanation (placeholder channel/joint number, generator-
+#  rewritten on assignment, block omitted entirely when unassigned).
+# ********************************************************************
+
+# ROLE_BLOCK_START: C
+addf pid.c.do-pid-calcs                     servo-thread
+
+# ********************************************************************
+#  Connect signals to pins
+
+net axis-select-c                           halui.axis.c.select
+
+net jog-c-analog                            halui.axis.c.analog
+
+net jog-c-neg                               halui.axis.c.minus
+
+net jog-c-pos                               halui.axis.c.plus
+
+# C got its own panel ENA-toggle button 19 September 2026, matching
+# every other axis letter (see CLAUDE.md and REB_PostGUI_v1.hal for the
+# panel-toggle chain c-enable is driven from).
+net c-enable                             => hm2_7i92.0.outm.00.out-09
+net c-enable                             => hm2_7i92.0.stepgen.09.enable
+net c-enable                             => pid.c.enable
+
+net c-home-sw                            => joint.9.home-sw-in
+
+net c-index-enable                       => pid.c.index-enable
+
+net c-is-homed                              halui.joint.9.is-homed
+
+net c-neg-limit                          => joint.9.neg-lim-sw-in
+
+net c-output                            <=  pid.c.output
+net c-output                             => hm2_7i92.0.stepgen.09.velocity-cmd
+
+net c-pos-limit                          => joint.9.pos-lim-sw-in
+
+net c-pos-cmd                           <=  joint.9.motor-pos-cmd
+net c-pos-cmd                            => pid.c.command
+
+net c-pos-fb                            <=  hm2_7i92.0.stepgen.09.position-fb
+net c-pos-fb                             => joint.9.motor-pos-fb
+net c-pos-fb                             => pid.c.feedback
+
+net c-vel-cmd                           <=  joint.9.vel-cmd
+
+# ********************************************************************
+#  Set pin values
+setp hm2_7i92.0.stepgen.09.dirsetup         [JOINT_9]DIRSETUP
+setp hm2_7i92.0.stepgen.09.dirhold          [JOINT_9]DIRHOLD
+setp hm2_7i92.0.stepgen.09.steplen          [JOINT_9]STEPLEN
+setp hm2_7i92.0.stepgen.09.stepspace        [JOINT_9]STEPSPACE
+# setp hm2_7i92.0.stepgen.09.position-scale   [JOINT_9]STEP_SCALE
+setp hm2_7i92.0.stepgen.09.step_type        0
+setp hm2_7i92.0.stepgen.09.control-type     1
+setp hm2_7i92.0.stepgen.09.maxaccel         [JOINT_9]STEPGEN_MAXACCEL
+setp hm2_7i92.0.stepgen.09.maxvel           [JOINT_9]STEPGEN_MAXVEL
+
+setp pid.c.error-previous-target            true
+
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.c.Pgain                            [JOINT_9]P
+# setp pid.c.Igain                            [JOINT_9]I
+# setp pid.c.Dgain                            [JOINT_9]D
+setp pid.c.bias                             [JOINT_9]BIAS
+# setp pid.c.FF0                              [JOINT_9]FF0
+# setp pid.c.FF1                              [JOINT_9]FF1
+# setp pid.c.FF2                              [JOINT_9]FF2
+setp pid.c.deadband                         [JOINT_9]DEADBAND
+setp pid.c.maxoutput                        [JOINT_9]MAX_OUTPUT
+
+# ********************************************************************
+#  Set signal values
+
+# ********************************************************************
+
+# ********************************************************************
+# ROLE_BLOCK_END: C
 #    AA    XX    XX IIIIIIII  SSSSSS      UU    UU
 #   AAAA    XX  XX    II     SS    SS     UU    UU
 #  AA  AA    XXXX     II      SSS         UU    UU
@@ -413,6 +679,7 @@ setp pid.b.maxoutput                        [JOINT_2]MAX_OUTPUT
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: U
 addf pid.u.do-pid-calcs                     servo-thread
 
 # ********************************************************************
@@ -467,13 +734,19 @@ setp hm2_7i92.0.stepgen.02.maxvel           [JOINT_3]STEPGEN_MAXVEL
 
 setp pid.u.error-previous-target            true
 
-setp pid.u.Pgain                            [JOINT_3]P
-setp pid.u.Igain                            [JOINT_3]I
-setp pid.u.Dgain                            [JOINT_3]D
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.u.Pgain                            [JOINT_3]P
+# setp pid.u.Igain                            [JOINT_3]I
+# setp pid.u.Dgain                            [JOINT_3]D
 setp pid.u.bias                             [JOINT_3]BIAS
-setp pid.u.FF0                              [JOINT_3]FF0
-setp pid.u.FF1                              [JOINT_3]FF1
-setp pid.u.FF2                              [JOINT_3]FF2
+# setp pid.u.FF0                              [JOINT_3]FF0
+# setp pid.u.FF1                              [JOINT_3]FF1
+# setp pid.u.FF2                              [JOINT_3]FF2
 setp pid.u.deadband                         [JOINT_3]DEADBAND
 setp pid.u.maxoutput                        [JOINT_3]MAX_OUTPUT
 
@@ -483,6 +756,7 @@ setp pid.u.maxoutput                        [JOINT_3]MAX_OUTPUT
 # ********************************************************************
 
 # ********************************************************************
+# ROLE_BLOCK_END: U
 #    AA    XX    XX IIIIIIII  SSSSSS      VV    VV
 #   AAAA    XX  XX    II     SS    SS     VV    VV
 #  AA  AA    XXXX     II      SSS         VV    VV
@@ -500,6 +774,7 @@ setp pid.u.maxoutput                        [JOINT_3]MAX_OUTPUT
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: V
 addf pid.v.do-pid-calcs                     servo-thread
 
 # ********************************************************************
@@ -554,13 +829,19 @@ setp hm2_7i92.0.stepgen.03.maxvel           [JOINT_4]STEPGEN_MAXVEL
 
 setp pid.v.error-previous-target            true
 
-setp pid.v.Pgain                            [JOINT_4]P
-setp pid.v.Igain                            [JOINT_4]I
-setp pid.v.Dgain                            [JOINT_4]D
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.v.Pgain                            [JOINT_4]P
+# setp pid.v.Igain                            [JOINT_4]I
+# setp pid.v.Dgain                            [JOINT_4]D
 setp pid.v.bias                             [JOINT_4]BIAS
-setp pid.v.FF0                              [JOINT_4]FF0
-setp pid.v.FF1                              [JOINT_4]FF1
-setp pid.v.FF2                              [JOINT_4]FF2
+# setp pid.v.FF0                              [JOINT_4]FF0
+# setp pid.v.FF1                              [JOINT_4]FF1
+# setp pid.v.FF2                              [JOINT_4]FF2
 setp pid.v.deadband                         [JOINT_4]DEADBAND
 setp pid.v.maxoutput                        [JOINT_4]MAX_OUTPUT
 
@@ -570,6 +851,7 @@ setp pid.v.maxoutput                        [JOINT_4]MAX_OUTPUT
 # ********************************************************************
 
 # ********************************************************************
+# ROLE_BLOCK_END: V
 #    AA    XX    XX IIIIIIII  SSSSSS      WW       WW
 #   AAAA    XX  XX    II     SS    SS     WW       WW
 #  AA  AA    XXXX     II      SSS         WW   W   WW
@@ -587,7 +869,8 @@ setp pid.v.maxoutput                        [JOINT_4]MAX_OUTPUT
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
-# addf pid.w.do-pid-calcs                     servo-thread
+# ROLE_BLOCK_START: W
+addf pid.w.do-pid-calcs                     servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
@@ -603,28 +886,41 @@ net jog-w-pos                               halui.axis.w.plus
 # See also the REB_PostGui.hal
 net w-enable                             => hm2_7i92.0.outm.00.out-00
 net w-enable                             => hm2_7i92.0.stepgen.00.enable
-# net w-enable                             => pid.w.enable
+net w-enable                             => pid.w.enable
 
 net w-home-sw                            => joint.5.home-sw-in
 
-# net w-index-enable                       => pid.w.index-enable
+net w-index-enable                       => pid.w.index-enable
 
 net w-is-homed                              halui.joint.5.is-homed
 
 net w-neg-limit                          => joint.5.neg-lim-sw-in
 
 net w-pos-cmd                           <=  joint.5.motor-pos-cmd
-# net w-pos-cmd                            => pid.w.command
+net w-pos-cmd                            => pid.w.command
 
 net w-pos-fb                            <=  hm2_7i92.0.stepgen.00.position-fb
 net w-pos-fb                             => joint.5.motor-pos-fb
-# net w-pos-fb                             => pid.w.feedback
+net w-pos-fb                             => pid.w.feedback
 
-# net w-output                            <=  pid.w.output
+net w-output                            <=  pid.w.output
 net w-output                             => hm2_7i92.0.stepgen.00.velocity-cmd
 
 net w-pos-limit                          => joint.5.pos-lim-sw-in
 
+# W used to have no PID (open-loop stepgen, fed joint.5's velocity
+# command straight to the stepgen instead of through pid.w.output) -
+# fine for a channel only ever jogged by hand (joint.N.vel-cmd is
+# populated by jog operations, not by G-code/MDI coordinated moves,
+# which drive motor-pos-cmd instead), but this channel is now
+# reassignable via the Axis Selection tab to letters that need real
+# G-code-commanded indexing (confirmed live 4 September 2026: with the
+# bypass below, G0/MDI moves updated joint.5's commanded position but
+# produced zero actual stepgen output, since the stepgen was listening
+# to vel-cmd, not pid.w's position-loop output). PID enabled above,
+# matching every other reassignable channel's wiring (e.g. V's) - this
+# net now goes nowhere, same as V's own v-vel-cmd, which likewise has
+# no reader.
 net w-vel-cmd                           <=  joint.5.vel-cmd
 
 # ********************************************************************
@@ -641,13 +937,19 @@ setp hm2_7i92.0.stepgen.00.maxvel           [JOINT_5]STEPGEN_MAXVEL
 
 setp pid.w.error-previous-target            true
 
-setp pid.w.Pgain                            [JOINT_5]P
-setp pid.w.Igain                            [JOINT_5]I
-setp pid.w.Dgain                            [JOINT_5]D
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.w.Pgain                            [JOINT_5]P
+# setp pid.w.Igain                            [JOINT_5]I
+# setp pid.w.Dgain                            [JOINT_5]D
 setp pid.w.bias                             [JOINT_5]BIAS
-setp pid.w.FF0                              [JOINT_5]FF0
-setp pid.w.FF1                              [JOINT_5]FF1
-setp pid.w.FF2                              [JOINT_5]FF2
+# setp pid.w.FF0                              [JOINT_5]FF0
+# setp pid.w.FF1                              [JOINT_5]FF1
+# setp pid.w.FF2                              [JOINT_5]FF2
 setp pid.w.deadband                         [JOINT_5]DEADBAND
 setp pid.w.maxoutput                        [JOINT_5]MAX_OUTPUT
 
@@ -657,6 +959,7 @@ setp pid.w.maxoutput                        [JOINT_5]MAX_OUTPUT
 # ********************************************************************
 
 # ********************************************************************
+# ROLE_BLOCK_END: W
 #  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE   0000
 # SS    SS PP    PP    II    NN    NN DD    DD LL       EE        00  00
 #  SSS     PP    PP    II    NNN   NN DD    DD LL       EEEEE    00    00
@@ -674,14 +977,41 @@ setp pid.w.maxoutput                        [JOINT_5]MAX_OUTPUT
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: Sp0
 addf orient.0                               servo-thread
 addf pid.p0.do-pid-calcs                    servo-thread
+addf mux2.0                                 servo-thread
+addf mux2.2                                 servo-thread
+addf or2.0                                  servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
 
 net machine-is-on                        => hm2_7i92.0.stepgen.06.enable
 
+# orient.0.angle now comes through mux2.2 instead of straight from
+# spindle.0.orient-angle, so it can be driven either by M19 (the normal
+# single-spindle path, mux2.2.in0, sel=FALSE) or by REB_main.py's
+# simultaneous Sp0+Sp1 index path (mux2.2.in1, sel=TRUE) - see
+# Sp0_Idx_Active/Sp1_Idx_Active in REB_main.py and the matching Sp1 block
+# below. orient.0.mode is hardwired below instead of following
+# spindle.0.orient-mode - both paths only ever use shortest-path (mode 0,
+# same as M19's existing "P0").
+net spindle.0-orient-angle-m19          <=  spindle.0.orient-angle
+net spindle.0-orient-angle-m19           => mux2.2.in0
+
+# Sp0-idx-angle/Sp0-idx-active are only created here (readers only) -
+# their driver (gladevcp.Sp0-idx-angle/-active) doesn't exist until the
+# GladeVCP panel process starts, well after REB.hal loads, so that net
+# is added later from REB_PostGUI_v1.hal instead (same reason the ENA
+# override pins are wired there, not here). Until then these signals
+# just sit at their default (0.0 / FALSE), which is harmless - FALSE
+# selects the normal M19 path in both mux2.2 and or2.0 below.
+net Sp0-idx-angle                        => mux2.2.in1
+
+net Sp0-idx-active                       => mux2.2.sel
+
+net orient.0-angle                      <=  mux2.2.out
 net orient.0-angle                       => orient.0.angle
 
 net orient.0-command                     => orient.0-pid.command
@@ -690,9 +1020,6 @@ net orient-done                         <=  orient.0.is-oriented
 net orient-done                          => spindle.0.is-oriented
 
 net orient.0-enable                      => orient.0-pid.enable
-
-net orient.0-mode                        => spindle.0.orient-mode
-net orient.0-mode                        => orient.0.mode
 
 net spindle.0-at-speed                   => spindle.0.at-speed
 
@@ -717,8 +1044,9 @@ net spindle.0-manual-stop                   halui.spindle.0.stop
 
 net spindle.0-output                    <=  sum2.0.out
 
-net spindle.0-output-pos				<=  pid.p0.output  
+net spindle.0-output-pos				<=  pid.p0.output
 net spindle.0-output-pos				 => sum2.0.in1
+net spindle.0-output-pos				 => mux2.0.in1
 
 net spindle.0-output-vel  				<=  pid.s0.output
 net spindle.0-output-vel  				 => sum2.0.in0
@@ -729,9 +1057,20 @@ net spindle.0-pos                        => orient.0-pid.feedback
 net spindle.0-pos-cmd                   <=  orient.0.command
 net spindle.0-pos-cmd                    => pid.p0.command
 
-net spindle.0-pos-mode-enable           <=  spindle.0.orient
+# spindle.0-pos-mode-enable is now the OR of the M19-driven enable
+# (spindle.0.orient, or2.0.in0) and REB_main.py's simultaneous
+# Sp0+Sp1 index path (Sp0-idx-active, or2.0.in1 - same bit used to
+# select mux2.2 above) - either path enables the same orient/PID/mux
+# chain identically, only the trigger source differs.
+net spindle.0-orient-m19                <=  spindle.0.orient
+net spindle.0-orient-m19                 => or2.0.in0
+
+net Sp0-idx-active                       => or2.0.in1
+
+net spindle.0-pos-mode-enable           <=  or2.0.out
 net spindle.0-pos-mode-enable            => orient.0.enable
 net spindle.0-pos-mode-enable            => pid.p0.enable
+net spindle.0-pos-mode-enable            => mux2.0.sel
 
 net spindle.0-position-fb              <=  hm2_7i92.0.stepgen.06.position-fb
 net spindle.0-position-fb               => orient.0.position
@@ -744,7 +1083,13 @@ net spindle.0-vel-cmd-rpm                => pid.s0.command
 net spindle.0-vel-cmd-rpm-abs           <=  spindle.0.speed-out-abs
 
 net spindle.0-vel-cmd-rps               <=  spindle.0.speed-out-rps
-net spindle.0-vel-cmd-rps                => hm2_7i92.0.stepgen.06.velocity-cmd
+net spindle.0-vel-cmd-rps                => mux2.0.in0
+
+# mux2.0 selects between normal spindle speed (mux2.0.in0, sel=FALSE) and
+# the orient position-PID output (mux2.0.in1, sel=TRUE while spindle.0.orient
+# is active during an M19 move) - see spindle.0-pos-mode-enable above.
+net spindle.0-vel-cmd-final              <=  mux2.0.out
+net spindle.0-vel-cmd-final               => hm2_7i92.0.stepgen.06.velocity-cmd
 
 net spindle.0-vel-cmd-rps-abs          <=  spindle.0.speed-out-rps-abs
 
@@ -765,22 +1110,41 @@ setp hm2_7i92.0.stepgen.06.maxvel           [SPINDLE_0]STEPGEN_MAXVEL
 
 setp pid.s0.error-previous-target           true
 
-setp pid.p0.Pgain                           [SPINDLE_0]P_POS
-setp pid.p0.Igain                           [SPINDLE_0]I_POS
-setp pid.p0.Dgain                           [SPINDLE_0]D_POS
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.p0.Pgain                           [SPINDLE_0]P_POS
+# setp pid.p0.Igain                           [SPINDLE_0]I_POS
+# setp pid.p0.Dgain                           [SPINDLE_0]D_POS
 setp pid.p0.bias                            [SPINDLE_0]BIAS_POS
-setp pid.p0.FF0                             [SPINDLE_0]FF0_POS
-setp pid.p0.FF1                             [SPINDLE_0]FF1_POS
-setp pid.p0.FF2                             [SPINDLE_0]FF2_POS
+# setp pid.p0.FF0                             [SPINDLE_0]FF0_POS
+# setp pid.p0.FF1                             [SPINDLE_0]FF1_POS
+# setp pid.p0.FF2                             [SPINDLE_0]FF2_POS
+setp orient.0.tolerance                     [SPINDLE_0]ORIENT_TOLERANCE
+# Hardwired shortest-path (see man orient) - both the M19 path (which has
+# always sent P0/shortest-path) and REB_main.py's simultaneous index path
+# only ever want this, so orient.0.mode no longer follows
+# spindle.0.orient-mode - it's simply always 0.
+setp orient.0.mode                          0
 setp pid.p0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_POS
+setp pid.p0.maxerrorI                       [SPINDLE_0]MAX_ERROR_I_POS
 
-setp pid.s0.Pgain                           [SPINDLE_0]P_VEL
-setp pid.s0.Igain                           [SPINDLE_0]I_VEL
-setp pid.s0.Dgain                           [SPINDLE_0]D_VEL
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.s0.Pgain                           [SPINDLE_0]P_VEL
+# setp pid.s0.Igain                           [SPINDLE_0]I_VEL
+# setp pid.s0.Dgain                           [SPINDLE_0]D_VEL
 setp pid.s0.bias                            [SPINDLE_0]BIAS_VEL
-setp pid.s0.FF0                             [SPINDLE_0]FF0_VEL
-setp pid.s0.FF1                             [SPINDLE_0]FF1_VEL
-setp pid.s0.FF2                             [SPINDLE_0]FF2_VEL
+# setp pid.s0.FF0                             [SPINDLE_0]FF0_VEL
+# setp pid.s0.FF1                             [SPINDLE_0]FF1_VEL
+# setp pid.s0.FF2                             [SPINDLE_0]FF2_VEL
 setp pid.s0.deadband                        [SPINDLE_0]DEADBAND
 setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_VEL
 
@@ -789,6 +1153,7 @@ setp pid.s0.maxoutput                       [SPINDLE_0]MAX_OUTPUT_VEL
 sets spindle.0-at-speed                     true
 
 # ********************************************************************
+# ROLE_BLOCK_END: Sp0
 
 # ********************************************************************
 #  SSSSSS  PPPPPPP  IIIIIIII N     NN DDDDDDD  LL       EEEEEEEE  1111
@@ -808,11 +1173,36 @@ sets spindle.0-at-speed                     true
 #  Modified 13 Jul 26 by R. Colvin
 # ********************************************************************
 
+# ROLE_BLOCK_START: Sp1
 addf pid.s1.do-pid-calcs                    servo-thread
+addf orient.1                               servo-thread
+addf pid.p1.do-pid-calcs                    servo-thread
+addf mux2.1                                 servo-thread
+addf mux2.3                                 servo-thread
+addf or2.1                                  servo-thread
 
 # ********************************************************************
 #  Connect signals to pins
 net machine-is-on                        => hm2_7i92.0.stepgen.07.enable
+
+# See the matching Sp0 block above for why orient.1.angle now comes
+# through mux2.3 (M19 vs REB_main.py's simultaneous Sp0+Sp1 index path)
+# and orient.1.mode is hardwired below instead of following
+# spindle.1.orient-mode.
+net spindle.1-orient-angle-m19          <=  spindle.1.orient-angle
+net spindle.1-orient-angle-m19           => mux2.3.in0
+
+# See the matching Sp0-idx-angle/Sp0-idx-active comment above - these
+# are also wired to their gladevcp.* driver later, from REB_PostGUI_v1.hal.
+net Sp1-idx-angle                        => mux2.3.in1
+
+net Sp1-idx-active                       => mux2.3.sel
+
+net orient.1-angle                      <=  mux2.3.out
+net orient.1-angle                       => orient.1.angle
+
+net orient.1-done                       <=  orient.1.is-oriented
+net orient.1-done                        => spindle.1.is-oriented
 
 net spindle.1-at-speed                   => spindle.1.at-speed
 
@@ -827,6 +1217,7 @@ net spindle.1-enable                     => pid.s1.enable
 
 net spindle.1-index-enable              <=> spindle.1.index-enable
 net spindle.1-index-enable               => pid.s1.index-enable
+net spindle.1-index-enable               => pid.p1.index-enable
 
 net spindle.1-manual-cw                     halui.spindle.1.forward
 net spindle.1-manual-ccw                    halui.spindle.1.reverse
@@ -835,9 +1226,36 @@ net spindle.1-manual-stop                   halui.spindle.1.stop
 
 net spindle.1-output                    <=  pid.s1.output
 
-net spindle.1-revs                       => spindle.1.revs
+net spindle.1-output-pos                <=  pid.p1.output
+net spindle.1-output-pos                 => mux2.1.in1
 
-net spindle.1-vel-cmd-rps                => hm2_7i92.0.stepgen.07.velocity-cmd
+net spindle.1-pos-cmd                   <=  orient.1.command
+net spindle.1-pos-cmd                    => pid.p1.command
+
+# See the matching Sp0 block above - spindle.1-pos-mode-enable is now the
+# OR of the M19-driven enable and REB_main.py's simultaneous index path.
+net spindle.1-orient-m19                <=  spindle.1.orient
+net spindle.1-orient-m19                 => or2.1.in0
+
+net Sp1-idx-active                       => or2.1.in1
+
+net spindle.1-pos-mode-enable           <=  or2.1.out
+net spindle.1-pos-mode-enable            => orient.1.enable
+net spindle.1-pos-mode-enable            => pid.p1.enable
+net spindle.1-pos-mode-enable            => mux2.1.sel
+
+net spindle.1-position-fb              <=  hm2_7i92.0.stepgen.07.position-fb
+net spindle.1-position-fb               => orient.1.position
+net spindle.1-position-fb               => pid.p1.feedback
+net spindle.1-position-fb               => spindle.1.revs
+
+net spindle.1-vel-cmd-rps                => mux2.1.in0
+
+# mux2.1 selects between normal spindle speed (mux2.1.in0, sel=FALSE) and
+# the orient position-PID output (mux2.1.in1, sel=TRUE while spindle.1.orient
+# is active during an M19 move) - see spindle.1-pos-mode-enable above.
+net spindle.1-vel-cmd-final              <=  mux2.1.out
+net spindle.1-vel-cmd-final               => hm2_7i92.0.stepgen.07.velocity-cmd
 
 net spindle.1-vel-fb-rps                <=  hm2_7i92.0.stepgen.07.velocity-fb
 
@@ -869,13 +1287,38 @@ setp hm2_7i92.0.stepgen.07.maxvel           [SPINDLE_1]STEPGEN_MAXVEL
 
 setp pid.s1.error-previous-target           true
 
-setp pid.s1.Pgain                           [SPINDLE_1]P_VEL
-setp pid.s1.Igain                           [SPINDLE_1]I_VEL
-setp pid.s1.Dgain                           [SPINDLE_1]D_VEL
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.p1.Pgain                           [SPINDLE_1]P_POS
+# setp pid.p1.Igain                           [SPINDLE_1]I_POS
+# setp pid.p1.Dgain                           [SPINDLE_1]D_POS
+setp pid.p1.bias                            [SPINDLE_1]BIAS_POS
+# setp pid.p1.FF0                             [SPINDLE_1]FF0_POS
+# setp pid.p1.FF1                             [SPINDLE_1]FF1_POS
+# setp pid.p1.FF2                             [SPINDLE_1]FF2_POS
+setp orient.1.tolerance                     [SPINDLE_1]ORIENT_TOLERANCE
+# See the matching Sp0 setp above - hardwired shortest-path.
+setp orient.1.mode                          0
+setp pid.p1.maxoutput                       [SPINDLE_1]MAX_OUTPUT_POS
+setp pid.p1.maxerrorI                       [SPINDLE_1]MAX_ERROR_I_POS
+
+# P/I/D/FF0/FF1/FF2 below are now set live from REB_Settings_v1.ini by
+# REB_main.py (Settings tab "Stepper Motor Settings" section), not from
+# this ini value, so the operator can retune them without restarting
+# LinuxCNC. REB_Scale_Persist.py writes the live values back into
+# REB_Settings_v1.ini at shutdown, the same as it already does for
+# axis scale.
+# setp pid.s1.Pgain                           [SPINDLE_1]P_VEL
+# setp pid.s1.Igain                           [SPINDLE_1]I_VEL
+# setp pid.s1.Dgain                           [SPINDLE_1]D_VEL
 setp pid.s1.bias                            [SPINDLE_1]BIAS_VEL
-setp pid.s1.FF0                             [SPINDLE_1]FF0_VEL
-setp pid.s1.FF1                             [SPINDLE_1]FF1_VEL
-setp pid.s1.FF2                             [SPINDLE_1]FF2_VEL
+# setp pid.s1.FF0                             [SPINDLE_1]FF0_VEL
+# setp pid.s1.FF1                             [SPINDLE_1]FF1_VEL
+# setp pid.s1.FF2                             [SPINDLE_1]FF2_VEL
 
 setp pid.s1.deadband                        [SPINDLE_1]DEADBAND
 setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
@@ -885,6 +1328,7 @@ setp pid.s1.maxoutput                       [SPINDLE_1]MAX_OUTPUT
 sets spindle.1-at-speed                     true
 
 # ********************************************************************
+# ROLE_BLOCK_END: Sp1
 
 # ********************************************************************
 #  Connect miscellaneous signals to pins
@@ -910,5 +1354,33 @@ net machine-is-on                           halui.machine.is-on
 net MDI-mode                                halui.mode.is-mdi
 
 net probe-in                             => motion.probe-input
+
+# ********************************************************************
+#  Restore persisted axis scale/maxvel/maxaccel/PID/backlash values
+#  Added 4 September 2026 by Claude
+# ********************************************************************
+# hm2_7i92.0.stepgen.*.position-scale/maxvel/maxaccel, pid.*.Pgain/
+# Igain/Dgain/FF0/FF1/FF2, and joint.*.backlash are all live HAL
+# PARAMETERS with no connection to REB.ini/REB.local.ini at all - each
+# one resets to that component's own hard default (0 or 1, not this
+# machine's real values) every time hm2_7i92/pid/motion are freshly
+# loaded above. Before 4 September 2026, the embedded AXIS Settings
+# tab's own startup pushed every persisted value from REBset_v1.ini
+# onto these live HAL parameters, automatically, every time LinuxCNC
+# started - because the tab was embedded in AXIS itself. Once the
+# Settings tab was replaced by the standalone REB_Settings program
+# (which must run BEFORE LinuxCNC, and is blocked from running while
+# LinuxCNC is running), nothing was left to do this restore at a normal
+# LinuxCNC startup at all - confirmed live 4 September 2026: every
+# axis's scale and PID gains sat at hm2's own defaults for at least one
+# full session, and REB_Shutdown.hal's REB_Scale_Persist.py then
+# faithfully saved those wrong live values straight back into
+# REBset_v1.ini, silently overwriting real calibrated data (recovered
+# afterward from an old backup - see REB_Display/REB_Settings_Restore.py's
+# own docstring for the full story). This loadusr is the fix: the
+# load-side counterpart to REB_Scale_Persist.py, run here (with -w, so
+# HAL loading waits for it to finish) now that hm2_7i92/pid/motion are
+# all already loaded above and every pin/param it needs to setp exists.
+loadusr -w python3 REB_Display/REB_Settings_Restore.py
 
 # *********************** NOTHING FOLLOWS ****************************
